@@ -1,6 +1,7 @@
-module.exports = {
-  i18n: {
-    locales: ['en', 'ru', 'it'],
-    defaultLocale: 'en',
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  distDir: 'out',
 }
+
+module.exports = nextConfig
