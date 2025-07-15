@@ -77,6 +77,22 @@
   </style>
 </head>
 <body>
+  <div id="startScreen" onclick="startGame()" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  color: white;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  cursor: pointer;
+">
+  <img src="🥐" style="width: 100px;" alt="croissant" />
+  <div>Tap to start</div>
+  </div>
   <img id="logo" src="logoPucciPane.png" alt="Pucci Pane">
   <div id="scoreBoard">
     <div id="score">0</div>
@@ -86,7 +102,6 @@
   <div id="gameContainer">
     <div id="bigCroissant">🥐</div>
   </div>
-  <div id="startHint" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-size:32px;background:rgba(0,0,0,0.6);color:white;z-index:4;">Tap to start</div>
   <div id="final" hidden>
     <div id="finalCroissant" style="font-size:300px;">🥐</div>
     <div id="finalMsg"></div>
@@ -98,8 +113,8 @@
     </div>
   </div>
 
-  <script type="module">
-    import { startMusic, stopMusic, playSound } from './soundManager.js';
+  <script src="soundManager.js"></script>
+  <script>
 
     const locales = {
       it: {
@@ -204,7 +219,7 @@
       spawnRAF = setTimeout(spawn, 600);
     }
 
-    function startGame() {
+    function initGame() {
       running = true;
       score = 0;
       misses = 0;
@@ -248,11 +263,28 @@
       }
     });
 
-    document.body.addEventListener('pointerdown', () => {
-      startMusic();
-      document.getElementById('startHint')?.remove();
-      if (!running) startGame();
-    }, { once: true });
+  </script>
+  <script>
+  function startGame() {
+    // Скрыть стартовый экран
+    document.getElementById("startScreen").style.display = "none";
+
+    // Запустить музыку (если soundManager уже загружен)
+    if (window.soundManager && typeof window.soundManager.startMusic === 'function') {
+      try {
+        window.soundManager.startMusic();
+      } catch (e) {
+        console.warn("Music playback failed:", e);
+      }
+    }
+
+    // Запустить игру (твоя логика)
+    if (typeof initGame === 'function') {
+      initGame();
+    } else {
+      console.error("initGame function is missing");
+    }
+  }
   </script>
 </body>
 </html>
