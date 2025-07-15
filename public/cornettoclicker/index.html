@@ -12,12 +12,19 @@
       background: #fff4e6;
       font-family: 'Comic Neue', sans-serif;
     }
-    #logo {
+    #puccilogo {
       position: fixed;
       top: 10px;
       left: 10px;
-      width: 80px;
-      z-index: 2;
+      width: 100px;
+      z-index: 10000;
+    }
+    #azumbologo {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 100px;
+      z-index: 10000;
     }
     #gameContainer {
       position: relative;
@@ -40,20 +47,23 @@
     }
     #scoreBoard {
       position: fixed;
-      right: 10px;
       top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 2;
-      text-align: right;
+      text-align: center;
       font-size: 20px;
     }
     #bigCroissant {
-      position: absolute;
-      left: 50%;
+      position: fixed;
       top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       font-size: 50px;
       transition: font-size 0.3s linear;
       pointer-events: none;
+      opacity: 0.2;
+      z-index: -1;
     }
     #final {
       position: fixed;
@@ -70,30 +80,47 @@
       font-size: 24px;
       z-index: 3;
     }
-    #final button {
-      font-size: 20px;
+    button {
+      font-size: 18px;
       padding: 10px 20px;
+      margin: 10px;
+      border: 2px solid #333;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #eee;
+    }
+    #startScreen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+    #startScreen div {
+      text-shadow: 2px 2px 4px #000;
+    }
+    #startText {
+      font-size: 2em;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div id="startScreen" onclick="startGame()" style="
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  color: white;
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 9999;
-  cursor: pointer;
-">
-  <img src="🥐" style="width: 100px;" alt="croissant" />
-  <div>Tap to start</div>
+  <div id="startScreen" onclick="startGame()">
+    <div style="font-size:100px;">🥐</div>
+    <div id="startText"></div>
   </div>
-  <img id="logo" src="logoPucciPane.png" alt="Pucci Pane">
+  <img src="logoPucciPane.png" id="puccilogo" />
+  <img src="/logol/Azumbo Logo no background small size.png" id="azumbologo" />
   <div id="scoreBoard">
     <div id="score">0</div>
     <div id="misses">0</div>
@@ -117,33 +144,37 @@
   <script>
 
     const locales = {
-      it: {
-        share: 'Condividi',
-        restart: 'Ricomincia',
-        msg: 'Vi aspettiamo da Pucci Pane per i cornetti più freschi e non solo 😃',
-        win: 'Hai vinto!',
-        over: 'Game Over!',
-        best: 'Miglior tempo: ',
-        time: 'Tempo: '
-      },
-      ru: {
-        share: 'Поделиться',
-        restart: 'Начать заново',
-        msg: 'Ждём вас в Pucci Pane за самыми свежими круассанами и не только 😃',
-        win: 'Победа!',
-        over: 'Конец игры!',
-        best: 'Лучшее время: ',
-        time: 'Время: '
-      },
-      en: {
-        share: 'Share',
-        restart: 'Restart',
-        msg: 'Come visit Pucci Pane for the freshest croissants and more 😃',
-        win: 'You win!',
-        over: 'Game Over!',
-        best: 'Best time: ',
-        time: 'Time: '
-      }
+      en: {tap:'Tap to start',share:'Share',restart:'Restart',best:'Best Time',over:'Game Over',time:'Time: ',win:'You win!',msg:'Come visit Pucci Pane for the freshest croissants and more 😃'},
+      es: {tap:'Toca para comenzar',share:'Compartir',restart:'Reiniciar',best:'Mejor tiempo',over:'Fin del juego'},
+      ru: {tap:'Нажмите, чтобы начать',share:'Поделиться',restart:'Начать заново',best:'Лучшее время',over:'Конец игры',time:'Время: ',win:'Победа!',msg:'Ждём вас в Pucci Pane за самыми свежими круассанами и не только 😃'},
+      fr: {tap:'Touchez pour démarrer',share:'Partager',restart:'Recommencer',best:'Meilleur temps',over:'Fin de la partie'},
+      it: {tap:'Tocca per iniziare',share:'Condividi',restart:'Ricomincia',best:'Miglior tempo',over:'Fine gioco',time:'Tempo: ',win:'Hai vinto!',msg:'Vi aspettiamo da Pucci Pane per i cornetti più freschi e non solo 😃'},
+      de: {tap:'Tippen zum Starten',share:'Teilen',restart:'Neustart',best:'Beste Zeit',over:'Spiel beendet'},
+      pt: {tap:'Toque para começar',share:'Compartilhar',restart:'Reiniciar',best:'Melhor tempo',over:'Fim de jogo'},
+      ja: {tap:'タップして開始',share:'共有',restart:'リスタート',best:'ベストタイム',over:'ゲームオーバー'},
+      ko: {tap:'탭하여 시작',share:'공유',restart:'다시 시작',best:'최고 기록',over:'게임 오버'},
+      zh: {tap:'点击开始',share:'分享',restart:'重新开始',best:'最佳时间',over:'游戏结束'},
+      pl: {tap:'Dotknij, aby rozpocząć',share:'Udostępnij',restart:'Restart',best:'Najlepszy czas',over:'Koniec gry'},
+      tr: {tap:'Başlamak için dokun',share:'Paylaş',restart:'Yeniden başlat',best:'En iyi zaman',over:'Oyun Bitti'},
+      nl: {tap:'Tik om te starten',share:'Delen',restart:'Opnieuw',best:'Beste tijd',over:'Game Over'},
+      id: {tap:'Ketuk untuk memulai',share:'Bagikan',restart:'Mulai ulang',best:'Waktu terbaik',over:'Game Over'},
+      th: {tap:'แตะเพื่อเริ่ม',share:'แชร์',restart:'เริ่มใหม่',best:'เวลาที่ดีที่สุด',over:'จบเกม'},
+      ar: {tap:'اضغط للبدء',share:'مشاركة',restart:'إعادة تشغيل',best:'أفضل وقت',over:'انتهت اللعبة'},
+      he: {tap:'הקש כדי להתחיל',share:'שתף',restart:'התחל מחדש',best:'הזמן הטוב ביותר',over:'סיום המשחק'},
+      sv: {tap:'Tryck för att starta',share:'Dela',restart:'Starta om',best:'Bästa tid',over:'Spelet över'},
+      cs: {tap:'Klepněte pro start',share:'Sdílet',restart:'Restartovat',best:'Nejlepší čas',over:'Konec hry'},
+      ro: {tap:'Atinge pentru a porni',share:'Distribuie',restart:'Repornește',best:'Cel mai bun timp',over:'Sfârșitul jocului'},
+      hu: {tap:'Érintsd meg a kezdéshez',share:'Megosztás',restart:'Újraindítás',best:'Legjobb idő',over:'Játék vége'},
+      vi: {tap:'Nhấn để bắt đầu',share:'Chia sẻ',restart:'Chơi lại',best:'Thời gian tốt nhất',over:'Kết thúc trò chơi'},
+      fa: {tap:'برای شروع بزنید',share:'اشتراک‌گذاری',restart:'شروع مجدد',best:'بهترین زمان',over:'پایان بازی'},
+      uk: {tap:'Натисніть, щоб почати',share:'Поділитися',restart:'Перезапустити',best:'Найкращий час',over:'Кінець гри'},
+      no: {tap:'Trykk for å starte',share:'Del',restart:'Start på nytt',best:'Beste tid',over:'Spillet er over'},
+      fi: {tap:'Napauta aloittaaksesi',share:'Jaa',restart:'Aloita alusta',best:'Paras aika',over:'Peli ohi'},
+      da: {tap:'Tryk for at starte',share:'Del',restart:'Genstart',best:'Bedste tid',over:'Spillet er slut'},
+      el: {tap:'Πάτησε για να ξεκινήσεις',share:'Κοινοποίηση',restart:'Επανεκκίνηση',best:'Καλύτερος χρόνος',over:'Τέλος παιχνιδιού'},
+      ms: {tap:'Ketuk untuk mula',share:'Kongsi',restart:'Mula semula',best:'Masa terbaik',over:'Tamat permainan'},
+      hi: {tap:'शुरू करने के लिए टैप करें',share:'साझा करें',restart:'पुनः प्रारंभ',best:'सर्वश्रेष्ठ समय',over:'खेल समाप्त'},
+      sr: {tap:'Tapnite da počnete',share:'Podeli',restart:'Ponovo pokreni',best:'Najbolje vreme',over:'Kraj igre'}
     };
 
     const lang = (navigator.language || 'en').slice(0,2);
@@ -151,6 +182,7 @@
 
     document.getElementById('shareBtn').textContent = t.share;
     document.getElementById('restartBtn').textContent = t.restart;
+    document.getElementById('startText').textContent = t.tap;
 
     let running = false;
     let score = 0;
@@ -246,7 +278,7 @@
       finalTime.textContent = t.time + time.toFixed(7);
       finalBest.textContent = t.best + (bestStr||'--');
       finalMsg.textContent = t.msg;
-      final.querySelector('div:nth-child(2)').textContent = win ? t.win : t.over;
+      final.querySelector('div:nth-child(2)').textContent = win ? (t.win || 'You win!') : t.over;
       final.removeAttribute('hidden');
     }
 
