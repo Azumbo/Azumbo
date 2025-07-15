@@ -28,6 +28,8 @@ Replace files in `public/cornettoclicker/`:
 - `logoPucciPane.png` for the logo.
 - `sounds/*.mp3` for audio effects and music.
 
+The website logo is stored at `public/logo/azumbo.png`.
+
 ### High score storage
 
 The best completion time is stored in `localStorage` under the key `cornettoBest` in the browser.
