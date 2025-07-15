@@ -7,13 +7,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "i18next": "^25.3.2",
     "next": "14.0.0",
+    "next-i18next": "^15.4.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-i18next": "^15.6.0"
   },
   "devDependencies": {
-    "typescript": "5.2.2",
+    "@types/node": "20.6.0",
     "@types/react": "18.2.20",
-    "@types/node": "20.6.0"
+    "typescript": "5.2.2"
   }
 }
