@@ -53,6 +53,11 @@
       animation-timing-function: linear;
       animation-fill-mode: forwards;
     }
+    .croissant,
+    .fire {
+      cursor: pointer;
+      pointer-events: auto;
+    }
     @keyframes fall {
       to { transform: translateY(110vh); }
     }
@@ -240,25 +245,14 @@
     const gameOverReason = document.getElementById('gameOverReason');
 
     function setupInteractionHandlers() {
-      const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
-      const eventType = isMobile ? 'touchstart' : 'click';
-
-      document.addEventListener(eventType, function (e) {
-        const touch = e.touches ? e.touches[0] : e;
-        const x = touch.clientX;
-        const y = touch.clientY;
-
-        const elementsAtPoint = document.elementsFromPoint(x, y);
-
-        for (const el of elementsAtPoint) {
-          if (el.classList.contains('croissant')) {
-            collectCroissant(el);
-            break;
-          }
-          if (el.classList.contains('fire')) {
-            triggerGameOver('fire');
-            break;
-          }
+      const container = document.getElementById('gameContainer');
+      container.addEventListener('pointerdown', function (e) {
+        const target = document.elementFromPoint(e.clientX, e.clientY);
+        if (!target) return;
+        if (target.classList.contains('croissant')) {
+          collectCroissant(target);
+        } else if (target.classList.contains('fire')) {
+          triggerGameOver('fire');
         }
       });
     }
