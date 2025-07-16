@@ -17,17 +17,17 @@ export default function Home() {
         <a href="#contact">{t('contact')}</a>
       </nav>
 
-      <section id="games" className="section">
+      <section id="games" className="section text-center py-12">
         <Image
           src="/logo/Azumbo Logo no background small size.png"
           width={150}
           height={150}
           alt="Azumbo Logo"
-          className="logo"
+          className="mx-auto mb-4"
         />
-        <h1>{t('title')}</h1>
-        <p>{t('subtitle')}</p>
-        <p>{t('description')}</p>
+        <h1 className="text-5xl font-extrabold">{t('title')}</h1>
+        <p className="text-xl mt-2">{t('subtitle')}</p>
+        <p className="text-md mt-1">{t('description')}</p>
       </section>
 
       <section id="about" className="section">
