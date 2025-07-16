@@ -11,6 +11,7 @@ function initSounds() {
     sounds.music.volume = 0.4;
     Object.values(sounds).forEach(a => {
       if (a.setAttribute) a.setAttribute('playsinline', '');
+      a.playsInline = a.playsInline ?? true;
     });
   }
 }
@@ -38,3 +39,8 @@ window.soundManager = {
   stopMusic,
   playSound
 };
+
+document.body.addEventListener('pointerdown', function start() {
+  window.soundManager.startMusic();
+  document.body.removeEventListener('pointerdown', start);
+}, { once: true });

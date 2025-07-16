@@ -362,7 +362,7 @@
       final.style.display = 'flex';
     }
 
-    document.getElementById('shareBtn').addEventListener('click', () => {
+    document.getElementById('shareBtn').addEventListener('pointerdown', () => {
       const text = `${t.time || t.bestTime + ': '}${timerEl.textContent}`;
       if (navigator.share) {
         navigator.share({ text }).catch(() => {});
@@ -371,24 +371,17 @@
       }
     });
 
-    document.getElementById('restartBtn').addEventListener('click', () => {
+    document.getElementById('restartBtn').addEventListener('pointerdown', () => {
       location.reload();
     });
-    restartButton.addEventListener('click', () => {
+    restartButton.addEventListener('pointerdown', () => {
       location.reload();
     });
 
     setupInteractionHandlers();
 
-    document.getElementById('startScreen').addEventListener('click', () => {
+    document.getElementById('startScreen').addEventListener('pointerdown', () => {
       document.getElementById('startScreen').style.display = 'none';
-      if (window.soundManager && typeof window.soundManager.startMusic === 'function') {
-        try {
-          window.soundManager.startMusic();
-        } catch (e) {
-          console.warn('Music playback failed:', e);
-        }
-      }
       initGame();
     });
   </script>
