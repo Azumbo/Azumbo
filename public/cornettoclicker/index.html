@@ -70,6 +70,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      pointer-events: none;
     }
     #final {
       position: fixed;
@@ -247,11 +248,10 @@
     function setupInteractionHandlers() {
       const container = document.getElementById('gameContainer');
       container.addEventListener('pointerdown', function (e) {
-        const target = document.elementFromPoint(e.clientX, e.clientY);
-        if (!target) return;
-        if (target.classList.contains('croissant')) {
-          collectCroissant(target);
-        } else if (target.classList.contains('fire')) {
+        const el = e.target;
+        if (el.classList.contains('croissant')) {
+          collectCroissant(el);
+        } else if (el.classList.contains('fire')) {
           triggerGameOver('fire');
         }
       });
@@ -289,9 +289,9 @@
     function spawn() {
       if (!running) return;
       const isFire = Math.random() < 0.1;
-      const el = document.createElement('div');
-      el.textContent = isFire ? '🔥' : '🥐';
+      const el = document.createElement('span');
       el.classList.add('falling', isFire ? 'fire' : 'croissant');
+      el.textContent = isFire ? '🔥' : '🥐';
       const duration = 4000 + Math.random()*3000;
       el.style.left = Math.random() * (window.innerWidth - 40) + 'px';
       el.style.animationDuration = duration + 'ms';
