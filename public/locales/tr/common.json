@@ -1,8 +1,5 @@
 {
-  "games": "Oyun",
-  "about": "Hakkımızda",
-  "contact": "İletişim",
-  "slogan": "İtalyan ruhu ile viral oyunlar 🇮🇹",
-  "featured": "Öne çıkan oyun",
-  "play": "Şimdi oyna"
+  "title": "AZUMBO",
+  "subtitle": "İtalyan ruhu ile viral oyunlar 🇮🇹",
+  "description": "Viral olan meme kalitesinde oyunlar yaratan bir indie stüdyosu"
 }

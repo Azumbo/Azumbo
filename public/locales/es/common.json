@@ -1,8 +1,5 @@
 {
-  "games": "Juegos",
-  "about": "Sobre nosotros",
-  "contact": "Contacto",
-  "slogan": "Juegos virales con alma italiana 🇮🇹",
-  "featured": "Juego destacado",
-  "play": "Jugar ahora"
+  "title": "AZUMBO",
+  "subtitle": "Juegos virales con alma italiana 🇮🇹",
+  "description": "Un estudio independiente que crea juegos de calidad de meme que se vuelven virales"
 }

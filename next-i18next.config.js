@@ -1,9 +1,27 @@
 module.exports = {
   i18n: {
     defaultLocale: 'en',
-    // Limit supported languages to the ones we actually provide translations
-    // for and want to expose in the UI. This keeps routing simpler and
-    // matches the expected languages from the docs.
-    locales: ['en', 'it', 'ru'],
+    // Supported languages
+    locales: [
+      'ru',
+      'it',
+      'en',
+      'es',
+      'zh',
+      'pt',
+      'fr',
+      'de',
+      'ja',
+      'ko',
+      'uk',
+      'pl',
+      'tr',
+      'ar',
+      'hi',
+      'nl',
+      'el',
+      'id',
+      'th',
+    ],
   },
 };
