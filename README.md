@@ -28,7 +28,8 @@ Replace files in `public/cornettoclicker/`:
 - `logoPucciPane.png` for the logo.
 - `sounds/*.mp3` for audio effects and music.
 
-The website logo is stored at `public/logo/azumbo.png`.
+The website logo is stored at `public/logo/azumbo.png`. Use this path with
+Next.js's `Image` component, e.g. `src="/logo/azumbo.png"`.
 
 ### High score storage
 
