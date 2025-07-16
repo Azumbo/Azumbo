@@ -48,6 +48,7 @@
       font-size: 8vh;
       user-select: none;
       cursor: pointer;
+      pointer-events: auto;
       animation-name: fall;
       animation-timing-function: linear;
       animation-fill-mode: forwards;
@@ -78,6 +79,22 @@
       gap: 2vh;
       padding: 2vh;
       z-index: 3;
+    }
+    /* Game Over UI */
+    #gameOverScreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      font-family: 'Comic Sans MS', sans-serif;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 4px black;
     }
     button {
       font-size: 3vh;
@@ -138,6 +155,13 @@
     </div>
   </div>
 
+  <!-- Game Over screen -->
+  <div id="gameOverScreen" style="display: none;">
+    <h1 id="gameOverText"></h1>
+    <p id="bestTimeText"></p>
+    <button id="restartButton"></button>
+  </div>
+
   <script src="soundManager.js"></script>
   <script>
     const i18n = {
@@ -179,6 +203,8 @@
     document.getElementById('startText').textContent = t.start;
     document.getElementById('shareBtn').textContent = t.share;
     document.getElementById('restartBtn').textContent = t.restart;
+    document.getElementById('gameOverText').textContent = t.gameOver;
+    document.getElementById('restartButton').textContent = t.restart;
 
     let running = false;
     let score = 0;
@@ -194,6 +220,9 @@
     const finalMsg = document.getElementById('finalMsg');
     const finalTime = document.getElementById('finalTime');
     const finalBest = document.getElementById('finalBest');
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    const bestTimeText = document.getElementById('bestTimeText');
+    const restartButton = document.getElementById('restartButton');
 
     function updateScore() {
       scoreEl.textContent = score;
@@ -209,19 +238,33 @@
 
     function spawn() {
       if (!running) return;
-      const el = document.createElement('div');
       const isFire = Math.random() < 0.1;
+      const el = document.createElement('div');
       el.textContent = isFire ? '🔥' : '🥐';
-      el.className = 'falling';
+      el.classList.add('falling');
       const duration = 4000 + Math.random()*3000;
       el.style.left = Math.random() * (window.innerWidth - 40) + 'px';
       el.style.animationDuration = duration + 'ms';
-      el.addEventListener('pointerdown', (e) => {
+      el.addEventListener('click', (e) => {
         e.stopPropagation();
         if (!running) return;
         if (isFire) {
           playSound('fire');
-          endGame(false);
+          croissantBurnedHit();
+        } else {
+          playSound('collect');
+          score++;
+          updateScore();
+          el.remove();
+          if (score >= 500) endGame(true);
+        }
+      });
+      el.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        if (!running) return;
+        if (isFire) {
+          playSound('fire');
+          croissantBurnedHit();
         } else {
           playSound('collect');
           score++;
@@ -234,9 +277,7 @@
         el.remove();
         if (!running) return;
         if (!isFire) {
-          misses++;
-          updateScore();
-          if (misses >= 10) endGame(false);
+          croissantMissed();
         }
       });
       document.getElementById('gameContainer').appendChild(el);
@@ -251,6 +292,30 @@
       startTime = performance.now();
       updateTimer();
       spawn();
+    }
+
+    function showGameOver(time) {
+      running = false;
+      clearTimeout(spawnRAF);
+      cancelAnimationFrame(timerRAF);
+      stopMusic();
+      document.querySelectorAll('.falling').forEach(el=>el.remove());
+      bestTimeText.textContent = `${t.bestTime}: ${time.toFixed(2)}s`;
+      gameOverScreen.style.display = 'flex';
+    }
+
+    function croissantMissed() {
+      misses++;
+      updateScore();
+      if (misses >= 10) {
+        const currentTime = (performance.now() - startTime) / 1000;
+        showGameOver(currentTime);
+      }
+    }
+
+    function croissantBurnedHit() {
+      const currentTime = (performance.now() - startTime) / 1000;
+      showGameOver(currentTime);
     }
 
     function endGame(win) {
@@ -284,6 +349,9 @@
     });
 
     document.getElementById('restartBtn').addEventListener('click', () => {
+      location.reload();
+    });
+    restartButton.addEventListener('click', () => {
       location.reload();
     });
 
