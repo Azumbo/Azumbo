@@ -18,7 +18,7 @@ export default function Home() {
       </nav>
 
       <section id="games" className="section">
-        <Image src="/logo/Azumbo Logo no background small size.png" width={150} height={150} alt="Azumbo Logo" className="logo" />
+        <Image src="/logo/azumbo.png" width={150} height={150} alt="Azumbo Logo" className="logo" />
         <h1>Azumbo Games</h1>
         <p>{t('slogan')}</p>
         <h2>{t('featured')}</h2>
@@ -37,7 +37,9 @@ export default function Home() {
         </p>
         <p>
           <a href="https://twitter.com/AzumboGames" target="_blank" rel="noopener noreferrer">Twitter</a> |
-          <a href="https://github.com/AzumboGames" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://discord.gg/azumbo" target="_blank" rel="noopener noreferrer">Discord</a> |
+          <a href="https://www.youtube.com/@AzumboGames" target="_blank" rel="noopener noreferrer">YouTube</a> |
+          <a href="https://www.tiktok.com/@AzumboGames" target="_blank" rel="noopener noreferrer">TikTok</a>
         </p>
       </section>
     </Layout>
