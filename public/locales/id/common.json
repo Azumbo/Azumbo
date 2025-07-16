@@ -1,8 +1,5 @@
 {
-  "games": "Game",
-  "about": "Tentang",
-  "contact": "Kontak",
-  "slogan": "Game viral dengan jiwa Italia 🇮🇹",
-  "featured": "Game Unggulan",
-  "play": "Mainkan Sekarang"
+  "title": "AZUMBO",
+  "subtitle": "Game viral dengan jiwa Italia 🇮🇹",
+  "description": "Studio indie yang menciptakan game berkualitas meme yang menjadi viral"
 }

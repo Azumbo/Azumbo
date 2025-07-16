@@ -1,8 +1,5 @@
 {
-  "games": "Gry",
-  "about": "O nas",
-  "contact": "Kontakt",
-  "slogan": "Gry wirusowe z włoską duszą 🇮🇹",
-  "featured": "Polecana gra",
-  "play": "Zagraj teraz"
+  "title": "AZUMBO",
+  "subtitle": "Gry wirusowe z włoską duszą 🇮🇹",
+  "description": "Niezależne studio tworzące gry o jakości meme, które stają się wirusowe"
 }

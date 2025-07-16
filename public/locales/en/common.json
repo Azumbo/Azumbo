@@ -1,8 +1,5 @@
 {
-  "games": "Games",
-  "about": "About",
-  "contact": "Contact",
-  "slogan": "Viral games with Italian soul 🇮🇹",
-  "featured": "Featured Game",
-  "play": "Play Now"
+  "title": "AZUMBO",
+  "subtitle": "Viral games with Italian soul 🇮🇹",
+  "description": "An indie studio creating meme-quality games that go viral"
 }

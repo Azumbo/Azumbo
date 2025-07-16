@@ -1,6 +1,7 @@
-# Azumbo Website
+# AZUMBO
 
-Viral games with Italian soul 🇮🇹
+Вирусные игры с итальянской душой 🇮🇹
+Инди-студия, создающая мем-качественные игры, которые становятся вирусными
 
 ## Cornetto Clicker
 

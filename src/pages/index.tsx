@@ -18,11 +18,16 @@ export default function Home() {
       </nav>
 
       <section id="games" className="section">
-        <Image src="/logo/azumbo.png" width={150} height={150} alt="Azumbo Logo" className="logo" />
-        <h1>Azumbo Games</h1>
-        <p>{t('slogan')}</p>
-        <h2>{t('featured')}</h2>
-        <Link href="/perdonauta-afozio">{t('play')}</Link>
+        <Image
+          src="/logo/Azumbo Logo no background small size.png"
+          width={150}
+          height={150}
+          alt="Azumbo Logo"
+          className="logo"
+        />
+        <h1>{t('title')}</h1>
+        <p>{t('subtitle')}</p>
+        <p>{t('description')}</p>
       </section>
 
       <section id="about" className="section">
