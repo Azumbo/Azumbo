@@ -184,6 +184,7 @@
 
   <script src="./soundManager.js"></script>
   <script>
+    console.log('Build: 18.07.2025');
     const i18n = {
       en:{start:'Tap to start',restart:'Restart',share:'Share',gameOver:'Game Over',fire:'You touched fire!',bestTime:'Best time',time:'Time: ',win:'You win!',msg:'Come visit Pucci Pane for the freshest croissants and more \uD83D\uDE03'},
       es:{start:'Toca para comenzar',restart:'Reiniciar',share:'Compartir',gameOver:'Fin del juego',bestTime:'Mejor tiempo'},
@@ -247,14 +248,16 @@
 
     function setupInteractionHandlers() {
       const container = document.getElementById('gameContainer');
-      container.addEventListener('pointerdown', function (e) {
+      const handle = function (e) {
         const el = e.target;
         if (el.classList.contains('croissant')) {
           collectCroissant(el);
         } else if (el.classList.contains('fire')) {
           triggerGameOver('fire');
         }
-      });
+      };
+      container.addEventListener('pointerdown', handle);
+      container.addEventListener('click', handle);
     }
 
     function updateScore() {
@@ -282,6 +285,7 @@
 
     function triggerGameOver(reason) {
       if (!running) return;
+      console.log('triggerGameOver', reason);
       if (reason === 'fire') playSound('fire');
       croissantBurnedHit(reason);
     }
@@ -328,6 +332,7 @@
     }
 
     function croissantMissed() {
+      console.log('croissantMissed');
       misses++;
       updateScore();
       if (misses >= 10) {
@@ -337,6 +342,7 @@
     }
 
     function croissantBurnedHit(reason) {
+      console.log('croissantBurnedHit', reason);
       const currentTime = (performance.now() - startTime) / 1000;
       showGameOver(currentTime, reason);
     }
@@ -362,28 +368,38 @@
       final.style.display = 'flex';
     }
 
-    document.getElementById('shareBtn').addEventListener('pointerdown', () => {
+    const shareHandler = () => {
       const text = `${t.time || t.bestTime + ': '}${timerEl.textContent}`;
       if (navigator.share) {
         navigator.share({ text }).catch(() => {});
       } else if (navigator.clipboard) {
         navigator.clipboard.writeText(text).catch(() => {});
       }
-    });
+    };
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('pointerdown', shareHandler);
+    shareBtn.addEventListener('click', shareHandler);
 
-    document.getElementById('restartBtn').addEventListener('pointerdown', () => {
+    const restartAll = () => {
       location.reload();
-    });
-    restartButton.addEventListener('pointerdown', () => {
-      location.reload();
-    });
+    };
+    document.getElementById('restartBtn').addEventListener('pointerdown', restartAll);
+    document.getElementById('restartBtn').addEventListener('click', restartAll);
+    restartButton.addEventListener('pointerdown', restartAll);
+    restartButton.addEventListener('click', restartAll);
 
     setupInteractionHandlers();
 
-    document.getElementById('startScreen').addEventListener('pointerdown', () => {
+    const startHandler = () => {
       document.getElementById('startScreen').style.display = 'none';
+      if (window.soundManager && typeof window.soundManager.startMusic === 'function') {
+        window.soundManager.startMusic();
+      }
       initGame();
-    });
+    };
+    const startEl = document.getElementById('startScreen');
+    startEl.addEventListener('pointerdown', startHandler);
+    startEl.addEventListener('click', startHandler);
   </script>
 </body>
 </html>
