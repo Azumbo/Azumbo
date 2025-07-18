@@ -4,3 +4,4 @@ public/*.png
 public/*.ico
 public/*.webmanifest
 
+package-lock.json
