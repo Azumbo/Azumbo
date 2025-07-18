@@ -13,6 +13,10 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       overflow: hidden;
     }
+    html, body {
+      touch-action: none;
+      -webkit-user-select: none;
+    }
     .logo {
       position: absolute;
       height: 40px;
@@ -184,6 +188,7 @@
 
   <script src="./soundManager.js"></script>
   <script>
+    console.log('Build: 18.07.2025');
     const i18n = {
       en:{start:'Tap to start',restart:'Restart',share:'Share',gameOver:'Game Over',fire:'You touched fire!',bestTime:'Best time',time:'Time: ',win:'You win!',msg:'Come visit Pucci Pane for the freshest croissants and more \uD83D\uDE03'},
       es:{start:'Toca para comenzar',restart:'Reiniciar',share:'Compartir',gameOver:'Fin del juego',bestTime:'Mejor tiempo'},
@@ -247,13 +252,16 @@
 
     function setupInteractionHandlers() {
       const container = document.getElementById('gameContainer');
-      container.addEventListener('pointerdown', function (e) {
+      const handle = function (e) {
         const el = e.target;
         if (el.classList.contains('croissant')) {
           collectCroissant(el);
         } else if (el.classList.contains('fire')) {
           triggerGameOver('fire');
         }
+      };
+      ['pointerdown','click','touchstart'].forEach(evt => {
+        container.addEventListener(evt, handle, { passive: false });
       });
     }
 
@@ -282,6 +290,7 @@
 
     function triggerGameOver(reason) {
       if (!running) return;
+      console.log('triggerGameOver', reason);
       if (reason === 'fire') playSound('fire');
       croissantBurnedHit(reason);
     }
@@ -328,6 +337,7 @@
     }
 
     function croissantMissed() {
+      console.log('croissantMissed');
       misses++;
       updateScore();
       if (misses >= 10) {
@@ -337,6 +347,7 @@
     }
 
     function croissantBurnedHit(reason) {
+      console.log('croissantBurnedHit', reason);
       const currentTime = (performance.now() - startTime) / 1000;
       showGameOver(currentTime, reason);
     }
@@ -362,28 +373,42 @@
       final.style.display = 'flex';
     }
 
-    document.getElementById('shareBtn').addEventListener('pointerdown', () => {
+    const shareHandler = () => {
       const text = `${t.time || t.bestTime + ': '}${timerEl.textContent}`;
       if (navigator.share) {
         navigator.share({ text }).catch(() => {});
       } else if (navigator.clipboard) {
         navigator.clipboard.writeText(text).catch(() => {});
       }
+    };
+    const shareBtn = document.getElementById('shareBtn');
+    ['pointerdown','click','touchstart'].forEach(evt => {
+      shareBtn.addEventListener(evt, shareHandler, { passive: false });
     });
 
-    document.getElementById('restartBtn').addEventListener('pointerdown', () => {
+    const restartAll = () => {
       location.reload();
-    });
-    restartButton.addEventListener('pointerdown', () => {
-      location.reload();
+    };
+    const restartBtn = document.getElementById('restartBtn');
+    ['pointerdown','click','touchstart'].forEach(evt => {
+      restartBtn.addEventListener(evt, restartAll, { passive: false });
+      restartButton.addEventListener(evt, restartAll, { passive: false });
     });
 
     setupInteractionHandlers();
 
-    document.getElementById('startScreen').addEventListener('pointerdown', () => {
+    const startHandler = () => {
       document.getElementById('startScreen').style.display = 'none';
+      if (window.soundManager && typeof window.soundManager.startMusic === 'function') {
+        window.soundManager.startMusic();
+      }
       initGame();
+    };
+    const startEl = document.getElementById('startScreen');
+    ['pointerdown','click','touchstart'].forEach(evt => {
+      startEl.addEventListener(evt, startHandler, { passive: false });
     });
   </script>
 </body>
 </html>
+
