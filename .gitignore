@@ -1,0 +1,7 @@
+node_modules/
+.next/
+public/*.png
+public/*.ico
+public/*.webmanifest
+
+package-lock.json
