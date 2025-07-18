@@ -3,5 +3,6 @@ node_modules/
 public/*.png
 public/*.ico
 public/*.webmanifest
+public/*.mp3
 
 package-lock.json
