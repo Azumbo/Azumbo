@@ -18,15 +18,18 @@ function initSounds() {
 
 function startMusic() {
   initSounds();
+  console.log('startMusic');
   sounds.music.play().catch(() => {});
 }
 function stopMusic() {
   if (!sounds) return;
+  console.log('stopMusic');
   sounds.music.pause();
   sounds.music.currentTime = 0;
 }
 function playSound(name) {
   initSounds();
+  console.log('playSound', name);
   const s = sounds[name];
   if (s) {
     s.currentTime = 0;
@@ -40,7 +43,12 @@ window.soundManager = {
   playSound
 };
 
-document.body.addEventListener('pointerdown', function start() {
+function autoStart() {
   window.soundManager.startMusic();
-  document.body.removeEventListener('pointerdown', start);
-}, { once: true });
+  ['pointerdown','touchstart','click'].forEach(t =>
+    document.body.removeEventListener(t, autoStart)
+  );
+}
+['pointerdown','touchstart','click'].forEach(evt => {
+  document.body.addEventListener(evt, autoStart, { passive: false });
+});
