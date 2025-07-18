@@ -18,15 +18,18 @@ function initSounds() {
 
 function startMusic() {
   initSounds();
+  console.log('startMusic');
   sounds.music.play().catch(() => {});
 }
 function stopMusic() {
   if (!sounds) return;
+  console.log('stopMusic');
   sounds.music.pause();
   sounds.music.currentTime = 0;
 }
 function playSound(name) {
   initSounds();
+  console.log('playSound', name);
   const s = sounds[name];
   if (s) {
     s.currentTime = 0;
