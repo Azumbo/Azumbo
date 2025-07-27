@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <main className="text-primary bg-black">
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 gap-4">
-        <h1 className="text-3xl md:text-5xl leading-tight">{t('hero.title')}</h1>
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 gap-4 cursor-crosshair">
+        <h1 className="text-3xl md:text-5xl leading-tight font-pixel">{t('hero.title')}</h1>
         <p className="max-w-xl text-secondary whitespace-pre-line">{t('hero.subtitle')}</p>
         <p className="text-secondary">{t('hero.line1')}</p>
         <p className="text-secondary">{t('hero.line2')}</p>
@@ -25,7 +25,7 @@ export default function Home() {
           <p>{t('games.molaDesc')}</p>
           <p className="whitespace-pre-line mt-2 text-sm">{t('games.molaFeatures')}</p>
           <p className="font-bold mt-2">{t('games.molaStats')}</p>
-          <a href="#" className="inline-block mt-4 bg-secondary text-black px-4 py-2 rounded hover:opacity-80 transition">{t('games.playNow')}</a>
+          <a href="/cornettoclicker/" className="inline-block mt-4 bg-secondary text-black px-4 py-2 rounded hover:opacity-80 transition">{t('games.playNow')}</a>
         </div>
         <p>{t('games.coming')}</p>
       </section>

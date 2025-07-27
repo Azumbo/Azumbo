@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)'],
+        pixel: ['var(--font-press-start)'],
       },
       colors: {
         primary: '#facc15', // yellow
