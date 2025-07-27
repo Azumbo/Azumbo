@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        press: ['var(--font-press-start)'],
+        sans: ['var(--font-inter)'],
       },
       colors: {
         primary: '#facc15', // yellow

@@ -1,10 +1,10 @@
 import './globals.css';
 import React from 'react';
-import { Press_Start_2P } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const pressStart = Press_Start_2P({
+const inter = Inter({
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-press-start',
+  variable: '--font-inter',
   weight: '400',
 });
 
@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={pressStart.variable}>
+    <html lang="en" className={inter.variable}>
       <body>{children}</body>
     </html>
   );
