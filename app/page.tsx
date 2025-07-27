@@ -45,6 +45,7 @@ export default function Home() {
         <p>{t('contact.desc')}</p>
         <p>{t('contact.email')}</p>
         <a className="block" href="mailto:AzumboGames@gmail.com">{t('contact.address')}</a>
+        <a className="block" href="tel:+393791815588">{t('contact.phone')}</a>
         <a href="mailto:AzumboGames@gmail.com" className="inline-block mt-2 bg-secondary text-black px-4 py-2 rounded hover:opacity-80 transition">{t('contact.send')}</a>
       </section>
 
