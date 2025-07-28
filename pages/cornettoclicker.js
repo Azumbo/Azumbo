@@ -30,7 +30,7 @@ export default function CornettoClicker() {
           className="iphone-frame"
         />
         <iframe
-          src="/cornettoclicker/game.html"
+          src="/cornettoclicker/index.html"
           className="game-iframe"
           title="Cornetto Clicker Game"
         />
@@ -42,7 +42,7 @@ export default function CornettoClicker() {
           justify-content: center;
           align-items: center;
           min-height: 100vh;
-          background: #222;
+          background: linear-gradient(135deg, #7B2FF7, #512da8);
         }
 
         .iphone-wrapper {
