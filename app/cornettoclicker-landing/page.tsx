@@ -7,37 +7,38 @@ export const metadata = {
 
 export default function CornettoLanding() {
   return (
-    <main className="bg-black text-primary">
-      {/* Hero */}
-      <section className="min-h-screen flex flex-col justify-between px-4 py-8">
-        <header className="flex items-center justify-between">
-          <Image src="/assets/logo/azumbo-logo.png" alt="AZUMBO" width={160} height={40} />
-          <a href="#" className="text-secondary hover:opacity-80 transition text-2xl">TikTok</a>
-        </header>
-        <div className="flex-1 flex flex-col items-center justify-center text-center gap-6">
-          <h1 className="text-4xl md:text-6xl font-pixel">Cornetto Clicker</h1>
-          <p className="text-secondary max-w-md">Собери 500 круассанов и стань Легендой булочек!</p>
-          <a
-            href="https://azumbo.vercel.app/cornettoclicker"
-            className="bg-secondary text-black px-6 py-3 rounded hover:opacity-80 transition"
-          >
-            Играть сейчас
-          </a>
+    <main className="min-h-screen bg-[#7B2FF7] px-4 font-sans text-white">
+      <section className="flex flex-col justify-center min-h-screen">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-screen-sm w-full mx-auto mt-10 space-y-4 text-center">
+          <Image
+            src="/assets/logo/azumbo-logo.png"
+            alt="AZUMBO"
+            width={160}
+            height={160}
+            className="w-40 object-contain mx-auto"
+          />
+          <h1 className="text-xl md:text-2xl font-semibold text-black">Cornetto Clicker</h1>
+          <p className="text-gray-700">Собери 500 круассанов и стань Легендой булочек!</p>
+          <div className="flex justify-center gap-4">
+            <a
+              href="https://azumbo.vercel.app/cornettoclicker"
+              className="bg-purple-700 text-white px-4 py-2 rounded-lg hover:bg-purple-800"
+            >
+              Играть сейчас
+            </a>
+            <a
+              href="https://t.me/+393446935576"
+              className="border border-purple-700 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-50"
+            >
+              Telegram
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Screenshots */}
-      <section className="px-4 py-16 max-w-5xl mx-auto grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-        <div className="bg-gray-200 h-64 rounded" />
-        <div className="bg-gray-200 h-64 rounded" />
-        <div className="bg-gray-200 h-64 rounded" />
-        <div className="bg-gray-200 h-64 rounded" />
-      </section>
-
-      {/* Features */}
       <section className="px-4 py-16 max-w-3xl mx-auto">
-        <h2 className="text-2xl md:text-3xl text-center mb-6">Особенности</h2>
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <h2 className="text-xl md:text-2xl text-center mb-6">Особенности</h2>
+        <ul className="grid gap-4 sm:grid-cols-2 text-white text-lg">
           <li className="flex gap-2"><span>🥐</span> Падающие круассаны с физикой</li>
           <li className="flex gap-2"><span>🔥</span> Сгоревшие булки — смерть</li>
           <li className="flex gap-2"><span>⏱️</span> Таймер и рекорд времени</li>
@@ -46,28 +47,19 @@ export default function CornettoLanding() {
         </ul>
       </section>
 
-      {/* About */}
       <section className="px-4 py-16 max-w-3xl mx-auto text-center space-y-4">
-        <h2 className="text-2xl md:text-3xl">Разработано инди-студией AZUMBO</h2>
-        <p className="text-secondary">Один разработчик, один круассан и безумная идея</p>
-        <p>Хочешь такую игру? — Напиши нам!</p>
+        <h2 className="text-xl md:text-2xl">Разработано инди-студией AZUMBO</h2>
+        <p className="text-white">Один разработчик, один круассан и безумная идея</p>
+        <p className="text-white">Хочешь такую игру? — Напиши нам!</p>
         <a
           href="https://t.me/+393446935576"
-          className="inline-block bg-secondary text-black px-4 py-2 rounded hover:opacity-80 transition"
+          className="border border-purple-700 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-50"
         >
           Telegram
         </a>
       </section>
 
-      {/* Footer */}
-      <footer className="px-4 py-10 text-center text-sm bg-black border-t border-secondary space-y-4">
-        <a
-          href="https://azumbo.vercel.app/cornettoclicker"
-          className="inline-block bg-secondary text-black px-4 py-2 rounded hover:opacity-80 transition"
-        >
-          Играть сейчас
-        </a>
-        <p>Подпишись на нас в TikTok и не пропусти новые игры</p>
+      <footer className="text-white text-sm text-center mt-10">
         <p>🄯 2025 AZUMBO ∞</p>
       </footer>
     </main>
