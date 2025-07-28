@@ -1,5 +1,17 @@
 console.log("Build: 18.07.2025");
 
+function sendLog(msg) {
+  try {
+    navigator.sendBeacon('/api/log', msg);
+  } catch (e) {
+    console.error('log failed', e);
+  }
+}
+
+sendLog('script loaded');
+window.addEventListener('error', e => sendLog('error:' + e.message));
+window.addEventListener('unhandledrejection', e => sendLog('rejection:' + e.reason));
+
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
 const shareBtn = document.getElementById('share-btn');
@@ -172,6 +184,7 @@ function startTimer() {
 
 function startGame() {
   try {
+    sendLog('start');
     startBackgroundMusic();
     playWhoosh();
     score = 0;
@@ -220,6 +233,7 @@ function stopGame() {
 
 function gameOver() {
   console.log('Death');
+  sendLog('gameover');
   stopGame();
   endMessage.textContent = 'Game Over';
   finalCroissant.textContent = '🔥';
@@ -229,6 +243,7 @@ function gameOver() {
 
 function win() {
   console.log('Victory');
+  sendLog('win');
   stopGame();
   finalCroissant.textContent = '🥐';
   endMessage.textContent = 'Ждём вас в Pucci Pane за самыми свежими круассанами и не только :)';
@@ -245,6 +260,7 @@ function showEnd() {
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', () => {
   console.log('Restart');
+  sendLog('restart');
   startGame();
 });
 shareBtn.addEventListener('click', () => {
