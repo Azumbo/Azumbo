@@ -1,21 +1,6 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 export default function CornettoClicker() {
-  const router = useRouter();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Client-side mobile detection
-    if (window.innerWidth < 600) {
-      router.replace('/cornettoclicker/game.html');
-    } else {
-      setIsMobile(false);
-    }
-  }, []);
-
-  if (isMobile) return null; // Will redirect
 
   return (
     <div className="container">
