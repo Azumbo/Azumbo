@@ -7,6 +7,7 @@ const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const endScreen = document.getElementById('end-screen');
 const gameArea = document.getElementById('game-area');
+const player = document.getElementById('player');
 const scoreEl = document.getElementById('score');
 const missedEl = document.getElementById('missed');
 const timerEl = document.getElementById('timer');
@@ -19,6 +20,8 @@ let timer = 0;
 let intervalId;
 let timerId;
 let audioStarted = false;
+let objects = [];
+let running = false;
 
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioCtx();
@@ -56,6 +59,56 @@ function playBeep(freq, duration) {
   }
 }
 
+function movePlayer(delta) {
+  const areaRect = gameArea.getBoundingClientRect();
+  let left = (player.offsetLeft || 0) + delta;
+  left = Math.max(0, Math.min(left, gameArea.clientWidth - player.offsetWidth));
+  player.style.left = left + 'px';
+}
+
+function pointerMove(e) {
+  const rect = gameArea.getBoundingClientRect();
+  let x = e.clientX - rect.left - player.offsetWidth / 2;
+  x = Math.max(0, Math.min(x, gameArea.clientWidth - player.offsetWidth));
+  player.style.left = x + 'px';
+}
+
+function keyMove(e) {
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    movePlayer(-20);
+  } else if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    movePlayer(20);
+  }
+}
+
+function checkCollisions() {
+  if (!running) return;
+  const playerRect = player.getBoundingClientRect();
+  for (let i = objects.length - 1; i >= 0; i--) {
+    const obj = objects[i];
+    const rect = obj.getBoundingClientRect();
+    if (!(rect.right < playerRect.left || rect.left > playerRect.right ||
+          rect.bottom < playerRect.top || rect.top > playerRect.bottom)) {
+      obj.caught = true;
+      if (obj.textContent === '🥐') {
+        playBeep(440, 100);
+        score++;
+        scoreEl.textContent = score;
+        obj.remove();
+        objects.splice(i, 1);
+        if (score >= 500) win();
+      } else {
+        playBeep(110, 500);
+        gameOver();
+        return;
+      }
+    }
+  }
+  requestAnimationFrame(checkCollisions);
+}
+
 function createObject() {
   const span = document.createElement('span');
   span.className = 'object';
@@ -65,26 +118,11 @@ function createObject() {
   span.style.animation = 'fall 5s linear forwards';
   gameArea.appendChild(span);
 
-  span.addEventListener('pointerdown', e => {
-    e.preventDefault();
-    if (span.clicked) return;
-    span.clicked = true;
-    if (span.textContent === '🥐') {
-      console.log('Croissant clicked');
-      playBeep(440, 100);
-      score++;
-      scoreEl.textContent = score;
-      span.remove();
-      if (score >= 500) win();
-    } else {
-      console.log('Fire clicked');
-      playBeep(110, 500);
-      gameOver();
-    }
-  });
+  objects.push(span);
+  span.caught = false;
 
   span.addEventListener('animationend', () => {
-    if (!span.clicked && span.textContent === '🥐') {
+    if (!span.caught && span.textContent === '🥐') {
       missed++;
       missedEl.textContent = missed;
       if (missed >= 10) {
@@ -93,6 +131,7 @@ function createObject() {
       }
     }
     span.remove();
+    objects = objects.filter(o => o !== span);
   });
 }
 
@@ -113,6 +152,7 @@ function startGame() {
     score = 0;
     missed = 0;
     timer = 0;
+    objects = [];
     scoreEl.textContent = score;
     missedEl.textContent = missed;
     timerEl.textContent = timer;
@@ -121,6 +161,11 @@ function startGame() {
     gameScreen.classList.add('active');
     intervalId = setInterval(gameLoop, 800);
     startTimer();
+    running = true;
+    player.style.left = (gameArea.clientWidth / 2 - player.offsetWidth / 2) + 'px';
+    gameArea.addEventListener('pointermove', pointerMove);
+    document.addEventListener('keydown', keyMove);
+    requestAnimationFrame(checkCollisions);
   } catch (e) {
     console.error(e);
   }
@@ -129,7 +174,11 @@ function startGame() {
 function stopGame() {
   clearInterval(intervalId);
   clearInterval(timerId);
-  gameArea.innerHTML = '';
+  document.querySelectorAll('.object').forEach(o => o.remove());
+  gameArea.removeEventListener('pointermove', pointerMove);
+  document.removeEventListener('keydown', keyMove);
+  objects = [];
+  running = false;
 }
 
 function gameOver() {

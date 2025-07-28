@@ -29,8 +29,17 @@ body {
 .object {
   position: absolute;
   font-size: 2em;
-  cursor: pointer;
   user-select: none;
+  pointer-events: none;
+}
+#player {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  user-select: none;
+  pointer-events: none;
 }
 #final-croissant {
   font-size: 2em;
