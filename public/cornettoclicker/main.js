@@ -27,17 +27,41 @@ const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioCtx();
 let bgGain = audioCtx.createGain();
 let bgOsc;
+let percussionInterval;
+
+function playWhoosh() {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.3);
+  gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.3);
+}
+
+function playVictoryMelody() {
+  const notes = [261.63, 392.0, 440.0];
+  notes.forEach((f, i) => {
+    setTimeout(() => playBeep(f, 200), i * 250);
+  });
+}
 
 function startBackgroundMusic() {
   if (audioStarted) return;
   audioStarted = true;
+  audioCtx.resume();
   bgOsc = audioCtx.createOscillator();
   bgOsc.type = 'sine';
-  bgOsc.frequency.value = 220;
+  bgOsc.frequency.value = 110;
   bgOsc.connect(bgGain);
   bgGain.connect(audioCtx.destination);
-  bgGain.gain.value = 0.05;
+  bgGain.gain.value = 0.02;
   bgOsc.start();
+  percussionInterval = setInterval(() => playBeep(220, 60), 600);
 }
 
 function playBeep(freq, duration) {
@@ -149,6 +173,7 @@ function startTimer() {
 function startGame() {
   try {
     startBackgroundMusic();
+    playWhoosh();
     score = 0;
     missed = 0;
     timer = 0;
@@ -174,6 +199,7 @@ function startGame() {
 function stopGame() {
   clearInterval(intervalId);
   clearInterval(timerId);
+  clearInterval(percussionInterval);
   document.querySelectorAll('.object').forEach(o => o.remove());
   gameArea.removeEventListener('pointermove', pointerMove);
   document.removeEventListener('keydown', keyMove);
@@ -197,7 +223,7 @@ function win() {
   endMessage.textContent = 'Ждём вас в Pucci Pane за самыми свежими круассанами и не только :)';
   finalCroissant.style.animation = 'grow 3s forwards';
   showEnd();
-  playBeep(660, 300);
+  playVictoryMelody();
 }
 
 function showEnd() {
