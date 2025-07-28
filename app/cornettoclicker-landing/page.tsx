@@ -7,7 +7,8 @@ export const metadata = {
 
 export default function CornettoLanding() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 px-4 py-10 font-sans">
+    <div className="min-h-screen bg-[#7B2FF7] py-10 px-4">
+      <main className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 px-4 py-10 font-sans">
       <div className="max-w-screen-sm mx-auto bg-white p-8 rounded-2xl shadow-xl space-y-6">
         <Image
           src="/assets/logo/azumbo-logo.png"
@@ -67,5 +68,6 @@ export default function CornettoLanding() {
         </footer>
       </div>
     </main>
+    </div>
   );
 }
