@@ -200,6 +200,17 @@ function stopGame() {
   clearInterval(intervalId);
   clearInterval(timerId);
   clearInterval(percussionInterval);
+  if (bgOsc) {
+    try {
+      bgOsc.stop();
+    } catch (e) {
+      console.error(e);
+    }
+    bgOsc.disconnect();
+    bgGain.disconnect();
+    bgOsc = null;
+    audioStarted = false;
+  }
   document.querySelectorAll('.object').forEach(o => o.remove());
   gameArea.removeEventListener('pointermove', pointerMove);
   document.removeEventListener('keydown', keyMove);
