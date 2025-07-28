@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/cornettoclicker",
+      "destination": "/cornettoclicker/index.html"
+    }
+  ]
+}
