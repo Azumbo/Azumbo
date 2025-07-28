@@ -30,7 +30,7 @@ export default function CornettoClicker() {
           className="iphone-frame"
         />
         <iframe
-          src="/cornettoclicker/index.html"
+          src="/cornettoclicker/game.html"
           className="game-iframe"
           title="Cornetto Clicker Game"
         />
