@@ -7,6 +7,10 @@ const nextConfig = {
         source: '/cornettoclicker',
         destination: '/cornettoclicker/index.html',
       },
+      {
+        source: '/cornettoclicker/',
+        destination: '/cornettoclicker/index.html',
+      },
     ];
   },
 };
