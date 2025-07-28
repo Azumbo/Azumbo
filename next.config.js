@@ -1,18 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: '/cornettoclicker',
-        destination: '/cornettoclicker/index.html',
-      },
-      {
-        source: '/cornettoclicker/',
-        destination: '/cornettoclicker/index.html',
-      },
-    ];
-  },
+  // Remove cornettoclicker rewrites from here
 };
 
 module.exports = nextConfig;
