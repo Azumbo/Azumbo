@@ -9,8 +9,8 @@
       "destination": "/cornettoclicker/index.html"
     },
     {
-      "source": "/cornettoclicker/:path*",
-      "destination": "/cornettoclicker/:path*"
+      "source": "/cornettoclicker/(.*)",
+      "destination": "/cornettoclicker/$1"
     }
   ]
 }

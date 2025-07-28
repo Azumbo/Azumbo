@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Remove cornettoclicker rewrites from here
+  // УДАЛИТЬ все кастомные rewrites
 };
 
 module.exports = nextConfig;
