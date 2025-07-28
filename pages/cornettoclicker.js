@@ -58,11 +58,6 @@ export default function CornettoClicker() {
           overflow: hidden;
         }
 
-        @media (max-width: 600px) {
-          .container {
-            display: none;
-          }
-        }
       `}</style>
     </div>
   );
