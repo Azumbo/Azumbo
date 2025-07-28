@@ -4,18 +4,18 @@ import { useEffect, useState } from 'react';
 
 export default function CornettoClicker() {
   const router = useRouter();
-  const [isMobile, setIsMobile] = useState(false);
+  const [redirecting, setRedirecting] = useState(true);
 
   useEffect(() => {
     // Client-side mobile detection
     if (window.innerWidth < 600) {
       router.replace('/cornettoclicker/game.html');
     } else {
-      setIsMobile(false);
+      setRedirecting(false);
     }
-  }, []);
+  }, [router]);
 
-  if (isMobile) return null; // Will redirect
+  if (redirecting) return null; // Will redirect
 
   return (
     <div className="container">
@@ -68,6 +68,7 @@ export default function CornettoClicker() {
           width: 430px;
           height: 932px;
           z-index: 1;
+          pointer-events: auto;
           border: none;
           border-radius: 40px;
           overflow: hidden;
