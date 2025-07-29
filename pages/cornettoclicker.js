@@ -18,7 +18,7 @@ export default function CornettoClicker() {
           src="/cornettoclicker/game.html"
           className="game-iframe"
           title="Cornetto Clicker Game"
-        />
+        ></iframe>
       </div>
 
       <style jsx>{`
