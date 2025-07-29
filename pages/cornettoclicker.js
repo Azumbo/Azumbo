@@ -1,10 +1,19 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function CornettoClicker() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 600) {
+      router.replace('/cornettoclicker/game.html');
+    }
+  }, [router]);
+
   return (
     <div
-      className="flex items-center justify-center min-h-screen"
-      style={{ background: 'linear-gradient(135deg, #7B2FF7, #512da8)' }}
+      className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700"
     >
       <Head>
         <title>Cornetto Clicker - Azumbo</title>
