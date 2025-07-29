@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cornetto Clicker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Courier+Prime&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="overlay"></div>
+  <header class="pixel-header">
+    <img src="logo.svg" alt="\ud83e\udd50 Cornetto Clicker" class="pixel-logo" aria-label="Cornetto Clicker logo">
+    <nav class="pixel-nav">
+      <a href="#game" data-i18n="nav.game">About Game</a>
+      <a href="#biz" data-i18n="nav.biz">For Business</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+      <div class="lang-switcher" aria-label="Language switcher">
+        <button data-lang="en" aria-label="English">\ud83c\uddec\ud83c\udde7</button>
+        <button data-lang="ru" aria-label="Russian">\ud83c\uddf7\ud83c\uddfa</button>
+        <button data-lang="it" aria-label="Italian">\ud83c\uddee\ud83c\uddf9</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="crt-effect pixel-hero" id="game">
+    <div class="sprite-animation" id="croissant-sprite"></div>
+    <h1>\ud83e\udd50 CORNETTO CLICKER</h1>
+    <h2 data-i18n="hero.subtitle">LEGENDARY CLICKER IS BACK!</h2>
+    <button class="pixel-btn play-btn" data-i18n="hero.play" aria-label="Play now">PLAY NOW</button>
+    <div class="platform-badges">
+      <span class="ios-badge">iOS</span>
+      <span class="android-badge">ANDROID</span>
+      <span class="web-badge">WEB</span>
+    </div>
+  </section>
+
+  <section class="pixel-section" id="features">
+    <h2 data-i18n="features.title">GAME FEATURES</h2>
+    <div class="pokedex-ui">
+      <div class="pixel-feature">&#9632; <span data-i18n="features.f1">50+ ice creams</span></div>
+      <div class="pixel-feature">&#9632; <span data-i18n="features.f2">Retro achievements</span></div>
+      <div class="pixel-feature">&#9632; <span data-i18n="features.f3">Cross-platform</span></div>
+    </div>
+  </section>
+
+  <section class="pixel-section biz-section" id="biz">
+    <h2 data-i18n="biz.title">WANT THIS GAME FOR YOUR BUSINESS?</h2>
+    <div class="niche-grid">
+      <div class="niche bakery" data-niche="bakery">
+        <div class="pixel-icon">\ud83c\udf5e</div>
+        <span data-i18n="biz.bakery">BAKERY \u2192 CROISSANTS</span>
+      </div>
+      <div class="niche winery" data-niche="winery">
+        <div class="pixel-icon">\ud83c\udf77</div>
+        <span data-i18n="biz.winery">WINERY \u2192 GRAPES</span>
+      </div>
+      <div class="niche brewery" data-niche="brewery">
+        <div class="pixel-icon">\ud83c\udf7a</div>
+        <span data-i18n="biz.brewery">BREWERY \u2192 BOTTLES</span>
+      </div>
+      <div class="niche cafe" data-niche="cafe">
+        <div class="pixel-icon">\u2615\ufe0f</div>
+        <span data-i18n="biz.cafe">CAFE \u2192 COOKIES</span>
+      </div>
+    </div>
+    <div class="offer-box">
+      <h3 data-i18n="biz.offer_title">YOUR BRANDED GAME IN 7 DAYS:</h3>
+      <ul class="pixel-list">
+        <li>\u2705 <span data-i18n="biz.offer1">Logo & brand colors</span></li>
+        <li>\u2705 <span data-i18n="biz.offer2">Custom collectibles</span></li>
+        <li>\u2705 <span data-i18n="biz.offer3">Web + iOS + Android</span></li>
+        <li>\u2705 <span data-i18n="biz.offer4">Retro sounds</span></li>
+      </ul>
+    </div>
+    <div class="biz-cta">
+      <p data-i18n="biz.cta_text">Want more loyal customers? Let them play!</p>
+      <button class="pixel-btn biz-btn blink-me" data-i18n="biz.cta_btn" aria-label="Order now">ORDER NOW</button>
+      <p class="pixel-email">\ud83d\udce9 azumbogames@gmail.com</p>
+    </div>
+  </section>
+
+  <footer class="pixel-footer" id="download">
+    <div class="social-links">
+      <a href="#" class="pixel-social" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="pixel-social" aria-label="Gaming"><i class="fas fa-gamepad"></i></a>
+    </div>
+    <p class="copyright">&copy; 1993-<span id="year"></span> Cornetto Games</p>
+    <button class="easter-egg" onclick="secretGame()" aria-label="Easter egg">\ud83d\udc7e</button>
+  </footer>
+
+  <div id="minigame" class="hidden">Mini Game!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
