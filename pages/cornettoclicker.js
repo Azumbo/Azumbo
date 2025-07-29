@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 
 function IphoneWrapper({ src }) {
   return (
-    <div className="relative w-[500px] h-[1000px]">
+    <div className="relative w-[427px] h-[640px]">
       <iframe
         src={src}
-        className="absolute top-[52px] left-[32px] w-[436px] h-[915px] rounded-[40px] z-0"
+        className="absolute top-[35px] left-[35px] w-[357px] h-[570px] rounded-[40px] z-0"
         frameBorder="0"
         title="Cornetto Clicker Game"
       />
