@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { playJumpSound } from '../../lib/audioManager';
+import { playJumpSound, playAmbientLoop, stopAmbientLoop } from '../../lib/audioManager';
 
 export default function GamePage() {
   const router = useRouter();
@@ -9,9 +9,17 @@ export default function GamePage() {
 
   useEffect(() => {
     if (level > 10) {
+      stopAmbientLoop();
       router.push('/finish');
     }
   }, [level, router]);
+
+  useEffect(() => {
+    playAmbientLoop();
+    return () => {
+      stopAmbientLoop();
+    };
+  }, []);
 
   const nextLevel = () => {
     playJumpSound();
