@@ -1,16 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/cornettoclicker",
-      "destination": "/cornettoclicker/index.html"
-    },
-    {
-      "source": "/cornettoclicker/",
-      "destination": "/cornettoclicker/index.html"
-    },
-    {
-      "source": "/cornettoclicker/(.*)",
-      "destination": "/cornettoclicker/$1"
+      "source": "/cornettoclicker/:path*",
+      "destination": "/cornettoclicker/:path*"
     }
   ]
 }
