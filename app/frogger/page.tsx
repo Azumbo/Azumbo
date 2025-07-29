@@ -1,11 +1,31 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { initAudioSystem, playJumpSound, playCarSound, playWaterSplash, playFinishSound } from '../../lib/froggerAudio';
+import {
+  initAudioSystem,
+  playJumpSound,
+  playCarSound,
+  playWaterSplash,
+  playFinishSound,
+  playBackgroundMusic,
+  stopBackgroundMusic,
+  froggerTheme,
+} from '../../lib/froggerAudio';
 
 export default function FroggerPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState<'play' | 'win'>('play');
   const [homes, setHomes] = useState([false, false, false]);
+
+  useEffect(() => {
+    if (status === 'play') {
+      playBackgroundMusic(froggerTheme);
+    } else {
+      stopBackgroundMusic();
+    }
+    return () => {
+      stopBackgroundMusic();
+    };
+  }, [status]);
 
   useEffect(() => {
     initAudioSystem();
@@ -190,4 +210,3 @@ export default function FroggerPage() {
     </div>
   );
 }
-
