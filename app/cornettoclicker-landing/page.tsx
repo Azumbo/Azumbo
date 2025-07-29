@@ -104,22 +104,22 @@ export default function CornettoLanding() {
       </Head>
       <div className="landing-container">
       <header className="pixel-header" aria-label="Main navigation">
-        <Image src="/cornettoclicker/logo.svg" alt="\ud83e\udd50 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
+        <Image src="/cornettoclicker/logo.svg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
         <nav className="pixel-nav">
           <a href="#game" data-i18n="nav.game"></a>
           <a href="#biz" data-i18n="nav.biz"></a>
           <a href="#download" data-i18n="nav.download"></a>
           <div className="lang-switcher" aria-label="Switch language">
-            <button data-lang="en" onClick={() => changeLang('en')}>\ud83c\uddec\ud83c\udde7</button>
-            <button data-lang="ru" onClick={() => changeLang('ru')}>\ud83c\uddf7\ud83c\uddfa</button>
-            <button data-lang="it" onClick={() => changeLang('it')}>\ud83c\uddee\ud83c\uddf9</button>
+            <button data-lang="en" onClick={() => changeLang('en')}>🇬🇧</button>
+            <button data-lang="ru" onClick={() => changeLang('ru')}>🇷🇺</button>
+            <button data-lang="it" onClick={() => changeLang('it')}>🇮🇹</button>
           </div>
         </nav>
       </header>
 
       <section className="crt-effect pixel-hero" id="game">
         <div id="croissant-sprite" className="sprite-animation" />
-        <h1>\ud83e\udd50 CORNETTO CLICKER</h1>
+        <h1>🥐 CORNETTO CLICKER</h1>
         <h2 data-i18n="hero.subtitle"></h2>
         <button className="pixel-btn play-btn" data-i18n="hero.play"></button>
         <div className="platform-badges">
@@ -132,9 +132,9 @@ export default function CornettoLanding() {
       <section className="pixel-section" id="features">
         <h2 data-i18n="features.title"></h2>
         <div className="pokedex-ui">
-          <div className="pixel-feature">\u25A0 <span data-i18n="features.f1"></span></div>
-          <div className="pixel-feature">\u25A0 <span data-i18n="features.f2"></span></div>
-          <div className="pixel-feature">\u25A0 <span data-i18n="features.f3"></span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f1"></span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f2"></span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f3"></span></div>
         </div>
       </section>
 
@@ -142,45 +142,45 @@ export default function CornettoLanding() {
         <h2 data-i18n="biz.title"></h2>
         <div className="niche-grid">
           <div className="niche bakery" data-niche="bakery">
-            <div className="pixel-icon">\ud83c\udf5e</div>
+            <div className="pixel-icon">🍞</div>
             <span data-i18n="biz.bakery"></span>
           </div>
           <div className="niche winery" data-niche="winery">
-            <div className="pixel-icon">\ud83c\udf77</div>
+            <div className="pixel-icon">🍷</div>
             <span data-i18n="biz.winery"></span>
           </div>
           <div className="niche brewery" data-niche="brewery">
-            <div className="pixel-icon">\ud83c\udf7a</div>
+            <div className="pixel-icon">🍺</div>
             <span data-i18n="biz.brewery"></span>
           </div>
           <div className="niche cafe" data-niche="cafe">
-            <div className="pixel-icon">\u2615</div>
+            <div className="pixel-icon">☕</div>
             <span data-i18n="biz.cafe"></span>
           </div>
         </div>
         <div className="offer-box">
           <h3 data-i18n="biz.offer_title"></h3>
           <ul className="pixel-list">
-            <li>\u2705 <span data-i18n="biz.offer1"></span></li>
-            <li>\u2705 <span data-i18n="biz.offer2"></span></li>
-            <li>\u2705 <span data-i18n="biz.offer3"></span></li>
-            <li>\u2705 <span data-i18n="biz.offer4"></span></li>
+            <li>✅ <span data-i18n="biz.offer1"></span></li>
+            <li>✅ <span data-i18n="biz.offer2"></span></li>
+            <li>✅ <span data-i18n="biz.offer3"></span></li>
+            <li>✅ <span data-i18n="biz.offer4"></span></li>
           </ul>
         </div>
         <div className="biz-cta">
           <p data-i18n="biz.cta_text"></p>
           <button className="pixel-btn biz-btn blink-me" data-i18n="biz.cta_btn"></button>
-          <p className="pixel-email">\ud83d\udce9 azumbogames@gmail.com</p>
+          <p className="pixel-email">📩 azumbogames@gmail.com</p>
         </div>
       </section>
 
       <footer className="pixel-footer">
         <div className="social-links">
-          <a href="#" className="pixel-social">\ud83d\udc26</a>
-          <a href="#" className="pixel-social">\ud83c\udfae</a>
+          <a href="#" className="pixel-social">🐦</a>
+          <a href="#" className="pixel-social">🎮</a>
         </div>
-        <p className="copyright">\u00A9 1993-{new Date().getFullYear()} Cornetto Games</p>
-        <button className="easter-egg" onClick={() => alert('Mini game!')}>\ud83d\udc7e</button>
+        <p className="copyright">© 1993-{new Date().getFullYear()} Cornetto Games</p>
+        <button className="easter-egg" onClick={() => alert('Mini game!')}>👾</button>
       </footer>
     </div>
     </>
