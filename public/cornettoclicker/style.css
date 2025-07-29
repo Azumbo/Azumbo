@@ -1,0 +1,50 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+#game-screen {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 2px solid #333;
+  height: 600px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+#play-area {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: hidden;
+}
+
+#cup {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  z-index: 10;
+  transition: transform 0.1s;
+}
+
+#cup:active {
+  transform: translateX(-50%) scale(0.9);
+}
+
+.falling-item {
+  position: absolute;
+  top: 0;
+  font-size: 24px;
+}
