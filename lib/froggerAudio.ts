@@ -113,4 +113,3 @@ export const froggerTheme: Note[] = [
   { freq: 880, dur: 0.5 },
   { freq: 660, dur: 0.5 },
 ];
-

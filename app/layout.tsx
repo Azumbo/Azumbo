@@ -1,6 +1,7 @@
 import './globals.css';
 import { Press_Start_2P } from 'next/font/google';
 import type { ReactNode } from 'react';
+import SoundToggle from '../components/SoundToggle';
 
 const pressStart = Press_Start_2P({ subsets: ['latin'], weight: '400', variable: '--font-press-start' });
 
@@ -14,7 +15,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="UTF-8" />
       </head>
-      <body className={pressStart.className}>{children}</body>
+      <body className={pressStart.className}>
+        <SoundToggle />
+        {children}
+      </body>
     </html>
   );
 }

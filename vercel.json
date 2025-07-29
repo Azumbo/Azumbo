@@ -3,10 +3,22 @@
     {
       "source": "/cornettoclicker/:path*",
       "destination": "/cornettoclicker/:path*"
+    },
+    {
+      "source": "/CommanderMolaMola/:path*",
+      "destination": "/CommanderMolaMola/:path*"
     }
   ],
   "functions": {
     "pages/api/register.ts": {
+      "maxDuration": 10,
+      "memory": 128
+    },
+    "pages/api/submit-score.ts": {
+      "maxDuration": 10,
+      "memory": 128
+    },
+    "pages/api/stats.ts": {
       "maxDuration": 10,
       "memory": 128
     }
