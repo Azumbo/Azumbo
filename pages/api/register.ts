@@ -10,6 +10,7 @@ interface Player {
   code: string;
   language: string;
   createdAt: string;
+  score: number;
 }
 
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
@@ -74,6 +75,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     code,
     language,
     createdAt: new Date().toISOString(),
+    score: 0,
   };
 
   await fs.writeFile(dbPath, JSON.stringify(players, null, 2));
