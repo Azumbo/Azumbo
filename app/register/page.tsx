@@ -9,16 +9,26 @@ export default function RegisterPage() {
   const t = localization[lang as keyof typeof localization];
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const submit = async () => {
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nickname, email, language: lang }),
-    });
-    const data = await res.json();
-    localStorage.setItem('playerCode', data.code);
-    router.push('/game');
+    try {
+      setError(null);
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nickname, email, language: lang }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        throw new Error(data.error || res.statusText);
+      }
+      localStorage.setItem('playerCode', data.code);
+      router.push('/game');
+    } catch (e: any) {
+      console.error('Registration error', e);
+      setError(e.message || 'Registration failed');
+    }
   };
 
   return (
@@ -37,6 +47,7 @@ export default function RegisterPage() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <button className="pixel-button" onClick={submit}>
         {t.startScreen.submit}
       </button>
