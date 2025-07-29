@@ -2,8 +2,10 @@ export const gameConfig = {
   title: 'Commander Mola Mola Pixel Quest',
   languages: ['en', 'it', 'ru'],
   defaultLanguage: 'en',
-  basePath: '/CommanderMolaMola',
-  apiEndpoint: '/CommanderMolaMola/api',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  apiEndpoint: process.env.NEXT_PUBLIC_BASE_PATH
+    ? `${process.env.NEXT_PUBLIC_BASE_PATH}/api`
+    : '/api',
   adminEmail: 'CommanderMolaMola@gmail.com',
   socialLinks: {
     youtube: 'https://www.youtube.com/@CommanderMolaMola',
