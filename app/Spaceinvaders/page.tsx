@@ -63,6 +63,13 @@ const invadersAudio = {
 export default function SpaceInvaders() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState<'play' | 'win' | 'lose'>('play');
+  const [gameKey, setGameKey] = useState(0);
+
+  const resetGame = () => {
+    // Incrementing key forces useEffect to recreate game variables
+    setGameKey((k) => k + 1);
+    setStatus('play');
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -230,14 +237,19 @@ export default function SpaceInvaders() {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
     };
-  }, [status]);
+  }, [status, gameKey]);
 
   return (
     <div className="pixel-container">
       <h1>👾 Space Invaders</h1>
       {status === 'play' && <canvas ref={canvasRef} width={400} height={300} style={{ background: 'black', imageRendering: 'pixelated' }} />}
       {status === 'win' && <p>You win!</p>}
-      {status === 'lose' && <p>Game Over</p>}
+      {status === 'lose' && (
+        <>
+          <p>Game Over</p>
+          <button onClick={resetGame}>Restart</button>
+        </>
+      )}
     </div>
   );
 }
