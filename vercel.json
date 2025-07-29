@@ -1,8 +1,14 @@
 {
   "rewrites": [
     {
-      "source": "/cornettoclicker/:path*",
-      "destination": "/cornettoclicker/:path*"
+      "source": "/CommanderMolaMola/:path*",
+      "destination": "/CommanderMolaMola/:path*"
     }
-  ]
+  ],
+  "functions": {
+    "pages/api/register.ts": {
+      "maxDuration": 10,
+      "memory": 128
+    }
+  }
 }
