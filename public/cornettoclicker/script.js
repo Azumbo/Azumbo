@@ -99,27 +99,224 @@ document.getElementById('year').textContent = new Date().getFullYear();
 let clickCount = 0;
 document.querySelector('.pixel-logo').addEventListener('click', () => {
   clickCount++;
-  if(clickCount >= 5) startMiniGame();
+  if (clickCount >= 5) launchMiniGame();
 });
 
-function startMiniGame() {
-  document.getElementById('minigame').classList.remove('hidden');
+function launchMiniGame() {
+  // create overlay and canvas
+  const overlay = document.createElement('div');
+  overlay.id = 'game-overlay';
+  Object.assign(overlay.style, {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0,0,0,0.9)',
+    zIndex: 9998,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#41ead4',
+    fontFamily: '"Press Start 2P", monospace',
+    textAlign: 'center',
+    flexDirection: 'column'
+  });
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 640;
+  canvas.height = 360;
+  canvas.style.imageRendering = 'pixelated';
+  canvas.style.background = '#0d1b2a';
+  canvas.style.border = '2px solid #ff206e';
+  overlay.appendChild(canvas);
+  document.body.appendChild(overlay);
+
+  const ctx = canvas.getContext('2d');
+
+  let gameState = 'splash';
+  let score = 0;
+  let timeLeft = 30;
+  let croissants = [];
+  let hiScore = parseInt(localStorage.getItem('cornettoHiScore') || '42', 10);
+
+  const player = { x: canvas.width / 2, y: canvas.height - 30, w: 40, h: 20 };
+  let left = false;
+  let right = false;
+
+  function drawSplash() {
+    ctx.fillStyle = '#0d1b2a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#41ead4';
+    ctx.font = '18px "Press Start 2P"';
+    ctx.fillText('=== CORNETTO CHALLENGE ===', 40, 120);
+    ctx.fillText('CATCH 20 CROISSANTS!', 90, 160);
+    ctx.fillText('PRESS [SPACE] TO START', 60, 200);
+  }
+
+  function spawnCroissant() {
+    if (Math.random() < 0.05) {
+      croissants.push({
+        x: Math.random() * (canvas.width - 20) + 10,
+        y: -10,
+        type: Math.random() > 0.8 ? 'GOLDEN' : (Math.random() < 0.1 ? 'BURNT' : 'NORMAL'),
+        speed: 2 + Math.random() * 2
+      });
+    }
+  }
+
+  function drawPlayer() {
+    ctx.fillStyle = '#ff9e00';
+    ctx.fillRect(player.x - player.w / 2, player.y, player.w, player.h);
+  }
+
+  function drawCroissants() {
+    croissants.forEach(obj => {
+      if (obj.type === 'GOLDEN') ctx.fillStyle = '#ff9e00';
+      else if (obj.type === 'BURNT') ctx.fillStyle = '#552200';
+      else ctx.fillStyle = '#f8f8f8';
+      ctx.beginPath();
+      ctx.arc(obj.x, obj.y, 10, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function moveCroissants() {
+    croissants.forEach(obj => obj.y += obj.speed);
+    croissants = croissants.filter(obj => obj.y < canvas.height + 20);
+  }
+
+  function checkCollisions() {
+    croissants.forEach((obj, index) => {
+      if (obj.y + 10 >= player.y && Math.abs(obj.x - player.x) < (player.w / 2 + 10)) {
+        if (obj.type === 'GOLDEN') score += 5;
+        else if (obj.type === 'BURNT') score -= 2;
+        else score += 1;
+        croissants.splice(index, 1);
+      }
+    });
+  }
+
+  function drawHUD() {
+    ctx.fillStyle = '#41ead4';
+    ctx.font = '14px "Press Start 2P"';
+    ctx.fillText(`SCORE: ${score}`, 20, 30);
+    ctx.fillText(`TIME: ${timeLeft}`, canvas.width - 150, 30);
+    ctx.fillText(`HI-SCORE: ${hiScore}`, 20, 50);
+  }
+
+  function updatePlayer() {
+    if (left) player.x -= 4;
+    if (right) player.x += 4;
+    if (player.x < 20) player.x = 20;
+    if (player.x > canvas.width - 20) player.x = canvas.width - 20;
+  }
+
+  function update() {
+    spawnCroissant();
+    moveCroissants();
+    updatePlayer();
+    checkCollisions();
+  }
+
+  function render() {
+    ctx.fillStyle = '#0d1b2a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawPlayer();
+    drawCroissants();
+    drawHUD();
+  }
+
+  let timer;
+  function gameLoop() {
+    if (gameState !== 'playing') return;
+    update();
+    render();
+    requestAnimationFrame(gameLoop);
+  }
+
+  function startGame() {
+    gameState = 'playing';
+    drawHUD();
+    timer = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) endGame();
+    }, 1000);
+    requestAnimationFrame(gameLoop);
+  }
+
+  function endGame() {
+    clearInterval(timer);
+    gameState = 'gameover';
+    if (score > hiScore) {
+      hiScore = score;
+      localStorage.setItem('cornettoHiScore', String(hiScore));
+    }
+    ctx.fillStyle = '#0d1b2a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#41ead4';
+    ctx.font = '18px "Press Start 2P"';
+    ctx.fillText('GAME OVER!', 220, 150);
+    ctx.fillText(`YOUR SCORE: ${score}`, 160, 190);
+    ctx.fillText('UNLOCKED: "BAKER" BADGE!', 80, 230);
+    ctx.fillText('PRESS SPACE TO EXIT', 120, 270);
+    localStorage.setItem('unlockedBadge', 'BAKER');
+  }
+
+  function cleanup() {
+    document.removeEventListener('keydown', keyHandler);
+    document.removeEventListener('keyup', keyUpHandler);
+    document.removeEventListener('mousemove', mouseHandler);
+    overlay.remove();
+    clickCount = 0;
+  }
+
+  function keyHandler(e) {
+    if (gameState === 'splash' && e.code === 'Space') {
+      startGame();
+    } else if (gameState === 'playing') {
+      if (e.code === 'ArrowLeft') left = true;
+      if (e.code === 'ArrowRight') right = true;
+    } else if (gameState === 'gameover' && e.code === 'Space') {
+      cleanup();
+    }
+  }
+
+  function keyUpHandler(e) {
+    if (e.code === 'ArrowLeft') left = false;
+    if (e.code === 'ArrowRight') right = false;
+  }
+
+  function mouseHandler(e) {
+    const rect = canvas.getBoundingClientRect();
+    player.x = e.clientX - rect.left;
+  }
+
+  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keyup', keyUpHandler);
+  document.addEventListener('mousemove', mouseHandler);
+
+  drawSplash();
 }
 
 // Konami code
 const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
 let kIndex = 0;
 document.addEventListener('keydown', e => {
-  if(e.key === konami[kIndex]) {
+  if (e.key === konami[kIndex]) {
     kIndex++;
-    if(kIndex === konami.length) {
-      alert('Bonus unlocked!');
+    if (kIndex === konami.length) {
+      launchMiniGame();
       kIndex = 0;
     }
   } else {
     kIndex = 0;
   }
 });
+
+function secretGame() {
+  launchMiniGame();
+}
 
 window.addEventListener('load', initLanguage);
 
