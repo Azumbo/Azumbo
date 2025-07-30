@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { initAudioSystem } from '../../lib/froggerAudio';
 import { pacmanAudio } from '../../lib/pacmanAudio';
 
 export default function PacManPage() {
@@ -9,7 +8,6 @@ export default function PacManPage() {
   const [status, setStatus] = useState<'play' | 'level' | 'win'>('play');
 
   useEffect(() => {
-    initAudioSystem();
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -171,7 +169,7 @@ export default function PacManPage() {
         const remaining = map.flat().some((c) => c === 0 || c === 2);
         if (!remaining) {
           pacmanAudio.stopWaka();
-          if (level < 5) {
+          if (level < levels.length) {
             pacmanAudio.levelComplete();
             setStatus('level');
             nextTimeout = setTimeout(() => {
