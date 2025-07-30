@@ -1,27 +1,72 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { initAudioSystem } from '../../lib/froggerAudio';
 import { pacmanAudio } from '../../lib/pacmanAudio';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [status, setStatus] = useState<'play' | 'win'>('play');
+  const [level, setLevel] = useState(1);
+  const [status, setStatus] = useState<'play' | 'level' | 'win'>('play');
 
   useEffect(() => {
+    initAudioSystem();
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const tile = 32;
-    const map = [
-      [1,1,1,1,1,1,1,1,1,1,1],
-      [1,0,0,0,0,0,0,0,0,0,1],
-      [1,0,1,1,1,1,1,1,1,0,1],
-      [1,0,1,2,0,0,0,2,1,0,1],
-      [1,0,1,1,1,1,1,1,1,0,1],
-      [1,0,0,0,0,0,0,0,0,0,1],
-      [1,1,1,1,1,1,1,1,1,1,1],
+    const levels = [
+      [
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,2,0,0,0,2,1,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+      ],
+      [
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,2,0,1,0,2,1,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+      ],
+      [
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,2,0,1,0,2,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+      ],
+      [
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,2,0,1,0,2,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0,1],
+        [1,0,1,0,0,0,0,0,1,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+      ],
+      [
+        [1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,2,0,1,0,2,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0,1],
+        [1,0,1,0,0,0,0,0,1,0,1],
+        [1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1],
+      ],
     ];
+
+    const map = levels[level - 1].map((row) => [...row]);
     const rows = map.length;
     const cols = map[0].length;
     canvas.width = cols * tile;
@@ -34,7 +79,9 @@ export default function PacManPage() {
       { x: 5, y: 4 },
       { x: 6, y: 3 },
     ];
-    const ghosts = ghostStarts.map((g) => ({ ...g, dir: { x: 0, y: 0 }, frightened: false }));
+    const ghosts = ghostStarts
+      .slice(0, Math.min(ghostStarts.length, level + 1))
+      .map((g) => ({ ...g, dir: { x: 0, y: 0 }, frightened: false }));
     let frightenedTimer = 0;
 
     const keys: Record<string, boolean> = {};
@@ -87,10 +134,12 @@ export default function PacManPage() {
       return valid[Math.floor(Math.random() * valid.length)];
     };
 
+    const speed = Math.max(0.2 - (level - 1) * 0.02, 0.1);
     let moveTimer = 0;
+    let nextTimeout: ReturnType<typeof setTimeout> | null = null;
     const update = (dt: number) => {
       moveTimer += dt;
-      if (moveTimer > 0.2) {
+      if (moveTimer > speed) {
         moveEntity(pacman);
         ghosts.forEach((g) => {
           if (Math.random() < 0.3) g.dir = randomDir(g.x, g.y);
@@ -120,7 +169,20 @@ export default function PacManPage() {
           }
         });
         const remaining = map.flat().some((c) => c === 0 || c === 2);
-        if (!remaining) setStatus('win');
+        if (!remaining) {
+          pacmanAudio.stopWaka();
+          if (level < 5) {
+            pacmanAudio.levelComplete();
+            setStatus('level');
+            nextTimeout = setTimeout(() => {
+              setLevel((l) => l + 1);
+              setStatus('play');
+            }, 1000);
+          } else {
+            pacmanAudio.gameWin();
+            setStatus('win');
+          }
+        }
       }
       if (frightenedTimer > 0) {
         frightenedTimer -= dt;
@@ -161,16 +223,21 @@ export default function PacManPage() {
     return () => {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
+      if (nextTimeout) clearTimeout(nextTimeout);
     };
-  }, [status]);
+  }, [status, level]);
 
   return (
     <div className="pixel-container">
       <h1>🟡 Pac-Man</h1>
       {status === 'play' && (
-        <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+        <>
+          <p>Level {level}</p>
+          <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+        </>
       )}
-      {status === 'win' && <p>🎉 You win!</p>}
+      {status === 'level' && <p>Level {level} complete!</p>}
+      {status === 'win' && <p>🏆 You win!</p>}
     </div>
   );
 }
