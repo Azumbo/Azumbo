@@ -1,128 +1,42 @@
-body {
-  background: #0d1b2a; background-image: repeating-linear-gradient(0deg,#1b263b 0,#1b263b 1px,transparent 1px,transparent 4px),repeating-linear-gradient(90deg,#1b263b 0,#1b263b 1px,transparent 1px,transparent 4px);
-  color: #41ead4;
-  font-family: 'Courier Prime', monospace;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
+/* Base layout */
+html,body{
+  margin:0;
+  padding:0;
+  height:100%;
+  font-family:'Courier Prime',monospace;
+  background:#fafafa;
+  overflow:hidden;
+  text-align:center;
 }
 
-#overlay {
-  animation: flicker 0.15s infinite;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(18,16,16,0.1) 50%, transparent 50%);
-  background-size: 100% 4px;
-  box-shadow: inset 0 0 10px rgba(0,255,255,0.2);
+/* Game field */
+#game{position:relative;width:100%;height:100%}
+
+/* Player cup */
+#player{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:48px;
 }
 
-.pixel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid #ff206e;
-  padding: 8px;
-}
-.pixel-nav a {
-  margin: 0 8px;
-  color: #ff9e00;
-  text-decoration: none;
-  font-family: 'Press Start 2P', cursive;
-}
-.pixel-logo {
-  width: 64px;
-  height: 64px;
-  image-rendering: pixelated;
-  cursor: pointer;
-}
-.lang-switcher button {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-size: 16px;
+/* Falling items */
+.item{position:absolute;font-size:32px}
+
+/* Score board */
+#scoreboard{position:absolute;top:10px;left:10px;font-size:20px}
+
+/* Visual progress */
+#big{
+  position:absolute;
+  top:40px;
+  right:10px;
+  font-size:32px;
+  transition:font-size .3s ease;
 }
 
-.crt-effect {
-  background: linear-gradient(rgba(18,16,16,0.1) 50%, transparent 50%);
-  background-size: 100% 4px;
-  box-shadow: inset 0 0 10px rgba(0,255,255,0.2);
-  padding: 20px;
-  text-align: center;
-  border: 2px solid #ff206e;
-  position: relative;
-}
+.hidden{display:none}
 
-.pixel-btn {
-  border: 2px solid #ff206e;
-  background: #0d1b2a;
-  color: #41ead4;
-  padding: 8px 16px;
-  font-family: 'Press Start 2P';
-  cursor: pointer;
-  margin-top: 10px;
-}
-.pixel-btn:hover {
-  background: #ff206e;
-  text-shadow: 0 0 5px #fff;
-}
-
-.blink-me {
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-.pixel-section {
-  border: 2px solid #ff206e;
-  margin: 20px 0;
-  padding: 10px;
-}
-
-.platform-badges span {
-  margin: 0 4px;
-  padding: 2px 6px;
-  border: 1px solid #ff206e;
-}
-
-.sprite-animation {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto;
-  background: url('croissant.svg') no-repeat center/contain;
-  animation: float 3s infinite;
-}
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-.pixel-footer {
-  border-top: 2px solid #ff206e;
-  padding: 10px;
-  text-align: center;
-  font-size: 12px;
-}
-
-.hidden { display: none; }
-
-@media (max-width: 420px) {
-  .pixel-header { flex-direction: column; }
-  .niche-grid { display: grid; grid-template-columns: 1fr; }
-}
-@media (min-width: 421px) and (max-width: 800px) {
-  .niche-grid { display: grid; grid-template-columns: 1fr 1fr; }
-}
-@media (min-width: 801px) {
-  .niche-grid { display: grid; grid-template-columns: repeat(4,1fr); }
-}
-@keyframes flicker {0%{opacity:1;}50%{opacity:0.8;}100%{opacity:1;}}
-.pixel-social i{color:#ff9e00;margin:0 4px;}
+/* Desktop dark background */
+@media(min-width:768px){body{background:#000}}
