@@ -22,4 +22,14 @@ export const pacmanAudio = {
       playSound(freq, 'triangle', 0.2, 0.3);
     });
   },
+  levelComplete: () => {
+    [523.25, 659.25, 783.99].forEach((freq, i) => {
+      setTimeout(() => playSound(freq, 'square', 0.2, 0.3), i * 300);
+    });
+  },
+  gameWin: () => {
+    [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+      setTimeout(() => playSound(freq, 'square', 0.3, 0.4), i * 300);
+    });
+  },
 };
