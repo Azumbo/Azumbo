@@ -41,6 +41,10 @@
     line-height: 1;
 }
 
+.mobile-controls {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .mobile-controls {
         display: flex;

@@ -4,6 +4,7 @@ import { pacmanAudio } from '../../lib/pacmanAudio';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pacmanRef = useRef<{ x: number; y: number; startX: number; startY: number; dir: { x: number; y: number } } | null>(null);
   const [level, setLevel] = useState(1);
   const [status, setStatus] = useState<'play' | 'level' | 'win'>('play');
 
@@ -71,6 +72,7 @@ export default function PacManPage() {
     canvas.height = rows * tile;
 
     const pacman = { x: 1, y: 1, startX: 1, startY: 1, dir: { x: 0, y: 0 } };
+    pacmanRef.current = pacman;
     const ghostStarts = [
       { x: 5, y: 3 },
       { x: 5, y: 2 },
@@ -236,6 +238,16 @@ export default function PacManPage() {
     };
   }, [status, level]);
 
+  const mobileStart = (d: { x: number; y: number }) => (e: React.TouchEvent | React.MouseEvent) => {
+    e.preventDefault();
+    if (pacmanRef.current) pacmanRef.current.dir = d;
+    pacmanAudio.waka();
+  };
+  const mobileEnd = (e: React.TouchEvent | React.MouseEvent) => {
+    e.preventDefault();
+    pacmanAudio.stopWaka();
+  };
+
   return (
     <div className="pixel-container">
       <h1>🟡 Pac-Man</h1>
@@ -243,6 +255,44 @@ export default function PacManPage() {
         <>
           <p>Level {level}</p>
           <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+          <div className="mobile-controls">
+            <button
+              onTouchStart={mobileStart({ x: 0, y: -1 })}
+              onTouchEnd={mobileEnd}
+              onMouseDown={mobileStart({ x: 0, y: -1 })}
+              onMouseUp={mobileEnd}
+              onMouseLeave={mobileEnd}
+            >
+              ⬆️
+            </button>
+            <button
+              onTouchStart={mobileStart({ x: -1, y: 0 })}
+              onTouchEnd={mobileEnd}
+              onMouseDown={mobileStart({ x: -1, y: 0 })}
+              onMouseUp={mobileEnd}
+              onMouseLeave={mobileEnd}
+            >
+              ⬅️
+            </button>
+            <button
+              onTouchStart={mobileStart({ x: 1, y: 0 })}
+              onTouchEnd={mobileEnd}
+              onMouseDown={mobileStart({ x: 1, y: 0 })}
+              onMouseUp={mobileEnd}
+              onMouseLeave={mobileEnd}
+            >
+              ➡️
+            </button>
+            <button
+              onTouchStart={mobileStart({ x: 0, y: 1 })}
+              onTouchEnd={mobileEnd}
+              onMouseDown={mobileStart({ x: 0, y: 1 })}
+              onMouseUp={mobileEnd}
+              onMouseLeave={mobileEnd}
+            >
+              ⬇️
+            </button>
+          </div>
         </>
       )}
       {status === 'level' && <p>Level {level} complete!</p>}
