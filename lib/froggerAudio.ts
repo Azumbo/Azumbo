@@ -4,8 +4,7 @@ let audioCtx: AudioContext | null = null;
 
 function getCtx(): AudioContext {
   if (!audioCtx) {
-    audioCtx = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
   }
   return audioCtx;
 }
@@ -14,12 +13,7 @@ export function initAudioSystem() {
   getCtx();
 }
 
-export function playSound(
-  freq: number,
-  type: OscType,
-  duration = 0.2,
-  volume = 0.2,
-) {
+export function playSound(freq: number, type: OscType, duration = 0.2, volume = 0.2) {
   const ctx = getCtx();
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
@@ -46,7 +40,8 @@ export function createExplosionNoise(duration = 0.3) {
   }
   const source = ctx.createBufferSource();
   const filter = ctx.createBiquadFilter();
-  filter.type = "highpass";
+
+  filter.type = 'highpass';
   filter.frequency.value = 500;
   source.buffer = buffer;
   source.connect(filter).connect(ctx.destination);
@@ -54,96 +49,13 @@ export function createExplosionNoise(duration = 0.3) {
 }
 
 export function playJumpSound() {
-  playSound(523.25, "square", 0.1, 0.3);
+  playSound(523.25, 'square', 0.1, 0.3);
 }
 
 export function playCarSound() {
-  playSound(110, "sawtooth", 0.2, 0.2);
+  playSound(110, 'sawtooth', 0.2, 0.2);
 }
 
 export function playWaterSplash() {
   createExplosionNoise(0.2);
 }
-
-export function playFinishSound() {
-  playSound(880, "triangle", 0.5, 0.25);
-}
-
-export interface Note {
-  freq: number;
-  dur?: number;
-}
-
-/** Play a sequence of notes once without looping */
-export function playMelody(notes: Note[], tempo = 180) {
-  stopBackgroundMusic();
-  const ctx = getCtx();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.type = "triangle";
-  gain.gain.value = 0.05;
-
-  let time = ctx.currentTime;
-  notes.forEach((n) => {
-    osc.frequency.setValueAtTime(n.freq, time);
-    time += (60 / tempo) * (n.dur || 1);
-  });
-
-  osc.connect(gain).connect(ctx.destination);
-  osc.start();
-  osc.stop(time);
-  musicOsc = osc;
-}
-
-let musicOsc: OscillatorNode | null = null;
-let musicPlaying = false;
-
-export function playBackgroundMusic(notes: Note[], tempo = 180) {
-  const ctx = getCtx();
-  musicPlaying = true;
-
-  const schedule = () => {
-    if (!musicPlaying) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "triangle";
-    gain.gain.value = 0.05;
-
-    let time = ctx.currentTime;
-    notes.forEach((n) => {
-      osc.frequency.setValueAtTime(n.freq, time);
-      time += (60 / tempo) * (n.dur || 1);
-    });
-
-    osc.connect(gain).connect(ctx.destination);
-    osc.start();
-    osc.stop(time);
-    musicOsc = osc;
-    osc.onended = schedule;
-  };
-
-  schedule();
-}
-
-export function stopBackgroundMusic() {
-  musicPlaying = false;
-  if (musicOsc) {
-    musicOsc.stop();
-    musicOsc.disconnect();
-    musicOsc = null;
-  }
-}
-
-export const froggerTheme: Note[] = [
-  { freq: 440, dur: 0.5 },
-  { freq: 660, dur: 0.5 },
-  { freq: 880, dur: 0.5 },
-  { freq: 660, dur: 0.5 },
-];
-
-export const victoryTheme: Note[] = [
-  { freq: 880, dur: 0.25 },
-  { freq: 988, dur: 0.25 },
-  { freq: 1047, dur: 0.25 },
-  { freq: 1175, dur: 0.75 },
-];

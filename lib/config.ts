@@ -28,6 +28,9 @@ export const localization = {
       comment: 'Write in comments: "I finished the game and mined Mola Mola Coin!"',
       copy: 'Copy code',
     },
+    stats: {
+      title: 'Leaderboard',
+    },
   },
   it: {
     languageSelect: 'Scegli la tua lingua',
@@ -46,6 +49,9 @@ export const localization = {
       comment: 'Scrivi nei commenti: "Ho finito il gioco e minato la Mola Mola Coin!"',
       copy: 'Copia codice',
     },
+    stats: {
+      title: 'Classifica',
+    },
   },
   ru: {
     languageSelect: 'Выбери язык',
@@ -63,6 +69,9 @@ export const localization = {
       social: 'Подпишитесь на наш YouTube и TikTok',
       comment: 'Напишите в комментариях: «Я прошёл игру и намайнил Mola Mola Coin!»',
       copy: 'Скопировать код',
+    },
+    stats: {
+      title: 'Таблица лидеров',
     },
   },
 } as const;

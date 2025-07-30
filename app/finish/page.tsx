@@ -31,6 +31,9 @@ export default function FinishPage() {
       <img src="/mola-coin.png" alt="Mola Coin" className="pixel-coin" />
       <p>{code}</p>
       <button className="pixel-button" onClick={copy}>{t.finishScreen.copy}</button>
+      <div style={{ marginTop: '20px' }}>
+        <a href="/stats" className="pixel-button">{t.stats.title}</a>
+      </div>
     </div>
   );
 }
