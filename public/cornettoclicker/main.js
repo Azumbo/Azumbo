@@ -1,26 +1,54 @@
 // Simple Cornetto Clicker rewritten with emoji graphics and Web Audio API
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const sounds = {};
+let musicSource = null;
 
-// Load all required sounds
-function loadSound(name, url) {
-  fetch(url)
-    .then(r => r.arrayBuffer())
-    .then(d => audioCtx.decodeAudioData(d))
-    .then(b => sounds[name] = b);
+// Load audio buffers and fall back to a short beep if files are missing
+async function loadSound(name, url) {
+  try {
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    sounds[name] = await audioCtx.decodeAudioData(buf);
+  } catch (e) {
+    console.warn('Sound load failed for', name, e);
+    // Create a very short beep as fallback so the game still has sound
+    const dur = 0.2;
+    const buffer = audioCtx.createBuffer(1, dur * audioCtx.sampleRate, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = Math.sin(2 * Math.PI * 440 * (i / audioCtx.sampleRate)) * Math.exp(-5 * i / data.length);
+    }
+    sounds[name] = buffer;
+  }
 }
 
-function playSound(name, loop = false) {
+function playSound(name, opts = {}) {
+  if (!sounds[name]) return null;
+  const { loop = false, volume = 1 } = opts;
   const src = audioCtx.createBufferSource();
   src.buffer = sounds[name];
   src.loop = loop;
-  src.connect(audioCtx.destination);
-  src.start(0);
+  const gain = audioCtx.createGain();
+  gain.gain.value = volume;
+  src.connect(gain).connect(audioCtx.destination);
+  src.start();
   return src;
 }
 
-['pickup','fire','gameover','music'].forEach(n => loadSound(n, `sfx/${n}.mp3`));
-let musicSource = null;
+function resumeAudio() {
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function startMusic() {
+  if (!musicSource) {
+    resumeAudio();
+    musicSource = playSound('music', { loop: true, volume: 0.5 });
+  }
+}
+
+['pickup', 'fire', 'gameover', 'music'].forEach(n => loadSound(n, `sfx/${n}.mp3`));
 
 const player = document.getElementById('player');
 const scoreEl = document.getElementById('score');
@@ -31,12 +59,6 @@ const overText = document.getElementById('gameover-text');
 const restartBtn = document.getElementById('restart');
 
 let score = 0, miss = 0, items = [], running = true;
-
-function startMusic() {
-  if (!musicSource) {
-    musicSource = playSound('music', true);
-  }
-}
 
 // Spawn croissants and fire
 function spawn() {
@@ -94,12 +116,21 @@ function remove(it) {
 function gameOver(msg) {
   if (!running) return;
   running = false;
+  if (musicSource) {
+    try {
+      musicSource.stop();
+    } catch (e) {}
+    musicSource = null;
+  }
   playSound('gameover');
   overText.innerText = msg;
   over.classList.remove('hidden');
 }
 
-restartBtn.onclick = () => location.reload();
+restartBtn.onclick = () => {
+  resumeAudio();
+  location.reload();
+};
 
 function move(dir) {
   const rect = player.getBoundingClientRect();
@@ -111,12 +142,14 @@ function move(dir) {
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') move(-1);
   if (e.key === 'ArrowRight') move(1);
+  resumeAudio();
   if (!musicSource) startMusic();
 });
 
 document.addEventListener('touchstart', e => {
   const x = e.touches[0].clientX;
   move(x < window.innerWidth / 2 ? -1 : 1);
+  resumeAudio();
   if (!musicSource) startMusic();
 });
 
