@@ -68,3 +68,31 @@
 @media (min-width: 801px) {
   .niche-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+.easter-egg {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #41ead4;
+  color: #0d1b2a;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.easter-egg:hover {
+  transform: scale(1.1);
+}
+
+.logo {
+  cursor: pointer;
+}

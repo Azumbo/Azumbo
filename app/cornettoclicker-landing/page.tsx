@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import MiniGame from '../../components/MiniGame';
 import Image from 'next/image';
 import Head from 'next/head';
 import './style.css';
@@ -78,6 +79,38 @@ const translations: Record<string, Record<string, string>> = {
 
 export default function CornettoLanding() {
   const [lang, setLang] = useState('en');
+  const [showGame, setShowGame] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  const [konamiIndex, setKonamiIndex] = useState(0);
+  const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+
+  const handleLogoClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+    if (newCount >= 5) {
+      setShowGame(true);
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === konamiCode[konamiIndex]) {
+      const newIndex = konamiIndex + 1;
+      setKonamiIndex(newIndex);
+      if (newIndex === konamiCode.length) {
+        setShowGame(true);
+        setKonamiIndex(0);
+      }
+    } else {
+      setKonamiIndex(0);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [konamiIndex]);
 
   useEffect(() => {
     const browserLang = navigator.language.slice(0, 2);
@@ -104,7 +137,7 @@ export default function CornettoLanding() {
       </Head>
       <div className="landing-container">
       <header className="pixel-header" aria-label="Main navigation">
-        <Image src="/cornettoclicker/logo.svg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
+        <Image src="/cornettoclicker/logo.svg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo logo" onClick={handleLogoClick} />
         <nav className="pixel-nav">
           <a href="#game" data-i18n="nav.game"></a>
           <a href="#biz" data-i18n="nav.biz"></a>
@@ -180,9 +213,10 @@ export default function CornettoLanding() {
           <a href="#" className="pixel-social">🎮</a>
         </div>
         <p className="copyright">© 1993-{new Date().getFullYear()} Cornetto Games</p>
-        <button className="easter-egg" onClick={() => alert('Mini game!')}>👾</button>
+        <button className="easter-egg" onClick={() => setShowGame(true)}>👾</button>
       </footer>
     </div>
+    {showGame && <MiniGame />}
     </>
   );
 }
