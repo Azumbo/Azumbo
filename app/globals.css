@@ -6,6 +6,12 @@
   --font-press-start: 'Press Start 2P', cursive;
 }
 
+canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
 .pixel-container {
     font-family: 'Press Start 2P', cursive;
     background: #1a2980;
@@ -44,9 +50,27 @@
 @media (max-width: 768px) {
     .mobile-controls {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         margin-top: 20px;
+        width: 100%;
+        position: fixed;
+        bottom: 20px;
     }
+
+    .d-pad {
+        display: inline-grid;
+        grid-template-areas:
+            '. up .'
+            'left . right'
+            '. down .';
+        gap: 10px;
+        margin-right: 20px;
+    }
+
+    .d-pad button:nth-child(1) { grid-area: up; }
+    .d-pad button:nth-child(2) { grid-area: left; }
+    .d-pad button:nth-child(3) { grid-area: down; }
+    .d-pad button:nth-child(4) { grid-area: right; }
 
     .mobile-controls button {
         width: 80px;
