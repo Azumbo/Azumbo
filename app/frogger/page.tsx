@@ -15,6 +15,10 @@ export default function FroggerPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState<'play' | 'win'>('play');
   const [homes, setHomes] = useState([false, false, false]);
+  const keysRef = useRef<Record<string, boolean>>({});
+  const isTouch =
+    typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
   useEffect(() => {
     if (status === 'play') {
@@ -51,7 +55,7 @@ export default function FroggerPage() {
     ];
     const houses = [1, 4, 7];
 
-    const keys: Record<string, boolean> = {};
+    const keys = keysRef.current;
     const keydown = (e: KeyboardEvent) => {
       keys[e.key] = true;
     };
@@ -205,8 +209,21 @@ export default function FroggerPage() {
   return (
     <div className="pixel-container">
       <h1>🐸 Frogger</h1>
-      <canvas ref={canvasRef} style={{ background: '#000', imageRendering: 'pixelated' }} />
+      <canvas
+        ref={canvasRef}
+        style={{ background: '#000', imageRendering: 'pixelated' }}
+      />
       {status === 'win' && <p>🏆 You win!</p>}
+      {isTouch && (
+        <div className="mobile-controls" style={{ flexDirection: 'column', alignItems: 'center' }}>
+          <button onClick={() => (keysRef.current['ArrowUp'] = true)}>⬆️</button>
+          <div>
+            <button onClick={() => (keysRef.current['ArrowLeft'] = true)}>⬅️</button>
+            <button onClick={() => (keysRef.current['ArrowRight'] = true)}>➡️</button>
+          </div>
+          <button onClick={() => (keysRef.current['ArrowDown'] = true)}>⬇️</button>
+        </div>
+      )}
     </div>
   );
 }
