@@ -104,7 +104,7 @@ export default function CornettoLanding() {
       </Head>
       <div className="landing-container">
       <header className="pixel-header" aria-label="Main navigation">
-        <Image src="/cornettoclicker/logo.svg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
+        <Image src="/logo/Azumbo%20Logo%20no%20background%20small%20size.jpeg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
         <nav className="pixel-nav">
           <a href="#game" data-i18n="nav.game"></a>
           <a href="#biz" data-i18n="nav.biz"></a>
