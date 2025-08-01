@@ -76,8 +76,13 @@ export default function SpaceInvaders() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const width = canvas.width;
-    const height = canvas.height;
+
+    const width = Math.min(window.innerWidth * 0.9, 400);
+    const height = width * 0.75;
+    canvas.width = width;
+    canvas.height = height;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
 
     const player = { x: width / 2 - 15, y: height - 20, w: 30, h: 10 };
     const bullets: { x: number; y: number }[] = [];
@@ -242,7 +247,12 @@ export default function SpaceInvaders() {
   return (
     <div className="pixel-container">
       <h1>👾 Space Invaders</h1>
-      {status === 'play' && <canvas ref={canvasRef} width={400} height={300} style={{ background: 'black', imageRendering: 'pixelated' }} />}
+      {status === 'play' && (
+        <canvas
+          ref={canvasRef}
+          style={{ background: 'black', imageRendering: 'pixelated' }}
+        />
+      )}
       {status === 'win' && <p>You win!</p>}
       {status === 'lose' && (
         <>

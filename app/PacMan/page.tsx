@@ -13,7 +13,8 @@ export default function PacManPage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const tile = 32;
+    const maxWidth = Math.min(window.innerWidth * 0.9, 32 * 11);
+    const tile = Math.floor(maxWidth / 11);
     const levels = [
       [
         [1,1,1,1,1,1,1,1,1,1,1],
@@ -69,6 +70,8 @@ export default function PacManPage() {
     const cols = map[0].length;
     canvas.width = cols * tile;
     canvas.height = rows * tile;
+    canvas.style.width = `${canvas.width}px`;
+    canvas.style.height = `${canvas.height}px`;
 
     const pacman = { x: 1, y: 1, startX: 1, startY: 1, dir: { x: 0, y: 0 } };
     const ghostStarts = [
@@ -242,7 +245,10 @@ export default function PacManPage() {
       {status === 'play' && (
         <>
           <p>Level {level}</p>
-          <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+          <canvas
+            ref={canvasRef}
+            style={{ background: 'black', imageRendering: 'pixelated' }}
+          />
         </>
       )}
       {status === 'level' && <p>Level {level} complete!</p>}
