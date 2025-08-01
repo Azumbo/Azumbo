@@ -67,8 +67,10 @@ export default function PacManPage() {
     const map = levels[level - 1].map((row) => [...row]);
     const rows = map.length;
     const cols = map[0].length;
-    canvas.width = cols * tile;
-    canvas.height = rows * tile;
+    const scale = window.devicePixelRatio || 1;
+    canvas.width = cols * tile * scale;
+    canvas.height = rows * tile * scale;
+    ctx.scale(scale, scale);
 
     const pacman = { x: 1, y: 1, startX: 1, startY: 1, dir: { x: 0, y: 0 } };
     const ghostStarts = [
@@ -83,9 +85,10 @@ export default function PacManPage() {
     let frightenedTimer = 0;
 
     const keys: Record<string, boolean> = {};
-    const keydown = (e: KeyboardEvent) => {
-      keys[e.key] = true;
-      switch (e.key) {
+
+    const startMove = (dir: 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown') => {
+      keys[dir] = true;
+      switch (dir) {
         case 'ArrowLeft':
           pacman.dir = { x: -1, y: 0 };
           break;
@@ -99,18 +102,50 @@ export default function PacManPage() {
           pacman.dir = { x: 0, y: 1 };
           break;
       }
-      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
-        pacmanAudio.waka();
-      }
+      pacmanAudio.waka();
     };
-    const keyup = (e: KeyboardEvent) => {
-      keys[e.key] = false;
+
+    const stopMove = (dir: 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown') => {
+      keys[dir] = false;
       if (!keys['ArrowLeft'] && !keys['ArrowRight'] && !keys['ArrowUp'] && !keys['ArrowDown']) {
         pacmanAudio.stopWaka();
       }
     };
+
+    const keydown = (e: KeyboardEvent) => {
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+        startMove(e.key as any);
+      }
+    };
+
+    const keyup = (e: KeyboardEvent) => {
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+        stopMove(e.key as any);
+      }
+    };
     document.addEventListener('keydown', keydown);
     document.addEventListener('keyup', keyup);
+
+    const touchMappings: [string, 'ArrowLeft'|'ArrowRight'|'ArrowUp'|'ArrowDown'][] = [
+      ['up','ArrowUp'],
+      ['left','ArrowLeft'],
+      ['down','ArrowDown'],
+      ['right','ArrowRight'],
+    ];
+    const touchHandlers: Array<() => void> = [];
+    touchMappings.forEach(([dir,dataDir]) => {
+      const el = document.querySelector<HTMLButtonElement>(`button[data-dir="${dir}"]`);
+      if (el) {
+        const start = (e: TouchEvent) => { e.preventDefault(); startMove(dataDir); };
+        const end = () => stopMove(dataDir);
+        el.addEventListener('touchstart', start);
+        el.addEventListener('touchend', end);
+        touchHandlers.push(() => {
+          el.removeEventListener('touchstart', start);
+          el.removeEventListener('touchend', end);
+        });
+      }
+    });
 
     const moveEntity = (ent: { x: number; y: number; dir: { x: number; y: number } }) => {
       const nx = ent.x + ent.dir.x;
@@ -216,7 +251,10 @@ export default function PacManPage() {
       ctx.fillText('🟡', pacman.x * tile + 4, pacman.y * tile + 28);
     };
 
+    let fps = 60;
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) fps = 30;
     let last = performance.now();
+
     const loop = () => {
       const now = performance.now();
       const dt = (now - last) / 1000;
@@ -224,7 +262,7 @@ export default function PacManPage() {
       if (status === 'play') {
         update(dt);
         draw();
-        requestAnimationFrame(loop);
+        setTimeout(() => requestAnimationFrame(loop), 1000 / fps);
       }
     };
     requestAnimationFrame(loop);
@@ -233,6 +271,7 @@ export default function PacManPage() {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
       if (nextTimeout) clearTimeout(nextTimeout);
+      touchHandlers.forEach((fn) => fn());
     };
   }, [status, level]);
 
@@ -242,7 +281,18 @@ export default function PacManPage() {
       {status === 'play' && (
         <>
           <p>Level {level}</p>
-          <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+          <canvas
+            ref={canvasRef}
+            style={{ background: 'black', imageRendering: 'pixelated', width: '100%', height: 'auto' }}
+          />
+          <div className="mobile-controls">
+            <div className="d-pad">
+              <button data-dir="up">↑</button>
+              <button data-dir="left">←</button>
+              <button data-dir="down">↓</button>
+              <button data-dir="right">→</button>
+            </div>
+          </div>
         </>
       )}
       {status === 'level' && <p>Level {level} complete!</p>}
