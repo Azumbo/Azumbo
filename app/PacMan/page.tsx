@@ -217,6 +217,7 @@ export default function PacManPage() {
     };
 
     let last = performance.now();
+    let frameId: number;
     const loop = () => {
       const now = performance.now();
       const dt = (now - last) / 1000;
@@ -224,15 +225,17 @@ export default function PacManPage() {
       if (status === 'play') {
         update(dt);
         draw();
-        requestAnimationFrame(loop);
+        frameId = requestAnimationFrame(loop);
       }
     };
-    requestAnimationFrame(loop);
+    frameId = requestAnimationFrame(loop);
 
     return () => {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
       if (nextTimeout) clearTimeout(nextTimeout);
+      cancelAnimationFrame(frameId);
+      pacmanAudio.stopWaka();
     };
   }, [status, level]);
 
