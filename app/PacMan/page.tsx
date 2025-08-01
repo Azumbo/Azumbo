@@ -128,18 +128,20 @@ export default function PacManPage() {
         { x: 0, y: 1 },
         { x: 0, y: -1 },
       ];
+
       const valid = dirs.filter((d) => {
         const nx = gx + d.x;
         const ny = gy + d.y;
-        return (
-          nx >= 0 &&
-          nx < cols &&
-          ny >= 0 &&
-          ny < rows &&
-          map[ny][nx] !== 1
-        );
+
+        if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) return false;
+
+        return map[ny][nx] !== 1;
       });
-      if (valid.length === 0) return { x: 0, y: 0 };
+
+      if (valid.length === 0) {
+        return { x: 0, y: 0 }; // fallback if no valid moves
+      }
+
       return valid[Math.floor(Math.random() * valid.length)];
     };
 
