@@ -13,7 +13,8 @@ export default function PacManPage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const tile = 32;
+    const maxWidth = Math.min(window.innerWidth * 0.9, 32 * 11);
+    const tile = Math.floor(maxWidth / 11);
     const levels = [
       [
         [1,1,1,1,1,1,1,1,1,1,1],
@@ -69,6 +70,8 @@ export default function PacManPage() {
     const cols = map[0].length;
     canvas.width = cols * tile;
     canvas.height = rows * tile;
+    canvas.style.width = `${canvas.width}px`;
+    canvas.style.height = `${canvas.height}px`;
 
     const pacman = { x: 1, y: 1, startX: 1, startY: 1, dir: { x: 0, y: 0 } };
     const ghostStarts = [
@@ -128,18 +131,20 @@ export default function PacManPage() {
         { x: 0, y: 1 },
         { x: 0, y: -1 },
       ];
+
       const valid = dirs.filter((d) => {
         const nx = gx + d.x;
         const ny = gy + d.y;
-        return (
-          nx >= 0 &&
-          nx < cols &&
-          ny >= 0 &&
-          ny < rows &&
-          map[ny][nx] !== 1
-        );
+
+        if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) return false;
+
+        return map[ny][nx] !== 1;
       });
-      if (valid.length === 0) return { x: 0, y: 0 };
+
+      if (valid.length === 0) {
+        return { x: 0, y: 0 }; // fallback if no valid moves
+      }
+
       return valid[Math.floor(Math.random() * valid.length)];
     };
 
@@ -217,6 +222,7 @@ export default function PacManPage() {
     };
 
     let last = performance.now();
+    let frameId: number;
     const loop = () => {
       const now = performance.now();
       const dt = (now - last) / 1000;
@@ -224,15 +230,17 @@ export default function PacManPage() {
       if (status === 'play') {
         update(dt);
         draw();
-        requestAnimationFrame(loop);
+        frameId = requestAnimationFrame(loop);
       }
     };
-    requestAnimationFrame(loop);
+    frameId = requestAnimationFrame(loop);
 
     return () => {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
       if (nextTimeout) clearTimeout(nextTimeout);
+      cancelAnimationFrame(frameId);
+      pacmanAudio.stopWaka();
     };
   }, [status, level]);
 
@@ -242,7 +250,10 @@ export default function PacManPage() {
       {status === 'play' && (
         <>
           <p>Level {level}</p>
-          <canvas ref={canvasRef} style={{ background: 'black', imageRendering: 'pixelated' }} />
+          <canvas
+            ref={canvasRef}
+            style={{ background: 'black', imageRendering: 'pixelated' }}
+          />
         </>
       )}
       {status === 'level' && <p>Level {level} complete!</p>}

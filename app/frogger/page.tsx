@@ -34,11 +34,14 @@ export default function FroggerPage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const tile = 40;
     const cols = 10;
     const rows = 8;
+    const maxWidth = Math.min(window.innerWidth * 0.9, 40 * cols);
+    const tile = Math.floor(maxWidth / cols);
     canvas.width = cols * tile;
     canvas.height = rows * tile;
+    canvas.style.width = `${canvas.width}px`;
+    canvas.style.height = `${canvas.height}px`;
 
     const frog = { x: 4, y: rows - 1 };
     const cars = [
@@ -205,7 +208,10 @@ export default function FroggerPage() {
   return (
     <div className="pixel-container">
       <h1>🐸 Frogger</h1>
-      <canvas ref={canvasRef} style={{ background: '#000', imageRendering: 'pixelated' }} />
+      <canvas
+        ref={canvasRef}
+        style={{ background: '#000', imageRendering: 'pixelated' }}
+      />
       {status === 'win' && <p>🏆 You win!</p>}
     </div>
   );
