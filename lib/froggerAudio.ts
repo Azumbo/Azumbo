@@ -40,6 +40,7 @@ export function createExplosionNoise(duration = 0.3) {
   }
   const source = ctx.createBufferSource();
   const filter = ctx.createBiquadFilter();
+
   filter.type = 'highpass';
   filter.frequency.value = 500;
   source.buffer = buffer;
@@ -58,58 +59,3 @@ export function playCarSound() {
 export function playWaterSplash() {
   createExplosionNoise(0.2);
 }
-
-export function playFinishSound() {
-  playSound(880, 'triangle', 0.5, 0.25);
-}
-
-export interface Note {
-  freq: number;
-  dur?: number;
-}
-
-let musicOsc: OscillatorNode | null = null;
-let musicPlaying = false;
-
-export function playBackgroundMusic(notes: Note[], tempo = 180) {
-  const ctx = getCtx();
-  musicPlaying = true;
-
-  const schedule = () => {
-    if (!musicPlaying) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'triangle';
-    gain.gain.value = 0.05;
-
-    let time = ctx.currentTime;
-    notes.forEach((n) => {
-      osc.frequency.setValueAtTime(n.freq, time);
-      time += (60 / tempo) * (n.dur || 1);
-    });
-
-    osc.connect(gain).connect(ctx.destination);
-    osc.start();
-    osc.stop(time);
-    musicOsc = osc;
-    osc.onended = schedule;
-  };
-
-  schedule();
-}
-
-export function stopBackgroundMusic() {
-  musicPlaying = false;
-  if (musicOsc) {
-    musicOsc.stop();
-    musicOsc.disconnect();
-    musicOsc = null;
-  }
-}
-
-export const froggerTheme: Note[] = [
-  { freq: 440, dur: 0.5 },
-  { freq: 660, dur: 0.5 },
-  { freq: 880, dur: 0.5 },
-  { freq: 660, dur: 0.5 },
-];
