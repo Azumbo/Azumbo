@@ -1,4 +1,6 @@
 .landing-container {
+  position: relative;
+  overflow: hidden;
   max-width: 640px;
   margin: 0 auto;
   background: #0d1b2a;
@@ -6,7 +8,45 @@
   font-family: 'Courier Prime', monospace;
   padding: 20px;
   border: 2px solid #ff206e;
-  background-image: repeating-linear-gradient(0deg, #1b263b 0, #1b263b 4px, #0d1b2a 4px, #0d1b2a 8px);
+  background-image:
+    repeating-linear-gradient(0deg, #1b263b 0 4px, transparent 4px 8px),
+    repeating-linear-gradient(90deg, #1b263b 0 4px, transparent 4px 8px);
+  animation: gridMove 20s linear infinite;
+}
+
+.landing-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0.2) 50%, transparent 50%);
+  background-size: 100% 4px;
+  mix-blend-mode: overlay;
+}
+
+.landing-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.03);
+  animation: vhs 0.3s steps(1, end) infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 40px 40px, 40px 40px; }
+}
+
+@keyframes vhs {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.05; }
 }
 
 .pixel-header, .pixel-footer {
@@ -14,21 +54,26 @@
   justify-content: space-between;
   align-items: center;
   font-family: 'Press Start 2P', cursive;
+  border: 2px solid #ff206e;
+  padding: 10px;
 }
 
 .pixel-nav a {
   margin-right: 10px;
   color: #41ead4;
   text-decoration: none;
+  border: 2px solid #ff206e;
+  padding: 4px;
 }
 .lang-switcher button {
   margin-left: 5px;
+  border: 2px solid #ff206e;
+  background: #0d1b2a;
+  color: #41ead4;
+  font-family: 'Press Start 2P';
 }
 
 .crt-effect {
-  background: linear-gradient(rgba(18, 16, 16, 0.1) 50%, transparent 50%);
-  background-size: 100% 4px;
-  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
   padding: 20px;
   text-align: center;
 }
@@ -54,10 +99,45 @@
 }
 .pixel-section {
   margin: 20px 0;
+  border: 2px solid #ff206e;
+  padding: 10px;
 }
 .niche-grid {
   display: grid;
   gap: 10px;
+}
+
+.sprite-animation {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  background: url('/cornettoclicker/croissant.svg') no-repeat center/contain;
+  image-rendering: pixelated;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.pixel-hero h1, .pixel-hero h2 {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 0 0 5px #41ead4;
+  animation: neon 1.5s ease-in-out infinite;
+}
+
+@keyframes neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.niche:hover {
+  cursor: pointer;
+}
+
+.niche:hover .pixel-icon {
+  transform: scale(1.2);
 }
 @media (max-width: 420px) {
   .niche-grid { grid-template-columns: 1fr; }

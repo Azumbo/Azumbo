@@ -78,6 +78,7 @@ const translations: Record<string, Record<string, string>> = {
 
 export default function CornettoLanding() {
   const [lang, setLang] = useState('en');
+  const [clicks, setClicks] = useState(0);
 
   useEffect(() => {
     const browserLang = navigator.language.slice(0, 2);
@@ -95,16 +96,73 @@ export default function CornettoLanding() {
 
   const changeLang = (l: string) => setLang(l);
 
+  const startMiniGame = () => {
+    window.open('/cornettoclicker/game.html', '_blank');
+  };
+
+  useEffect(() => {
+    const hover = new Audio('/cornettoclicker/hover.mp3');
+    const buttons = document.querySelectorAll('.pixel-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('mouseenter', () => {
+        hover.currentTime = 0;
+        hover.play();
+      });
+    });
+
+    document.querySelectorAll('.niche').forEach((niche) => {
+      const icon = niche.querySelector('.pixel-icon') as HTMLElement;
+      const original = icon?.textContent;
+      niche.addEventListener('mouseenter', () => {
+        if (icon) icon.textContent = '✨';
+      });
+      niche.addEventListener('mouseleave', () => {
+        if (icon) icon.textContent = original || '';
+      });
+    });
+
+    const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let index = 0;
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === sequence[index].toLowerCase()) {
+        index++;
+        if (index === sequence.length) {
+          alert('BONUS!');
+          startMiniGame();
+          index = 0;
+        }
+      } else {
+        index = 0;
+      }
+    };
+    window.addEventListener('keydown', keyHandler);
+    return () => window.removeEventListener('keydown', keyHandler);
+  }, []);
+
   return (
     <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Press+Start+2P&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <div className="landing-container">
       <header className="pixel-header" aria-label="Main navigation">
-        <Image src="/cornettoclicker/logo.svg" alt="🥐 Cornetto Clicker" width={64} height={64} className="pixel-logo" />
+        <Image
+          src="/cornettoclicker/logo.svg"
+          alt="🥐 Cornetto Clicker"
+          width={64}
+          height={64}
+          className="pixel-logo"
+          onClick={() => {
+            const c = clicks + 1;
+            setClicks(c);
+            if (c >= 5) startMiniGame();
+          }}
+        />
         <nav className="pixel-nav">
           <a href="#game" data-i18n="nav.game"></a>
           <a href="#biz" data-i18n="nav.biz"></a>
@@ -176,11 +234,11 @@ export default function CornettoLanding() {
 
       <footer className="pixel-footer">
         <div className="social-links">
-          <a href="#" className="pixel-social">🐦</a>
-          <a href="#" className="pixel-social">🎮</a>
+          <a href="#" className="pixel-social" aria-label="Twitter">🐦</a>
+          <a href="#" className="pixel-social" aria-label="Game store">🎮</a>
         </div>
         <p className="copyright">© 1993-{new Date().getFullYear()} Cornetto Games</p>
-        <button className="easter-egg" onClick={() => alert('Mini game!')}>👾</button>
+        <button className="easter-egg" onClick={startMiniGame}>👾</button>
       </footer>
     </div>
     </>
