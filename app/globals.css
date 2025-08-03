@@ -3,55 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --font-press-start: 'Press Start 2P', cursive;
+  --vh: 1vh;
 }
 
-.pixel-container {
-    font-family: 'Press Start 2P', cursive;
-    background: #1a2980;
-    color: #fff;
-    border: 4px solid #FFD700;
-    padding: 20px;
-    text-align: center;
-    image-rendering: pixelated;
+html.touch-manipulation {
+  touch-action: manipulation;
 }
 
-.pixel-button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-family: inherit;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 0;
-    image-rendering: pixelated;
-    box-shadow: 0 4px 0 #c0392b;
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.pixel-coin {
-    width: 128px;
-    height: 128px;
-    image-rendering: pixelated;
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  box-sizing: border-box;
 }
 
-.emoji-sprite {
-    image-rendering: pixelated;
-    font-size: 32px;
-    line-height: 1;
-}
-
-@media (max-width: 768px) {
-    .mobile-controls {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-
-    .mobile-controls button {
-        width: 80px;
-        height: 80px;
-        font-size: 24px;
-        image-rendering: pixelated;
-    }
+.scrollable {
+  -webkit-overflow-scrolling: touch;
 }

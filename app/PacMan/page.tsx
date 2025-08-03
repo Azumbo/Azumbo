@@ -1,11 +1,18 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { pacmanAudio } from '../../lib/pacmanAudio';
+import styles from './PacMan.module.css';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [level, setLevel] = useState(1);
   const [status, setStatus] = useState<'play' | 'level' | 'win'>('play');
+  const [showControls, setShowControls] = useState(false);
+
+  useEffect(() => {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    setShowControls(isMobile);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -68,10 +75,13 @@ export default function PacManPage() {
     const map = levels[level - 1].map((row) => [...row]);
     const rows = map.length;
     const cols = map[0].length;
-    canvas.width = cols * tile;
-    canvas.height = rows * tile;
-    canvas.style.width = `${canvas.width}px`;
-    canvas.style.height = `${canvas.height}px`;
+
+    const scale = window.devicePixelRatio || 1;
+    canvas.width = cols * tile * scale;
+    canvas.height = rows * tile * scale;
+    ctx.scale(scale, scale);
+    canvas.style.width = `${cols * tile}px`;
+    canvas.style.height = `${rows * tile}px`;
 
     const pacman = { x: 1, y: 1, startX: 1, startY: 1, dir: { x: 0, y: 0 } };
     const ghostStarts = [
@@ -86,9 +96,10 @@ export default function PacManPage() {
     let frightenedTimer = 0;
 
     const keys: Record<string, boolean> = {};
-    const keydown = (e: KeyboardEvent) => {
-      keys[e.key] = true;
-      switch (e.key) {
+
+    const startMove = (dir: 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown') => {
+      keys[dir] = true;
+      switch (dir) {
         case 'ArrowLeft':
           pacman.dir = { x: -1, y: 0 };
           break;
@@ -102,18 +113,58 @@ export default function PacManPage() {
           pacman.dir = { x: 0, y: 1 };
           break;
       }
-      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
-        pacmanAudio.waka();
-      }
+      pacmanAudio.waka();
     };
-    const keyup = (e: KeyboardEvent) => {
-      keys[e.key] = false;
+
+    const stopMove = (dir: 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown') => {
+      keys[dir] = false;
       if (!keys['ArrowLeft'] && !keys['ArrowRight'] && !keys['ArrowUp'] && !keys['ArrowDown']) {
         pacmanAudio.stopWaka();
       }
     };
+
+    const keydown = (e: KeyboardEvent) => {
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+        startMove(e.key as any);
+      }
+    };
+
+    const keyup = (e: KeyboardEvent) => {
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+        stopMove(e.key as any);
+      }
+    };
     document.addEventListener('keydown', keydown);
     document.addEventListener('keyup', keyup);
+
+    const touchMappings: [string, 'ArrowLeft'|'ArrowRight'|'ArrowUp'|'ArrowDown'][] = [
+      ['up','ArrowUp'],
+      ['left','ArrowLeft'],
+      ['down','ArrowDown'],
+      ['right','ArrowRight'],
+    ];
+    const touchHandlers: Array<() => void> = [];
+    
+    if (showControls) {
+      touchMappings.forEach(([dir,dataDir]) => {
+        const el = document.querySelector<HTMLButtonElement>(`button[data-dir="${dir}"]`);
+        if (el) {
+          const start = (e: TouchEvent) => { 
+            e.preventDefault(); 
+            startMove(dataDir); 
+          };
+          const end = () => stopMove(dataDir);
+          el.addEventListener('touchstart', start);
+          el.addEventListener('touchend', end);
+          el.addEventListener('touchcancel', end);
+          touchHandlers.push(() => {
+            el.removeEventListener('touchstart', start);
+            el.removeEventListener('touchend', end);
+            el.removeEventListener('touchcancel', end);
+          });
+        }
+      });
+    }
 
     const moveEntity = (ent: { x: number; y: number; dir: { x: number; y: number } }) => {
       const nx = ent.x + ent.dir.x;
@@ -142,7 +193,7 @@ export default function PacManPage() {
       });
 
       if (valid.length === 0) {
-        return { x: 0, y: 0 }; // fallback if no valid moves
+        return { x: 0, y: 0 };
       }
 
       return valid[Math.floor(Math.random() * valid.length)];
@@ -151,6 +202,8 @@ export default function PacManPage() {
     const speed = Math.max(0.2 - (level - 1) * 0.02, 0.1);
     let moveTimer = 0;
     let nextTimeout: ReturnType<typeof setTimeout> | null = null;
+    let frameId: number;
+
     const update = (dt: number) => {
       moveTimer += dt;
       if (moveTimer > speed) {
@@ -221,8 +274,10 @@ export default function PacManPage() {
       ctx.fillText('🟡', pacman.x * tile + 4, pacman.y * tile + 28);
     };
 
+    let fps = 60;
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) fps = 30;
     let last = performance.now();
-    let frameId: number;
+
     const loop = () => {
       const now = performance.now();
       const dt = (now - last) / 1000;
@@ -238,22 +293,31 @@ export default function PacManPage() {
     return () => {
       document.removeEventListener('keydown', keydown);
       document.removeEventListener('keyup', keyup);
+      touchHandlers.forEach((fn) => fn());
       if (nextTimeout) clearTimeout(nextTimeout);
       cancelAnimationFrame(frameId);
       pacmanAudio.stopWaka();
     };
-  }, [status, level]);
+  }, [status, level, showControls]);
 
   return (
-    <div className="pixel-container">
+    <div className={styles.container}>
       <h1>🟡 Pac-Man</h1>
       {status === 'play' && (
         <>
           <p>Level {level}</p>
           <canvas
             ref={canvasRef}
-            style={{ background: 'black', imageRendering: 'pixelated' }}
+            className={styles.canvas}
           />
+          {showControls && (
+            <div className={styles.controls}>
+              <button data-dir="up" className={styles.controlButton}>↑</button>
+              <button data-dir="left" className={styles.controlButton}>←</button>
+              <button data-dir="down" className={styles.controlButton}>↓</button>
+              <button data-dir="right" className={styles.controlButton}>→</button>
+            </div>
+          )}
         </>
       )}
       {status === 'level' && <p>Level {level} complete!</p>}
