@@ -1,12 +1,19 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { gameConfig, localization } from '../lib/config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function LanguageSelect() {
   const router = useRouter();
-  const [lang] = useState(gameConfig.defaultLanguage);
+  const [lang, setLang] = useState(gameConfig.defaultLanguage);
   const t = localization;
+
+  useEffect(() => {
+    const browserLang = navigator.language.slice(0, 2);
+    if (gameConfig.languages.includes(browserLang)) {
+      setLang(browserLang);
+    }
+  }, []);
 
   const selectLang = (l: string) => {
     localStorage.setItem('lang', l);
