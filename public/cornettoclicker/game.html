@@ -27,26 +27,34 @@
   </div>
 
   <!-- Mobile Controls -->
-  <div id="mobile-controls" class="mc hidden">
-    <button id="btn-left" aria-label="Move left" class="mc-btn mc-left">◀</button>
-    <button id="btn-right" aria-label="Move right" class="mc-btn mc-right">▶</button>
+  <div id="mobile-controls" class="mc hidden" aria-hidden="true">
+    <button id="btn-left"  class="mc-btn" aria-label="Move left">◀</button>
+    <button id="btn-right" class="mc-btn" aria-label="Move right">▶</button>
   </div>
 
   <script src="./js/game.js"></script>
-  <script src="./js/InputController.js"></script>
+  <script src="./js/DesktopControls.js"></script>
   <script src="./js/MobileControls.js"></script>
   <script>
-    // Инициализация ввода
-    const input = new InputController();
-    const mobile = new MobileControls({
-      root: document.getElementById('mobile-controls'),
-      leftBtn: document.getElementById('btn-left'),
-      rightBtn: document.getElementById('btn-right'),
-      input
-    });
+    (function initInput(){
+      const isMobile = window.matchMedia('(pointer: coarse)').matches
+                    || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    // Проброс в игру (замени место, где игра читает клавиши)
-    window.__input = input; // если нужно глобально
+      const root     = document.getElementById('game') || document.body;
+      const ui       = document.getElementById('mobile-controls');
+      const leftBtn  = document.getElementById('btn-left');
+      const rightBtn = document.getElementById('btn-right');
+
+      let input;
+      if (isMobile) {
+        ui.classList.remove('hidden');
+        input = new MobileControls(root, leftBtn, rightBtn);
+      } else {
+        ui.classList.add('hidden');
+        input = new DesktopControls();
+      }
+      window.__input = input;
+    })();
   </script>
 </body>
 </html>
