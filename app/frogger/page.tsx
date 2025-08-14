@@ -1,13 +1,12 @@
-'use client';
 import { useEffect, useRef, useState } from 'react';
 import {
   initAudioSystem,
+  playBackgroundMusic,
+  stopBackgroundMusic,
   playJumpSound,
   playCarSound,
   playWaterSplash,
   playFinishSound,
-  playBackgroundMusic,
-  stopBackgroundMusic,
   froggerTheme,
 } from '../../lib/froggerAudio';
 
@@ -31,6 +30,7 @@ export default function FroggerPage() {
     initAudioSystem();
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -61,6 +61,7 @@ export default function FroggerPage() {
     const keyup = (e: KeyboardEvent) => {
       keys[e.key] = false;
     };
+
     document.addEventListener('keydown', keydown);
     document.addEventListener('keyup', keyup);
 
@@ -71,6 +72,7 @@ export default function FroggerPage() {
 
     const update = (dt: number) => {
       if (status !== 'play') return;
+
       if (keys['ArrowLeft'] && frog.x > 0) {
         frog.x -= 1;
         playJumpSound();
@@ -146,6 +148,7 @@ export default function FroggerPage() {
           setHomes(newHomes);
           playFinishSound();
           reset();
+
           if (newHomes.every((v) => v)) setStatus('win');
         } else {
           reset();
@@ -195,6 +198,7 @@ export default function FroggerPage() {
       last = now;
       update(dt);
       draw();
+
       if (status === 'play') requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
