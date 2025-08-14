@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Cornetto Clicker</title>
   <!-- Basic styles for the mini game -->
   <link rel="stylesheet" href="style.css">
@@ -26,6 +26,27 @@
     </div>
   </div>
 
-  <script src="main.js"></script>
+  <!-- Mobile Controls -->
+  <div id="mobile-controls" class="mc hidden">
+    <button id="btn-left" aria-label="Move left" class="mc-btn mc-left">◀</button>
+    <button id="btn-right" aria-label="Move right" class="mc-btn mc-right">▶</button>
+  </div>
+
+  <script src="./js/game.js"></script>
+  <script src="./js/InputController.js"></script>
+  <script src="./js/MobileControls.js"></script>
+  <script>
+    // Инициализация ввода
+    const input = new InputController();
+    const mobile = new MobileControls({
+      root: document.getElementById('mobile-controls'),
+      leftBtn: document.getElementById('btn-left'),
+      rightBtn: document.getElementById('btn-right'),
+      input
+    });
+
+    // Проброс в игру (замени место, где игра читает клавиши)
+    window.__input = input; // если нужно глобально
+  </script>
 </body>
 </html>
