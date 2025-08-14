@@ -85,7 +85,7 @@ function update(time) {
     }
   });
 
-  // Player movement via InputController
+  // Unified input axis
   const axis = (window.__input && window.__input.getAxisX) ? window.__input.getAxisX() : 0;
   if (!musicSource && axis !== 0) startMusic();
   const speed = player.moveSpeed || 600; // pixels per second
@@ -113,9 +113,6 @@ function gameOver(msg) {
   playSound('gameover');
   overText.innerText = msg;
   over.classList.remove('hidden');
-  if (window.__input && window.__input.setActive) {
-    window.__input.setActive(false);
-  }
 }
 
 restartBtn.onclick = () => location.reload();
