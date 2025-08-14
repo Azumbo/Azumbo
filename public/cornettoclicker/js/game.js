@@ -22,7 +22,10 @@ function playSound(name, loop = false) {
 ['pickup','fire','gameover','music'].forEach(n => loadSound(n, `sfx/${n}.mp3`));
 let musicSource = null;
 
-const player = document.getElementById('player');
+const playerEl = document.getElementById('player');
+const player = { el: playerEl, x: window.innerWidth / 2, vx: 0, moveSpeed: 600 };
+player.x -= playerEl.offsetWidth / 2;
+playerEl.style.left = player.x + 'px';
 const scoreEl = document.getElementById('score');
 const missEl = document.getElementById('misses');
 const big = document.getElementById('big');
@@ -31,6 +34,7 @@ const overText = document.getElementById('gameover-text');
 const restartBtn = document.getElementById('restart');
 
 let score = 0, miss = 0, items = [], running = true;
+let lastTime = performance.now();
 
 function startMusic() {
   if (!musicSource) {
@@ -52,12 +56,15 @@ function spawn() {
 }
 
 // Update loop
-function update() {
+function update(time) {
+  const dt = (time - lastTime) / 1000;
+  lastTime = time;
+
   items.forEach(it => {
     it.y += 2;
     it.el.style.top = it.y + 'px';
     const rect = it.el.getBoundingClientRect();
-    const pRect = player.getBoundingClientRect();
+    const pRect = player.el.getBoundingClientRect();
     if (rect.bottom >= pRect.top && rect.left < pRect.right && rect.right > pRect.left) {
       if (it.type === 'croissant') {
         score++;
@@ -78,6 +85,15 @@ function update() {
     }
   });
 
+  // Player movement via InputController
+  const axis = (window.__input && window.__input.getAxisX) ? window.__input.getAxisX() : 0;
+  if (!musicSource && axis !== 0) startMusic();
+  const speed = player.moveSpeed || 600; // pixels per second
+  player.vx = axis * speed;
+  player.x += player.vx * dt;
+  player.x = Math.min(window.innerWidth - 40, Math.max(0, player.x));
+  player.el.style.left = player.x + 'px';
+
   scoreEl.innerText = score;
   if (score >= 500) {
     gameOver('Ждём вас в Pucci Pane за самыми свежими круассанами и не только :)');
@@ -97,28 +113,12 @@ function gameOver(msg) {
   playSound('gameover');
   overText.innerText = msg;
   over.classList.remove('hidden');
+  if (window.__input && window.__input.setActive) {
+    window.__input.setActive(false);
+  }
 }
 
 restartBtn.onclick = () => location.reload();
-
-function move(dir) {
-  const rect = player.getBoundingClientRect();
-  let x = rect.left + dir * 20;
-  player.style.left = Math.min(window.innerWidth - 40, Math.max(0, x)) + 'px';
-}
-
-// Controls for keyboard and touch
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') move(-1);
-  if (e.key === 'ArrowRight') move(1);
-  if (!musicSource) startMusic();
-});
-
-document.addEventListener('touchstart', e => {
-  const x = e.touches[0].clientX;
-  move(x < window.innerWidth / 2 ? -1 : 1);
-  if (!musicSource) startMusic();
-});
 
 setInterval(spawn, 1000);
 requestAnimationFrame(update);
