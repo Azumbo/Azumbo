@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Frogger</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body id="game-root">
+  <canvas id="game-canvas"></canvas>
+  <div id="dpad" class="dpad hidden" aria-hidden="true">
+    <button id="btn-up" class="dpad-btn" aria-label="Up">▲</button>
+    <div class="dpad-row">
+      <button id="btn-left" class="dpad-btn" aria-label="Left">◀</button>
+      <button id="btn-right" class="dpad-btn" aria-label="Right">▶</button>
+    </div>
+    <button id="btn-down" class="dpad-btn" aria-label="Down">▼</button>
+  </div>
+
+  <script src="./js/game.js"></script>
+  <script src="./js/FroggerDesktopControls.js"></script>
+  <script src="./js/FroggerMobileControls.js"></script>
+  <script>
+    (function initInput(){
+      const isMobile = window.matchMedia('(pointer: coarse)').matches
+                    || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+      const root = document.getElementById('game-root') || document.body;
+      const dpad = document.getElementById('dpad');
+
+      let input;
+      if (isMobile) {
+        dpad.classList.remove('hidden');
+        input = new FroggerMobileControls({
+          root,
+          up:   document.getElementById('btn-up'),
+          down: document.getElementById('btn-down'),
+          left: document.getElementById('btn-left'),
+          right:document.getElementById('btn-right'),
+          swipe: true
+        });
+      } else {
+        dpad.classList.add('hidden');
+        input = new FroggerDesktopControls();
+      }
+
+      window.__frogInput = input;
+    })();
+  </script>
+</body>
+</html>
