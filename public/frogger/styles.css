@@ -1,0 +1,58 @@
+:root {
+  --btn-base: 88px;
+  --btn-size: calc(var(--btn-base) * 0.8);
+}
+
+#game-root {
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+#game-root, #game-canvas {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.dpad {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  gap: 10px;
+  padding: 12px calc(env(safe-area-inset-right, 0px) + 12px)
+           calc(env(safe-area-inset-bottom, 0px) + 12px)
+           calc(env(safe-area-inset-left, 0px) + 12px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.dpad-row {
+  display: flex;
+  gap: 14px;
+}
+
+.dpad-btn {
+  pointer-events: auto;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border: 0;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  touch-action: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (pointer: fine) {
+  #dpad { display: none !important; }
+}
