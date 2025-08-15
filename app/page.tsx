@@ -144,12 +144,27 @@ export default function AzumboLanding() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
       {/* COMPACT DARK HEADER */}
-      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
+      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
           <nav className="hidden gap-5 text-sm md:flex">
-            <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
-            <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
-            <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
+            <a
+              href="#games"
+              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+            >
+              {t.navGames}
+            </a>
+            <a
+              href="#services"
+              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+            >
+              {t.navServices}
+            </a>
+            <a
+              href="#contact"
+              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+            >
+              {t.navContact}
+            </a>
           </nav>
           <div className="font-black tracking-wider">AZUMBO</div>
           <div className="flex gap-2 text-xs">
@@ -157,7 +172,7 @@ export default function AzumboLanding() {
               <button
                 key={k}
                 onClick={() => setLang(k)}
-                className={`rounded-md px-2.5 py-1 transition ${
+                className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
                   lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
                 }`}
                 aria-pressed={lang===k}
@@ -175,10 +190,16 @@ export default function AzumboLanding() {
         <h1 className="mt-2 text-4xl font-black leading-[1.05] sm:text-6xl">{t.title}</h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/cornettoclicker" className="rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-black">
+          <Link
+            href="/cornettoclicker"
+            className="rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
+          >
             {t.ctaPlay}
           </Link>
-          <a href="mailto:azumbogames@gmail.com" className="rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-700">
+          <a
+            href="mailto:azumbogames@gmail.com"
+            className="rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
+          >
             {t.ctaContact}
           </a>
         </div>
@@ -210,7 +231,10 @@ export default function AzumboLanding() {
           </ServiceCard>
         </div>
         <div className="mt-5">
-          <a href="mailto:azumbogames@gmail.com" className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-black">
+          <a
+            href="mailto:azumbogames@gmail.com"
+            className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
+          >
             {t.srvCTA}
           </a>
         </div>
@@ -234,7 +258,10 @@ export default function AzumboLanding() {
       {/* CONTACT */}
       <section id="contact" className="mx-auto max-w-5xl px-4 pb-20">
         <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.contactTitle}</h2>
-        <a href="mailto:azumbogames@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm shadow-sm dark:border-neutral-700">
+        <a
+          href="mailto:azumbogames@gmail.com"
+          className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
+        >
           Email: azumbogames@gmail.com
         </a>
       </section>
@@ -265,7 +292,10 @@ function ServiceCard({ title, desc, price, children }: any) {
 }
 function GameCard({ href, title, desc }: any) {
   return (
-    <Link href={href} className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg dark:border-neutral-800">
+    <Link
+      href={href}
+      className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:focus-visible:outline-white"
+    >
       <div className="mb-3 aspect-[16/9] w-full rounded-lg bg-neutral-100 dark:bg-neutral-900"></div>
       <div className="text-lg font-semibold">{title}</div>
       <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Head from 'next/head';
 import './style.css';
 
 const translations: Record<string, Record<string, string>> = {
@@ -141,14 +140,6 @@ export default function CornettoLanding() {
 
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Press+Start+2P&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <div className="landing-container">
       <header className="pixel-header" aria-label="Main navigation">
         <Image
