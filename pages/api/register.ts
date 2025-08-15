@@ -93,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       await transporter.sendMail({
         from: process.env.SMTP_USER,
-        to: 'CommanderMolaMola@gmail.com',
+        to: process.env.SMTP_USER,
         subject: 'New Player Joined',
         text: `A new player has joined the game! Nickname: ${nickname} Email: ${email}`,
       });

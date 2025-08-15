@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { localization, gameConfig } from '../../lib/config';
+import { localization } from '../../lib/config';
 
 export default function FinishPage() {
   const [lang, setLang] = useState('en');
@@ -22,13 +22,6 @@ export default function FinishPage() {
     <div className="pixel-container">
       <h1>{t.finishScreen.title}</h1>
       <p>{t.finishScreen.message}</p>
-      <p>{t.finishScreen.action} {gameConfig.adminEmail}</p>
-      <p>{t.finishScreen.social}</p>
-      <a href={gameConfig.socialLinks.youtube}>{gameConfig.socialLinks.youtube}</a>
-      <br />
-      <a href={gameConfig.socialLinks.tiktok}>{gameConfig.socialLinks.tiktok}</a>
-      <p>{t.finishScreen.comment}</p>
-      <img src="/mola-coin.png" alt="Mola Coin" className="pixel-coin" />
       <p>{code}</p>
       <button className="pixel-button" onClick={copy}>{t.finishScreen.copy}</button>
       <div style={{ marginTop: '20px' }}>

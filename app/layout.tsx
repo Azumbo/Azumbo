@@ -10,7 +10,7 @@ const pressStart = Press_Start_2P({
 });
 
 export const metadata = {
-  title: 'Commander Mola Mola Pixel Quest',
+  title: 'Pixel Quest',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -23,7 +23,7 @@ export const metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Commander Mola Mola Pixel Quest'
+    title: 'Pixel Quest'
   }
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Commander Mola Mola Pixel Quest" />
+        <meta name="apple-mobile-web-app-title" content="Pixel Quest" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
       <body className={`${pressStart.className} overscroll-none`}>
