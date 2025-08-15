@@ -20,17 +20,32 @@ const STRINGS: Record<Lang, any> = {
     ccDesc: 'Catch croissants, dodge hazards. Snacky arcade fun.',
     frDesc: 'Classic frog-style hops with modern UX.',
     aboutTitle: 'About AZUMBO',
-    aboutText:
-      'AZUMBO is a tiny indie studio focused on snackable, high-polish games, lean tech and rapid publishing.',
+    aboutText: 'AZUMBO is a tiny indie studio focused on snackable, high-polish games, lean tech and rapid publishing.',
     contactTitle: 'Get in touch',
     email: 'Email',
     footer: '© 2025 AZUMBO. All rights reserved.',
+    // nav
+    navGames: 'Games',
+    navServices: 'Services',
+    navContact: 'Contact',
+    // services
+    servicesTitle: 'Services',
+    servicesSubtitle: 'From prototype sprints to publishing and platform ports.',
+    srvProtoTitle: 'Prototype Sprint (5–10 days)',
+    srvProtoDesc: 'Fast vertical slice: core loop, basic art/sfx, deployable build for tests.',
+    srvProtoPrice: 'from €499',
+    srvPublishTitle: 'Publishing & UA',
+    srvPublishDesc: 'Store assets, QA, soft launch, UA creatives, analytics. Rev-share friendly.',
+    srvPublishPrice: 'from €0 + rev-share',
+    srvPortTitle: 'Porting to Nintendo Switch',
+    srvPortDesc: 'Technical port, input/UI adaption, performance pass, submission support.',
+    srvPortPrice: 'custom quote',
+    srvCTA: 'Request a quote'
   },
   it: {
     title: 'AZUMBO — Studio Indie',
     kicker: 'Giochi mobile-first con umorismo e cuore.',
-    subtitle:
-      'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
+    subtitle: 'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
     ctaPlay: 'Gioca nel browser',
     ctaContact: 'Contatto',
     platforms: 'Piattaforme',
@@ -39,19 +54,32 @@ const STRINGS: Record<Lang, any> = {
     switch: 'Nintendo Switch',
     featured: 'Giochi in evidenza',
     ccDesc: 'Prendi cornetti, evita pericoli. Arcade “gustoso”.',
-    frDesc: 'Salti in stile frogger con UX moderna.',
+    frDesc: 'Salti in stile frog con UX moderna.',
     aboutTitle: 'Chi è AZUMBO',
-    aboutText:
-      'AZUMBO è un piccolo studio indie: giochi veloci, tech snello, pubblicazione rapida.',
+    aboutText: 'Piccolo studio indie: giochi rapidi, tech snello, pubblicazione veloce.',
     contactTitle: 'Contattaci',
     email: 'E-mail',
     footer: '© 2025 AZUMBO. Tutti i diritti riservati.',
+    navGames: 'Giochi',
+    navServices: 'Servizi',
+    navContact: 'Contatto',
+    servicesTitle: 'Servizi',
+    servicesSubtitle: 'Dallo sprint di prototipo al publishing e porting su console.',
+    srvProtoTitle: 'Sprint di Prototipo (5–10 giorni)',
+    srvProtoDesc: 'Vertical slice veloce: core loop, grafica/sfx base, build per test.',
+    srvProtoPrice: 'da €499',
+    srvPublishTitle: 'Publishing & UA',
+    srvPublishDesc: 'Asset store, QA, soft launch, creatività UA, analytics. Rev-share possibile.',
+    srvPublishPrice: 'da €0 + rev-share',
+    srvPortTitle: 'Porting su Nintendo Switch',
+    srvPortDesc: 'Porting tecnico, input/UI, performance, supporto submission.',
+    srvPortPrice: 'preventivo su misura',
+    srvCTA: 'Richiedi un preventivo'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
     kicker: 'Мобильные игры с юмором и сердцем.',
-    subtitle:
-      'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
+    subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
     ctaPlay: 'Играть в браузере',
     ctaContact: 'Связаться',
     platforms: 'Платформы',
@@ -62,33 +90,49 @@ const STRINGS: Record<Lang, any> = {
     ccDesc: 'Лови круассаны, избегай опасностей. Вкусный аркадный ран.',
     frDesc: 'Классические «лягушачьи» ходы с современным UX.',
     aboutTitle: 'О студии AZUMBO',
-    aboutText:
-      'Маленькая инди-студия: быстрые игры, лёгкая техничка, быстрый релиз.',
+    aboutText: 'Маленькая инди-студия: быстрые игры, лёгкая техничка, быстрый релиз.',
     contactTitle: 'Контакты',
     email: 'Почта',
     footer: '© 2025 AZUMBO. Все права защищены.',
-  },
+    navGames: 'Игры',
+    navServices: 'Услуги',
+    navContact: 'Контакты',
+    servicesTitle: 'Услуги',
+    servicesSubtitle: 'От прототипов до паблишинга и портирования на консоли.',
+    srvProtoTitle: 'Прототип-спринт (5–10 дней)',
+    srvProtoDesc: 'Быстрый vertical slice: кор-луп, базовая графика/звук, билд для тестов.',
+    srvProtoPrice: 'от €499',
+    srvPublishTitle: 'Паблишинг и UA',
+    srvPublishDesc: 'Оформление стор, QA, софт-лонч, креативы, аналитика. Возможен rev-share.',
+    srvPublishPrice: 'от €0 + rev-share',
+    srvPortTitle: 'Портирование на Nintendo Switch',
+    srvPortDesc: 'Технический порт, адаптация ввода/UI, оптимизация, помощь с сабмитом.',
+    srvPortPrice: 'по запросу',
+    srvCTA: 'Запросить смету'
+  }
 };
 
 export default function AzumboLanding() {
   const [lang, setLang] = useState<Lang>('en');
   const t = useMemo(() => STRINGS[lang], [lang]);
 
-  // JSON-LD
+  // JSON-LD (Org + simple OfferCatalog)
   const orgJson = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'AZUMBO',
     url: 'https://azumbo.vercel.app/',
-    email: 'azumbogames@gmail.com',
-    sameAs: [],
+    email: 'azumbogames@gmail.com'
   };
-  const siteJson = {
+  const catalogJson = {
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'AZUMBO',
-    url: 'https://azumbo.vercel.app/',
-    inLanguage: lang,
+    '@type': 'OfferCatalog',
+    name: 'AZUMBO Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Prototype Sprint' }, priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'EUR', price: '499', minPrice: '499' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Publishing & UA' }, priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'EUR', price: '0' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Porting to Nintendo Switch' } }
+    ]
   };
 
   return (
@@ -96,128 +140,143 @@ export default function AzumboLanding() {
       {/* Head-like tags */}
       <link rel="canonical" href="https://azumbo.vercel.app/" />
       <meta name="robots" content="index,follow" />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJson) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
-      {/* Language Switcher */}
-      <div className="sticky top-0 z-20 border-b bg-white/80 backdrop-blur dark:bg-neutral-950/70">
+      {/* COMPACT DARK HEADER */}
+      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
+          <nav className="hidden gap-5 text-sm md:flex">
+            <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
+            <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
+            <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
+          </nav>
           <div className="font-black tracking-wider">AZUMBO</div>
-          <div className="flex gap-3 text-sm">
-            {(['en', 'it', 'ru'] as Lang[]).map((k) => (
+          <div className="flex gap-2 text-xs">
+            {(['en','it','ru'] as Lang[]).map(k => (
               <button
                 key={k}
                 onClick={() => setLang(k)}
-                className={`rounded px-2 py-1 ${
-                  lang === k
-                    ? 'bg-black text-white dark:bg-white dark:text-black'
-                    : 'bg-neutral-200 dark:bg-neutral-800'
+                className={`rounded-md px-2.5 py-1 transition ${
+                  lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
                 }`}
-                aria-pressed={lang === k}
+                aria-pressed={lang===k}
               >
-                {k === 'en' ? 'EN' : k === 'it' ? 'IT' : 'RU'}
+                {k.toUpperCase()}
               </button>
             ))}
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Hero */}
-      <section className="mx-auto max-w-5xl px-4 py-16">
-        <p className="text-sm uppercase tracking-widest opacity-70">{t.kicker}</p>
-        <h1 className="mt-2 text-4xl font-black leading-tight sm:text-6xl">
-          {t.title}
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-neutral-600 dark:text-neutral-300">
-          {t.subtitle}
-        </p>
+      {/* HERO */}
+      <section className="mx-auto max-w-5xl px-4 py-14 md:py-20">
+        <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">{t.kicker}</p>
+        <h1 className="mt-2 text-4xl font-black leading-[1.05] sm:text-6xl">{t.title}</h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/cornettoclicker"
-            className="rounded-2xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-black"
-          >
+          <Link href="/cornettoclicker" className="rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-black">
             {t.ctaPlay}
           </Link>
-          <a
-            href="mailto:azumbogames@gmail.com"
-            className="rounded-2xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-700"
-          >
+          <a href="mailto:azumbogames@gmail.com" className="rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-700">
             {t.ctaContact}
           </a>
         </div>
 
         {/* Platforms */}
         <div className="mt-10">
-          <h3 className="text-sm font-semibold uppercase tracking-widest opacity-70">
-            {t.platforms}
-          </h3>
+          <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{t.platforms}</h3>
           <div className="mt-3 flex flex-wrap gap-2">
-            <span className="rounded-full bg-neutral-200 px-3 py-1 text-sm dark:bg-neutral-800">
-              {t.android}
-            </span>
-            <span className="rounded-full bg-neutral-200 px-3 py-1 text-sm dark:bg-neutral-800">
-              {t.ios}
-            </span>
-            <span className="rounded-full bg-neutral-200 px-3 py-1 text-sm dark:bg-neutral-800">
-              {t.switch}
-            </span>
+            <Chip><AndroidIcon className="h-4 w-4" /> {t.android}</Chip>
+            <Chip><AppleIcon className="h-4 w-4" /> {t.ios}</Chip>
+            <Chip><SwitchIcon className="h-4 w-4" /> {t.switch}</Chip>
           </div>
         </div>
       </section>
 
-      {/* Featured */}
-      <section className="mx-auto max-w-5xl px-4 pb-16">
-        <h2 className="mb-6 text-2xl font-bold">{t.featured}</h2>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {/* Cornetto Clicker */}
-          <Link
-            href="/cornettoclicker"
-            className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-800"
-          >
-            <div className="mb-2 text-lg font-semibold">Cornetto Clicker</div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">{t.ccDesc}</p>
-            <div className="mt-4 text-xs opacity-70">Web • Android • iOS (soon)</div>
-          </Link>
-
-          {/* Frogger */}
-          <Link
-            href="/frogger"
-            className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-800"
-          >
-            <div className="mb-2 text-lg font-semibold">Frogger</div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">{t.frDesc}</p>
-            <div className="mt-4 text-xs opacity-70">Web • Android • iOS (soon)</div>
-          </Link>
+      {/* SERVICES */}
+      <section id="services" className="mx-auto max-w-5xl px-4 pb-16">
+        <h2 className="text-2xl font-bold md:text-3xl">{t.servicesTitle}</h2>
+        <p className="mt-1 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300">{t.servicesSubtitle}</p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-3">
+          <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice}>
+            <RocketIcon className="h-5 w-5" />
+          </ServiceCard>
+          <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice}>
+            <MegaphoneIcon className="h-5 w-5" />
+          </ServiceCard>
+          <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice}>
+            <SwitchIcon className="h-5 w-5" />
+          </ServiceCard>
+        </div>
+        <div className="mt-5">
+          <a href="mailto:azumbogames@gmail.com" className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-black">
+            {t.srvCTA}
+          </a>
         </div>
       </section>
 
-      {/* About */}
-      <section className="mx-auto max-w-5xl px-4 pb-12">
-        <h2 className="mb-2 text-2xl font-bold">{t.aboutTitle}</h2>
-        <p className="max-w-3xl text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
+      {/* GAMES */}
+      <section id="games" className="mx-auto max-w-5xl px-4 pb-16">
+        <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <GameCard href="/cornettoclicker" title="Cornetto Clicker" desc={t.ccDesc} />
+          <GameCard href="/frogger" title="Frogger" desc={t.frDesc} />
+        </div>
       </section>
 
-      {/* Contact */}
-      <section className="mx-auto max-w-5xl px-4 pb-20">
-        <h2 className="mb-2 text-2xl font-bold">{t.contactTitle}</h2>
-        <a
-          href="mailto:azumbogames@gmail.com"
-          className="inline-block rounded-xl border border-neutral-300 px-4 py-2 text-sm shadow-sm dark:border-neutral-700"
-        >
-          {t.email}: azumbogames@gmail.com
+      {/* ABOUT */}
+      <section className="mx-auto max-w-5xl px-4 pb-12">
+        <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.aboutTitle}</h2>
+        <p className="max-w-3xl leading-relaxed text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="mx-auto max-w-5xl px-4 pb-20">
+        <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.contactTitle}</h2>
+        <a href="mailto:azumbogames@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm shadow-sm dark:border-neutral-700">
+          Email: azumbogames@gmail.com
         </a>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t bg-neutral-50 py-6 text-center text-sm dark:border-neutral-800 dark:bg-neutral-950">
+      <footer className="border-t py-6 text-center text-sm dark:border-neutral-800">
         {t.footer}
       </footer>
     </main>
   );
 }
+
+/* ---------- Small UI helpers (no extra deps) ---------- */
+function Chip({ children }: any) {
+  return <span className="inline-flex items-center gap-2 rounded-full bg-neutral-200 px-3 py-1 text-sm dark:bg-neutral-800">{children}</span>;
+}
+function ServiceCard({ title, desc, price, children }: any) {
+  return (
+    <div className="rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-800">
+      <div className="flex items-center gap-2 text-lg font-semibold">
+        {children} <span>{title}</span>
+      </div>
+      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>
+      <div className="mt-3 inline-flex items-center rounded-full border border-neutral-300 px-3 py-1 text-xs font-semibold dark:border-neutral-700">
+        {price}
+      </div>
+    </div>
+  );
+}
+function GameCard({ href, title, desc }: any) {
+  return (
+    <Link href={href} className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg dark:border-neutral-800">
+      <div className="mb-3 aspect-[16/9] w-full rounded-lg bg-neutral-100 dark:bg-neutral-900"></div>
+      <div className="text-lg font-semibold">{title}</div>
+      <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>
+      <div className="mt-3 text-xs opacity-70">Web • Android • iOS (soon)</div>
+    </Link>
+  );
+}
+
+/* Icons */
+function AndroidIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.6 9.48l1.43-2.49a.5.5 0 10-.87-.5l-1.46 2.54A7.06 7.06 0 0012 8c-1.6 0-3.09.52-4.3 1.03L6.24 6.5a.5.5 0 10-.87.5l1.44 2.5A6.5 6.5 0 005.5 13v5a1.5 1.5 0 001.5 1.5h.5V13h1v6.5h2V13h2v6.5h2V13h1v6.5h.5A1.5 1.5 0 0018.5 18v-5c0-1.41-.39-2.71-.9-3.52z"/></svg>);} 
+function AppleIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.64 13.34c-.03-2.32 1.9-3.43 1.99-3.49-1.09-1.6-2.78-1.82-3.38-1.84-1.44-.15-2.81.85-3.54.85-.74 0-1.86-.83-3.06-.8-1.58.02-3.03.92-3.84 2.33-1.64 2.83-.42 7 1.18 9.29.78 1.12 1.71 2.39 2.93 2.34 1.17-.05 1.6-.76 3-.76 1.4 0 1.79.76 3.02.74 1.25-.02 2.04-1.14 2.8-2.27.88-1.29 1.24-2.54 1.26-2.6-.03-.01-2.42-.93-2.36-3.79zM14.87 5.22c.64-.78 1.08-1.87.96-2.95-.93.04-2.06.62-2.73 1.39-.6.69-1.12 1.8-.98 2.87 1.03.08 2.09-.53 2.75-1.31z"/></svg>);} 
+function SwitchIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M9 2H7a3 3 0 00-3 3v14a3 3 0 003 3h2V2zm8 0h-2v20h2a3 3 0 003-3V5a3 3 0 00-3-3zM7.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm9 7a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>);} 
+function RocketIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M14 3l7 7-4 1-2 2-1 4-7-7 4-1 2-2 1-4zM5 19l4-1-3-3-1 4z"/></svg>);} 
+function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);} 
