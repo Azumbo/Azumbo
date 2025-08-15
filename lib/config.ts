@@ -1,13 +1,8 @@
 export const gameConfig = {
-  title: 'Commander Mola Mola Pixel Quest',
+  title: 'Pixel Quest',
   languages: ['en', 'it', 'ru'],
   defaultLanguage: 'en',
   apiEndpoint: '/api',
-  adminEmail: 'CommanderMolaMola@gmail.com',
-  socialLinks: {
-    youtube: 'https://www.youtube.com/@CommanderMolaMola',
-    tiktok: 'https://www.tiktok.com/@commandermolamola',
-  },
 };
 
 export const localization = {
@@ -22,10 +17,7 @@ export const localization = {
     },
     finishScreen: {
       title: '🎉 Congratulations!',
-      message: "You've completed the game and mined your Mola Mola Coin!",
-      action: 'Take a screenshot and send it to',
-      social: 'Subscribe to our YouTube and TikTok',
-      comment: 'Write in comments: "I finished the game and mined Mola Mola Coin!"',
+      message: "You've completed the game!",
       copy: 'Copy code',
     },
     stats: {
@@ -43,10 +35,7 @@ export const localization = {
     },
     finishScreen: {
       title: '🎉 Complimenti!',
-      message: 'Hai completato il gioco e minato la tua Mola Mola Coin!',
-      action: 'Fai uno screenshot e invialo a',
-      social: 'Iscriviti al nostro YouTube e TikTok',
-      comment: 'Scrivi nei commenti: "Ho finito il gioco e minato la Mola Mola Coin!"',
+      message: 'Hai completato il gioco!',
       copy: 'Copia codice',
     },
     stats: {
@@ -64,10 +53,7 @@ export const localization = {
     },
     finishScreen: {
       title: '🎉 Поздравляем!',
-      message: 'Вы прошли игру и намайнили свою Mola Mola Coin!',
-      action: 'Сделайте скриншот и отправьте его на',
-      social: 'Подпишитесь на наш YouTube и TikTok',
-      comment: 'Напишите в комментариях: «Я прошёл игру и намайнил Mola Mola Coin!»',
+      message: 'Вы прошли игру!',
       copy: 'Скопировать код',
     },
     stats: {
