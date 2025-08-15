@@ -7,7 +7,6 @@ export const gameConfig = {
 
 export const localization = {
   en: {
-    languageSelect: 'Choose your language',
     startScreen: {
       title: 'OPERATION BUCATINI',
       instruction: 'Enter your nickname and email to begin',
@@ -25,7 +24,6 @@ export const localization = {
     },
   },
   it: {
-    languageSelect: 'Scegli la tua lingua',
     startScreen: {
       title: 'OPERAZIONE BUCATINI',
       instruction: 'Inserisci il tuo nickname e l\'email per iniziare',
@@ -43,7 +41,6 @@ export const localization = {
     },
   },
   ru: {
-    languageSelect: 'Выбери язык',
     startScreen: {
       title: 'ОПЕРАЦИЯ БУКАТИНИ',
       instruction: 'Введите никнейм и email, чтобы начать игру',
