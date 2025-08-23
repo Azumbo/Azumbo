@@ -1,4 +1,0 @@
-Название файла	Формат	Прозрачный фон	Размер
-azumbo-logo.png	PNG	✅	160×40 (примерно)
-azumbo-icon.png	PNG/SVG	✅	64×64 (favicon)
-logodoc.txt
