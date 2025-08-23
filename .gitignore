@@ -1,8 +1,0 @@
-node_modules/
-.next/
-data/
-public/*.png
-public/*.ico
-public/*.webmanifest
-public/*.mp3  # Добавлено игнорирование MP3-файлов
-package-lock.json

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azumbo | Инди-студия разработки игр</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f7f7f7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            margin-left: 30px;
+        }
+        
+        .current-lang {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .current-lang:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .current-lang img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .lang-options {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            margin-top: 10px;
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .lang-options.active {
+            display: block;
+        }
+        
+        .lang-option {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .lang-option:hover {
+            background: #f0f0f0;
+        }
+        
+        .lang-option img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(45, 52, 54, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            background: linear-gradient(to bottom, rgba(45, 52, 54, 0.9), rgba(45, 52, 54, 0.8)), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80') no-repeat center center/cover;
+            color: var(--light);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Games Section */
+        .games {
+            padding: 100px 0;
+            background-color: #f0f0f0;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        .game-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: #f0f0f0;
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .games-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .current-lang {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .lang-options {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">A<span>zumbo</span></div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" data-i18n="home">Главная</a></li>
+                <li><a href="#about" data-i18n="about">О нас</a></li>
+                <li><a href="#games" data-i18n="games">Игры</a></li>
+                <li><a href="#team" data-i18n="team">Команда</a></li>
+                <li><a href="#contact" data-i18n="contact">Контакты</a></li>
+                <li class="language-switcher">
+                    <button class="current-lang">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjZjZmNmY2IiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjMDAzOWNiIiBkPSJNMCAxMzMuM2g2MDB2MTMzLjNIMHoiLz48cGF0aCBmaWxsPSIjY2QxMDE3IiBkPSJNMCAyNjYuN2g2MDBWNDAwSDB6Ii8+PC9zdmc+" alt="RU">
+                        RU
+                    </button>
+                    <div class="lang-options">
+                        <a href="#" class="lang-option" data-lang="ru">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjZjZmNmY2IiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjMDAzOWNiIiBkPSJNMCAxMzMuM2g2MDB2MTMzLjNIMHoiLz48cGF0aCBmaWxsPSIjY2QxMDE3IiBkPSJNMCAyNjYuN2g2MDBWNDAwSDB6Ii8+PC9zdmc+" alt="RU">
+                            Русский
+                        </a>
+                        <a href="#" class="lang-option" data-lang="en">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjYmQwYTM5IiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjZjZmNmY2IiBkPSJNMjQ3LjUgMGgxMDV2NDAwaC0xMDV6TTAgMTQwaDYwMHYxMjBIMHoiLz48cGF0aCBmaWxsPSIjYzYwMDI2IiBkPSJNMTgwIDBoNjB2NDAwaC02MHptMjQwIDBoNjB2NDAwaC02MHoiLz48cGF0aCBmaWxsPSIjMDAyNDY4IiBkPSJNMCAwaDMwMHYyMjVIMHpNMzAwIDBoMzAwdjIyNUgzMDB6TTAgNDAwaDMwMHYtMTc1SDB6TTMwMCA0MDBoMzAwdj0xNzVIMzAweiIvPjwvc3ZnPg==" alt="EN">
+                            English
+                        </a>
+                        <a href="#" class="lang-option" data-lang="it">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjMDA5MjQ2IiBkPSJNMCAwaDIwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjAwIDBoMjAwdjQwMEgyMDB6Ii8+PHBhdGggZmlsbD0iI2NlMmIzNCIgZD0iTTQwMCAwaDIwMHY0MDBINDAweiIvPjwvc3ZnPg==" alt="IT">
+                            Italiano
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 class="animate" data-i18n="hero_title">Создаём игры, которые вдохновляют</h1>
+            <p class="animate delay-1" data-i18n="hero_text">Azumbo - инди-студия, посвященная созданию уникальных игровых миров и запоминающихся игровых体验. Мы верим, что игры - это искусство.</p>
+            <a href="#games" class="btn animate delay-2" data-i18n="our_projects">Наши проекты</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about_title">О нашей студии</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p data-i18n="about_text1">Azumbo была основана в 2020 году группой энтузиастов, которые хотели создавать игры, бросающие вызов традиционным жанрам и механикам.</p>
+                    <p data-i18n="about_text2">Наша философия проста: игры должны приносить радость, удивлять и оставлять после себя незабываемые впечатления. Мы уделяем внимание каждой детали, чтобы создать по-настоящему immersive опыт для наших игроков.</p>
+                    <p data-i18n="about_text3">Независимость позволяет нам экспериментировать с геймплеем, визуальным стилем и повествованием, создавая уникальные проекты, которые выделяются на фоне массовых продуктов.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=0757&q=80" alt="Рабочее пространство студии Azumbo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games" id="games">
+        <div class="container">
+            <h2 class="section-title" data-i18n="games_title">Наши игры</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Project Nebula">
+                    </div>
+                    <div class="game-info">
+                        <h3>Project Nebula</h3>
+                        <p data-i18n="game1_desc">Космическое приключение в открытом мире с procedurally generated вселенной и глубоким сюжетом.</p>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Chrono Tales">
+                    </div>
+                    <div class="game-info">
+                        <h3>Chrono Tales</h3>
+                        <p data-i18n="game2_desc">РПГ с механиками управления временем, где ваши решения влияют на ход истории в разных временных линиях.</p>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Pixel Pirates">
+                    </div>
+                    <div class="game-info">
+                        <h3>Pixel Pirates</h3>
+                        <p data-i18n="game3_desc">Веселый пиксель-арт платформер с элементами метроидвании, где вы играете за пирата, ищущего сокровища.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title" data-i18n="team_title">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Алексей Петров">
+                    </div>
+                    <div class="member-info">
+                        <h3 data-i18n="team_member1_name">Алексей Петров</h3>
+                        <div class="member-role" data-i18n="team_member1_role">Геймдизайнер</div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Мария Иванова">
+                    </div>
+                    <div class="member-info">
+                        <h3 data-i18n="team_member2_name">Мария Иванова</h3>
+                        <div class="member-role" data-i18n="team_member2_role">Художник</div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-artstation"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Дмитрий Соколов">
+                    </div>
+                    <div class="member-info">
+                        <h3 data-i18n="team_member3_name">Дмитрий Соколов</h3>
+                        <div class="member-role" data-i18n="team_member3_role">Программист</div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Ольга Кузнецова">
+                    </div>
+                    <div class="member-info">
+                        <h3 data-i18n="team_member4_name">Ольга Кузнецова</h3>
+                        <div class="member-role" data-i18n="team_member4_role">Композитор</div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#"><i class="fab fa-spotify"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact_title">Свяжитесь с нами</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="email_title">Email</h3>
+                            <p>hello@azumbo.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="address_title">Адрес</h3>
+                            <p data-i18n="address_text">Санкт-Петербург, Россия</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3 data-i18n="phone_title">Телефон</h3>
+                            <p>+7 (999) 123-45-67</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name">Ваше имя</label>
+                            <input type="text" id="name" data-i18n-placeholder="form_name_placeholder" placeholder="Как к вам обращаться?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email">Email</label>
+                            <input type="email" id="email" data-i18n-placeholder="form_email_placeholder" placeholder="Ваш email для ответа">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" data-i18n="form_message">Сообщение</label>
+                            <textarea id="message" data-i18n-placeholder="form_message_placeholder" placeholder="Что вы хотите нам сообщить?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" data-i18n="form_button">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">A<span>zumbo</span></div>
+                    <p data-i18n="footer_tagline">Создаём игры с душой</p>
+                </div>
+                
+                <div>
+                    <h3 data-i18n="footer_links_title">Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-i18n="home">Главная</a></li>
+                        <li><a href="#about" data-i18n="about">О нас</a></li>
+                        <li><a href="#games" data-i18n="games">Игры</a></li>
+                        <li><a href="#team" data-i18n="team">Команда</a></li>
+                        <li><a href="#contact" data-i18n="contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 data-i18n="footer_social_title">Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-steam"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Azumbo | <span data-i18n="footer_copyright">Инди-студия разработки игр. Все права защищены.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language support
+        const translations = {
+            ru: {
+                'home': 'Главная',
+                'about': 'О нас',
+                'games': 'Игры',
+                'team': 'Команда',
+                'contact': 'Контакты',
+                'hero_title': 'Создаём игры, которые вдохновляют',
+                'hero_text': 'Azumbo - инди-студия, посвященная созданию уникальных игровых миров и запоминающихся игровых体验. Мы верим, что игры - это искусство.',
+                'our_projects': 'Наши проекты',
+                'about_title': 'О нашей студии',
+                'about_text1': 'Azumbo была основана в 2020 году группой энтузиастов, которые хотели создавать игры, бросающие вызов традиционным жанрам и механикам.',
+                'about_text2': 'Наша философия проста: игры должны приносить радость, удивлять и оставлять после себя незабываемые впечатления. Мы уделяем внимание каждой детали, чтобы создать по-настоящему immersive опыт для наших игроков.',
+                'about_text3': 'Независимость позволяет нам экспериментировать с геймплеем, визуальным стилем и повествованием, создавая уникальные проекты, которые выделяются на фоне массовых продуктов.',
+                'games_title': 'Наши игры',
+                'game1_desc': 'Космическое приключение в открытом мире с procedurally generated вселенной и глубоким сюжетом.',
+                'game2_desc': 'РПГ с механиками управления временем, где ваши решения влияют на ход истории в разных временных линиях.',
+                'game3_desc': 'Веселый пиксель-арт платформер с элементами метроидвании, где вы играете за пирата, ищущего сокровища.',
+                'team_title': 'Наша команда',
+                'team_member1_name': 'Алексей Петров',
+                'team_member1_role': 'Геймдизайнер',
+                'team_member2_name': 'Мария Иванова',
+                'team_member2_role': 'Художник',
+                'team_member3_name': 'Дмитрий Соколов',
+                'team_member3_role': 'Программист',
+                'team_member4_name': 'Ольга Кузнецова',
+                'team_member4_role': 'Композитор',
+                'contact_title': 'Свяжитесь с нами',
+                'email_title': 'Email',
+                'address_title': 'Адрес',
+                'address_text': 'Санкт-Петербург, Россия',
+                'phone_title': 'Телефон',
+                'form_name': 'Ваше имя',
+                'form_name_placeholder': 'Как к вам обращаться?',
+                'form_email': 'Email',
+                'form_email_placeholder': 'Ваш email для ответа',
+                'form_message': 'Сообщение',
+                'form_message_placeholder': 'Что вы хотите нам сообщить?',
+                'form_button': 'Отправить сообщение',
+                'footer_tagline': 'Создаём игры с душой',
+                'footer_links_title': 'Быстрые ссылки',
+                'footer_social_title': 'Мы в соцсетях',
+                'footer_copyright': 'Инди-студия разработки игр. Все права защищены.'
+            },
+            en: {
+                'home': 'Home',
+                'about': 'About',
+                'games': 'Games',
+                'team': 'Team',
+                'contact': 'Contact',
+                'hero_title': 'Creating games that inspire',
+                'hero_text': 'Azumbo is an indie studio dedicated to creating unique game worlds and memorable gaming experiences. We believe that games are art.',
+                'our_projects': 'Our projects',
+                'about_title': 'About our studio',
+                'about_text1': 'Azumbo was founded in 2020 by a group of enthusiasts who wanted to create games that challenge traditional genres and mechanics.',
+                'about_text2': 'Our philosophy is simple: games should bring joy, surprise and leave unforgettable impressions. We pay attention to every detail to create a truly immersive experience for our players.',
+                'about_text3': 'Independence allows us to experiment with gameplay, visual style and storytelling, creating unique projects that stand out from mass products.',
+                'games_title': 'Our games',
+                'game1_desc': 'Space adventure in an open world with a procedurally generated universe and a deep storyline.',
+                'game2_desc': 'RPG with time management mechanics where your decisions affect the course of history in different timelines.',
+                'game3_desc': 'Fun pixel-art platformer with metroidvania elements where you play as a treasure-seeking pirate.',
+                'team_title': 'Our team',
+                'team_member1_name': 'Alexey Petrov',
+                'team_member1_role': 'Game Designer',
+                'team_member2_name': 'Maria Ivanova',
+                'team_member2_role': 'Artist',
+                'team_member3_name': 'Dmitry Sokolov',
+                'team_member3_role': 'Programmer',
+                'team_member4_name': 'Olga Kuznetsova',
+                'team_member4_role': 'Composer',
+                'contact_title': 'Contact us',
+                'email_title': 'Email',
+                'address_title': 'Address',
+                'address_text': 'Saint Petersburg, Russia',
+                'phone_title': 'Phone',
+                'form_name': 'Your name',
+                'form_name_placeholder': 'How should we address you?',
+                'form_email': 'Email',
+                'form_email_placeholder': 'Your email for reply',
+                'form_message': 'Message',
+                'form_message_placeholder': 'What would you like to tell us?',
+                'form_button': 'Send message',
+                'footer_tagline': 'Creating games with soul',
+                'footer_links_title': 'Quick links',
+                'footer_social_title': 'Follow us',
+                'footer_copyright': 'Indie game development studio. All rights reserved.'
+            },
+            it: {
+                'home': 'Home',
+                'about': 'Chi siamo',
+                'games': 'Giochi',
+                'team': 'Squadra',
+                'contact': 'Contatti',
+                'hero_title': 'Creiamo giochi che ispirano',
+                'hero_text': 'Azumbo è uno studio indie dedicato alla creazione di mondi di gioco unici ed esperienze memorabili. Crediamo che i giochi siano arte.',
+                'our_projects': 'I nostri progetti',
+                'about_title': 'Il nostro studio',
+                'about_text1': 'Azumbo è stata fondata nel 2020 da un gruppo di entusiasti che volevano creare giochi che sfidassero generi e meccaniche tradizionali.',
+                'about_text2': 'La nostra filosofia è semplice: i giochi dovrebbero portare gioia, sorprendere e lasciare impressioni indimenticabili. Prestiamo attenzione ad ogni dettaglio per creare un\'esperienza davvero immersiva per i nostri giocatori.',
+                'about_text3': 'L\'indipendenza ci permette di sperimentare con il gameplay, lo stile visivo e la narrazione, creando progetti unici che si distinguono dai prodotti di massa.',
+                'games_title': 'I nostri giochi',
+                'game1_desc': 'Avventura spaziale in un mondo aperto con un universo generato proceduralmente e una trama profonda.',
+                'game2_desc': 'RPG con meccaniche di gestione del tempo in cui le tue decisioni influenzano il corso della storia in diverse linee temporali.',
+                'game3_desc': 'Divertente platformer pixel-art con elementi metroidvania in cui interpreti un pirata alla ricerca di tesori.',
+                'team_title': 'La nostra squadra',
+                'team_member1_name': 'Alexey Petrov',
+                'team_member1_role': 'Game Designer',
+                'team_member2_name': 'Maria Ivanova',
+                'team_member2_role': 'Artista',
+                'team_member3_name': 'Dmitry Sokolov',
+                'team_member3_role': 'Programmatore',
+                'team_member4_name': 'Olga Kuznetsova',
+                'team_member4_role': 'Compositore',
+                'contact_title': 'Contattaci',
+                'email_title': 'Email',
+                'address_title': 'Indirizzo',
+                'address_text': 'San Pietroburgo, Russia',
+                'phone_title': 'Telefono',
+                'form_name': 'Il tuo nome',
+                'form_name_placeholder': 'Come possiamo chiamarti?',
+                'form_email': 'Email',
+                'form_email_placeholder': 'La tua email per la risposta',
+                'form_message': 'Messaggio',
+                'form_message_placeholder': 'Cosa vorresti dirci?',
+                'form_button': 'Invia messaggio',
+                'footer_tagline': 'Creiamo giochi con anima',
+                'footer_links_title': 'Link rapidi',
+                'footer_social_title': 'Seguici',
+                'footer_copyright': 'Studio di sviluppo di giochi indie. Tutti i diritti riservati.'
+            }
+        };
+
+        // Set initial language
+        let currentLang = 'ru';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update all placeholder elements with data-i18n-placeholder attribute
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+            
+            // Update language switcher button
+            const langButton = document.querySelector('.current-lang');
+            if (lang === 'ru') {
+                langButton.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjZjZmNmY2IiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjMDAzOWNiIiBkPSJNMCAxMzMuM2g2MDB2MTMzLjNIMHoiLz48cGF0aCBmaWxsPSIjY2QxMDE3IiBkPSJNMCAyNjYuN2g2MDBWNDAwSDB6Ii8+PC9zdmc+" alt="RU"> RU';
+            } else if (lang === 'en') {
+                langButton.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjYmQwYTM5IiBkPSJNMCAwaDYwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjZjZmNmY2IiBkPSJNMjQ3LjUgMGgxMDV2NDAwaC0xMDV6TTAgMTQwaDYwMHYxMjBIMHoiLz48cGF0aCBmaWxsPSIjYzYwMDI2IiBkPSJNMTgwIDBoNjB2NDAwaC02MHptMjQwIDBoNjB2NDAwaC02MHoiLz48cGF0aCBmaWxsPSIjMDAyNDY4IiBkPSJNMCAwaDMwMHYyMjVIMHpNMzAwIDBoMzAwdjIyNUgzMDB6TTAgNDAwaDMwMHYtMTc1SDB6TTMwMCA0MDBoMzAwdj0xNzVIMzAweiIvPjwvc3ZnPg==" alt="EN"> EN';
+            } else if (lang === 'it') {
+                langButton.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj48cGF0aCBmaWxsPSIjMDA5MjQ2IiBkPSJNMCAwaDIwMHY0MDBIMHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjAwIDBoMjAwdjQwMEgyMDB6Ii8+PHBhdGggZmlsbD0iI2NlMmIzNCIgZD0iTTQwMCAwaDIwMHY0MDBINDAweiIvPjwvc3ZnPg==" alt="IT"> IT';
+            }
+            
+            // Close language dropdown
+            document.querySelector('.lang-options').classList.remove('active');
+            
+            // Save language preference to localStorage
+            localStorage.setItem('language', lang);
+        }
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Language switcher functionality
+        const langSwitcher = document.querySelector('.language-switcher');
+        const currentLangBtn = document.querySelector('.current-lang');
+        const langOptions = document.querySelector('.lang-options');
+        
+        currentLangBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langOptions.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+        
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!langSwitcher.contains(e.target)) {
+                langOptions.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.hero-content > *').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Check for saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang) {
+                changeLanguage(savedLang);
+            }
+        });
+    </script>
+</body>
+</html>
