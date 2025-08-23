@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 
 type Lang = 'en' | 'it' | 'ru';
@@ -114,6 +114,19 @@ const STRINGS: Record<Lang, any> = {
 
 export default function AzumboLanding() {
   const [lang, setLang] = useState<Lang>('en');
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('azumbo-lang') as Lang | null;
+    if (saved && ['en', 'it', 'ru'].includes(saved)) {
+      setLang(saved);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    window.localStorage.setItem('azumbo-lang', lang);
+  }, [lang]);
+
   const t = useMemo(() => STRINGS[lang], [lang]);
 
   // JSON-LD (Org + simple OfferCatalog)
@@ -262,7 +275,7 @@ export default function AzumboLanding() {
           href="mailto:azumbogames@gmail.com"
           className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
         >
-          Email: azumbogames@gmail.com
+          {t.email}: azumbogames@gmail.com
         </a>
       </section>
 
