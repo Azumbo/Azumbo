@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — City in the Plane: Coloring & Stories for Kids</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 20px; background: #fff; color: #000; }
+    .container { max-width: 800px; margin: 0 auto; text-align: center; }
+    button { margin: 0 5px; padding: 8px 12px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <button id="btn-en">English</button>
+      <button id="btn-ru">Русский</button>
+    </div>
+    <h1>Privacy Policy — City in the Plane: Coloring & Stories for Kids</h1>
+    <div id="content-en">
+      <p>Azumbo Games ("we", "our", or "us") develops and publishes mobile apps such as <em>City in the Plane: Coloring & Stories for Kids</em>.</p>
+      <ul>
+        <li>We do not knowingly collect or store personal information from children under 13.</li>
+        <li>The app may include third-party services (e.g., Google AdMob) which can collect device identifiers and usage data for ads and analytics.</li>
+        <li>These services follow their own privacy policies. See <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</li>
+        <li>Our app does not include chat, login, or account creation features.</li>
+      </ul>
+      <p>Parents can contact us at <a href="mailto:azumbogames@gmail.com">azumbogames@gmail.com</a> with questions or requests.</p>
+    </div>
+    <div id="content-ru" class="hidden">
+      <p>Azumbo Games ("мы", "наш" или "нас") разрабатывает и публикует мобильные приложения, такие как <em>City in the Plane: Coloring & Stories for Kids</em>.</p>
+      <ul>
+        <li>Мы не собираем и не храним персональные данные детей младше 13 лет.</li>
+        <li>В приложении могут использоваться сторонние сервисы (например, Google AdMob), которые собирают технические данные устройства для показа рекламы и аналитики.</li>
+        <li>Эти сервисы имеют собственные политики конфиденциальности. См. <a href="https://policies.google.com/privacy">Политику Google</a>.</li>
+        <li>В приложении нет чатов, регистрации или аккаунтов.</li>
+      </ul>
+      <p>Родители могут связаться с нами по адресу <a href="mailto:azumbogames@gmail.com">azumbogames@gmail.com</a> для получения информации или удаления данных.</p>
+    </div>
+  </div>
+  <script>
+    const enBtn = document.getElementById('btn-en');
+    const ruBtn = document.getElementById('btn-ru');
+    const enContent = document.getElementById('content-en');
+    const ruContent = document.getElementById('content-ru');
+    enBtn.addEventListener('click', () => {
+      enContent.classList.remove('hidden');
+      ruContent.classList.add('hidden');
+    });
+    ruBtn.addEventListener('click', () => {
+      ruContent.classList.remove('hidden');
+      enContent.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
