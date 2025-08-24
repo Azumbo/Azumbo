@@ -5,30 +5,37 @@
 :root { --container: 72rem; }
 .container-nx { margin-inline:auto; max-width:var(--container); padding-inline:1rem; }
 a:focus { outline: none; }
-html, body { font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; }
-
-/* Icon sizing helpers */
-.platform-icon, .service-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.platform-icon svg, .service-icon svg {
-  width: 1em;
-  height: 1em;
-  flex-shrink: 0;
-}
-
-.platform-icon { font-size: 16px; }
-.service-icon { font-size: 20px; }
+html, body { font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, AppleColor Emoji, Segoe UI Emoji; }
 
 svg {
   max-width: 100%;
   height: auto;
 }
 
-@media (max-width: 768px) {
-  .platform-icon { font-size: 14px; }
-  .service-icon { font-size: 18px; }
+/* Icon sizing helpers */
+.platform-icon,
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.platform-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+}
+
+.service-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+}
+
+.platform-icon svg,
+.service-icon svg {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
