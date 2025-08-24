@@ -278,8 +278,18 @@ export default function AzumboLanding() {
       <section id="games" className="mx-auto max-w-5xl px-4 pb-16">
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
         <div className="grid gap-6 sm:grid-cols-2">
-          <GameCard href="/cornettoclicker" title="Cornetto Clicker" desc={t.ccDesc} />
-          <GameCard href="/frogger" title="Frogger" desc={t.frDesc} />
+          <GameCard
+            href="/cornettoclicker"
+            title="Cornetto Clicker"
+            desc={t.ccDesc}
+            variant="cornetto"
+          />
+          <GameCard
+            href="/frogger"
+            title="Frogger"
+            desc={t.frDesc}
+            variant="frogger"
+          />
         </div>
       </section>
 
@@ -324,13 +334,31 @@ function ServiceCard({ title, desc, price, children }: any) {
     </div>
   );
 }
-function GameCard({ href, title, desc }: any) {
+function GameCard({ href, title, desc, variant }: any) {
+  const gradient =
+    variant === 'cornetto'
+      ? 'from-amber-500 to-orange-600'
+      : 'from-emerald-500 to-green-600';
+  const pattern =
+    "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
   return (
     <Link
       href={href}
       className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:focus-visible:outline-white"
     >
-      <div className="mb-3 aspect-[16/9] w-full rounded-lg bg-neutral-100 dark:bg-neutral-900"></div>
+      <div
+        className={`relative mb-3 aspect-[16/9] w-full overflow-hidden rounded-lg bg-gradient-to-br ${gradient}`}
+      >
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: `url(${pattern})` }}
+        />
+        {variant === 'cornetto' ? (
+          <CroissantIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />
+        ) : (
+          <FrogIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />
+        )}
+      </div>
       <div className="text-lg font-semibold">{title}</div>
       <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>
       <div className="mt-3 text-xs opacity-70">Web • Android • iOS (soon)</div>
@@ -343,4 +371,6 @@ function AndroidIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentCol
 function AppleIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.64 13.34c-.03-2.32 1.9-3.43 1.99-3.49-1.09-1.6-2.78-1.82-3.38-1.84-1.44-.15-2.81.85-3.54.85-.74 0-1.86-.83-3.06-.8-1.58.02-3.03.92-3.84 2.33-1.64 2.83-.42 7 1.18 9.29.78 1.12 1.71 2.39 2.93 2.34 1.17-.05 1.6-.76 3-.76 1.4 0 1.79.76 3.02.74 1.25-.02 2.04-1.14 2.8-2.27.88-1.29 1.24-2.54 1.26-2.6-.03-.01-2.42-.93-2.36-3.79zM14.87 5.22c.64-.78 1.08-1.87.96-2.95-.93.04-2.06.62-2.73 1.39-.6.69-1.12 1.8-.98 2.87 1.03.08 2.09-.53 2.75-1.31z"/></svg>);} 
 function SwitchIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M9 2H7a3 3 0 00-3 3v14a3 3 0 003 3h2V2zm8 0h-2v20h2a3 3 0 003-3V5a3 3 0 00-3-3zM7.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm9 7a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>);} 
 function RocketIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M14 3l7 7-4 1-2 2-1 4-7-7 4-1 2-2 1-4zM5 19l4-1-3-3-1 4z"/></svg>);} 
-function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);} 
+function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);}
+function CroissantIcon(props:any){return(<svg viewBox="0 0 32 32" fill="currentColor" {...props}><path d="M4 16c4-8 20-8 24 0-8-4-16-4-24 0z" stroke="currentColor" strokeWidth="2"/></svg>);}
+function FrogIcon(props:any){return(<svg viewBox="0 0 576 512" fill="currentColor" {...props}><path d="M368 32c41.7 0 75.9 31.8 79.7 72.5l85.6 26.3c25.4 7.8 42.8 31.3 42.8 57.9c0 21.8-11.7 41.9-30.7 52.7L400.8 323.5 493.3 416l50.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-8.5 0-16.6-3.4-22.6-9.4L346.9 360.2c11.7-36 3.2-77.1-25.4-105.7c-40.6-40.6-106.3-40.6-146.9-.1L101 324.4c-6.4 6.1-6.7 16.2-.6 22.6s16.2 6.6 22.6 .6l73.8-70.2 .1-.1 .1-.1c3.5-3.5 7.3-6.6 11.3-9.2c27.9-18.5 65.9-15.4 90.5 9.2c24.7 24.7 27.7 62.9 9 90.9c-2.6 3.8-5.6 7.5-9 10.9L261.8 416l90.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L64 480c-35.3 0-64-28.7-64-64C0 249.6 127 112.9 289.3 97.5C296.2 60.2 328.8 32 368 32zm0 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>);}
