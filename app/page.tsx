@@ -156,15 +156,6 @@ export default function AzumboLanding() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          svg {
-            max-width: 100%;
-            height: auto;
-          }
-        }
-      `}</style>
-
       {/* COMPACT DARK HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
@@ -231,21 +222,21 @@ export default function AzumboLanding() {
           <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{t.platforms}</h3>
           <div className="mt-3 flex flex-wrap gap-2">
             <Chip>
-              <div className="flex items-center justify-center w-4 h-4">
+              <span className="platform-icon">
                 <AndroidIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </div>
+              </span>
               {t.android}
             </Chip>
             <Chip>
-              <div className="flex items-center justify-center w-4 h-4">
+              <span className="platform-icon">
                 <AppleIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </div>
+              </span>
               {t.ios}
             </Chip>
             <Chip>
-              <div className="flex items-center justify-center w-4 h-4">
+              <span className="platform-icon">
                 <SwitchIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </div>
+              </span>
               {t.switch}
             </Chip>
           </div>
@@ -258,19 +249,19 @@ export default function AzumboLanding() {
         <p className="mt-1 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300">{t.servicesSubtitle}</p>
         <div className="mt-6 grid gap-6 sm:grid-cols-3">
           <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice}>
-            <div className="flex items-center justify-center w-5 h-5">
+            <span className="service-icon">
               <RocketIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </div>
+            </span>
           </ServiceCard>
           <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice}>
-            <div className="flex items-center justify-center w-5 h-5">
+            <span className="service-icon">
               <MegaphoneIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </div>
+            </span>
           </ServiceCard>
           <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice}>
-            <div className="flex items-center justify-center w-5 h-5">
+            <span className="service-icon">
               <SwitchIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </div>
+            </span>
           </ServiceCard>
         </div>
         <div className="mt-5">
