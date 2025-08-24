@@ -223,19 +223,19 @@ export default function AzumboLanding() {
           <div className="mt-3 flex flex-wrap gap-2">
             <Chip>
               <span className="platform-icon">
-                <AndroidIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+                <AndroidIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
               </span>
               {t.android}
             </Chip>
             <Chip>
               <span className="platform-icon">
-                <AppleIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+                <AppleIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
               </span>
               {t.ios}
             </Chip>
             <Chip>
               <span className="platform-icon">
-                <SwitchIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+                <SwitchIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
               </span>
               {t.switch}
             </Chip>
@@ -250,17 +250,17 @@ export default function AzumboLanding() {
         <div className="mt-6 grid gap-6 sm:grid-cols-3">
           <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice}>
             <span className="service-icon">
-              <RocketIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+              <RocketIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
             </span>
           </ServiceCard>
           <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice}>
             <span className="service-icon">
-              <MegaphoneIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+              <MegaphoneIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
             </span>
           </ServiceCard>
           <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice}>
             <span className="service-icon">
-              <SwitchIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
+              <SwitchIcon preserveAspectRatio="xMidYMid meet" fill="currentColor" />
             </span>
           </ServiceCard>
         </div>
