@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cornetto Clicker - AZUMBO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -21,6 +22,28 @@
             justify-content: center;
             padding: 20px;
             overflow-x: hidden;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .container {
@@ -70,7 +93,7 @@
             margin-bottom: 15px;
         }
         
-        .score, .high-score {
+        .score, .high-score, .timer {
             font-size: 1.2rem;
             font-weight: bold;
         }
@@ -79,6 +102,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            justify-content: center;
         }
         
         button {
@@ -92,9 +116,14 @@
             transition: all 0.3s;
         }
         
-        button:hover {
+        button:hover:not(:disabled) {
             background: #d35400;
             transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
         }
         
         .croissant {
@@ -128,10 +157,34 @@
             border-radius: 10px;
             text-align: center;
             display: none;
+            z-index: 100;
+            width: 80%;
+            max-width: 400px;
         }
         
         .message h2 {
             margin-bottom: 10px;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 5px;
         }
         
         @media (max-width: 768px) {
@@ -152,11 +205,44 @@
                 width: 50px;
                 height: 50px;
             }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .bounce {
+            animation: bounce 1s;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <button class="back-button" onclick="window.location.href='/'">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+
+    <div class="container fade-in">
         <div class="header">
             <h1>Cornetto Clicker</h1>
             <p>Catch croissants, dodge hazards. Snacky arcade fun!</p>
@@ -164,7 +250,8 @@
         
         <div class="game-ui">
             <div class="score">Score: <span id="score">0</span></div>
-            <div class="high-score">High Score: <span id="high-score">0</span></div>
+            <div class="timer">Time: <span id="time">60</span>s</div>
+            <div class="high-score">Best: <span id="high-score">0</span></div>
         </div>
         
         <div class="game-container" id="game-container">
@@ -179,12 +266,23 @@
             <button id="start-button">Start Game</button>
             <button id="pause-button" disabled>Pause</button>
         </div>
+        
+        <div class="instructions">
+            <h3>How to Play:</h3>
+            <ul>
+                <li>Click on the croissants to earn 10 points each</li>
+                <li>Avoid the red obstacles - game over if you click one!</li>
+                <li>You have 60 seconds to get the highest score</li>
+                <li>Croissants disappear after 2 seconds</li>
+            </ul>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const gameContainer = document.getElementById('game-container');
             const scoreElement = document.getElementById('score');
+            const timeElement = document.getElementById('time');
             const highScoreElement = document.getElementById('high-score');
             const startButton = document.getElementById('start-button');
             const pauseButton = document.getElementById('pause-button');
@@ -194,9 +292,11 @@
             const restartButton = document.getElementById('restart-button');
             
             let score = 0;
+            let timeLeft = 60;
             let highScore = localStorage.getItem('cornettoHighScore') || 0;
             let gameRunning = false;
             let gameInterval;
+            let timerInterval;
             let obstacleInterval;
             let croissantInterval;
             let obstacles = [];
@@ -240,11 +340,15 @@
                     points.style.top = `${y}px`;
                     points.style.color = '#27ae60';
                     points.style.fontWeight = 'bold';
+                    points.style.fontSize = '16px';
                     points.style.pointerEvents = 'none';
+                    points.style.zIndex = '10';
                     gameContainer.appendChild(points);
                     
                     setTimeout(() => {
-                        points.remove();
+                        if (points.parentNode) {
+                            points.remove();
+                        }
                     }, 500);
                 });
                 
@@ -313,9 +417,22 @@
                 }
             }
             
+            function updateTimer() {
+                if (!gameRunning) return;
+                
+                timeLeft--;
+                timeElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    gameOver();
+                }
+            }
+            
             function startGame() {
                 score = 0;
+                timeLeft = 60;
                 scoreElement.textContent = score;
+                timeElement.textContent = timeLeft;
                 obstacles.forEach(obs => obs.remove());
                 croissants.forEach(cro => cro.remove());
                 obstacles = [];
@@ -328,6 +445,7 @@
                 pauseButton.disabled = false;
                 
                 gameInterval = setInterval(checkCollisions, 100);
+                timerInterval = setInterval(updateTimer, 1000);
                 croissantInterval = setInterval(createCroissant, 800);
                 obstacleInterval = setInterval(createObstacle, 1200);
             }
@@ -336,12 +454,14 @@
                 if (gameRunning) {
                     gameRunning = false;
                     clearInterval(gameInterval);
+                    clearInterval(timerInterval);
                     clearInterval(croissantInterval);
                     clearInterval(obstacleInterval);
                     pauseButton.textContent = 'Resume';
                 } else {
                     gameRunning = true;
                     gameInterval = setInterval(checkCollisions, 100);
+                    timerInterval = setInterval(updateTimer, 1000);
                     croissantInterval = setInterval(createCroissant, 800);
                     obstacleInterval = setInterval(createObstacle, 1200);
                     pauseButton.textContent = 'Pause';
@@ -351,6 +471,7 @@
             function gameOver() {
                 gameRunning = false;
                 clearInterval(gameInterval);
+                clearInterval(timerInterval);
                 clearInterval(croissantInterval);
                 clearInterval(obstacleInterval);
                 
@@ -362,9 +483,11 @@
                     highScore = score;
                     localStorage.setItem('cornettoHighScore', highScore);
                     highScoreElement.textContent = highScore;
+                    messageTitle.textContent = 'New High Score!';
+                } else {
+                    messageTitle.textContent = 'Game Over!';
                 }
                 
-                messageTitle.textContent = 'Game Over!';
                 messageText.textContent = `You scored ${score} points!`;
                 messageElement.style.display = 'block';
             }
@@ -380,4 +503,3 @@
     </script>
 </body>
 </html>
-
