@@ -284,30 +284,34 @@ export default function AzumboLanding() {
       {/* GAMES */}
       <section id="games" className="mx-auto max-w-5xl px-4 pb-16">
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <GameCard
             href="/cornettoclicker"
             title="Cornetto Clicker"
             desc={t.ccDesc}
-            variant="cornetto"
+            icon={<CroissantIcon className="game-icon" />}
+            gradient="from-amber-500 to-orange-600"
           />
           <GameCard
             href="/frogger"
             title="Frogger"
             desc={t.frDesc}
-            variant="frogger"
+            icon={<FrogIcon className="game-icon" />}
+            gradient="from-emerald-500 to-green-600"
           />
           <GameCard
             href="/Spaceinvaders"
             title="Space Invaders"
             desc={t.siDesc}
-            variant="space"
+            icon={<RocketIcon className="game-icon" />}
+            gradient="from-blue-500 to-indigo-600"
           />
           <GameCard
             href="/PacMan"
             title="Pac-Man"
             desc={t.pmDesc}
-            variant="pacman"
+            icon={<GhostIcon className="game-icon" />}
+            gradient="from-yellow-400 to-orange-500"
           />
         </div>
       </section>
@@ -353,47 +357,23 @@ function ServiceCard({ title, desc, price, children }: any) {
     </div>
   );
 }
-function GameCard({ href, title, desc, variant }: any) {
-  const getGradient = () => {
-    switch (variant) {
-      case 'cornetto': return 'from-amber-500 to-orange-600';
-      case 'frogger': return 'from-emerald-500 to-green-600';
-      case 'space': return 'from-blue-500 to-purple-600';
-      case 'pacman': return 'from-yellow-500 to-orange-600';
-      default: return 'from-gray-500 to-gray-600';
-    }
-  };
-
-  const getIcon = () => {
-    switch (variant) {
-      case 'cornetto': return <CroissantIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />;
-      case 'frogger': return <FrogIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />;
-      case 'space': return <RocketIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />;
-      case 'pacman': return <GhostIcon className="relative z-10 m-auto h-16 w-16 text-white opacity-90" />;
-      default: return <div className="relative z-10 m-auto h-16 w-16 text-white opacity-90">?</div>;
-    }
-  };
-
-  const gradient = getGradient();
-  const pattern = "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
-  
+function GameCard({ href, title, desc, icon, gradient }: any) {
   return (
     <Link
       href={href}
-      className="group rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:focus-visible:outline-white"
+      className="group flex flex-col rounded-2xl border border-neutral-200 overflow-hidden shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:focus-visible:outline-white"
     >
-      <div
-        className={`relative mb-3 aspect-[16/9] w-full overflow-hidden rounded-lg bg-gradient-to-br ${gradient}`}
-      >
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `url(${pattern})` }}
-        />
-        {getIcon()}
+      <div className={`h-32 bg-gradient-to-br ${gradient} flex items-center justify-center relative`}>
+        <div className="absolute inset-0 opacity-10 bg-pattern"></div>
+        <div className="relative z-10 text-white text-4xl">
+          {icon}
+        </div>
       </div>
-      <div className="text-lg font-semibold">{title}</div>
-      <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>
-      <div className="mt-3 text-xs opacity-70">Web • Android • iOS (soon)</div>
+      <div className="p-4 flex-1 flex flex-col">
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-3 flex-1">{desc}</p>
+        <div className="text-xs text-neutral-500">Web • Android • iOS (soon)</div>
+      </div>
     </Link>
   );
 }
@@ -404,6 +384,6 @@ function AppleIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor
 function SwitchIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M9 2H7a3 3 0 00-3 3v14a3 3 0 003 3h2V2zm8 0h-2v20h2a3 3 0 003-3V5a3 3 0 00-3-3zM7.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm9 7a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>);} 
 function RocketIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M14 3l7 7-4 1-2 2-1 4-7-7 4-1 2-2 1-4zM5 19l4-1-3-3-1 4z"/></svg>);} 
 function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);} 
-function CroissantIcon(props:any){return(<svg viewBox="0 0 32 32" fill="currentColor" {...props}><path d="M4 16c4-8 20-8 24 0-8-4-16-4-24 0z" stroke="currentColor" strokeWidth="2"/></svg>);} 
-function FrogIcon(props:any){return(<svg viewBox="0 0 576 512" fill="currentColor" {...props}><path d="M368 32c41.7 0 75.9 31.8 79.7 72.5l85.6 26.3c25.4 7.8 42.8 31.3 42.8 57.9c0 21.8-11.7 41.9-30.7 52.7L400.8 323.5 493.3 416l50.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-8.5 0-16.6-3.4-22.6-9.4L346.9 360.2c11.7-36 3.2-77.1-25.4-105.7c-40.6-40.6-106.3-40.6-146.9-.1L101 324.4c-6.4 6.1-6.7 16.2-.6 22.6s16.2 6.6 22.6 .6l73.8-70.2 .1-.1 .1-.1c3.5-3.5 7.3-6.6 11.3-9.2c27.9-18.5 65.9-15.4 90.5 9.2c24.7 24.7 27.7 62.9 9 90.9c-2.6 3.8-5.6 7.5-9 10.9L261.8 416l90.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L64 480c-35.3 0-64-28.7-64-64C0 249.6 127 112.9 289.3 97.5C296.2 60.2 328.8 32 368 32zm0 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>);} 
-function GhostIcon(props:any){return(<svg viewBox="0 0 384 512" fill="currentColor" {...props}><path d="M40.1 467.1l-11.2 9c-3.2 2.5-7.1 3.9-11.1 3.9C8 480 0 472 0 462.2V192C0 86 86 0 192 0S384 86 384 192V462.2c0 9.8-8 17.8-17.8 17.8c-4 0-7.9-1.4-11.1-3.9l-11.2-9c-13.4-10.7-32.8-9.6-44.5 2.5L269.3 506c-3.3 3.3-7.7 5.1-12.2 5.1H127c-4.5 0-8.9-1.8-12.2-5.1l-49.1-36.4c-11.7-12.1-31.1-13.2-44.5-2.5zM160 192a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96 32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>);} 
+function CroissantIcon(props:any){return(<svg viewBox="0 0 32 32" fill="currentColor" {...props}><path d="M4 16c4-8 20-8 24 0-8-4-16-4-24 0z" stroke="currentColor" strokeWidth="2"/></svg>);}
+function FrogIcon(props:any){return(<svg viewBox="0 0 576 512" fill="currentColor" {...props}><path d="M368 32c41.7 0 75.9 31.8 79.7 72.5l85.6 26.3c25.4 7.8 42.8 31.3 42.8 57.9c0 21.8-11.7 41.9-30.7 52.7L400.8 323.5 493.3 416l50.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-8.5 0-16.6-3.4-22.6-9.4L346.9 360.2c11.7-36 3.2-77.1-25.4-105.7c-40.6-40.6-106.3-40.6-146.9-.1L101 324.4c-6.4 6.1-6.7 16.2-.6 22.6s16.2 6.6 22.6 .6l73.8-70.2 .1-.1 .1-.1c3.5-3.5 7.3-6.6 11.3-9.2c27.9-18.5 65.9-15.4 90.5 9.2c24.7 24.7 27.7 62.9 9 90.9c-2.6 3.8-5.6 7.5-9 10.9L261.8 416l90.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L64 480c-35.3 0-64-28.7-64-64C0 249.6 127 112.9 289.3 97.5C296.2 60.2 328.8 32 368 32zm0 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>);}
+function GhostIcon(props:any){return(<svg viewBox="0 0 384 512" fill="currentColor" {...props}><path d="M40.1 467.1l-11.2 9c-3.2 2.5-7.1 3.9-11.1 3.9C8 480 0 472 0 462.2V192C0 86 86 0 192 0S384 86 384 192V462.2c0 9.8-8 17.8-17.8 17.8c-4 0-7.9-1.4-11.1-3.9l-11.2-9c-13.4-10.7-32.8-9.6-44.5 2.5L269.3 506c-3.3 3.3-7.7 5.1-12.2 5.1H127c-4.5 0-8.9-1.8-12.2-5.1l-49.1-36.4c-11.7-12.1-31.1-13.2-44.5-2.5zM160 192a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96 32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>);}
