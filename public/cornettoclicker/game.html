@@ -1,60 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Cornetto Clicker</title>
-  <!-- Basic styles for the mini game -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornetto Clicker - AZUMBO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #e67e22;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid #e67e22;
+        }
+        
+        .game-ui {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #e67e22;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .score, .high-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            background: #e67e22;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+        }
+        
+        .croissant {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q30,30 50,50 T80,50 Q70,70 50,50 T20,50" fill="%23f39c12" stroke="%23d35400" stroke-width="2"/></svg>') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        .croissant:hover {
+            transform: scale(1.1);
+        }
+        
+        .obstacle {
+            position: absolute;
+            background: #e74c3c;
+            border-radius: 5px;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .message h2 {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .game-container {
+                height: 300px;
+            }
+            
+            .game-ui {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .croissant {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Main game container -->
-  <div id="game">
-    <!-- Score and misses -->
-    <div id="scoreboard">
-      <span id="score">0</span> 🥐
-      <span id="misses">0</span> ❌
+    <div class="container">
+        <div class="header">
+            <h1>Cornetto Clicker</h1>
+            <p>Catch croissants, dodge hazards. Snacky arcade fun!</p>
+        </div>
+        
+        <div class="game-ui">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="high-score">High Score: <span id="high-score">0</span></div>
+        </div>
+        
+        <div class="game-container" id="game-container">
+            <div class="message" id="message">
+                <h2 id="message-title">Game Over</h2>
+                <p id="message-text">You scored 0 points!</p>
+                <button id="restart-button">Play Again</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-button">Start Game</button>
+            <button id="pause-button" disabled>Pause</button>
+        </div>
     </div>
-    <!-- Growing croissant showing progress -->
-    <div id="big">🥐</div>
-    <!-- Player cup -->
-    <div id="player">☕</div>
-    <!-- Game over overlay -->
-    <div id="gameover" class="hidden">
-      <p id="gameover-text"></p>
-      <button id="restart">Restart</button>
-    </div>
-  </div>
 
-  <!-- Mobile Controls -->
-  <div id="mobile-controls" class="mc hidden" aria-hidden="true">
-    <button id="btn-left"  class="mc-btn" aria-label="Move left">◀</button>
-    <button id="btn-right" class="mc-btn" aria-label="Move right">▶</button>
-  </div>
-
-  <script src="./js/game.js"></script>
-  <script src="./js/DesktopControls.js"></script>
-  <script src="./js/MobileControls.js"></script>
-  <script>
-    (function initInput(){
-      const isMobile = window.matchMedia('(pointer: coarse)').matches
-                    || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
-      const root     = document.getElementById('game') || document.body;
-      const ui       = document.getElementById('mobile-controls');
-      const leftBtn  = document.getElementById('btn-left');
-      const rightBtn = document.getElementById('btn-right');
-
-      let input;
-      if (isMobile) {
-        ui.classList.remove('hidden');
-        input = new MobileControls(root, leftBtn, rightBtn);
-      } else {
-        ui.classList.add('hidden');
-        input = new DesktopControls();
-      }
-      window.__input = input;
-    })();
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameContainer = document.getElementById('game-container');
+            const scoreElement = document.getElementById('score');
+            const highScoreElement = document.getElementById('high-score');
+            const startButton = document.getElementById('start-button');
+            const pauseButton = document.getElementById('pause-button');
+            const messageElement = document.getElementById('message');
+            const messageTitle = document.getElementById('message-title');
+            const messageText = document.getElementById('message-text');
+            const restartButton = document.getElementById('restart-button');
+            
+            let score = 0;
+            let highScore = localStorage.getItem('cornettoHighScore') || 0;
+            let gameRunning = false;
+            let gameInterval;
+            let obstacleInterval;
+            let croissantInterval;
+            let obstacles = [];
+            let croissants = [];
+            
+            highScoreElement.textContent = highScore;
+            
+            function getRandomPosition() {
+                const containerRect = gameContainer.getBoundingClientRect();
+                const x = Math.random() * (containerRect.width - 60);
+                const y = Math.random() * (containerRect.height - 60);
+                return { x, y };
+            }
+            
+            function createCroissant() {
+                if (!gameRunning) return;
+                
+                const { x, y } = getRandomPosition();
+                
+                const croissant = document.createElement('div');
+                croissant.className = 'croissant';
+                croissant.style.left = `${x}px`;
+                croissant.style.top = `${y}px`;
+                
+                croissant.addEventListener('click', function() {
+                    if (!gameRunning) return;
+                    
+                    score += 10;
+                    scoreElement.textContent = score;
+                    
+                    this.remove();
+                    const index = croissants.indexOf(this);
+                    if (index > -1) {
+                        croissants.splice(index, 1);
+                    }
+                    
+                    const points = document.createElement('div');
+                    points.textContent = '+10';
+                    points.style.position = 'absolute';
+                    points.style.left = `${x}px`;
+                    points.style.top = `${y}px`;
+                    points.style.color = '#27ae60';
+                    points.style.fontWeight = 'bold';
+                    points.style.pointerEvents = 'none';
+                    gameContainer.appendChild(points);
+                    
+                    setTimeout(() => {
+                        points.remove();
+                    }, 500);
+                });
+                
+                gameContainer.appendChild(croissant);
+                croissants.push(croissant);
+                
+                setTimeout(() => {
+                    if (croissant.parentNode) {
+                        croissant.remove();
+                        const index = croissants.indexOf(croissant);
+                        if (index > -1) {
+                            croissants.splice(index, 1);
+                        }
+                    }
+                }, 2000);
+            }
+            
+            function createObstacle() {
+                if (!gameRunning) return;
+                
+                const { x, y } = getRandomPosition();
+                
+                const obstacle = document.createElement('div');
+                obstacle.className = 'obstacle';
+                obstacle.style.left = `${x}px`;
+                obstacle.style.top = `${y}px`;
+                obstacle.style.width = `${30 + Math.random() * 40}px`;
+                obstacle.style.height = `${30 + Math.random() * 40}px`;
+                
+                gameContainer.appendChild(obstacle);
+                obstacles.push(obstacle);
+                
+                setTimeout(() => {
+                    if (obstacle.parentNode) {
+                        obstacle.remove();
+                        const index = obstacles.indexOf(obstacle);
+                        if (index > -1) {
+                            obstacles.splice(index, 1);
+                        }
+                    }
+                }, 3000);
+            }
+            
+            function checkCollisions() {
+                if (!gameRunning) return;
+                
+                const croissantElements = document.querySelectorAll('.croissant');
+                const obstacleElements = document.querySelectorAll('.obstacle');
+                
+                for (let croissant of croissantElements) {
+                    const croissantRect = croissant.getBoundingClientRect();
+                    
+                    for (let obstacle of obstacleElements) {
+                        const obstacleRect = obstacle.getBoundingClientRect();
+                        
+                        if (
+                            croissantRect.left < obstacleRect.right &&
+                            croissantRect.right > obstacleRect.left &&
+                            croissantRect.top < obstacleRect.bottom &&
+                            croissantRect.bottom > obstacleRect.top
+                        ) {
+                            gameOver();
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            function startGame() {
+                score = 0;
+                scoreElement.textContent = score;
+                obstacles.forEach(obs => obs.remove());
+                croissants.forEach(cro => cro.remove());
+                obstacles = [];
+                croissants = [];
+                
+                messageElement.style.display = 'none';
+                
+                gameRunning = true;
+                startButton.disabled = true;
+                pauseButton.disabled = false;
+                
+                gameInterval = setInterval(checkCollisions, 100);
+                croissantInterval = setInterval(createCroissant, 800);
+                obstacleInterval = setInterval(createObstacle, 1200);
+            }
+            
+            function pauseGame() {
+                if (gameRunning) {
+                    gameRunning = false;
+                    clearInterval(gameInterval);
+                    clearInterval(croissantInterval);
+                    clearInterval(obstacleInterval);
+                    pauseButton.textContent = 'Resume';
+                } else {
+                    gameRunning = true;
+                    gameInterval = setInterval(checkCollisions, 100);
+                    croissantInterval = setInterval(createCroissant, 800);
+                    obstacleInterval = setInterval(createObstacle, 1200);
+                    pauseButton.textContent = 'Pause';
+                }
+            }
+            
+            function gameOver() {
+                gameRunning = false;
+                clearInterval(gameInterval);
+                clearInterval(croissantInterval);
+                clearInterval(obstacleInterval);
+                
+                startButton.disabled = false;
+                pauseButton.disabled = true;
+                pauseButton.textContent = 'Pause';
+                
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('cornettoHighScore', highScore);
+                    highScoreElement.textContent = highScore;
+                }
+                
+                messageTitle.textContent = 'Game Over!';
+                messageText.textContent = `You scored ${score} points!`;
+                messageElement.style.display = 'block';
+            }
+            
+            startButton.addEventListener('click', startGame);
+            pauseButton.addEventListener('click', pauseGame);
+            restartButton.addEventListener('click', startGame);
+            
+            messageTitle.textContent = 'Cornetto Clicker';
+            messageText.textContent = 'Click on croissants to earn points. Avoid the red obstacles!';
+            messageElement.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
+
