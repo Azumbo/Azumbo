@@ -118,6 +118,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
 
 export default function AzumboLanding() {
   const [lang, setLang] = useState<Lang>('en');
+  const [secret, setSecret] = useState(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem('azumbo-lang') as Lang | null;
@@ -209,13 +210,13 @@ export default function AzumboLanding() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/cornettoclicker"
-            className="rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
+            className="pressable rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
           >
             {t.ctaPlay}
           </Link>
           <a
             href="mailto:azumbogames@gmail.com"
-            className="rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
+            className="pressable rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
           >
             {t.ctaContact}
           </a>
@@ -271,7 +272,7 @@ export default function AzumboLanding() {
         <div className="mt-5">
           <a
             href="mailto:azumbogames@gmail.com"
-            className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
+            className="pressable inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
           >
             {t.srvCTA}
           </a>
@@ -288,6 +289,7 @@ export default function AzumboLanding() {
             desc={t.frDesc}
             icon={<FrogIcon className="game-icon" />}
             gradient="from-emerald-500 to-green-600"
+            media="https://media.giphy.com/media/HezU1FQQtq7RO/giphy.gif"
           />
           <GameCard
             href="/Spaceinvaders"
@@ -295,6 +297,7 @@ export default function AzumboLanding() {
             desc={t.siDesc}
             icon={<RocketIcon className="game-icon" />}
             gradient="from-blue-500 to-indigo-600"
+            media="https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif"
           />
           <GameCard
             href="/PacMan"
@@ -302,6 +305,7 @@ export default function AzumboLanding() {
             desc={t.pmDesc}
             icon={<GhostIcon className="game-icon" />}
             gradient="from-yellow-400 to-orange-500"
+            media="https://media.giphy.com/media/HhIuAVM3L2I8E/giphy.gif"
           />
         </div>
       </section>
@@ -326,6 +330,11 @@ export default function AzumboLanding() {
       <footer className="border-t py-6 text-center text-sm dark:border-neutral-800">
         {t.footer}
       </footer>
+      <div
+        className={`easter-egg ${secret ? 'found' : ''}`}
+        onClick={() => setSecret(true)}
+      />
+      {secret && <div className="fixed bottom-20 left-8 text-xs">🎉</div>}
     </main>
   );
 }
@@ -347,13 +356,14 @@ function ServiceCard({ title, desc, price, children }: any) {
     </div>
   );
 }
-function GameCard({ href, title, desc, icon, gradient }: any) {
+function GameCard({ href, title, desc, icon, gradient, media }: any) {
   return (
     <Link
       href={href}
-      className="group flex flex-col rounded-2xl border border-neutral-200 overflow-hidden shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:focus-visible:outline-white"
+      className="group pressable flex flex-col rounded-2xl border-4 border-neutral-300 bg-neutral-100 overflow-hidden shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:bg-neutral-900 dark:focus-visible:outline-white"
     >
-      <div className={`h-32 bg-gradient-to-br ${gradient} flex items-center justify-center relative`}>
+      <div className={`relative h-32 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+        <img src={media} alt="" className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition duration-300" />
         <div className="absolute inset-0 opacity-10 bg-pattern"></div>
         <div className="relative z-10 text-white text-4xl">
           {icon}
