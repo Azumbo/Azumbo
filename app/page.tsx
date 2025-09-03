@@ -18,7 +18,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Featured games',
-    ccDesc: 'Catch croissants, dodge hazards. Snacky arcade fun.',
     frDesc: 'Classic frog-style hops with modern UX.',
     siDesc: 'Defend Earth from alien invasion in this classic arcade shooter.',
     pmDesc: 'Navigate the maze, eat dots and avoid ghosts in this timeless classic.',
@@ -56,7 +55,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Giochi in evidenza',
-    ccDesc: 'Prendi cornetti, evita pericoli. Arcade "gustoso".',
     frDesc: 'Salti in stile frog con UX moderna.',
     siDesc: 'Difendi la Terra dall\'invasione aliena in questo sparatutto arcade classico.',
     pmDesc: 'Naviga nel labirinto, mangia i puntini ed evita i fantasmi in questo intramontabile classico.',
@@ -92,7 +90,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Избранные игры',
-    ccDesc: 'Лови круассаны, избегай опасностей. Вкусный аркадный ран.',
     frDesc: 'Классические "лягушачьи" ходы с современным UX.',
     siDesc: 'Защитите Землю от инопланетного вторжения в этом классическом аркадном шутере.',
     pmDesc: 'Пройдите лабиринт, собирайте точки и избегайте призраков в этой вечной классике.',
@@ -286,13 +283,6 @@ export default function AzumboLanding() {
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <GameCard
-            href="/cornettoclicker"
-            title="Cornetto Clicker"
-            desc={t.ccDesc}
-            icon={<CroissantIcon className="game-icon" />}
-            gradient="from-amber-500 to-orange-600"
-          />
-          <GameCard
             href="/frogger"
             title="Frogger"
             desc={t.frDesc}
@@ -384,6 +374,5 @@ function AppleIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor
 function SwitchIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M9 2H7a3 3 0 00-3 3v14a3 3 0 003 3h2V2zm8 0h-2v20h2a3 3 0 003-3V5a3 3 0 00-3-3zM7.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm9 7a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>);} 
 function RocketIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M14 3l7 7-4 1-2 2-1 4-7-7 4-1 2-2 1-4zM5 19l4-1-3-3-1 4z"/></svg>);} 
 function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);} 
-function CroissantIcon(props:any){return(<svg viewBox="0 0 32 32" fill="currentColor" {...props}><path d="M4 16c4-8 20-8 24 0-8-4-16-4-24 0z" stroke="currentColor" strokeWidth="2"/></svg>);}
 function FrogIcon(props:any){return(<svg viewBox="0 0 576 512" fill="currentColor" {...props}><path d="M368 32c41.7 0 75.9 31.8 79.7 72.5l85.6 26.3c25.4 7.8 42.8 31.3 42.8 57.9c0 21.8-11.7 41.9-30.7 52.7L400.8 323.5 493.3 416l50.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-8.5 0-16.6-3.4-22.6-9.4L346.9 360.2c11.7-36 3.2-77.1-25.4-105.7c-40.6-40.6-106.3-40.6-146.9-.1L101 324.4c-6.4 6.1-6.7 16.2-.6 22.6s16.2 6.6 22.6 .6l73.8-70.2 .1-.1 .1-.1c3.5-3.5 7.3-6.6 11.3-9.2c27.9-18.5 65.9-15.4 90.5 9.2c24.7 24.7 27.7 62.9 9 90.9c-2.6 3.8-5.6 7.5-9 10.9L261.8 416l90.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L64 480c-35.3 0-64-28.7-64-64C0 249.6 127 112.9 289.3 97.5C296.2 60.2 328.8 32 368 32zm0 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>);}
 function GhostIcon(props:any){return(<svg viewBox="0 0 384 512" fill="currentColor" {...props}><path d="M40.1 467.1l-11.2 9c-3.2 2.5-7.1 3.9-11.1 3.9C8 480 0 472 0 462.2V192C0 86 86 0 192 0S384 86 384 192V462.2c0 9.8-8 17.8-17.8 17.8c-4 0-7.9-1.4-11.1-3.9l-11.2-9c-13.4-10.7-32.8-9.6-44.5 2.5L269.3 506c-3.3 3.3-7.7 5.1-12.2 5.1H127c-4.5 0-8.9-1.8-12.2-5.1l-49.1-36.4c-11.7-12.1-31.1-13.2-44.5-2.5zM160 192a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96 32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>);}
