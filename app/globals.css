@@ -68,6 +68,9 @@ body.cursor-click {
   transition: transform 0.1s, box-shadow 0.1s;
   box-shadow: 0 4px 0 rgba(0,0,0,0.6);
 }
+.pressable:hover {
+  transform: translateY(-2px) scale(1.03);
+}
 .pressable:active {
   transform: translateY(2px) scale(0.95);
   box-shadow: 0 0 0 rgba(0,0,0,0.6);
@@ -89,4 +92,26 @@ body.cursor-click {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Floating hero sprites */
+.sprite {
+  position: absolute;
+  animation: float 8s linear infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Pixel divider */
+.pixel-divider {
+  height: 8px;
+  background-image: repeating-linear-gradient(90deg,#f0f 0 4px,#0ff 4px 8px);
+}
+
+/* Pixelated avatars */
+.pixelated {
+  image-rendering: pixelated;
 }
