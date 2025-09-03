@@ -12,7 +12,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     title: 'AZUMBO — Indie Game Studio',
     kicker: 'Mobile-first games with humor & heart.',
     subtitle: 'We craft fast, funny and viral-ready casual games for Android, iOS and Nintendo Switch.',
-    ctaPlay: 'Play in browser',
     ctaContact: 'Contact',
     platforms: 'Platforms',
     android: 'Android',
@@ -49,7 +48,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     title: 'AZUMBO — Studio Indie',
     kicker: 'Giochi mobile-first con umorismo e cuore.',
     subtitle: 'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
-    ctaPlay: 'Gioca nel browser',
     ctaContact: 'Contatto',
     platforms: 'Piattaforme',
     android: 'Android',
@@ -84,7 +82,6 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     title: 'AZUMBO — инди-студия игр',
     kicker: 'Мобильные игры с юмором и сердцем.',
     subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
-    ctaPlay: 'Играть в браузере',
     ctaContact: 'Связаться',
     platforms: 'Платформы',
     android: 'Android',
@@ -245,12 +242,6 @@ export default function AzumboLanding() {
         <h1 className="mt-2 text-4xl font-black leading-[1.05] sm:text-6xl">{t.title}</h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/cornettoclicker"
-            className="pressable rounded-xl bg-gradient-to-r from-fuchsia-500 to-yellow-400 px-5 py-3 text-white shadow-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-          >
-            {t.ctaPlay}
-          </Link>
           <a
             href="mailto:azumbogames@gmail.com"
             className="pressable rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
