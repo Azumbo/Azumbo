@@ -3,6 +3,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
+import FloatingSprites from '../components/FloatingSprites';
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -119,6 +120,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
 export default function AzumboLanding() {
   const [lang, setLang] = useState<Lang>('en');
   const [secret, setSecret] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem('azumbo-lang') as Lang | null;
@@ -163,7 +165,7 @@ export default function AzumboLanding() {
 
       {/* COMPACT DARK HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
+        <div className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
           <nav className="hidden gap-5 text-sm md:flex">
             <a
               href="#games"
@@ -184,6 +186,15 @@ export default function AzumboLanding() {
               {t.navContact}
             </a>
           </nav>
+          <button
+            className="md:hidden rounded-md p-2 text-neutral-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+          >
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
+            </svg>
+          </button>
           <div className="font-black tracking-wider">AZUMBO</div>
           <div className="flex gap-2 text-xs">
             {(['en','it','ru'] as Lang[]).map(k => (
@@ -199,24 +210,50 @@ export default function AzumboLanding() {
               </button>
             ))}
           </div>
+          <nav
+            className={`${menuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 bg-neutral-950 p-4 text-sm md:hidden`}
+          >
+            <a
+              href="#games"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-md text-neutral-300 transition hover:text-white"
+            >
+              {t.navGames}
+            </a>
+            <a
+              href="#services"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-md text-neutral-300 transition hover:text-white"
+            >
+              {t.navServices}
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-md text-neutral-300 transition hover:text-white"
+            >
+              {t.navContact}
+            </a>
+          </nav>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="mx-auto max-w-5xl px-4 py-14 md:py-20">
+      <section className="relative mx-auto max-w-5xl px-4 py-14 md:py-20">
+        <FloatingSprites />
         <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">{t.kicker}</p>
         <h1 className="mt-2 text-4xl font-black leading-[1.05] sm:text-6xl">{t.title}</h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/cornettoclicker"
-            className="pressable rounded-xl bg-black px-5 py-3 text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
+            className="pressable rounded-xl bg-gradient-to-r from-fuchsia-500 to-yellow-400 px-5 py-3 text-white shadow-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
           >
             {t.ctaPlay}
           </Link>
           <a
             href="mailto:azumbogames@gmail.com"
-            className="pressable rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
+            className="pressable rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
           >
             {t.ctaContact}
           </a>
@@ -247,6 +284,7 @@ export default function AzumboLanding() {
           </div>
         </div>
       </section>
+      <div className="pixel-divider" />
 
       {/* SERVICES */}
       <section id="services" className="mx-auto max-w-5xl px-4 pb-16">
@@ -282,39 +320,51 @@ export default function AzumboLanding() {
       {/* GAMES */}
       <section id="games" className="mx-auto max-w-5xl px-4 pb-16">
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <GameCard
-            href="/frogger"
-            title="Frogger"
-            desc={t.frDesc}
-            icon={<FrogIcon className="game-icon" />}
-            gradient="from-emerald-500 to-green-600"
-            media="https://media.giphy.com/media/HezU1FQQtq7RO/giphy.gif"
-          />
-          <GameCard
-            href="/Spaceinvaders"
-            title="Space Invaders"
-            desc={t.siDesc}
-            icon={<RocketIcon className="game-icon" />}
-            gradient="from-blue-500 to-indigo-600"
-            media="https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif"
-          />
-          <GameCard
-            href="/PacMan"
-            title="Pac-Man"
-            desc={t.pmDesc}
-            icon={<GhostIcon className="game-icon" />}
-            gradient="from-yellow-400 to-orange-500"
-            media="https://media.giphy.com/media/HhIuAVM3L2I8E/giphy.gif"
-          />
+        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+          <div className="w-64 flex-shrink-0 snap-start">
+            <GameCard
+              href="/frogger"
+              title="Frogger"
+              desc={t.frDesc}
+              icon={<FrogIcon className="game-icon" />}
+              gradient="from-emerald-500 to-green-600"
+              media="https://media.giphy.com/media/HezU1FQQtq7RO/giphy.gif"
+            />
+          </div>
+          <div className="w-64 flex-shrink-0 snap-start">
+            <GameCard
+              href="/Spaceinvaders"
+              title="Space Invaders"
+              desc={t.siDesc}
+              icon={<RocketIcon className="game-icon" />}
+              gradient="from-blue-500 to-indigo-600"
+              media="https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif"
+            />
+          </div>
+          <div className="w-64 flex-shrink-0 snap-start">
+            <GameCard
+              href="/PacMan"
+              title="Pac-Man"
+              desc={t.pmDesc}
+              icon={<GhostIcon className="game-icon" />}
+              gradient="from-yellow-400 to-orange-500"
+              media="https://media.giphy.com/media/HhIuAVM3L2I8E/giphy.gif"
+            />
+          </div>
         </div>
       </section>
+      <div className="pixel-divider" />
 
       {/* ABOUT */}
       <section className="mx-auto max-w-5xl px-4 pb-12">
         <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.aboutTitle}</h2>
         <p className="max-w-3xl leading-relaxed text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
+        <div className="mt-4 flex gap-4">
+          <div className="h-16 w-16 rounded-md bg-gradient-to-br from-fuchsia-500 to-yellow-400 pixelated" />
+          <div className="h-16 w-16 rounded-md bg-gradient-to-br from-cyan-400 to-emerald-400 pixelated" />
+        </div>
       </section>
+      <div className="pixel-divider" />
 
       {/* CONTACT */}
       <section id="contact" className="mx-auto max-w-5xl px-4 pb-20">
