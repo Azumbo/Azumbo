@@ -17,7 +17,11 @@ export default function SoundToggle() {
   };
 
   return (
-    <button className="pixel-button" onClick={handleClick} style={{ position: 'fixed', top: 10, right: 10 }}>
+    <button
+      className="pixel-button pressable"
+      onClick={handleClick}
+      style={{ position: 'fixed', top: 10, right: 10 }}
+    >
       {muted ? '🔇' : '🔊'}
     </button>
   );

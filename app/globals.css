@@ -51,3 +51,42 @@ svg {
     height: 2.5rem;
   }
 }
+
+/* Custom cursor */
+body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' stroke='%23000' stroke-width='1' d='M0 0 L0 15 L5 10 L9 14 L11 12 L7 8 L12 8 Z'%2F%3E%3C%2Fsvg%3E") 0 0, auto;
+}
+a:hover, button:hover, .clickable:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ff0' stroke='%23000' stroke-width='1' d='M0 0 L0 15 L5 10 L9 14 L11 12 L7 8 L12 8 Z'%2F%3E%3C%2Fsvg%3E") 0 0, pointer;
+}
+body.cursor-click {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23f00' stroke='%23000' stroke-width='1' d='M0 0 L0 15 L5 10 L9 14 L11 12 L7 8 L12 8 Z'%2F%3E%3C%2Fsvg%3E") 0 0, auto;
+}
+
+/* Pressable buttons */
+.pressable {
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.6);
+}
+.pressable:active {
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 0 0 0 rgba(0,0,0,0.6);
+}
+
+/* Easter egg */
+.easter-egg {
+  position: fixed;
+  bottom: 8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  background: yellow;
+  opacity: 0;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23ff0' stroke='%23000' stroke-width='1' d='M0 0 L0 15 L5 10 L9 14 L11 12 L7 8 L12 8 Z'%2F%3E%3C%2Fsvg%3E") 0 0, pointer;
+}
+.easter-egg:hover { opacity: 1; }
+.easter-egg.found { animation: spin 1s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
