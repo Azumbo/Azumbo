@@ -1,22 +1,21 @@
 {
+  "cleanUrls": true,
+  "redirects": [],
   "rewrites": [
-    {
-      "source": "/cornettoclicker/:path*",
-      "destination": "/cornettoclicker/:path*"
-    }
+    { "source": "/cornettoclicker/:path*", "destination": "/cornettoclicker/:path*" },
+    { "source": "/", "destination": "/site/index.html" },
+    { "source": "/legal/privacy", "destination": "/site/legal/privacy/index.html" },
+    { "source": "/legal/terms", "destination": "/site/legal/terms/index.html" },
+    { "source": "/legal/cookies", "destination": "/site/legal/cookies/index.html" },
+    { "source": "/legal/gdpr-ccpa", "destination": "/site/legal/gdpr-ccpa/index.html" },
+    { "source": "/support", "destination": "/site/support/index.html" },
+    { "source": "/redlines/privacy", "destination": "/site/redlines/privacy/index.html" },
+    { "source": "/petonauta/privacy", "destination": "/site/petonauta/privacy/index.html" },
+    { "source": "/cornettoclicker/privacy", "destination": "/site/cornettoclicker/privacy/index.html" }
   ],
   "functions": {
-    "pages/api/register.ts": {
-      "maxDuration": 10,
-      "memory": 128
-    },
-    "pages/api/submit-score.ts": {
-      "maxDuration": 10,
-      "memory": 128
-    },
-    "pages/api/stats.ts": {
-      "maxDuration": 10,
-      "memory": 128
-    }
+    "pages/api/register.ts": { "maxDuration": 10, "memory": 128 },
+    "pages/api/submit-score.ts": { "maxDuration": 10, "memory": 128 },
+    "pages/api/stats.ts": { "maxDuration": 10, "memory": 128 }
   }
 }
