@@ -1,3 +1,2 @@
-# PLACEHOLDER — replace with lines from Unity/LevelPlay dashboard
-# Example format only (do NOT keep this example in production):
-# unity.com, <PUBLISHER_ID>, DIRECT, <SSP_ID>
+# Placeholder — replace before production.
+# Mirror entries from ads.txt unless instructed otherwise by your ad network.
