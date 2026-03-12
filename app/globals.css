@@ -208,3 +208,23 @@ body.cursor-click {
     gap: 1.25rem;
   }
 }
+
+@media (max-width: 768px) {
+  /* Targeted class for the project description */
+  .project-description {
+    line-height: 1.6 !important;
+    letter-spacing: 0.02em;
+    font-weight: 300;
+    margin-top: 15px;
+    text-align: left;
+  }
+
+  /* Video scaling: reduce size by 40% (to 60% total) to show fields around it */
+  .video-container,
+  video,
+  iframe {
+    width: 60% !important;
+    margin: 0 auto !important;
+    display: block;
+  }
+}
