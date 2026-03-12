@@ -45,7 +45,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Request a quote',
     birdTitle: 'Current Project: Bird Lines',
     birdSubtitle: 'From Pages to Pixels',
-    birdDescription: `I am currently transforming the aesthetic world of my children's book into an interactive experience. Bird Lines is a cozy puzzle game built on Unity, designed as a "chic escape" and a tool for mental resilience. Following the journey of a young girl named Ellie across Europe, the game combines minimalist design with poetic storytelling.`,
+    birdDescription: `Bird Lines is more than a game; it is a tool for mental resilience wrapped in the aesthetic of a puzzle. An invitation to a meditative journey through Paris with Ellie — a digital companion to the adventure story 'Paris in the Plain.' Minimalist design meets poetic storytelling for those seeking a truly chic escape.`,
     birdStatus: 'Status: In Development (Calabria, Italy)'
   },
   it: {
@@ -83,7 +83,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Richiedi un preventivo',
     birdTitle: 'Progetto attuale: Bird Lines',
     birdSubtitle: 'Dalle pagine ai pixel',
-    birdDescription: `Sto trasformando il mondo estetico del mio libro per bambini in un'esperienza interattiva. Bird Lines è un cozy puzzle game sviluppato in Unity, pensato come una "fuga chic" e uno strumento per la resilienza mentale. Seguendo il viaggio di una giovane ragazza di nome Ellie attraverso l'Europa, il gioco unisce design minimalista e narrazione poetica.`,
+    birdDescription: `Bird Lines non è solo un gioco, ma uno strumento di resilienza mentale avvolto nell'estetica di un puzzle. Un invito a un viaggio meditativo attraverso Parigi insieme ad Ellie — il complemento interattivo del racconto d'avventura 'Paris in the Plain'. Design minimalista e narrazione poetica per chi cerca un’elegante via di fuga.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)'
   },
   ru: {
@@ -121,7 +121,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Запросить смету',
     birdTitle: 'Текущий проект: Bird Lines',
     birdSubtitle: 'От страниц к пикселям',
-    birdDescription: `Сейчас я превращаю эстетический мир моей детской книги в интерактивный опыт. Bird Lines — уютная пазл-игра на Unity, задуманная как "элегантный побег" и инструмент для ментальной устойчивости. Следуя за путешествием юной девушки по имени Элли по Европе, игра сочетает минималистичный дизайн и поэтичное повествование.`,
+    birdDescription: `Bird Lines — не просто игра, а инструмент ментальной устойчивости, обернутый в эстетику пазла. Это приглашение в медитативное путешествие по Парижу вместе с Элли — интерактивное дополнение к приключенческой истории 'Paris in the Plain'. Минималистичный дизайн и поэтичное повествование для тех, кто ищет свой элегантный побег.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)'
   }
 };
@@ -144,6 +144,21 @@ export default function AzumboLanding() {
   }, [lang]);
 
   const t = useMemo(() => STRINGS[lang], [lang]);
+
+  const renderBirdDescription = (description: string) => {
+    const bookTitle = 'Paris in the Plain';
+    const parts = description.split(bookTitle);
+
+    if (parts.length === 1) return description;
+
+    return (
+      <>
+        {parts[0]}
+        <em>{bookTitle}</em>
+        {parts.slice(1).join(bookTitle)}
+      </>
+    );
+  };
 
   // JSON-LD (Org + simple OfferCatalog)
   const orgJson = {
@@ -372,8 +387,8 @@ export default function AzumboLanding() {
           <div className="w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
             <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">{t.birdTitle}</h2>
             <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">{t.birdSubtitle}</p>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-              {t.birdDescription}
+            <p className="project-description mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
+              {renderBirdDescription(t.birdDescription)}
             </p>
             <span className="mt-5 inline-flex rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1 text-xs uppercase tracking-[0.08em] text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
               {t.birdStatus}
