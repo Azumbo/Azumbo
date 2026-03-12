@@ -59,6 +59,22 @@ svg {
   height: auto;
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  object-fit: contain;
+}
+
 @media (max-width: 768px) {
   .landing-shell {
     width: 100%;
@@ -210,7 +226,20 @@ body.cursor-click {
 }
 
 @media (max-width: 768px) {
-  /* Targeted class for the project description */
+  /* 1. Mobile Logo Scaling */
+  .header-logo {
+    max-height: 25px !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .header-container {
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* 2. (Existing) Mobile Project Description Typo */
   .project-description {
     line-height: 1.6 !important;
     letter-spacing: 0.02em;
@@ -219,7 +248,7 @@ body.cursor-click {
     text-align: left;
   }
 
-  /* Video scaling: reduce size by 40% (to 60% total) to show fields around it */
+  /* 3. (Existing) Video scaling: reduce size by 40% (to 60% total) */
   .video-container,
   video,
   iframe {

@@ -189,7 +189,7 @@ export default function AzumboLanding() {
 
       {/* COMPACT DARK HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
-        <div className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
+        <div className="header-container relative mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
           <nav className="hidden gap-5 text-sm md:flex">
             <a
               href="#games"
@@ -219,7 +219,11 @@ export default function AzumboLanding() {
               <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
             </svg>
           </button>
-          <div className="font-black tracking-wider">AZUMBO</div>
+          <img
+            className="header-logo"
+            src="/logo/Azumbo%20Logo%20no%20background%20small%20size.jpeg"
+            alt="Azumbo Logo"
+          />
           <div className="flex gap-2 text-xs">
             {(['en','it','ru'] as Lang[]).map(k => (
               <button
