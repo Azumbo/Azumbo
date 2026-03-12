@@ -88,7 +88,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
-    kicker: 'Мобильные игры с юмором и сердцем.',
+    kicker: 'Мобильные игры с юмором и душой',
     subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
     ctaContact: 'Связаться',
     platforms: 'Платформы',
