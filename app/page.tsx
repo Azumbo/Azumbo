@@ -345,11 +345,14 @@ export default function AzumboLanding() {
         </div>
 
         <article className="mt-12 grid gap-8 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:grid-cols-[minmax(0,300px)_minmax(0,1fr)] md:p-8 dark:border-neutral-800 dark:bg-neutral-900">
-          <img
-            src="/bird-lines-preview.png"
-            alt="Bird Lines game preview placeholder"
+          <video
             className="h-full w-full rounded-2xl border border-neutral-200 object-cover shadow-sm dark:border-neutral-700"
-          />
+            controls
+            preload="metadata"
+          >
+            <source src="/Whoops 15 10 2025.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
           <div className="font-sans font-light text-neutral-800 dark:text-neutral-100">
             <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">Current Project: Bird Lines</h2>
