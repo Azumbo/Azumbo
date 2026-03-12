@@ -153,7 +153,7 @@ export default function AzumboLanding() {
   };
 
   return (
-    <main className="min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Head-like tags */}
       <link rel="canonical" href="https://azumbo.vercel.app/" />
       <meta name="robots" content="index,follow" />
@@ -311,7 +311,7 @@ export default function AzumboLanding() {
       {/* GAMES */}
       <section id="games" className="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+        <div className="featured-games-grid">
           <div className="w-full">
             <GameCard
               href="/frogger"
@@ -344,9 +344,9 @@ export default function AzumboLanding() {
           </div>
         </div>
 
-        <article className="mt-12 flex flex-col gap-6 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:flex-row md:items-start md:gap-6 md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
+        <article className="birdlines-project mt-12 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
           <video
-            className="h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-cover shadow-sm md:h-48 md:w-28 md:self-start dark:border-neutral-700"
+            className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-cover shadow-sm dark:border-neutral-700"
             controls
             preload="metadata"
             onLoadedMetadata={(event) => {
