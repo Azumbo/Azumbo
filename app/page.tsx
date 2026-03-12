@@ -346,11 +346,14 @@ export default function AzumboLanding() {
 
         <article className="mt-12 flex items-start gap-4 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:gap-6 md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
           <video
-            className="h-20 w-32 shrink-0 self-start rounded-xl border border-neutral-200 object-cover shadow-sm md:h-24 md:w-40 dark:border-neutral-700"
+            className="h-10 w-16 shrink-0 self-start rounded-xl border border-neutral-200 object-cover shadow-sm md:h-12 md:w-20 dark:border-neutral-700"
             controls
             preload="metadata"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.currentTime = 2;
+            }}
           >
-            <source src="/Whoops 15 10 2025.mp4" type="video/mp4" />
+            <source src="/Whoops 15 10 2025.mp4#t=2" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
