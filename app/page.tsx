@@ -42,7 +42,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvPortTitle: 'Porting to Nintendo Switch',
     srvPortDesc: 'Technical port, input/UI adaption, performance pass, submission support.',
     srvPortPrice: 'custom quote',
-    srvCTA: 'Request a quote'
+    srvCTA: 'Request a quote',
+    birdTitle: 'Current Project: Bird Lines',
+    birdSubtitle: 'From Pages to Pixels',
+    birdDescription: `I am currently transforming the aesthetic world of my children's book into an interactive experience. Bird Lines is a cozy puzzle game built on Unity, designed as a "chic escape" and a tool for mental resilience. Following the journey of a young girl named Ellie across Europe, the game combines minimalist design with poetic storytelling.`,
+    birdStatus: 'Status: In Development (Calabria, Italy)'
   },
   it: {
     title: 'AZUMBO — Studio Indie',
@@ -76,7 +80,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvPortTitle: 'Porting su Nintendo Switch',
     srvPortDesc: 'Porting tecnico, input/UI, performance, supporto submission.',
     srvPortPrice: 'preventivo su misura',
-    srvCTA: 'Richiedi un preventivo'
+    srvCTA: 'Richiedi un preventivo',
+    birdTitle: 'Progetto attuale: Bird Lines',
+    birdSubtitle: 'Dalle pagine ai pixel',
+    birdDescription: `Sto trasformando il mondo estetico del mio libro per bambini in un'esperienza interattiva. Bird Lines è un cozy puzzle game sviluppato in Unity, pensato come una "fuga chic" e uno strumento per la resilienza mentale. Seguendo il viaggio di una giovane ragazza di nome Ellie attraverso l'Europa, il gioco unisce design minimalista e narrazione poetica.`,
+    birdStatus: 'Stato: In sviluppo (Calabria, Italia)'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -110,7 +118,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvPortTitle: 'Портирование на Nintendo Switch',
     srvPortDesc: 'Технический порт, адаптация ввода/UI, оптимизация, помощь с сабмитом.',
     srvPortPrice: 'по запросу',
-    srvCTA: 'Запросить смету'
+    srvCTA: 'Запросить смету',
+    birdTitle: 'Текущий проект: Bird Lines',
+    birdSubtitle: 'От страниц к пикселям',
+    birdDescription: `Сейчас я превращаю эстетический мир моей детской книги в интерактивный опыт. Bird Lines — уютная пазл-игра на Unity, задуманная как "элегантный побег" и инструмент для ментальной устойчивости. Следуя за путешествием юной девушки по имени Элли по Европе, игра сочетает минималистичный дизайн и поэтичное повествование.`,
+    birdStatus: 'Статус: В разработке (Калабрия, Италия)'
   }
 };
 
@@ -358,13 +370,13 @@ export default function AzumboLanding() {
           </video>
 
           <div className="w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
-            <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">Current Project: Bird Lines</h2>
-            <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">From Pages to Pixels</p>
+            <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">{t.birdTitle}</h2>
+            <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">{t.birdSubtitle}</p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-              I am currently transforming the aesthetic world of my children&apos;s book into an interactive experience. Bird Lines is a cozy puzzle game built on Unity, designed as a &quot;chic escape&quot; and a tool for mental resilience. Following the journey of a young girl named Ellie across Europe, the game combines minimalist design with poetic storytelling.
+              {t.birdDescription}
             </p>
             <span className="mt-5 inline-flex rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1 text-xs uppercase tracking-[0.08em] text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
-              Status: In Development (Calabria, Italy)
+              {t.birdStatus}
             </span>
           </div>
         </article>
