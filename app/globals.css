@@ -177,3 +177,34 @@ body.cursor-click {
     padding-inline: 0 !important;
   }
 }
+
+@media (max-width: 768px) {
+  body,
+  main,
+  .landing-shell {
+    padding-inline: 20px;
+  }
+
+  video,
+  iframe,
+  .birdlines-video {
+    width: 60% !important;
+    max-width: 60% !important;
+    margin-inline: auto;
+  }
+
+  #services .grid > *,
+  #games .featured-games-grid > *,
+  #games article,
+  section article {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 1rem;
+  }
+
+  #services .grid,
+  #games .featured-games-grid {
+    gap: 1.25rem;
+  }
+}
