@@ -153,7 +153,7 @@ export default function AzumboLanding() {
   };
 
   return (
-    <main className="min-h-[100dvh] bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <main className="min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Head-like tags */}
       <link rel="canonical" href="https://azumbo.vercel.app/" />
       <meta name="robots" content="index,follow" />
@@ -309,10 +309,10 @@ export default function AzumboLanding() {
       </section>
 
       {/* GAMES */}
-      <section id="games" className="mx-auto max-w-5xl px-4 pb-16">
+      <section id="games" className="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
         <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-          <div className="w-64 flex-shrink-0 snap-start">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+          <div className="w-full">
             <GameCard
               href="/frogger"
               title="Frogger"
@@ -322,7 +322,7 @@ export default function AzumboLanding() {
               media="https://media.giphy.com/media/HezU1FQQtq7RO/giphy.gif"
             />
           </div>
-          <div className="w-64 flex-shrink-0 snap-start">
+          <div className="w-full">
             <GameCard
               href="/Spaceinvaders"
               title="Space Invaders"
@@ -332,7 +332,7 @@ export default function AzumboLanding() {
               media="https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif"
             />
           </div>
-          <div className="w-64 flex-shrink-0 snap-start">
+          <div className="w-full">
             <GameCard
               href="/PacMan"
               title="Pac-Man"
@@ -344,9 +344,9 @@ export default function AzumboLanding() {
           </div>
         </div>
 
-        <article className="mt-12 flex items-start gap-4 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:gap-6 md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
+        <article className="mt-12 flex flex-col gap-6 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:flex-row md:items-start md:gap-6 md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
           <video
-            className="h-10 w-16 shrink-0 self-start rounded-xl border border-neutral-200 object-cover shadow-sm md:h-12 md:w-20 dark:border-neutral-700"
+            className="h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-cover shadow-sm md:h-48 md:w-28 md:self-start dark:border-neutral-700"
             controls
             preload="metadata"
             onLoadedMetadata={(event) => {
@@ -357,7 +357,7 @@ export default function AzumboLanding() {
             Your browser does not support the video tag.
           </video>
 
-          <div className="min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
+          <div className="w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
             <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">Current Project: Bird Lines</h2>
             <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">From Pages to Pixels</p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
