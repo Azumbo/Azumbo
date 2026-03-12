@@ -7,6 +7,37 @@
 a:focus { outline: none; }
 html, body { font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; overflow-x: hidden; }
 
+.landing-shell {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+}
+
+.featured-games-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .featured-games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.birdlines-project {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.birdlines-video {
+  width: min(100%, 340px);
+  max-width: 340px;
+  height: auto;
+  aspect-ratio: 9 / 16;
+}
+
 /* Icon sizing helpers */
 .platform-icon, .service-icon {
   display: inline-flex;
@@ -29,6 +60,24 @@ svg {
 }
 
 @media (max-width: 768px) {
+  .landing-shell {
+    width: 100%;
+  }
+
+  .featured-games-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .birdlines-project {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .birdlines-video {
+    max-width: 280px;
+  }
+
   .platform-icon { font-size: 14px; }
   .service-icon { font-size: 18px; }
 }
