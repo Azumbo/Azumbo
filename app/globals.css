@@ -71,11 +71,23 @@ svg {
 
   .birdlines-project {
     flex-direction: column;
+    align-items: center;
     gap: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .birdlines-video {
-    max-width: 280px;
+    width: min(80%, 300px);
+    max-width: 300px;
+    margin-inline: auto;
+  }
+
+  .birdlines-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .platform-icon { font-size: 14px; }
@@ -167,64 +179,16 @@ body.cursor-click {
 
 
 @media (max-width: 768px) {
-  main {
-    padding-inline: 1rem;
-  }
-
-  section,
-  header > div,
-  footer {
-    padding-inline: 0 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  body,
-  main,
-  .landing-shell {
-    padding-inline: 20px;
-  }
-
-  video,
-  iframe,
-  .birdlines-video {
-    width: 60% !important;
-    max-width: 60% !important;
-    margin-inline: auto;
-  }
-
-  #services .grid > *,
-  #games .featured-games-grid > *,
-  #games article,
-  section article {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid rgba(23, 23, 23, 0.08);
-    border-radius: 1rem;
-  }
-
-  #services .grid,
-  #games .featured-games-grid {
-    gap: 1.25rem;
-  }
-}
-
-@media (max-width: 768px) {
   /* Targeted class for the project description */
   .project-description {
     line-height: 1.6 !important;
     letter-spacing: 0.02em;
     font-weight: 300;
     margin-top: 15px;
-    text-align: left;
+    text-align: center;
   }
 
-  /* Video scaling: reduce size by 40% (to 60% total) to show fields around it */
-  .video-container,
-  video,
-  iframe {
-    width: 60% !important;
-    margin: 0 auto !important;
-    display: block;
+  .birdlines-content > .inline-flex {
+    align-self: center;
   }
 }
