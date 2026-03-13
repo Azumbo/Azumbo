@@ -223,7 +223,7 @@ export default function AzumboLanding() {
             <img
               src="/logo/Azumbo Logo no background small size.jpeg"
               alt="AZUMBO Logo"
-              className="h-[26px] w-auto max-w-[112px] object-contain md:h-8 md:max-w-[144px]"
+              className="h-[29px] w-auto max-w-[123px] object-contain md:h-[35px] md:max-w-[158px]"
             />
           </div>
           <div className="flex gap-2 text-xs">
@@ -390,7 +390,7 @@ export default function AzumboLanding() {
             Your browser does not support the video tag.
           </video>
 
-          <div className="w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
+          <div className="birdlines-content w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
             <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">{t.birdTitle}</h2>
             <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">{t.birdSubtitle}</p>
             <p className="project-description mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
