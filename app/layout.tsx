@@ -30,7 +30,7 @@ const SEO_BY_LOCALE: Record<Locale, { title: string; description: string; keywor
     ]
   },
   ru: {
-    title: 'AZUMBO | Минималистичные инди-игры и стильный отдых',
+    title: 'AZUMBO | Минимализм, инди-игры и стильный отдых',
     description:
       'Откройте для себя качественные инди-игры, созданные для эстетики, тонкого юмора и ментальной перезагрузки.',
     keywords: [
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
   const { locale } = await params;
   const activeLocale: Locale = isLocale(locale) ? locale : 'en';
   const seo = SEO_BY_LOCALE[activeLocale];
-  const localePath = activeLocale === 'en' ? '/en' : `/${activeLocale}`;
+  const localePath = activeLocale === 'en' ? '/' : `/${activeLocale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
     alternates: {
       canonical: `${SITE_URL}/`,
       languages: {
-        en: `${SITE_URL}/en`,
+        en: `${SITE_URL}/`,
         ru: `${SITE_URL}/ru`,
         it: `${SITE_URL}/it`,
         'x-default': `${SITE_URL}/`
@@ -107,6 +107,9 @@ export default async function RootLayout({
 
   return (
     <html lang={activeLocale} className="h-full">
+      <head>
+        <meta name="google-site-verification" content="ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0" />
+      </head>
       <body
         className={`${inter.variable} min-h-full bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100`}
       >

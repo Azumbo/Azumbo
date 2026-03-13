@@ -233,7 +233,7 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
             <img
               src="/logo/Azumbo Logo no background small size.jpeg"
               alt="AZUMBO Logo"
-              className="h-[29px] w-auto max-w-[123px] object-contain md:h-[35px] md:max-w-[158px]"
+              className="h-[32px] w-auto max-w-[135px] object-contain md:h-[39px] md:max-w-[174px]"
             />
           </div>
           <div className="flex gap-2 text-xs">
@@ -389,7 +389,7 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
 
         <article className="birdlines-project mt-12 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
           <video
-            className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-cover shadow-sm dark:border-neutral-700"
+            className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-contain shadow-sm dark:border-neutral-700"
             controls
             preload="metadata"
             onLoadedMetadata={(event) => {
@@ -431,6 +431,12 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
       <section className="mx-auto max-w-5xl px-4 pb-12">
         <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.aboutTitle}</h2>
         <p className="max-w-3xl leading-relaxed text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
+        <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-neutral-500">{t.valuesTitle}</h3>
+          <p className="mt-3 rounded-xl border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
+            {t.valuesItems}
+          </p>
+        </div>
         <div className="mt-4 flex gap-4">
           <div className="h-16 w-16 rounded-md bg-gradient-to-br from-fuchsia-500 to-yellow-400 pixelated" />
           <div className="h-16 w-16 rounded-md bg-gradient-to-br from-cyan-400 to-emerald-400 pixelated" />
@@ -486,7 +492,7 @@ function GameCard({ href, title, desc, icon, gradient, media }: any) {
       className="group pressable flex flex-col rounded-2xl border-4 border-neutral-300 bg-neutral-100 overflow-hidden shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:bg-neutral-900 dark:focus-visible:outline-white"
     >
       <div className={`relative h-32 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
-        <img src={media} alt="" className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition duration-300" />
+        <img src={media} alt="" className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100 transition duration-300" />
         <div className="absolute inset-0 opacity-10 bg-pattern"></div>
         <div className="relative z-10 text-white text-4xl">
           {icon}
