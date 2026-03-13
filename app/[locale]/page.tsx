@@ -47,12 +47,10 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdSubtitle: 'From Pages to Pixels',
     birdDescription: `Bird Lines is more than a game; it is a tool for mental resilience wrapped in the aesthetic of a puzzle. An invitation to a meditative journey through Paris with Ellie — a digital companion to the adventure story 'Paris in the Plain.' Minimalist design meets poetic storytelling for those seeking a truly chic escape.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
-    birdCta: 'Join the Waitlist',
+    waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Our Values',
-    valueMinimalism: 'Minimalism',
-    valueResilience: 'Mental Resilience',
-    valueHumor: 'Intelligent Humor',
-    footerPress: 'For publishers & press: azumbogames@gmail.com'
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: azumbogames@gmail.com'
   },
   it: {
     title: 'AZUMBO — Studio Indie',
@@ -91,12 +89,10 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdSubtitle: 'Dalle pagine ai pixel',
     birdDescription: `Bird Lines non è solo un gioco, ma uno strumento di resilienza mentale avvolto nell'estetica di un puzzle. Un invito a un viaggio meditativo attraverso Parigi insieme ad Ellie — il complemento interattivo del racconto d'avventura 'Paris in the Plain'. Design minimalista e narrazione poetica per chi cerca un’elegante via di fuga.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
-    birdCta: 'Join the Waitlist',
+    waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Our Values',
-    valueMinimalism: 'Minimalism',
-    valueResilience: 'Mental Resilience',
-    valueHumor: 'Intelligent Humor',
-    footerPress: 'For publishers & press: azumbogames@gmail.com'
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: azumbogames@gmail.com'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -135,12 +131,10 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdSubtitle: 'От страниц к пикселям',
     birdDescription: `Bird Lines — не просто игра, а инструмент ментальной устойчивости, обернутый в эстетику пазла. Это приглашение в медитативное путешествие по Парижу вместе с Элли — интерактивное дополнение к приключенческой истории 'Paris in the Plain'. Минималистичный дизайн и поэтичное повествование для тех, кто ищет свой элегантный побег.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
-    birdCta: 'Join the Waitlist',
+    waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Our Values',
-    valueMinimalism: 'Minimalism',
-    valueResilience: 'Mental Resilience',
-    valueHumor: 'Intelligent Humor',
-    footerPress: 'For publishers & press: azumbogames@gmail.com'
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: azumbogames@gmail.com'
   }
 };
 
@@ -419,7 +413,7 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
               href="mailto:azumbogames@gmail.com?subject=Bird%20Lines%20Waitlist"
               className="pressable mt-4 inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
             >
-              {t.birdCta}
+              {t.waitlistCTA}
             </a>
           </div>
         </article>
@@ -432,11 +426,9 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
         <p className="max-w-3xl leading-relaxed text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
         <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
           <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-neutral-500">{t.valuesTitle}</h3>
-          <ul className="mt-3 grid gap-2 text-sm text-neutral-700 dark:text-neutral-200 sm:grid-cols-3">
-            <li className="rounded-xl border border-neutral-200 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800">{t.valueMinimalism}</li>
-            <li className="rounded-xl border border-neutral-200 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800">{t.valueResilience}</li>
-            <li className="rounded-xl border border-neutral-200 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800">{t.valueHumor}</li>
-          </ul>
+          <p className="mt-3 rounded-xl border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
+            {t.valuesItems}
+          </p>
         </div>
         <div className="mt-4 flex gap-4">
           <div className="h-16 w-16 rounded-md bg-gradient-to-br from-fuchsia-500 to-yellow-400 pixelated" />
@@ -462,7 +454,7 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
           href="mailto:azumbogames@gmail.com?subject=Publisher%20and%20Press%20Inquiry"
           className="mt-2 inline-block text-neutral-600 underline decoration-dotted underline-offset-4 transition hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
         >
-          {t.footerPress}
+          {t.pressLine}
         </a>
       </footer>
       <div
