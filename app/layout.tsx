@@ -18,20 +18,44 @@ const SEO_BY_LOCALE: Record<Locale, { title: string; description: string; keywor
   en: {
     title: 'AZUMBO | Minimalist Indie Games & Chic Escapes',
     description:
-      'Discover chic escapes through curated minimalist indie games with intelligent humor and mental resilience.',
-    keywords: ['indie games', 'minimalist games', 'casual games', 'mental resilience', 'AZUMBO']
+      'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.',
+    keywords: [
+      'indie games',
+      'minimalist games',
+      'casual games',
+      'mental resilience',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   },
   ru: {
     title: 'AZUMBO | Минимализм, инди-игры и стильный отдых',
     description:
-      'Откройте мир минимализма: качественные инди-игры с тонким юмором и фокусом на ментальную устойчивость.',
-    keywords: ['инди-игры', 'минимализм', 'казуальные игры', 'ментальная перезагрузка', 'AZUMBO']
+      'Откройте для себя качественные инди-игры, созданные для эстетики, тонкого юмора и ментальной перезагрузки.',
+    keywords: [
+      'инди-игры',
+      'минимализм',
+      'казуальные игры',
+      'ментальная перезагрузка',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   },
   it: {
     title: 'AZUMBO | Giochi Indie Minimalisti e Fughe Chic',
     description:
-      'Scopri Giochi Minimalisti di qualità pensati come fughe chic, con umorismo intelligente e resilienza mentale.',
-    keywords: ['giochi indie', 'giochi minimalisti', 'giochi casual', 'benessere mentale', 'AZUMBO']
+      'Scopri giochi indie di alta qualità progettati per stile, umorismo intelligente e benessere mentale.',
+    keywords: [
+      'giochi indie',
+      'giochi minimalisti',
+      'giochi casual',
+      'benessere mentale',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   }
 };
 
