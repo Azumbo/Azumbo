@@ -91,6 +91,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
       locale: activeLocale
     },
     icons: { icon: '/favicon.ico' },
+    verification: {
+      google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0'
+    },
     themeColor: [
       { media: '(prefers-color-scheme: light)', color: '#ffffff' },
       { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' }
@@ -107,9 +110,6 @@ export default async function RootLayout({
 
   return (
     <html lang={activeLocale} className="h-full">
-      <head>
-        <meta name="google-site-verification" content="ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0" />
-      </head>
       <body
         className={`${inter.variable} min-h-full bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100`}
       >
