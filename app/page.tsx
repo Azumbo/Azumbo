@@ -219,7 +219,13 @@ export default function AzumboLanding() {
               <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
             </svg>
           </button>
-          <div className="font-black tracking-wider">AZUMBO</div>
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <img
+              src="/logo/Azumbo Logo no background small size.jpeg"
+              alt="AZUMBO Logo"
+              className="h-[26px] w-auto max-w-[112px] object-contain md:h-8 md:max-w-[144px]"
+            />
+          </div>
           <div className="flex gap-2 text-xs">
             {(['en','it','ru'] as Lang[]).map(k => (
               <button
