@@ -3,17 +3,21 @@ import type { MetadataRoute } from 'next';
 const SITE_URL = 'https://azumbo.vercel.app';
 const LOCALES = ['en', 'ru', 'it'] as const;
 
-const ROUTES = [''] as const;
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return LOCALES.flatMap((locale) =>
-    ROUTES.map((route) => ({
-      url: `${SITE_URL}/${locale}${route}`,
+  return [
+    {
+      url: `${SITE_URL}/`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1
+    },
+    ...LOCALES.map((locale) => ({
+      url: `${SITE_URL}/${locale}`,
       lastModified: now,
       changeFrequency: 'weekly' as const,
-      priority: route === '' ? 1 : 0.8
+      priority: 0.9
     }))
-  );
+  ];
 }
