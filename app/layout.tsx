@@ -19,19 +19,43 @@ const SEO_BY_LOCALE: Record<Locale, { title: string; description: string; keywor
     title: 'AZUMBO | Minimalist Indie Games & Chic Escapes',
     description:
       'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.',
-    keywords: ['indie games', 'minimalist games', 'casual games', 'mental resilience', 'AZUMBO']
+    keywords: [
+      'indie games',
+      'minimalist games',
+      'casual games',
+      'mental resilience',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   },
   ru: {
     title: 'AZUMBO | Минималистичные инди-игры и стильный отдых',
     description:
       'Откройте для себя качественные инди-игры, созданные для эстетики, тонкого юмора и ментальной перезагрузки.',
-    keywords: ['инди-игры', 'минимализм', 'казуальные игры', 'ментальная перезагрузка', 'AZUMBO']
+    keywords: [
+      'инди-игры',
+      'минимализм',
+      'казуальные игры',
+      'ментальная перезагрузка',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   },
   it: {
     title: 'AZUMBO | Giochi Indie Minimalisti e Fughe Chic',
     description:
       'Scopri giochi indie di alta qualità progettati per stile, umorismo intelligente e benessere mentale.',
-    keywords: ['giochi indie', 'giochi minimalisti', 'giochi casual', 'benessere mentale', 'AZUMBO']
+    keywords: [
+      'giochi indie',
+      'giochi minimalisti',
+      'giochi casual',
+      'benessere mentale',
+      'AZUMBO',
+      'indie game studio for partnership',
+      'chic aesthetic games portfolio'
+    ]
   }
 };
 
