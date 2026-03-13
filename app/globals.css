@@ -12,6 +12,20 @@ html, body { font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-sy
   margin-inline: auto;
 }
 
+
+.header-container {
+  gap: 1rem;
+}
+
+.header-logo {
+  max-height: 40px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  object-fit: contain;
+}
+
 .featured-games-grid {
   display: grid;
   gap: 1.5rem;
@@ -210,7 +224,18 @@ body.cursor-click {
 }
 
 @media (max-width: 768px) {
-  /* Targeted class for the project description */
+  .header-logo {
+    max-height: 25px !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .header-container {
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .project-description {
     line-height: 1.6 !important;
     letter-spacing: 0.02em;
@@ -219,7 +244,6 @@ body.cursor-click {
     text-align: left;
   }
 
-  /* Video scaling: reduce size by 40% (to 60% total) to show fields around it */
   .video-container,
   video,
   iframe {
