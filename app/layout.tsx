@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
     description: seo.description,
     keywords: seo.keywords,
     alternates: {
-      canonical: localePath,
+      canonical: `${SITE_URL}/`,
       languages: {
         en: `${SITE_URL}/en`,
         ru: `${SITE_URL}/ru`,
