@@ -18,19 +18,19 @@ const SEO_BY_LOCALE: Record<Locale, { title: string; description: string; keywor
   en: {
     title: 'AZUMBO | Minimalist Indie Games & Chic Escapes',
     description:
-      'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.',
+      'Discover chic escapes through curated minimalist indie games with intelligent humor and mental resilience.',
     keywords: ['indie games', 'minimalist games', 'casual games', 'mental resilience', 'AZUMBO']
   },
   ru: {
-    title: 'AZUMBO | Минималистичные инди-игры и стильный отдых',
+    title: 'AZUMBO | Минимализм, инди-игры и стильный отдых',
     description:
-      'Откройте для себя качественные инди-игры, созданные для эстетики, тонкого юмора и ментальной перезагрузки.',
+      'Откройте мир минимализма: качественные инди-игры с тонким юмором и фокусом на ментальную устойчивость.',
     keywords: ['инди-игры', 'минимализм', 'казуальные игры', 'ментальная перезагрузка', 'AZUMBO']
   },
   it: {
     title: 'AZUMBO | Giochi Indie Minimalisti e Fughe Chic',
     description:
-      'Scopri giochi indie di alta qualità progettati per stile, umorismo intelligente e benessere mentale.',
+      'Scopri Giochi Minimalisti di qualità pensati come fughe chic, con umorismo intelligente e resilienza mentale.',
     keywords: ['giochi indie', 'giochi minimalisti', 'giochi casual', 'benessere mentale', 'AZUMBO']
   }
 };
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
   const { locale } = await params;
   const activeLocale: Locale = isLocale(locale) ? locale : 'en';
   const seo = SEO_BY_LOCALE[activeLocale];
-  const localePath = activeLocale === 'en' ? '/en' : `/${activeLocale}`;
+  const localePath = activeLocale === 'en' ? '/' : `/${activeLocale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
     alternates: {
       canonical: `${SITE_URL}/`,
       languages: {
-        en: `${SITE_URL}/en`,
+        en: `${SITE_URL}/`,
         ru: `${SITE_URL}/ru`,
         it: `${SITE_URL}/it`,
         'x-default': `${SITE_URL}/`
@@ -83,6 +83,9 @@ export default async function RootLayout({
 
   return (
     <html lang={activeLocale} className="h-full">
+      <head>
+        <meta name="google-site-verification" content="ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0" />
+      </head>
       <body
         className={`${inter.variable} min-h-full bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100`}
       >
