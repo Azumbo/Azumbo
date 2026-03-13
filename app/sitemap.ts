@@ -1,112 +1,41 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://azumbo.vercel.app'
+const SITE_URL = 'https://azumbo.vercel.app';
+const LOCALES = ['en', 'ru', 'it'] as const;
+
+const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
+  { path: '', priority: 1 },
+  { path: '/PacMan', priority: 0.8 },
+  { path: '/Spaceinvaders', priority: 0.8 },
+  { path: '/CityInThePlane/privacy', priority: 0.4 },
+  { path: '/cornettoclicker', priority: 0.8 },
+  { path: '/cornettoclicker-landing', priority: 0.8 },
+  { path: '/cornettoclicker/privacy', priority: 0.4 },
+  { path: '/cornettoclicker/terms', priority: 0.4 },
+  { path: '/finish', priority: 0.5 },
+  { path: '/frogger', priority: 0.8 },
+  { path: '/game', priority: 0.7 },
+  { path: '/petonauta-landing', priority: 0.8 },
+  { path: '/register', priority: 0.7 },
+  { path: '/stats', priority: 0.6 }
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date()
+  const lastModified = new Date();
 
-  return [
-    {
-      url: `${BASE_URL}`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/en`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/ru`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/it`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/PacMan`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/Spaceinvaders`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/frogger`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/cornettoclicker`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/cornettoclicker-landing`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/petonauta-landing`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/game`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/register`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/stats`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/finish`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/CityInThePlane/privacy`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/cornettoclicker/privacy`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/cornettoclicker/terms`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.4,
-    },
-  ]
+  const staticPages: MetadataRoute.Sitemap = STATIC_ROUTES.map(({ path, priority }) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency: 'weekly',
+    priority
+  }));
+
+  const localePages: MetadataRoute.Sitemap = LOCALES.map((locale) => ({
+    url: `${SITE_URL}/${locale}`,
+    lastModified,
+    changeFrequency: 'weekly',
+    priority: 0.9
+  }));
+
+  return [...staticPages, ...localePages];
 }
