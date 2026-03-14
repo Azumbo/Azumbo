@@ -1,11 +1,25 @@
 // page.tsx
-'use client';
-
-import { useMemo, useState, useEffect } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import FloatingSprites from '../../components/FloatingSprites';
 
 type Lang = 'en' | 'it' | 'ru';
+
+const SITE_URL = 'https://azumbo.vercel.app';
+
+const isLang = (value: string): value is Lang => ['en', 'it', 'ru'].includes(value);
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const lang: Lang = isLang(locale) ? locale : 'en';
+  const canonicalPath = `/${lang}`;
+
+  return {
+    alternates: {
+      canonical: `${SITE_URL}${canonicalPath}`
+    }
+  };
+}
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
@@ -138,22 +152,10 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   }
 };
 
-export default function AzumboLanding({ params }: { params: { locale: string } }) {
-  const routeLang = ['en', 'it', 'ru'].includes(params.locale) ? (params.locale as Lang) : 'en';
-  const [lang, setLang] = useState<Lang>(routeLang);
-  const [secret, setSecret] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    window.localStorage.setItem('azumbo-lang', lang);
-  }, [lang]);
-
-  useEffect(() => {
-    setLang(routeLang);
-  }, [routeLang]);
-
-  const t = useMemo(() => STRINGS[lang], [lang]);
+export default async function AzumboLanding({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const routeLang: Lang = isLang(locale) ? locale : 'en';
+  const t = STRINGS[routeLang];
 
   const renderBirdDescription = (description: string) => {
     const bookTitle = 'Paris in the Plain';
@@ -191,9 +193,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
 
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      {/* Head-like tags */}
-      <link rel="canonical" href="https://azumbo.vercel.app/" />
-      <meta name="robots" content="index,follow" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
@@ -220,15 +219,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
               {t.navContact}
             </a>
           </nav>
-          <button
-            className="md:hidden rounded-md p-2 text-neutral-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-expanded={menuOpen}
-          >
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
-            </svg>
-          </button>
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <img
               src="/logo/Azumbo Logo no background small size.jpeg"
@@ -237,39 +227,42 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
             />
           </div>
           <div className="flex gap-2 text-xs">
-            {(['en','it','ru'] as Lang[]).map(k => (
-              <button
-                key={k}
-                onClick={() => setLang(k)}
-                className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
-                  lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
-                }`}
-                aria-pressed={lang===k}
-              >
-                {k.toUpperCase()}
-              </button>
-            ))}
+            {(['en', 'it', 'ru'] as Lang[]).map((k) => {
+              const href = k === 'en' ? '/en' : `/${k}`;
+              const active = routeLang === k;
+
+              return (
+                <Link
+                  key={k}
+                  href={href}
+                  className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
+                    active ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {k.toUpperCase()}
+                </Link>
+              );
+            })}
           </div>
-          <nav
-            className={`${menuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 bg-neutral-950 p-4 text-sm md:hidden`}
-          >
+          <nav className="absolute left-0 right-0 top-full flex flex-col gap-4 bg-neutral-950 p-4 text-sm md:hidden">
             <a
               href="#games"
-              onClick={() => setMenuOpen(false)}
+             
               className="rounded-md text-neutral-300 transition hover:text-white"
             >
               {t.navGames}
             </a>
             <a
               href="#services"
-              onClick={() => setMenuOpen(false)}
+             
               className="rounded-md text-neutral-300 transition hover:text-white"
             >
               {t.navServices}
             </a>
             <a
               href="#contact"
-              onClick={() => setMenuOpen(false)}
+             
               className="rounded-md text-neutral-300 transition hover:text-white"
             >
               {t.navContact}
@@ -392,9 +385,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
             className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-contain shadow-sm dark:border-neutral-700"
             controls
             preload="metadata"
-            onLoadedMetadata={(event) => {
-              event.currentTarget.currentTime = 2;
-            }}
           >
             <source src="/Whoops 15 10 2025.mp4#t=2" type="video/mp4" />
             Your browser does not support the video tag.
@@ -459,11 +449,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
         <p>{t.footer}</p>
         <p className="mt-2 text-xs tracking-[0.08em] text-neutral-500 dark:text-neutral-400">{t.pressLine}</p>
       </footer>
-      <div
-        className={`easter-egg ${secret ? 'found' : ''}`}
-        onClick={() => setSecret(true)}
-      />
-      {secret && <div className="fixed bottom-20 left-8 text-xs">🎉</div>}
     </main>
   );
 }
