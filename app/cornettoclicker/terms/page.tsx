@@ -421,7 +421,7 @@ export default function TermsPage() {
     name: current.metaTitle,
     inLanguage: lang,
     description: current.metaDescription,
-    url: 'https://azumbo.com/cornettoclicker/terms'
+    url: 'https://azumbo.vercel.app/cornettoclicker/terms'
   };
 
   return (

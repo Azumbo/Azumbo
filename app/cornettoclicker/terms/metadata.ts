@@ -4,12 +4,12 @@ export const metadata: Metadata = {
   title: '[EN/IT/RU] Terms of Service — AZUMBO | Mr Cup Cornetto',
   description: 'Official Terms of Service for Mr Cup Cornetto by AZUMBO.',
   alternates: {
-    canonical: 'https://azumbo.com/cornettoclicker/terms'
+    canonical: 'https://azumbo.vercel.app/cornettoclicker/terms'
   },
   openGraph: {
     title: '[EN/IT/RU] Terms of Service — AZUMBO | Mr Cup Cornetto',
     description: 'Official Terms of Service for Mr Cup Cornetto by AZUMBO.',
-    url: 'https://azumbo.com/cornettoclicker/terms'
+    url: 'https://azumbo.vercel.app/cornettoclicker/terms'
   },
   twitter: {
     card: 'summary',
