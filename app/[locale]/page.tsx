@@ -315,6 +315,11 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             </div>
           </div>
         </article>
+
+        <article className="mt-6 rounded-3xl border border-neutral-200 bg-white/80 p-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)] backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/70">
+          <p className="text-xs uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">{t.valuesTitle}</p>
+          <p className="mt-2 text-base font-medium text-neutral-800 dark:text-neutral-100">{t.valuesItems}</p>
+        </article>
       </section>
 
       <footer className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
