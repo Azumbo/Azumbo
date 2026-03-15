@@ -90,7 +90,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
       description: seo.description,
       locale: activeLocale
     },
-    icons: { icon: '/favicon.ico' },
+    icons: { icon: '/logo/fav.ico' },
     verification: {
       google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0'
     },
