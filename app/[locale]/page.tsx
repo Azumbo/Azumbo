@@ -1,11 +1,13 @@
 // page.tsx
-'use client';
-
-import { useMemo, useState, useEffect } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import FloatingSprites from '../../components/FloatingSprites';
 
 type Lang = 'en' | 'it' | 'ru';
+
+const SITE_URL = 'https://azumbo.vercel.app';
+
+const isLang = (value?: string): value is Lang => value === 'en' || value === 'it' || value === 'ru';
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
@@ -138,22 +140,27 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   }
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ locale?: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const lang: Lang = isLang(locale) ? locale : 'en';
+  const localePath = `/${lang}`;
+
+  return {
+    alternates: {
+      canonical: `${SITE_URL}${localePath}`,
+      languages: {
+        en: `${SITE_URL}/en`,
+        ru: `${SITE_URL}/ru`,
+        it: `${SITE_URL}/it`,
+        'x-default': `${SITE_URL}/en`
+      }
+    }
+  };
+}
+
 export default function AzumboLanding({ params }: { params: { locale: string } }) {
-  const routeLang = ['en', 'it', 'ru'].includes(params.locale) ? (params.locale as Lang) : 'en';
-  const [lang, setLang] = useState<Lang>(routeLang);
-  const [secret, setSecret] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    window.localStorage.setItem('azumbo-lang', lang);
-  }, [lang]);
-
-  useEffect(() => {
-    setLang(routeLang);
-  }, [routeLang]);
-
-  const t = useMemo(() => STRINGS[lang], [lang]);
+  const lang: Lang = isLang(params.locale) ? params.locale : 'en';
+  const t = STRINGS[lang];
 
   const renderBirdDescription = (description: string) => {
     const bookTitle = 'Paris in the Plain';
@@ -192,15 +199,13 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Head-like tags */}
-      <link rel="canonical" href="https://azumbo.vercel.app/" />
-      <meta name="robots" content="index,follow" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
       {/* COMPACT DARK HEADER */}
-      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
-        <div className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
-          <nav className="hidden gap-5 text-sm md:flex">
+      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 px-[max(env(safe-area-inset-left),0px)] backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
+        <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3">
+          <nav className="hidden shrink-0 items-center gap-5 text-sm md:flex">
             <a
               href="#games"
               className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
@@ -220,62 +225,60 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
               {t.navContact}
             </a>
           </nav>
-          <button
-            className="md:hidden rounded-md p-2 text-neutral-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-expanded={menuOpen}
-          >
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
-            </svg>
-          </button>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <img
-              src="/logo/Azumbo Logo no background small size.jpeg"
-              alt="AZUMBO Logo"
-              className="h-[32px] w-auto max-w-[135px] object-contain md:h-[39px] md:max-w-[174px]"
-            />
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-3 md:gap-4">
+              <span className="h-px flex-1 bg-neutral-700" aria-hidden="true" />
+              <div className="shrink-0 px-2 md:px-3">
+                <img
+                  src="/logo/Azumbo Logo no background small size.jpeg"
+                  alt="AZUMBO Logo"
+                  className="h-[30px] w-auto max-w-[128px] object-contain md:h-[36px] md:max-w-[160px]"
+                />
+              </div>
+              <span className="h-px flex-1 bg-neutral-700" aria-hidden="true" />
+            </div>
           </div>
-          <div className="flex gap-2 text-xs">
-            {(['en','it','ru'] as Lang[]).map(k => (
-              <button
-                key={k}
-                onClick={() => setLang(k)}
-                className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
-                  lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
-                }`}
-                aria-pressed={lang===k}
-              >
-                {k.toUpperCase()}
-              </button>
-            ))}
+
+          <div className="ml-auto flex shrink-0 gap-2 text-xs">
+            {(['en','it','ru'] as Lang[]).map(k => {
+              const href = `/${k}`;
+              return (
+                <Link
+                  key={k}
+                  href={href}
+                  className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
+                    lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
+                  }`}
+                  aria-current={lang===k ? 'page' : undefined}
+                >
+                  {k.toUpperCase()}
+                </Link>
+              );
+            })}
           </div>
-          <nav
-            className={`${menuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 bg-neutral-950 p-4 text-sm md:hidden`}
-          >
-            <a
-              href="#games"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navGames}
-            </a>
-            <a
-              href="#services"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navServices}
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navContact}
-            </a>
-          </nav>
         </div>
+
+        <nav className="mx-auto flex max-w-5xl items-center justify-center gap-5 px-4 pb-3 text-sm md:hidden">
+          <a
+            href="#games"
+            className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+          >
+            {t.navGames}
+          </a>
+          <a
+            href="#services"
+            className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+          >
+            {t.navServices}
+          </a>
+          <a
+            href="#contact"
+            className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+          >
+            {t.navContact}
+          </a>
+        </nav>
       </header>
 
       {/* HERO */}
@@ -392,9 +395,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
             className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-contain shadow-sm dark:border-neutral-700"
             controls
             preload="metadata"
-            onLoadedMetadata={(event) => {
-              event.currentTarget.currentTime = 2;
-            }}
           >
             <source src="/Whoops 15 10 2025.mp4#t=2" type="video/mp4" />
             Your browser does not support the video tag.
@@ -459,11 +459,6 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
         <p>{t.footer}</p>
         <p className="mt-2 text-xs tracking-[0.08em] text-neutral-500 dark:text-neutral-400">{t.pressLine}</p>
       </footer>
-      <div
-        className={`easter-egg ${secret ? 'found' : ''}`}
-        onClick={() => setSecret(true)}
-      />
-      {secret && <div className="fixed bottom-20 left-8 text-xs">🎉</div>}
     </main>
   );
 }
