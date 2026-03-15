@@ -204,14 +204,6 @@ body.cursor-click {
   gap: 20px;
 }
 
-.site-header__nav--desktop {
-  display: none;
-}
-
-.site-header__nav--mobile {
-  display: flex;
-}
-
 .site-header__nav a,
 .site-header__locale a {
   display: inline-flex;
@@ -257,15 +249,5 @@ body.cursor-click {
   .site-header__nav--mobile {
     gap: 20px;
     padding-bottom: 12px;
-  }
-}
-
-@media (min-width: 768px) {
-  .site-header__nav--desktop {
-    display: flex;
-  }
-
-  .site-header__nav--mobile {
-    display: none;
   }
 }
