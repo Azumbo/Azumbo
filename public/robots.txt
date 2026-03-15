@@ -1,7 +1,4 @@
-User-agent: *
-Allow: /
-
-# AI bots policy
+# AI bots policy - Запрещаем обучение на нашем контенте
 User-agent: GPTBot
 Disallow: /
 
@@ -20,4 +17,9 @@ Disallow: /
 User-agent: Google-Extended
 Disallow: /
 
+# Разрешаем индексацию для обычных поисковиков (Google, Bing, Yandex)
+User-agent: *
+Allow: /
+
+# Ссылка на карту сайта для ускорения индексации
 Sitemap: https://azumbo.vercel.app/sitemap.xml
