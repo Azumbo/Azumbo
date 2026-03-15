@@ -46,7 +46,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdTitle: 'Current Project: Bird Lines',
     birdSubtitle: 'From Pages to Pixels',
     birdDescription: `Bird Lines is more than a game; it is a tool for mental resilience wrapped in the aesthetic of a puzzle. An invitation to a meditative journey through Paris with Ellie — a digital companion to the adventure story 'Paris in the Plain.' Minimalist design meets poetic storytelling for those seeking a truly chic escape.`,
-    birdStatus: 'Status: In Development (Calabria, Italy)'
+    birdStatus: 'Status: In Development (Calabria, Italy)',
+    waitlistCTA: 'Join the Waitlist',
+    valuesTitle: 'Studio Roadmap',
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: hello@ваша_почта.com'
   },
   it: {
     title: 'AZUMBO — Studio Indie',
@@ -84,7 +88,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdTitle: 'Progetto attuale: Bird Lines',
     birdSubtitle: 'Dalle pagine ai pixel',
     birdDescription: `Bird Lines non è solo un gioco, ma uno strumento di resilienza mentale avvolto nell'estetica di un puzzle. Un invito a un viaggio meditativo attraverso Parigi insieme ad Ellie — il complemento interattivo del racconto d'avventura 'Paris in the Plain'. Design minimalista e narrazione poetica per chi cerca un’elegante via di fuga.`,
-    birdStatus: 'Stato: In sviluppo (Calabria, Italia)'
+    birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
+    waitlistCTA: 'Join the Waitlist',
+    valuesTitle: 'Studio Roadmap',
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: hello@ваша_почта.com'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -122,7 +130,11 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdTitle: 'Текущий проект: Bird Lines',
     birdSubtitle: 'От страниц к пикселям',
     birdDescription: `Bird Lines — не просто игра, а инструмент ментальной устойчивости, обернутый в эстетику пазла. Это приглашение в медитативное путешествие по Парижу вместе с Элли — интерактивное дополнение к приключенческой истории 'Paris in the Plain'. Минималистичный дизайн и поэтичное повествование для тех, кто ищет свой элегантный побег.`,
-    birdStatus: 'Статус: В разработке (Калабрия, Италия)'
+    birdStatus: 'Статус: В разработке (Калабрия, Италия)',
+    waitlistCTA: 'Join the Waitlist',
+    valuesTitle: 'Studio Roadmap',
+    valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    pressLine: 'For publishers & press: hello@ваша_почта.com'
   }
 };
 
@@ -397,7 +409,20 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
             <span className="mt-5 inline-flex rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1 text-xs uppercase tracking-[0.08em] text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
               {t.birdStatus}
             </span>
+            <div className="mt-6">
+              <a
+                href="mailto:azumbogames@gmail.com?subject=Bird%20Lines%20Waitlist"
+                className="pressable inline-flex items-center rounded-full border border-neutral-900 bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300 dark:focus-visible:outline-white"
+              >
+                {t.waitlistCTA}
+              </a>
+            </div>
           </div>
+        </article>
+
+        <article className="mt-6 rounded-3xl border border-neutral-200 bg-white/80 p-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)] backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/70">
+          <p className="text-xs uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">{t.valuesTitle}</p>
+          <p className="mt-2 text-base font-medium text-neutral-800 dark:text-neutral-100">{t.valuesItems}</p>
         </article>
       </section>
       <div className="pixel-divider" />
@@ -425,7 +450,8 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
       </section>
 
       <footer className="border-t py-6 text-center text-sm dark:border-neutral-800">
-        {t.footer}
+        <p>{t.footer}</p>
+        <p className="mt-2 text-xs tracking-[0.08em] text-neutral-500 dark:text-neutral-400">{t.pressLine}</p>
       </footer>
       <div
         className={`easter-egg ${secret ? 'found' : ''}`}

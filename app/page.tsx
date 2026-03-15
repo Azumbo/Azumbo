@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import AzumboLanding from './[locale]/page';
 
 export default function HomePage() {
-  redirect('/en');
+  return <AzumboLanding params={{ locale: 'en' }} />;
 }
