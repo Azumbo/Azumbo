@@ -503,7 +503,7 @@ export default function PrivacyPage() {
     name: current.metaTitle,
     inLanguage: lang,
     description: current.metaDescription,
-    url: 'https://azumbo.com/cornettoclicker/privacy'
+    url: 'https://azumbo.vercel.app/cornettoclicker/privacy'
   };
 
   return (

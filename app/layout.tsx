@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
   const { locale } = await params;
   const activeLocale: Locale = isLocale(locale) ? locale : 'en';
   const seo = SEO_BY_LOCALE[activeLocale];
-  const localePath = activeLocale === 'en' ? '/' : `/${activeLocale}`;
+  const localePath = `/${activeLocale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -73,12 +73,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale?: 
     description: seo.description,
     keywords: seo.keywords,
     alternates: {
-      canonical: `${SITE_URL}/`,
+      canonical: `${SITE_URL}${localePath}`,
       languages: {
-        en: `${SITE_URL}/`,
+        en: `${SITE_URL}/en`,
         ru: `${SITE_URL}/ru`,
         it: `${SITE_URL}/it`,
-        'x-default': `${SITE_URL}/`
+        'x-default': `${SITE_URL}/en`
       }
     },
     robots: { index: true, follow: true },
