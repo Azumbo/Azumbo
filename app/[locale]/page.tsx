@@ -148,7 +148,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const lang: Lang = isLang(locale) ? locale : 'en';
   const t = STRINGS[lang];
-  const canonicalPath = lang === 'en' ? '/' : `/${lang}`;
+  const canonicalPath = `/${lang}`;
 
   return {
     title: t.title,

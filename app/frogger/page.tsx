@@ -1,5 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   initAudioSystem,
   playJumpSound,
@@ -15,6 +17,16 @@ export default function FroggerPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState<'play' | 'win'>('play');
   const [homes, setHomes] = useState([false, false, false]);
+  const [ctaText, setCtaText] = useState('Закажите у нас свою игру');
+
+  useEffect(() => {
+    const userLang = (navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage || '').toLowerCase();
+    if (userLang.startsWith('en')) {
+      setCtaText('Order your own game from us');
+    } else if (userLang.startsWith('it')) {
+      setCtaText('Ordina il tuo gioco da noi');
+    }
+  }, []);
 
   useEffect(() => {
     if (status === 'play') {
@@ -207,11 +219,31 @@ export default function FroggerPage() {
 
   return (
     <div className="pixel-container">
+      <Link
+        href="https://azumbo.vercel.app/en"
+        className="fixed left-2 top-2 z-50 rounded-md bg-white/85 p-0.5 shadow"
+        aria-label="Go to AZUMBO home"
+      >
+        <Image
+          src="/logo/Azumbo Logo no background Sm.png"
+          alt="AZUMBO"
+          width={120}
+          height={44}
+          priority
+          className="h-auto w-[64px] sm:w-[78px]"
+        />
+      </Link>
       <h1>🐸 Frogger</h1>
       <canvas
         ref={canvasRef}
         style={{ background: '#000', imageRendering: 'pixelated' }}
       />
+      <a
+        href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
+        className="mt-4 inline-block rounded-md border border-black px-4 py-2 text-center text-sm font-semibold"
+      >
+        {ctaText}
+      </a>
       {status === 'win' && <p>🏆 You win!</p>}
     </div>
   );
