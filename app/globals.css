@@ -201,8 +201,6 @@ body.cursor-click {
 }
 
 .site-header__nav {
-  display: flex;
-  align-items: center;
   gap: 20px;
 }
 
@@ -249,7 +247,6 @@ body.cursor-click {
   }
 
   .site-header__nav--mobile {
-    display: flex;
     gap: 20px;
     padding-bottom: 12px;
   }
