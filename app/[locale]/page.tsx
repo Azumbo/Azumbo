@@ -215,11 +215,14 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           {/* Centered Logo */}
           <div className="flex flex-1 items-center justify-center px-4">
              <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
-             <Link href={`/${routeLang}`}>
-               <img
-                  src="/logo/Azumbo Logo no background small size.jpeg"
+             <Link href={`/${routeLang}`} className="mx-4">
+               <Image
+                  src="/assets/logo/azumbo-logo.png"
                   alt="AZUMBO Logo"
-                  className="mx-4 h-[32px] w-auto object-contain md:h-[40px]"
+                  width={180}
+                  height={44}
+                  priority
+                  className="h-[32px] w-auto object-contain md:h-[40px]"
                 />
              </Link>
              <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
@@ -253,7 +256,15 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <section className="relative mx-auto max-w-5xl px-4 py-16 md:py-24">
         <FloatingSprites />
         <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
-        <h1 className="mt-3 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
+        <Image
+          src="/assets/logo/azumbo-logo.png"
+          alt="AZUMBO Emblem"
+          width={320}
+          height={80}
+          priority
+          className="mt-6 h-auto w-[180px] sm:w-[220px]"
+        />
+        <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-8">
           <a href="mailto:azumbogames@gmail.com" className="inline-block rounded-xl border border-neutral-300 px-6 py-3 font-medium transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900">
@@ -276,9 +287,9 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <section id="games" className="mx-auto max-w-5xl px-4 py-16">
         <h2 className="mb-8 text-3xl font-bold">{t.featured}</h2>
         <div className="grid gap-6 md:grid-cols-3">
-           <GameCard title="Frogger" desc={t.frDesc} gradient="from-emerald-500 to-green-600" />
-           <GameCard title="Invaders" desc={t.siDesc} gradient="from-blue-500 to-indigo-600" />
-           <GameCard title="Pac-Man" desc={t.pmDesc} gradient="from-yellow-400 to-orange-500" />
+           <GameCard title="Frogger" href="/frogger" desc={t.frDesc} gradient="from-emerald-500 to-green-600" />
+           <GameCard title="Invaders" href="/Spaceinvaders" desc={t.siDesc} gradient="from-blue-500 to-indigo-600" />
+           <GameCard title="Pac-Man" href="/PacMan" desc={t.pmDesc} gradient="from-yellow-400 to-orange-500" />
         </div>
 
         {/* BIRD LINES SPOTLIGHT */}
@@ -286,7 +297,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           <div className="flex flex-col md:flex-row">
             <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
               <video className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
-                <source src="/whoops-video.mp4#t=0.1" type="video/mp4" />
+                <source src="/whoops-video.mp4#t=2" type="video/mp4" />
               </video>
             </div>
             <div className="p-8 md:w-2/3">
@@ -327,14 +338,17 @@ function ServiceCard({ title, desc, price }: any) {
   );
 }
 
-function GameCard({ title, desc, gradient }: any) {
+function GameCard({ title, href, desc, gradient }: any) {
   return (
-    <div className="group overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 dark:border-neutral-800">
+    <Link
+      href={href}
+      className="group block overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800"
+    >
       <div className={`h-32 bg-gradient-to-br ${gradient}`}></div>
       <div className="p-5">
         <h4 className="font-bold">{title}</h4>
         <p className="mt-1 text-sm text-neutral-500">{desc}</p>
       </div>
-    </div>
+    </Link>
   );
 }
