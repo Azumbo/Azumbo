@@ -1,15 +1,19 @@
 // page.tsx
-'use client';
-
-import { useMemo, useState, useEffect } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
 
 type Lang = 'en' | 'it' | 'ru';
 
+const SITE_URL = 'https://azumbo.vercel.app';
+
+const isLang = (value: string): value is Lang => ['en', 'it', 'ru'].includes(value);
+
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
     title: 'AZUMBO — Indie Game Studio',
+    seoDesc: 'Crafting snackable, high-polish games for mobile and Switch. Explore Bird Lines and our prototype services.',
     kicker: 'Mobile-first games with humor & heart.',
     subtitle: 'We craft fast, funny and viral-ready casual games for Android, iOS and Nintendo Switch.',
     ctaContact: 'Contact',
@@ -25,15 +29,13 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     aboutText: 'AZUMBO is a tiny indie studio focused on snackable, high-polish games, lean tech and rapid publishing.',
     contactTitle: 'Get in touch',
     email: 'Email',
-    footer: '© 2025 AZUMBO. All rights reserved.',
-    // nav
+    footer: '© 2026 AZUMBO. All rights reserved.',
     navGames: 'Games',
     navServices: 'Services',
     navContact: 'Contact',
-    // services
     servicesTitle: 'Services',
     servicesSubtitle: 'From prototype sprints to publishing and platform ports.',
-    srvProtoTitle: 'Prototype Sprint (5–10 days)',
+    srvProtoTitle: 'Prototype Sprint',
     srvProtoDesc: 'Fast vertical slice: core loop, basic art/sfx, deployable build for tests.',
     srvProtoPrice: 'from €499',
     srvPublishTitle: 'Publishing & UA',
@@ -45,15 +47,16 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Request a quote',
     birdTitle: 'Current Project: Bird Lines',
     birdSubtitle: 'From Pages to Pixels',
-    birdDescription: `Bird Lines is more than a game; it is a tool for mental resilience wrapped in the aesthetic of a puzzle. An invitation to a meditative journey through Paris with Ellie — a digital companion to the adventure story 'Paris in the Plain.' Minimalist design meets poetic storytelling for those seeking a truly chic escape.`,
+    birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'Paris in the Plain.' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
     waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: hello@ваша_почта.com'
+    pressLine: 'For publishers & press: azumbogames@gmail.com'
   },
   it: {
-    title: 'AZUMBO — Studio Indie',
+    title: 'AZUMBO — Studio Giochi Indie',
+    seoDesc: 'Sviluppo giochi mobile e Switch in Calabria. Scopri Bird Lines e i nostri servizi di prototipazione.',
     kicker: 'Giochi mobile-first con umorismo e cuore.',
     subtitle: 'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
     ctaContact: 'Contatto',
@@ -63,23 +66,23 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     switch: 'Nintendo Switch',
     featured: 'Giochi in evidenza',
     frDesc: 'Salti in stile frog con UX moderna.',
-    siDesc: 'Difendi la Terra dall\'invasione aliena in questo sparatutto arcade classico.',
-    pmDesc: 'Naviga nel labirinto, mangia i puntini ed evita i fantasmi in questo intramontabile classico.',
+    siDesc: 'Difendi la Terra dall\'invasione aliena.',
+    pmDesc: 'Naviga nel labirinto, mangia i puntini ed evita i fantasmi.',
     aboutTitle: 'Chi è AZUMBO',
     aboutText: 'Piccolo studio indie: giochi rapidi, tech snello, pubblicazione veloce.',
     contactTitle: 'Contattaci',
     email: 'E-mail',
-    footer: '© 2025 AZUMBO. Tutti i diritti riservati.',
+    footer: '© 2026 AZUMBO. Tutti i diritti riservati.',
     navGames: 'Giochi',
     navServices: 'Servizi',
     navContact: 'Contatto',
     servicesTitle: 'Servizi',
     servicesSubtitle: 'Dallo sprint di prototipo al publishing e porting su console.',
-    srvProtoTitle: 'Sprint di Prototipo (5–10 giorni)',
+    srvProtoTitle: 'Sprint di Prototipo',
     srvProtoDesc: 'Vertical slice veloce: core loop, grafica/sfx base, build per test.',
     srvProtoPrice: 'da €499',
     srvPublishTitle: 'Publishing & UA',
-    srvPublishDesc: 'Asset store, QA, soft launch, creatività UA, analytics. Rev-share possibile.',
+    srvPublishDesc: 'Asset store, QA, soft launch, creatività UA, analytics.',
     srvPublishPrice: 'da €0 + rev-share',
     srvPortTitle: 'Porting su Nintendo Switch',
     srvPortDesc: 'Porting tecnico, input/UI, performance, supporto submission.',
@@ -87,15 +90,16 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Richiedi un preventivo',
     birdTitle: 'Progetto attuale: Bird Lines',
     birdSubtitle: 'Dalle pagine ai pixel',
-    birdDescription: `Bird Lines non è solo un gioco, ma uno strumento di resilienza mentale avvolto nell'estetica di un puzzle. Un invito a un viaggio meditativo attraverso Parigi insieme ad Ellie — il complemento interattivo del racconto d'avventura 'Paris in the Plain'. Design minimalista e narrazione poetica per chi cerca un’elegante via di fuga.`,
+    birdDescription: `Bird Lines è un match-3 ispirato alla storia 'Paris in the Plain.' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
-    waitlistCTA: 'Join the Waitlist',
+    waitlistCTA: 'Unisciti alla Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: hello@ваша_почта.com'
+    pressLine: 'Per editori e stampa: azumbogames@gmail.com'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
+    seoDesc: 'Разработка мобильных игр и портов на Switch. Bird Lines — match-3 по книге в атмосфере Парижа.',
     kicker: 'Мобильные игры с юмором и душой',
     subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
     ctaContact: 'Связаться',
@@ -104,24 +108,24 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Избранные игры',
-    frDesc: 'Классические "лягушачьи" ходы с современным UX.',
-    siDesc: 'Защитите Землю от инопланетного вторжения в этом классическом аркадном шутере.',
-    pmDesc: 'Пройдите лабиринт, собирайте точки и избегайте призраков в этой вечной классике.',
+    frDesc: 'Классические ходы лягушки с современным UX.',
+    siDesc: 'Защитите Землю от инопланетного вторжения.',
+    pmDesc: 'Пройдите лабиринт, собирайте точки и избегайте призраков.',
     aboutTitle: 'О студии AZUMBO',
     aboutText: 'Маленькая инди-студия: быстрые игры, лёгкая техничка, быстрый релиз.',
     contactTitle: 'Контакты',
     email: 'Почта',
-    footer: '© 2025 AZUMBO. Все права защищены.',
+    footer: '© 2026 AZUMBO. Все права защищены.',
     navGames: 'Игры',
     navServices: 'Услуги',
     navContact: 'Контакты',
     servicesTitle: 'Услуги',
     servicesSubtitle: 'От прототипов до паблишинга и портирования на консоли.',
-    srvProtoTitle: 'Прототип-спринт (5–10 дней)',
+    srvProtoTitle: 'Прототип-спринт',
     srvProtoDesc: 'Быстрый vertical slice: кор-луп, базовая графика/звук, билд для тестов.',
     srvProtoPrice: 'от €499',
     srvPublishTitle: 'Паблишинг и UA',
-    srvPublishDesc: 'Оформление стор, QA, софт-лонч, креативы, аналитика. Возможен rev-share.',
+    srvPublishDesc: 'Оформление сторов, QA, софт-лонч, креативы, аналитика.',
     srvPublishPrice: 'от €0 + rev-share',
     srvPortTitle: 'Портирование на Nintendo Switch',
     srvPortDesc: 'Технический порт, адаптация ввода/UI, оптимизация, помощь с сабмитом.',
@@ -129,293 +133,185 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Запросить смету',
     birdTitle: 'Текущий проект: Bird Lines',
     birdSubtitle: 'От страниц к пикселям',
-    birdDescription: `Bird Lines — не просто игра, а инструмент ментальной устойчивости, обернутый в эстетику пазла. Это приглашение в медитативное путешествие по Парижу вместе с Элли — интерактивное дополнение к приключенческой истории 'Paris in the Plain'. Минималистичный дизайн и поэтичное повествование для тех, кто ищет свой элегантный побег.`,
+    birdDescription: `Bird Lines — это match-3 по мотивам истории 'Paris in the Plain.' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
-    waitlistCTA: 'Join the Waitlist',
+    waitlistCTA: 'В лист ожидания',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: hello@ваша_почта.com'
+    pressLine: 'Для издателей и прессы: azumbogames@gmail.com'
   }
 };
 
-export default function AzumboLanding({ params }: { params: { locale: string } }) {
-  const routeLang = ['en', 'it', 'ru'].includes(params.locale) ? (params.locale as Lang) : 'en';
-  const [lang, setLang] = useState<Lang>(routeLang);
-  const [secret, setSecret] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const lang: Lang = isLang(locale) ? locale : 'en';
+  const t = STRINGS[lang];
+  const canonicalPath = lang === 'en' ? '/' : `/${lang}`;
 
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    window.localStorage.setItem('azumbo-lang', lang);
-  }, [lang]);
+  return {
+    title: t.title,
+    description: t.seoDesc,
+    alternates: {
+      canonical: `${SITE_URL}${canonicalPath}`,
+      languages: {
+        'en': `${SITE_URL}/en`,
+        'it': `${SITE_URL}/it`,
+        'ru': `${SITE_URL}/ru`,
+        'x-default': `${SITE_URL}/en`,
+      },
+    },
+    openGraph: {
+      title: t.title,
+      description: t.seoDesc,
+      url: `${SITE_URL}${canonicalPath}`,
+      siteName: 'AZUMBO',
+      locale: lang,
+      type: 'website',
+      images: [{ url: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg` }],
+    },
+  };
+}
 
-  useEffect(() => {
-    setLang(routeLang);
-  }, [routeLang]);
-
-  const t = useMemo(() => STRINGS[lang], [lang]);
+export default async function AzumboLanding({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const routeLang: Lang = isLang(locale) ? locale : 'en';
+  const t = STRINGS[routeLang];
 
   const renderBirdDescription = (description: string) => {
     const bookTitle = 'Paris in the Plain';
     const parts = description.split(bookTitle);
-
     if (parts.length === 1) return description;
-
     return (
       <>
-        {parts[0]}
-        <em>{bookTitle}</em>
-        {parts.slice(1).join(bookTitle)}
+        {parts[0]}<em>{bookTitle}</em>{parts.slice(1).join(bookTitle)}
       </>
     );
   };
 
-  // JSON-LD (Org + simple OfferCatalog)
   const orgJson = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'AZUMBO',
-    url: 'https://azumbo.vercel.app/',
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`,
     email: 'azumbogames@gmail.com'
-  };
-  const catalogJson = {
-    '@context': 'https://schema.org',
-    '@type': 'OfferCatalog',
-    name: 'AZUMBO Services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Prototype Sprint' }, priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'EUR', price: '499', minPrice: '499' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Publishing & UA' }, priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'EUR', price: '0' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Porting to Nintendo Switch' } }
-    ]
   };
 
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      {/* Head-like tags */}
-      <link rel="canonical" href="https://azumbo.vercel.app/" />
-      <meta name="robots" content="index,follow" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJson) }} />
 
-      {/* COMPACT DARK HEADER */}
-      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 px-[max(env(safe-area-inset-left),0px)]">
-        <div className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-2">
-          <nav className="hidden gap-5 text-sm md:flex">
-            <a
-              href="#games"
-              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            >
-              {t.navGames}
-            </a>
-            <a
-              href="#services"
-              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            >
-              {t.navServices}
-            </a>
-            <a
-              href="#contact"
-              className="rounded-md text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            >
-              {t.navContact}
-            </a>
+      {/* FIXED HEADER */}
+      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+          
+          {/* Desktop Nav */}
+          <nav className="hidden shrink-0 items-center gap-6 text-sm md:flex">
+            <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
+            <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
+            <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
           </nav>
-          <button
-            className="md:hidden rounded-md p-2 text-neutral-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-expanded={menuOpen}
-          >
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" />
-            </svg>
-          </button>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <img
-              src="/logo/Azumbo Logo no background small size.jpeg"
-              alt="AZUMBO Logo"
-              className="h-[29px] w-auto max-w-[123px] object-contain md:h-[35px] md:max-w-[158px]"
-            />
+
+          {/* Centered Logo */}
+          <div className="flex flex-1 items-center justify-center px-4">
+             <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
+             <Link href={`/${routeLang}`} className="mx-4">
+               <Image
+                  src="/assets/logo/azumbo-logo.png"
+                  alt="AZUMBO Logo"
+                  width={180}
+                  height={44}
+                  priority
+                  className="h-[32px] w-auto object-contain md:h-[40px]"
+                />
+             </Link>
+             <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
           </div>
-          <div className="flex gap-2 text-xs">
-            {(['en','it','ru'] as Lang[]).map(k => (
-              <button
+
+          {/* Lang Switcher */}
+          <div className="flex gap-2">
+            {(['en', 'it', 'ru'] as Lang[]).map((k) => (
+              <Link
                 key={k}
-                onClick={() => setLang(k)}
-                className={`rounded-md px-2.5 py-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white ${
-                  lang===k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
+                href={k === 'en' ? '/en' : `/${k}`}
+                className={`rounded px-2 py-1 text-xs transition ${
+                  routeLang === k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
                 }`}
-                aria-pressed={lang===k}
               >
                 {k.toUpperCase()}
-              </button>
+              </Link>
             ))}
           </div>
-          <nav
-            className={`${menuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full flex-col gap-4 bg-neutral-950 p-4 text-sm md:hidden`}
-          >
-            <a
-              href="#games"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navGames}
-            </a>
-            <a
-              href="#services"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navServices}
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md text-neutral-300 transition hover:text-white"
-            >
-              {t.navContact}
-            </a>
-          </nav>
         </div>
+
+        {/* Mobile Nav (Simplified horizontal) */}
+        <nav className="mt-3 flex items-center justify-center gap-6 text-xs md:hidden">
+          <a href="#games" className="text-neutral-400">{t.navGames}</a>
+          <a href="#services" className="text-neutral-400">{t.navServices}</a>
+          <a href="#contact" className="text-neutral-400">{t.navContact}</a>
+        </nav>
       </header>
 
       {/* HERO */}
-      <section className="relative mx-auto max-w-5xl px-4 py-14 md:py-20">
+      <section className="relative mx-auto max-w-5xl px-4 py-16 md:py-24">
         <FloatingSprites />
-        <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">{t.kicker}</p>
-        <h1 className="mt-2 text-4xl font-black leading-[1.05] sm:text-6xl">{t.title}</h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="mailto:azumbogames@gmail.com"
-            className="pressable rounded-xl border border-neutral-300 px-5 py-3 shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
-          >
+        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
+        <Image
+          src="/assets/logo/azumbo-logo.png"
+          alt="AZUMBO Emblem"
+          width={320}
+          height={80}
+          priority
+          className="mt-6 h-auto w-[180px] sm:w-[220px]"
+        />
+        <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
+        <div className="mt-8">
+          <a href="mailto:azumbogames@gmail.com" className="inline-block rounded-xl border border-neutral-300 px-6 py-3 font-medium transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900">
             {t.ctaContact}
           </a>
         </div>
-
-        {/* Platforms */}
-        <div className="mt-10">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{t.platforms}</h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Chip>
-              <span className="platform-icon">
-                <AndroidIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </span>
-              {t.android}
-            </Chip>
-            <Chip>
-              <span className="platform-icon">
-                <AppleIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </span>
-              {t.ios}
-            </Chip>
-            <Chip>
-              <span className="platform-icon">
-                <SwitchIcon width="16" height="16" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-              </span>
-              {t.switch}
-            </Chip>
-          </div>
-        </div>
       </section>
-      <div className="pixel-divider" />
 
       {/* SERVICES */}
-      <section id="services" className="mx-auto max-w-5xl px-4 pb-16">
-        <h2 className="text-2xl font-bold md:text-3xl">{t.servicesTitle}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300">{t.servicesSubtitle}</p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-3">
-          <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice}>
-            <span className="service-icon">
-              <RocketIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </span>
-          </ServiceCard>
-          <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice}>
-            <span className="service-icon">
-              <MegaphoneIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </span>
-          </ServiceCard>
-          <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice}>
-            <span className="service-icon">
-              <SwitchIcon width="20" height="20" preserveAspectRatio="xMidYMid meet" fill="currentColor" />
-            </span>
-          </ServiceCard>
-        </div>
-        <div className="mt-5">
-          <a
-            href="mailto:azumbogames@gmail.com"
-            className="pressable inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:focus-visible:outline-white"
-          >
-            {t.srvCTA}
-          </a>
+      <section id="services" className="mx-auto max-w-5xl px-4 py-16">
+        <h2 className="text-3xl font-bold">{t.servicesTitle}</h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice} />
+          <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice} />
+          <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice} />
         </div>
       </section>
 
-      {/* GAMES */}
-      <section id="games" className="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">{t.featured}</h2>
-        <div className="featured-games-grid">
-          <div className="w-full">
-            <GameCard
-              href="/frogger"
-              title="Frogger"
-              desc={t.frDesc}
-              icon={<FrogIcon className="game-icon" />}
-              gradient="from-emerald-500 to-green-600"
-              media="https://media.giphy.com/media/HezU1FQQtq7RO/giphy.gif"
-            />
-          </div>
-          <div className="w-full">
-            <GameCard
-              href="/Spaceinvaders"
-              title="Space Invaders"
-              desc={t.siDesc}
-              icon={<RocketIcon className="game-icon" />}
-              gradient="from-blue-500 to-indigo-600"
-              media="https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif"
-            />
-          </div>
-          <div className="w-full">
-            <GameCard
-              href="/PacMan"
-              title="Pac-Man"
-              desc={t.pmDesc}
-              icon={<GhostIcon className="game-icon" />}
-              gradient="from-yellow-400 to-orange-500"
-              media="https://media.giphy.com/media/HhIuAVM3L2I8E/giphy.gif"
-            />
-          </div>
+      {/* GAMES SECTION & BIRD LINES */}
+      <section id="games" className="mx-auto max-w-5xl px-4 py-16">
+        <h2 className="mb-8 text-3xl font-bold">{t.featured}</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+           <GameCard title="Frogger" href="/frogger" desc={t.frDesc} gradient="from-emerald-500 to-green-600" />
+           <GameCard title="Invaders" href="/Spaceinvaders" desc={t.siDesc} gradient="from-blue-500 to-indigo-600" />
+           <GameCard title="Pac-Man" href="/PacMan" desc={t.pmDesc} gradient="from-yellow-400 to-orange-500" />
         </div>
 
-        <article className="birdlines-project mt-12 rounded-3xl border border-neutral-200 bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:p-7 dark:border-neutral-800 dark:bg-neutral-900">
-          <video
-            className="birdlines-video h-56 w-32 shrink-0 self-center rounded-xl border border-neutral-200 object-cover shadow-sm dark:border-neutral-700"
-            controls
-            preload="metadata"
-            onLoadedMetadata={(event) => {
-              event.currentTarget.currentTime = 2;
-            }}
-          >
-            <source src="/Whoops 15 10 2025.mp4#t=2" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          <div className="birdlines-content w-full min-w-0 font-sans font-light text-neutral-800 dark:text-neutral-100">
-            <h2 className="text-xl uppercase tracking-[0.16em] md:text-2xl">{t.birdTitle}</h2>
-            <p className="mt-2 text-sm italic text-neutral-500 dark:text-neutral-400">{t.birdSubtitle}</p>
-            <p className="project-description mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-              {renderBirdDescription(t.birdDescription)}
-            </p>
-            <span className="mt-5 inline-flex rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1 text-xs uppercase tracking-[0.08em] text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
-              {t.birdStatus}
-            </span>
-            <div className="mt-6">
-              <a
-                href="mailto:azumbogames@gmail.com?subject=Bird%20Lines%20Waitlist"
-                className="pressable inline-flex items-center rounded-full border border-neutral-900 bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300 dark:focus-visible:outline-white"
-              >
-                {t.waitlistCTA}
-              </a>
+        {/* BIRD LINES SPOTLIGHT */}
+        <article className="mt-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="flex flex-col md:flex-row">
+            <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
+              <video className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
+                <source src="/WhoopsBirdLines.mp4#t=2" type="video/mp4" />
+              </video>
+            </div>
+            <div className="p-8 md:w-2/3">
+              <h3 className="text-2xl font-bold uppercase tracking-wider">{t.birdTitle}</h3>
+              <p className="mt-2 italic text-neutral-500">{t.birdSubtitle}</p>
+              <p className="mt-6 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+                {renderBirdDescription(t.birdDescription)}
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <span className="text-sm font-semibold text-neutral-500">{t.birdStatus}</span>
+                <a href="mailto:azumbogames@gmail.com?subject=Waitlist" className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
+                  {t.waitlistCTA}
+                </a>
+              </div>
             </div>
           </div>
         </article>
@@ -425,87 +321,39 @@ export default function AzumboLanding({ params }: { params: { locale: string } }
           <p className="mt-2 text-base font-medium text-neutral-800 dark:text-neutral-100">{t.valuesItems}</p>
         </article>
       </section>
-      <div className="pixel-divider" />
 
-      {/* ABOUT */}
-      <section className="mx-auto max-w-5xl px-4 pb-12">
-        <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.aboutTitle}</h2>
-        <p className="max-w-3xl leading-relaxed text-neutral-700 dark:text-neutral-300">{t.aboutText}</p>
-        <div className="mt-4 flex gap-4">
-          <div className="h-16 w-16 rounded-md bg-gradient-to-br from-fuchsia-500 to-yellow-400 pixelated" />
-          <div className="h-16 w-16 rounded-md bg-gradient-to-br from-cyan-400 to-emerald-400 pixelated" />
-        </div>
-      </section>
-      <div className="pixel-divider" />
-
-      {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-5xl px-4 pb-20">
-        <h2 className="mb-2 text-2xl font-bold md:text-3xl">{t.contactTitle}</h2>
-        <a
-          href="mailto:azumbogames@gmail.com"
-          className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-700 dark:focus-visible:outline-white"
-        >
-          {t.email}: azumbogames@gmail.com
-        </a>
-      </section>
-
-      <footer className="border-t py-6 text-center text-sm dark:border-neutral-800">
-        <p>{t.footer}</p>
-        <p className="mt-2 text-xs tracking-[0.08em] text-neutral-500 dark:text-neutral-400">{t.pressLine}</p>
+      <footer className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
+        <p className="text-sm text-neutral-500">{t.footer}</p>
+        <p className="mt-2 text-xs text-neutral-400">{t.pressLine}</p>
       </footer>
-      <div
-        className={`easter-egg ${secret ? 'found' : ''}`}
-        onClick={() => setSecret(true)}
-      />
-      {secret && <div className="fixed bottom-20 left-8 text-xs">🎉</div>}
     </main>
   );
 }
 
-/* ---------- Small UI helpers (no extra deps) ---------- */
-function Chip({ children }: any) {
-  return <span className="inline-flex items-center gap-2 rounded-full bg-neutral-200 px-3 py-1 text-sm dark:bg-neutral-800">{children}</span>;
-}
-function ServiceCard({ title, desc, price, children }: any) {
+/* UI COMPONENTS */
+function ServiceCard({ title, desc, price }: any) {
   return (
-    <div className="rounded-2xl border border-neutral-200 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-800">
-      <div className="flex items-center gap-2 text-lg font-semibold">
-        {children} <span>{title}</span>
-      </div>
-      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{desc}</p>
-      <div className="mt-3 inline-flex items-center rounded-full border border-neutral-300 px-3 py-1 text-xs font-semibold dark:border-neutral-700">
+    <div className="rounded-2xl border border-neutral-200 p-6 transition hover:shadow-lg dark:border-neutral-800">
+      <h3 className="text-lg font-bold">{title}</h3>
+      <p className="mt-2 text-sm text-neutral-500">{desc}</p>
+      <div className="mt-4 inline-block rounded-lg bg-neutral-100 px-3 py-1 text-xs font-bold dark:bg-neutral-800">
         {price}
       </div>
     </div>
   );
 }
-function GameCard({ href, title, desc, icon, gradient, media }: any) {
+
+function GameCard({ title, href, desc, gradient }: any) {
   return (
     <Link
       href={href}
-      className="group pressable flex flex-col rounded-2xl border-4 border-neutral-300 bg-neutral-100 overflow-hidden shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-neutral-800 dark:bg-neutral-900 dark:focus-visible:outline-white"
+      className="group block overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800"
     >
-      <div className={`relative h-32 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
-        <img src={media} alt="" className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition duration-300" />
-        <div className="absolute inset-0 opacity-10 bg-pattern"></div>
-        <div className="relative z-10 text-white text-4xl">
-          {icon}
-        </div>
-      </div>
-      <div className="p-4 flex-1 flex flex-col">
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-3 flex-1">{desc}</p>
-        <div className="text-xs text-neutral-500">Web • Android • iOS (soon)</div>
+      <div className={`h-32 bg-gradient-to-br ${gradient}`}></div>
+      <div className="p-5">
+        <h4 className="font-bold">{title}</h4>
+        <p className="mt-1 text-sm text-neutral-500">{desc}</p>
       </div>
     </Link>
   );
 }
-
-/* Icons */
-function AndroidIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.6 9.48l1.43-2.49a.5.5 0 10-.87-.5l-1.46 2.54A7.06 7.06 0 0012 8c-1.6 0-3.09.52-4.3 1.03L6.24 6.5a.5.5 0 10-.87.5l1.44 2.5A6.5 6.5 0 005.5 13v5a1.5 1.5 0 001.5 1.5h.5V13h1v6.5h2V13h2v6.5h2V13h1v6.5h.5A1.5 1.5 0 0018.5 18v-5c0-1.41-.39-2.71-.9-3.52z"/></svg>);} 
-function AppleIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.64 13.34c-.03-2.32 1.9-3.43 1.99-3.49-1.09-1.6-2.78-1.82-3.38-1.84-1.44-.15-2.81.85-3.54.85-.74 0-1.86-.83-3.06-.8-1.58.02-3.03.92-3.84 2.33-1.64 2.83-.42 7 1.18 9.29.78 1.12 1.71 2.39 2.93 2.34 1.17-.05 1.6-.76 3-.76 1.4 0 1.79.76 3.02.74 1.25-.02 2.04-1.14 2.8-2.27.88-1.29 1.24-2.54 1.26-2.6-.03-.01-2.42-.93-2.36-3.79zM14.87 5.22c.64-.78 1.08-1.87.96-2.95-.93.04-2.06.62-2.73 1.39-.6.69-1.12 1.8-.98 2.87 1.03.08 2.09-.53 2.75-1.31z"/></svg>);} 
-function SwitchIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M9 2H7a3 3 0 00-3 3v14a3 3 0 003 3h2V2zm8 0h-2v20h2a3 3 0 003-3V5a3 3 0 00-3-3zM7.5 7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm9 7a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>);} 
-function RocketIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M14 3l7 7-4 1-2 2-1 4-7-7 4-1 2-2 1-4zM5 19l4-1-3-3-1 4z"/></svg>);} 
-function MegaphoneIcon(props:any){return(<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M21 8l-6 3v5l6 3V8zM3 10h9v6H3l2 4H3l-2-4V10h2z"/></svg>);} 
-function FrogIcon(props:any){return(<svg viewBox="0 0 576 512" fill="currentColor" {...props}><path d="M368 32c41.7 0 75.9 31.8 79.7 72.5l85.6 26.3c25.4 7.8 42.8 31.3 42.8 57.9c0 21.8-11.7 41.9-30.7 52.7L400.8 323.5 493.3 416l50.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-8.5 0-16.6-3.4-22.6-9.4L346.9 360.2c11.7-36 3.2-77.1-25.4-105.7c-40.6-40.6-106.3-40.6-146.9-.1L101 324.4c-6.4 6.1-6.7 16.2-.6 22.6s16.2 6.6 22.6 .6l73.8-70.2 .1-.1 .1-.1c3.5-3.5 7.3-6.6 11.3-9.2c27.9-18.5 65.9-15.4 90.5 9.2c24.7 24.7 27.7 62.9 9 90.9c-2.6 3.8-5.6 7.5-9 10.9L261.8 416l90.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L64 480c-35.3 0-64-28.7-64-64C0 249.6 127 112.9 289.3 97.5C296.2 60.2 328.8 32 368 32zm0 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>);}
-function GhostIcon(props:any){return(<svg viewBox="0 0 384 512" fill="currentColor" {...props}><path d="M40.1 467.1l-11.2 9c-3.2 2.5-7.1 3.9-11.1 3.9C8 480 0 472 0 462.2V192C0 86 86 0 192 0S384 86 384 192V462.2c0 9.8-8 17.8-17.8 17.8c-4 0-7.9-1.4-11.1-3.9l-11.2-9c-13.4-10.7-32.8-9.6-44.5 2.5L269.3 506c-3.3 3.3-7.7 5.1-12.2 5.1H127c-4.5 0-8.9-1.8-12.2-5.1l-49.1-36.4c-11.7-12.1-31.1-13.2-44.5-2.5zM160 192a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96 32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>);}
