@@ -62,3 +62,37 @@
 .controlButton[data-dir="right"] {
   grid-area: right;
 }
+
+.logoLink {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 50;
+  background: color-mix(in srgb, white 85%, transparent);
+  padding: 2px;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+}
+
+.logoImage {
+  width: 64px;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .logoImage {
+    width: 78px;
+  }
+}
+
+.ctaLink {
+  margin-top: 16px;
+  display: inline-block;
+  border: 1px solid #111;
+  border-radius: 6px;
+  padding: 8px 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
