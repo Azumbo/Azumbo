@@ -297,7 +297,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           <div className="flex flex-col md:flex-row">
             <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
               <video className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
-                <source src="/WhoopsBirdLines.mp4#t=2" type="video/mp4" />
+                <source src="/whoops-video.mp4#t=2" type="video/mp4" />
               </video>
             </div>
             <div className="p-8 md:w-2/3">
