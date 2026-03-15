@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root { --container: 72rem; }
 .container-nx { margin-inline:auto; max-width:var(--container); padding-inline:1rem; }
