@@ -7,6 +7,8 @@ import FloatingSprites from '../../components/FloatingSprites';
 type Lang = 'en' | 'it' | 'ru';
 
 const SITE_URL = 'https://azumbo.vercel.app';
+const WAITLIST_MAILTO =
+  'mailto:azumbogames@gmail.com?subject=BirdLines%20Beta%20Waitlist&body=EN%3A%20Please%20send%20me%20updates%20when%20the%20BirdLines%20beta%20is%20ready.%0AIT%3A%20Per%20favore%2C%20inviatemi%20aggiornamenti%20quando%20la%20beta%20di%20BirdLines%20%C3%A8%20pronta.';
 
 const isLang = (value: string): value is Lang => ['en', 'it', 'ru'].includes(value);
 
@@ -52,7 +54,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: azumbogames@gmail.com'
+    pressLine: 'For publishers & press: AzumboGames@gmail.com'
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -95,7 +97,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     waitlistCTA: 'Unisciti alla Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Per editori e stampa: azumbogames@gmail.com'
+    pressLine: 'Per editori e stampa: AzumboGames@gmail.com'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -138,7 +140,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     waitlistCTA: 'В лист ожидания',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Для издателей и прессы: azumbogames@gmail.com'
+    pressLine: 'Для издателей и прессы: AzumboGames@gmail.com'
   }
 };
 
@@ -206,7 +208,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
           
           {/* Desktop Nav */}
-          <nav className="hidden shrink-0 items-center gap-6 text-sm md:flex">
+          <nav className="flex shrink-0 items-center gap-4 text-xs sm:gap-6 sm:text-sm">
             <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
             <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
             <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
@@ -244,26 +246,12 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           </div>
         </div>
 
-        {/* Mobile Nav (Simplified horizontal) */}
-        <nav className="mt-3 flex items-center justify-center gap-6 text-xs md:hidden">
-          <a href="#games" className="text-neutral-400">{t.navGames}</a>
-          <a href="#services" className="text-neutral-400">{t.navServices}</a>
-          <a href="#contact" className="text-neutral-400">{t.navContact}</a>
-        </nav>
       </header>
 
       {/* HERO */}
       <section className="relative mx-auto max-w-5xl px-4 py-16 md:py-24">
         <FloatingSprites />
         <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
-        <Image
-          src="/assets/logo/azumbo-logo.png"
-          alt="AZUMBO Emblem"
-          width={320}
-          height={80}
-          priority
-          className="mt-6 h-auto w-[180px] sm:w-[220px]"
-        />
         <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-8">
@@ -308,7 +296,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
               </p>
               <div className="mt-8 flex items-center gap-4">
                 <span className="text-sm font-semibold text-neutral-500">{t.birdStatus}</span>
-                <a href="mailto:azumbogames@gmail.com?subject=Waitlist" className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
+                <a href={WAITLIST_MAILTO} className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
                   {t.waitlistCTA}
                 </a>
               </div>

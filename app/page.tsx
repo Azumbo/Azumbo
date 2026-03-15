@@ -67,9 +67,9 @@ export default function Page() {
     <main className="min-h-screen bg-white text-black">
       <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         <header className="border border-black bg-white p-4 sm:p-5">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="grid grid-cols-[1fr_auto] items-center gap-4 md:flex md:flex-wrap md:items-center md:justify-between">
             <p className="text-xl font-black tracking-tight">AZUMBO</p>
-            <nav aria-label="Primary">
+            <nav aria-label="Primary" className="order-3 col-span-2 md:order-none md:col-span-1">
               <ul className="flex items-center gap-4 text-sm font-semibold sm:gap-6">
                 <li>
                   <a className="transition-colors hover:text-blue-600" href="#games">
@@ -88,7 +88,7 @@ export default function Page() {
                 </li>
               </ul>
             </nav>
-            <div className="flex items-center gap-2 text-xs font-semibold">
+            <div className="justify-self-end flex items-center gap-2 text-xs font-semibold">
               <button className="border border-black px-2 py-1 transition hover:-translate-y-0.5 hover:bg-blue-100">
                 EN
               </button>
@@ -221,9 +221,12 @@ export default function Page() {
               <p className="mt-4 text-xs font-bold tracking-wide">
                 STATUS: IN DEVELOPMENT (CALABRIA, ITALY)
               </p>
-              <button className="mt-4 border border-black px-4 py-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-500 hover:text-white">
+              <a
+                href="mailto:AzumboGames@gmail.com?subject=BirdLines%20Beta%20Waitlist&body=EN%3A%20Please%20send%20me%20updates%20when%20the%20BirdLines%20beta%20is%20ready.%0AIT%3A%20Per%20favore%2C%20inviatemi%20aggiornamenti%20quando%20la%20beta%20di%20BirdLines%20%C3%A8%20pronta."
+                className="mt-4 inline-block border border-black px-4 py-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-500 hover:text-white"
+              >
                 Join the Waitlist
-              </button>
+              </a>
             </div>
 
             <div className="mx-auto w-full max-w-[220px] border border-black bg-neutral-100 p-2">
@@ -271,7 +274,7 @@ export default function Page() {
         </section>
 
         <footer className="mt-8 border-t border-black pt-4 text-xs">
-          © 2025 AZUMBO. All rights reserved. For publishers &amp; press: hello@ваша_почта.com
+          © 2025 AZUMBO. All rights reserved. For publishers &amp; press: AzumboGames@gmail.com
         </footer>
       </div>
     </main>
