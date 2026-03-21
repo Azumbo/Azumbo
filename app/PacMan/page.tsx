@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { pacmanAudio } from '../../lib/pacmanAudio';
 import styles from './PacMan.module.css';
+import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -314,6 +315,12 @@ export default function PacManPage() {
 
   return (
     <div className={styles.container}>
+      <SoftwareApplicationJsonLd
+        name="AZUMBO PacMan"
+        description="Navigate the maze, eat dots, and dodge ghosts in AZUMBO's modern browser remake of PacMan."
+        url="https://azumbo.vercel.app/pacman"
+        image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
+      />
       <Link
         href="https://azumbo.vercel.app/en"
         className={styles.logoLink}

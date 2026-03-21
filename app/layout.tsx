@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import './globals.css';
 import GameFX from '../components/GameFX';
+import { SITE_URL, baseMetadata } from '../lib/seo';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -10,106 +11,45 @@ const inter = Inter({
   variable: '--font-inter'
 });
 
-type Locale = 'en' | 'ru' | 'it';
-
-const SITE_URL = 'https://azumbo.vercel.app';
-
-const SEO_BY_LOCALE: Record<Locale, { title: string; description: string; keywords: string[] }> = {
-  en: {
+export const metadata: Metadata = {
+  ...baseMetadata('/en'),
+  title: {
+    default: 'AZUMBO | Minimalist Indie Games & Chic Escapes',
+    template: '%s | AZUMBO'
+  },
+  description:
+    'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.',
+  keywords: [
+    'indie games',
+    'minimalist games',
+    'casual games',
+    'mental resilience',
+    'AZUMBO'
+  ],
+  openGraph: {
+    type: 'website',
+    siteName: 'AZUMBO',
+    url: `${SITE_URL}/en`,
     title: 'AZUMBO | Minimalist Indie Games & Chic Escapes',
     description:
-      'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.',
-    keywords: [
-      'indie games',
-      'minimalist games',
-      'casual games',
-      'mental resilience',
-      'AZUMBO',
-      'indie game studio for partnership',
-      'chic aesthetic games portfolio'
-    ]
+      'Discover curated, high-quality indie games designed for style, intelligent humor, and mental resilience.'
   },
-  ru: {
-    title: 'AZUMBO | Минимализм, инди-игры и стильный отдых',
-    description:
-      'Откройте для себя качественные инди-игры, созданные для эстетики, тонкого юмора и ментальной перезагрузки.',
-    keywords: [
-      'инди-игры',
-      'минимализм',
-      'казуальные игры',
-      'ментальная перезагрузка',
-      'AZUMBO',
-      'indie game studio for partnership',
-      'chic aesthetic games portfolio'
-    ]
-  },
-  it: {
-    title: 'AZUMBO | Giochi Indie Minimalisti e Fughe Chic',
-    description:
-      'Scopri giochi indie di alta qualità progettati per stile, umorismo intelligente e benessere mentale.',
-    keywords: [
-      'giochi indie',
-      'giochi minimalisti',
-      'giochi casual',
-      'benessere mentale',
-      'AZUMBO',
-      'indie game studio for partnership',
-      'chic aesthetic games portfolio'
-    ]
+  icons: { icon: '/logo/fav.ico' },
+  verification: {
+    google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0'
   }
 };
 
-const isLocale = (value?: string): value is Locale => value === 'en' || value === 'ru' || value === 'it';
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' }
+  ]
+};
 
-export async function generateMetadata({ params }: { params: Promise<{ locale?: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const activeLocale: Locale = isLocale(locale) ? locale : 'en';
-  const seo = SEO_BY_LOCALE[activeLocale];
-  const localePath = `/${activeLocale}`;
-
-  return {
-    metadataBase: new URL(SITE_URL),
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
-    alternates: {
-      canonical: `${SITE_URL}${localePath}`,
-      languages: {
-        en: `${SITE_URL}/en`,
-        ru: `${SITE_URL}/ru`,
-        it: `${SITE_URL}/it`,
-        'x-default': `${SITE_URL}/en`
-      }
-    },
-    robots: { index: true, follow: true },
-    openGraph: {
-      type: 'website',
-      url: `${SITE_URL}${localePath}`,
-      siteName: 'AZUMBO',
-      title: seo.title,
-      description: seo.description,
-      locale: activeLocale
-    },
-    icons: { icon: '/logo/fav.ico' },
-    verification: {
-      google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0'
-    },
-    themeColor: [
-      { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-      { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' }
-    ]
-  };
-}
-
-export default async function RootLayout({
-  children,
-  params
-}: Readonly<{ children: React.ReactNode; params: Promise<{ locale?: string }> }>) {
-  const { locale } = await params;
-  const activeLocale: Locale = isLocale(locale) ? locale : 'en';
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang={activeLocale} className="h-full">
+    <html lang="en" className="h-full">
       <body
         className={`${inter.variable} min-h-full bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100`}
       >

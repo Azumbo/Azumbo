@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 
 const audioCtx = typeof window !== 'undefined' ? new (window.AudioContext || (window as any).webkitAudioContext)() : null;
 
@@ -258,6 +259,12 @@ export default function SpaceInvaders() {
 
   return (
     <div className="pixel-container">
+      <SoftwareApplicationJsonLd
+        name="AZUMBO Space Invaders"
+        description="Defend Earth from invading aliens in a polished browser version of the arcade classic."
+        url="https://azumbo.vercel.app/spaceinvaders"
+        image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
+      />
       <Link
         href="https://azumbo.vercel.app/en"
         className="fixed left-2 top-2 z-50 rounded-md bg-white/85 p-0.5 shadow"
