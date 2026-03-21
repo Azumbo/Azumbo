@@ -275,9 +275,30 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <section id="games" className="mx-auto max-w-5xl px-4 py-16">
         <h2 className="mb-8 text-3xl font-bold">{t.featured}</h2>
         <div className="grid gap-6 md:grid-cols-3">
-           <GameCard title="Frogger" href="/frogger" desc={t.frDesc} gradient="from-emerald-500 to-green-600" />
-           <GameCard title="Invaders" href="/Spaceinvaders" desc={t.siDesc} gradient="from-blue-500 to-indigo-600" />
-           <GameCard title="Pac-Man" href="/PacMan" desc={t.pmDesc} gradient="from-yellow-400 to-orange-500" />
+           <GameCard
+             title="Frogger"
+             href="/frogger"
+             desc={t.frDesc}
+             gradient="from-emerald-500 via-green-500 to-lime-500"
+             icon="🐸"
+             deco="float"
+           />
+           <GameCard
+             title="Space Invaders"
+             href="/Spaceinvaders"
+             desc={t.siDesc}
+             gradient="from-indigo-500 via-blue-500 to-cyan-400"
+             icon="👾"
+             deco="stars"
+           />
+           <GameCard
+             title="Pac-Man"
+             href="/PacMan"
+             desc={t.pmDesc}
+             gradient="from-yellow-400 via-amber-400 to-orange-500"
+             icon="🟡"
+             deco="dots"
+           />
         </div>
 
         {/* BIRD LINES SPOTLIGHT */}
@@ -331,15 +352,38 @@ function ServiceCard({ title, desc, price }: any) {
   );
 }
 
-function GameCard({ title, href, desc, gradient }: any) {
+function GameCard({ title, href, desc, gradient, icon, deco }: any) {
   return (
     <Link
       href={href}
       className="group block overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800"
     >
-      <div className={`h-32 bg-gradient-to-br ${gradient}`}></div>
+      <div className={`relative h-32 overflow-hidden bg-gradient-to-br ${gradient}`}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.2),transparent_50%)]"></div>
+        <div className="absolute left-4 top-4 text-4xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">{icon}</div>
+        {deco === 'float' && (
+          <>
+            <span className="absolute bottom-4 right-6 h-4 w-4 animate-bounce rounded-full bg-white/70"></span>
+            <span className="absolute right-12 top-10 h-2 w-2 animate-pulse rounded-full bg-lime-100"></span>
+          </>
+        )}
+        {deco === 'stars' && (
+          <div className="absolute inset-0">
+            <span className="absolute left-14 top-7 h-1.5 w-1.5 animate-pulse rounded-full bg-white"></span>
+            <span className="absolute right-10 top-5 h-1 w-1 animate-ping rounded-full bg-cyan-100"></span>
+            <span className="absolute bottom-7 right-16 h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-100"></span>
+          </div>
+        )}
+        {deco === 'dots' && (
+          <div className="absolute bottom-4 right-4 flex items-center gap-2">
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-yellow-100"></span>
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-100 [animation-delay:220ms]"></span>
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-orange-100 [animation-delay:420ms]"></span>
+          </div>
+        )}
+      </div>
       <div className="p-5">
-        <h4 className="font-bold">{title}</h4>
+        <h4 className="font-bold tracking-wide">{title}</h4>
         <p className="mt-1 text-sm text-neutral-500">{desc}</p>
       </div>
     </Link>
