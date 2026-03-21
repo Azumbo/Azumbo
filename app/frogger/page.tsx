@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 import {
   initAudioSystem,
   playJumpSound,
@@ -219,6 +220,12 @@ export default function FroggerPage() {
 
   return (
     <div className="pixel-container">
+      <SoftwareApplicationJsonLd
+        name="AZUMBO Frogger"
+        description="Hop through traffic and rivers in AZUMBO's browser-friendly Frogger-inspired arcade challenge."
+        url="https://azumbo.vercel.app/frogger"
+        image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
+      />
       <Link
         href="https://azumbo.vercel.app/en"
         className="fixed left-2 top-2 z-50 rounded-md bg-white/85 p-0.5 shadow"

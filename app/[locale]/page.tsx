@@ -3,14 +3,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
+import { JsonLd, VideoObjectJsonLd } from '../../components/seo/JsonLd';
+import { SITE_URL, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
 
-const SITE_URL = 'https://azumbo.vercel.app';
 const WAITLIST_MAILTO =
   'mailto:azumbogames@gmail.com?subject=BirdLines%20Beta%20Waitlist&body=EN%3A%20Please%20send%20me%20updates%20when%20the%20BirdLines%20beta%20is%20ready.%0AIT%3A%20Per%20favore%2C%20inviatemi%20aggiornamenti%20quando%20la%20beta%20di%20BirdLines%20%C3%A8%20pronta.';
 
-const isLang = (value: string): value is Lang => ['en', 'it', 'ru'].includes(value);
+const isLang = (value: string): value is Lang => isSupportedLocale(value);
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
@@ -151,16 +152,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalPath = `/${lang}`;
 
   return {
+    ...baseMetadata(canonicalPath),
     title: t.title,
     description: t.seoDesc,
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
-      languages: {
-        'en': `${SITE_URL}/en`,
-        'it': `${SITE_URL}/it`,
-        'ru': `${SITE_URL}/ru`,
-        'x-default': `${SITE_URL}/en`,
-      },
+      languages: buildLanguageAlternates()
     },
     openGraph: {
       title: t.title,
@@ -201,7 +198,17 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
 
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
+      <JsonLd data={orgJson} />
+      <VideoObjectJsonLd
+        name="Bird Lines — From Pages to Pixels"
+        description={t.birdDescription}
+        contentUrl={`${SITE_URL}/WhoopsBirdLines.mp4`}
+        embedUrl={`${SITE_URL}/${routeLang}#bird-lines-video`}
+        thumbnailUrl={`${SITE_URL}/assets/logo/azumbo-logo.png`}
+        uploadDate="2026-01-15"
+        duration="PT45S"
+        inLanguage={routeLang}
+      />
 
       {/* FIXED HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
@@ -285,7 +292,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
            />
            <GameCard
              title="Space Invaders"
-             href="/Spaceinvaders"
+             href="/spaceinvaders"
              desc={t.siDesc}
              gradient="from-indigo-500 via-blue-500 to-cyan-400"
              icon="👾"
@@ -293,7 +300,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
            />
            <GameCard
              title="Pac-Man"
-             href="/PacMan"
+             href="/pacman"
              desc={t.pmDesc}
              gradient="from-yellow-400 via-amber-400 to-orange-500"
              icon="🟡"
@@ -305,7 +312,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <article className="mt-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
           <div className="flex flex-col md:flex-row">
             <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
-              <video className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
+              <video id="bird-lines-video" className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
                 <source src="/WhoopsBirdLines.mp4#t=2" type="video/mp4" />
               </video>
             </div>
