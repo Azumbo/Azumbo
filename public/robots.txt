@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://azumbo.vercel.app/sitemap.xml
+Host: https://azumbo.vercel.app
