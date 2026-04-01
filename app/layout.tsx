@@ -36,7 +36,8 @@ export const metadata: Metadata = {
   },
   icons: { icon: '/logo/fav.ico' },
   verification: {
-    google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0'
+    google: 'ctRRehT2QTAGg3R2EgpV1C1mGB84yK7K9hfsoujxSu0',
+    yandex: 'YOUR_YANDEX_CODE'
   }
 };
 
