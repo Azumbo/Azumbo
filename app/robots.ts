@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL } from '../lib/seo';
+
+const SITE_URL = 'https://azumbo.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/'
+      },
+      {
+        userAgent: ['Googlebot', 'Bingbot', 'Yandex', 'DuckDuckBot', 'Applebot', 'OAI-SearchBot'],
+        allow: '/'
+      },
+      {
+        userAgent: ['GPTBot', 'Google-Extended', 'CCBot', 'Bytespider'],
+        disallow: '/'
       }
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
