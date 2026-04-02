@@ -386,7 +386,23 @@
     }
   };
 
-  let currentLang = localStorage.getItem('cirò_lang') || 'it';
+  function safeGetStorage(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function safeSetStorage(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      // no-op: storage may be blocked in private/embedded contexts
+    }
+  }
+
+  let currentLang = safeGetStorage('ciro_lang') || safeGetStorage('cirò_lang') || 'it';
 
   function applyLanguage() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -423,19 +439,31 @@
   let leaderboard = [];
 
   function loadLeaderboard() {
-    const stored = localStorage.getItem('ciro_marina_leaderboard');
-    leaderboard = stored ? JSON.parse(stored) : [
+    const fallbackLeaderboard = [
       { name: "Nonno Franco", score: 42 },
       { name: "Pescatore Leo", score: 38 },
       { name: "Sofia", score: 35 }
     ];
+    const stored = safeGetStorage('ciro_marina_leaderboard');
+    if (!stored) {
+      leaderboard = fallbackLeaderboard;
+      renderLeaderboard();
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(stored);
+      leaderboard = Array.isArray(parsed) ? parsed : fallbackLeaderboard;
+    } catch (e) {
+      leaderboard = fallbackLeaderboard;
+    }
     renderLeaderboard();
   }
 
   function saveLeaderboard() {
     leaderboard.sort((a,b) => b.score - a.score);
     leaderboard = leaderboard.slice(0, 5); // Показываем топ-5 чтобы не ломать дизайн
-    localStorage.setItem('ciro_marina_leaderboard', JSON.stringify(leaderboard));
+    safeSetStorage('ciro_marina_leaderboard', JSON.stringify(leaderboard));
     renderLeaderboard();
   }
 
@@ -615,7 +643,7 @@
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentLang = btn.getAttribute('data-lang');
-      localStorage.setItem('cirò_lang', currentLang);
+      safeSetStorage('ciro_lang', currentLang);
       applyLanguage();
     });
   });
