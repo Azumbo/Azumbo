@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Cirò Tap: Cirò Marina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      /* Теплый калабрийский градиент (песок и солнце) */
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      font-family: 'Fredoka', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .game-container {
+      max-width: 450px;
+      width: 100%;
+      background: #fffdf7;
+      border-radius: 40px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2), inset 0 0 0 4px #e59866;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Флаг Италии в верхней полоске */
+    .top-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #009246 33.3%, #ffffff 33.3%, #ffffff 66.6%, #ce2b37 66.6%);
+    }
+
+    .lang-switch {
+      background: #fffdf7;
+      padding: 12px 16px 4px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: #f1e5d1;
+      border: 2px solid transparent;
+      font-size: 1rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      color: #5a4a42;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: inherit;
+      font-weight: 600;
+    }
+
+    .lang-btn.active {
+      background: #ffd966;
+      border: 2px solid #e6b800;
+      color: #2c1a0c;
+      transform: scale(1.1);
+    }
+    .lang-btn:active { transform: scale(0.9); }
+
+    .hero {
+      padding: 10px 16px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: #d35400;
+      text-shadow: 2px 2px 0px #ffeaa7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .hero h1 span { animation: floatEmoji 3s ease-in-out infinite; display: inline-block; }
+    .hero h1 span:last-child { animation-delay: 1.5s; }
+
+    @keyframes floatEmoji {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      font-weight: 600;
+      background: #e67e22;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      color: white;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 0 #d35400;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 20px 15px;
+      gap: 15px;
+    }
+    .stat-box {
+      background: white;
+      border: 3px solid #f39c12;
+      border-radius: 25px;
+      padding: 10px;
+      text-align: center;
+      flex: 1;
+      box-shadow: 0 6px 0 #f39c12;
+      position: relative;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #e67e22;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2c3e50;
+      line-height: 1;
+      margin-top: 5px;
+    }
+
+    .play-area {
+      position: relative;
+      /* Живое лазурное море */
+      background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+      min-height: 380px;
+      height: 55vw;
+      max-height: 480px;
+      margin: 0 15px;
+      border-radius: 35px;
+      overflow: hidden;
+      box-shadow: inset 0 10px 20px rgba(0,0,150,0.2), 0 10px 20px rgba(0,0,0,0.1);
+      border: 4px solid white;
+      touch-action: none;
+    }
+
+    /* Анимированные волны на фоне */
+    .play-area::before, .play-area::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 40%;
+      animation: spin 15s linear infinite;
+      pointer-events: none;
+    }
+    .play-area::after {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 45%;
+      animation: spin 10s linear infinite reverse;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .tap-item {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 8px 0 rgba(0,0,0,0.15), inset 0 -4px 0 rgba(0,0,0,0.05);
+      cursor: pointer;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tap-item.enemy {
+      background: #ffeaa7;
+      border: 2px solid #ff7675;
+    }
+
+    .tap-item:active {
+      transform: scale(0.8) translateY(4px) !important;
+      box-shadow: 0 0 0 rgba(0,0,0,0.15), inset 0 -2px 0 rgba(0,0,0,0.05);
+      transition: all 0.05s;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Эффект вылетающих очков при тапе */
+    .particle {
+      position: absolute;
+      font-weight: 700;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: floatUpParticle 0.8s ease-out forwards;
+      z-index: 10;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    @keyframes floatUpParticle {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+    }
+
+    .button-area { padding: 25px 20px 15px; text-align: center; }
+    .btn-start {
+      background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 15px 30px;
+      border-radius: 40px;
+      color: white;
+      box-shadow: 0 8px 0 #1e8449, 0 15px 20px rgba(0,0,0,0.2);
+      transition: all 0.1s;
+      width: 90%;
+      font-family: inherit;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn-start:active {
+      transform: translateY(8px);
+      box-shadow: 0 0 0 #1e8449, 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .leaderboard {
+      background: #fdf3e7;
+      margin: 10px 20px 20px;
+      border-radius: 25px;
+      padding: 15px;
+      border: 3px dashed #e67e22;
+    }
+    .leaderboard h3 {
+      margin: 0 0 15px 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #d35400;
+    }
+    .leader-list {
+      max-height: 160px;
+      overflow-y: auto;
+    }
+    .leader-item {
+      display: flex;
+      justify-content: space-between;
+      background: white;
+      margin-bottom: 8px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      align-items: center;
+    }
+    .leader-item:nth-child(1) { border-left: 5px solid #f1c40f; background: #fffdf0; }
+    .leader-item:nth-child(2) { border-left: 5px solid #bdc3c7; }
+    .leader-item:nth-child(3) { border-left: 5px solid #cd7f32; }
+
+    .leader-name { color: #2c3e50; }
+    .leader-score { background: #e67e22; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;}
+
+    .local-tip {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 15px 15px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+    .local-tip span {
+      background: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #555;
+    }
+    .tip-negative { background: #ffeaa7 !important; color: #d63031 !important; border: 1px solid #ff7675;}
+
+    footer {
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 15px;
+      color: #888;
+      background: #f8f9fa;
+      border-radius: 0 0 40px 40px;
+    }
+
+    @media (max-width: 400px) {
+      .tap-item { width: 65px; height: 65px; font-size: 2.2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .stat-value { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="game-container">
+  <div class="top-bar"></div>
+
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="it">IT 🇮🇹</button>
+    <button class="lang-btn" data-lang="en">EN 🇬🇧</button>
+    <button class="lang-btn" data-lang="ru">RU 🇷🇺</button>
+  </div>
+
+  <div class="hero">
+    <h1><span>🍾</span> CIRÒ TAP <span>🌊</span></h1>
+    <p data-i18n="city-label">Cirò Marina • Costa degli Achei</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-label" data-i18n="points-label">ОЧКИ</div>
+      <div class="stat-value" id="scoreDisplay" style="color: #27ae60;">0</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label" data-i18n="timer-label">ТАЙМЕР</div>
+      <div class="stat-value" id="timerDisplay" style="color: #e74c3c;">30</div>
+    </div>
+  </div>
+
+  <div class="play-area" id="playArea"></div>
+
+  <div class="button-area">
+    <button class="btn-start" id="startBtn" data-i18n="start-btn">НАЧАТЬ ИГРУ</button>
+  </div>
+
+  <div class="leaderboard">
+    <h3 data-i18n="leaderboard-title">🏆 ТАБЛИЦА ЛИДЕРОВ 🏆</h3>
+    <div id="leaderList" class="leader-list"></div>
+  </div>
+
+  <div class="local-tip" id="localTips"></div>
+  <footer data-i18n="footer">Тапай по символам! Осторожно 🍕🍍! Сохраняй рекорды!</footer>
+</div>
+
+<script>
+  // Словари переводов
+  const translations = {
+    it: {
+      "points-label": "PUNTI", "timer-label": "TEMPO", "start-btn": "INIZIA GIOCO",
+      "leaderboard-title": "🏆 CLASSIFICA CIRÒ 🏆", "footer": "Tocca i simboli! Attenzione a 🍕🍍! Salva i record!",
+      "city-label": "Cirò Marina • Costa degli Achei",
+      "tip-brasilena": "🍾 Brasilena +1", "tip-wine": "🍇 Cirò DOC +2", "tip-amphora": "🏺 Anfora +3",
+      "tip-lighthouse": "🗼 Faro (x2)", "tip-enemy": "🍕🍍 Nemico -2", "tip-friend": "🧿 Amico +4",
+      "game-over-text": "Punteggio: {score}!\nInserisci il tuo nome:", "default-name": "Tapper di Mare",
+      "zero-score-msg": "0 punti? Attento alla pizza 🍕🍍!", "guest-name": "Ospite Cirò", "empty-leader": "Nessun record."
+    },
+    en: {
+      "points-label": "POINTS", "timer-label": "TIMER", "start-btn": "START GAME",
+      "leaderboard-title": "🏆 LEADERBOARD 🏆", "footer": "Tap items! Beware of 🍕🍍! Save your score!",
+      "city-label": "Cirò Marina • Costa degli Achei",
+      "tip-brasilena": "🍾 Brasilena +1", "tip-wine": "🍇 Cirò DOC +2", "tip-amphora": "🏺 Amphora +3",
+      "tip-lighthouse": "🗼 Lighthouse (x2)", "tip-enemy": "🍕🍍 Enemy -2", "tip-friend": "🧿 Friend +4",
+      "game-over-text": "Score: {score}!\nEnter your name:", "default-name": "Sea Tapper",
+      "zero-score-msg": "0 points? Avoid 🍕🍍!", "guest-name": "Guest", "empty-leader": "No records."
+    },
+    ru: {
+      "points-label": "ОЧКИ", "timer-label": "ТАЙМЕР", "start-btn": "НАЧАТЬ ИГРУ",
+      "leaderboard-title": "🏆 ТАБЛИЦА ЛИДЕРОВ 🏆", "footer": "Тапай по символам! Осторожно 🍕🍍! Сохраняй рекорды!",
+      "city-label": "Cirò Marina • Costa degli Achei",
+      "tip-brasilena": "🍾 Brasilena +1", "tip-wine": "🍇 Cirò DOC +2", "tip-amphora": "🏺 Амфора +3",
+      "tip-lighthouse": "🗼 Маяк (x2)", "tip-enemy": "🍕🍍 Враг -2", "tip-friend": "🧿 Друг +4",
+      "game-over-text": "Результат: {score}!\nВведите ваше имя:", "default-name": "Игрок с юга",
+      "zero-score-msg": "0 очков? Избегай 🍕🍍!", "guest-name": "Гость", "empty-leader": "Нет рекордов."
+    }
+  };
+
+  let currentLang = localStorage.getItem('cirò_lang') || 'it';
+
+  function applyLanguage() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
+    });
+
+    document.getElementById('localTips').innerHTML = `
+      <span>${translations[currentLang]["tip-brasilena"]}</span>
+      <span>${translations[currentLang]["tip-wine"]}</span>
+      <span>${translations[currentLang]["tip-amphora"]}</span>
+      <span>${translations[currentLang]["tip-lighthouse"]}</span>
+      <span class="tip-negative">${translations[currentLang]["tip-enemy"]}</span>
+    `;
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
+    });
+    renderLeaderboard();
+  }
+
+  const playArea = document.getElementById('playArea');
+  const scoreSpan = document.getElementById('scoreDisplay');
+  const timerSpan = document.getElementById('timerDisplay');
+  const startBtn = document.getElementById('startBtn');
+
+  let currentScore = 0;
+  let timeLeft = 30;
+  let gameActive = false;
+  let gameInterval, spawnInterval;
+  let activeItems = [];
+  let multiplierActive = false;
+  let multiplierEndTimer = null;
+  let leaderboard = [];
+
+  function loadLeaderboard() {
+    const stored = localStorage.getItem('ciro_marina_leaderboard');
+    leaderboard = stored ? JSON.parse(stored) : [
+      { name: "Nonno Franco", score: 42 },
+      { name: "Pescatore Leo", score: 38 },
+      { name: "Sofia", score: 35 }
+    ];
+    renderLeaderboard();
+  }
+
+  function saveLeaderboard() {
+    leaderboard.sort((a,b) => b.score - a.score);
+    leaderboard = leaderboard.slice(0, 5); // Показываем топ-5 чтобы не ломать дизайн
+    localStorage.setItem('ciro_marina_leaderboard', JSON.stringify(leaderboard));
+    renderLeaderboard();
+  }
+
+  function renderLeaderboard() {
+    const container = document.getElementById('leaderList');
+    if (!leaderboard.length) {
+      container.innerHTML = `<div style="text-align:center; color:#888;">${translations[currentLang]["empty-leader"]}</div>`;
+      return;
+    }
+    container.innerHTML = leaderboard.map((entry, idx) => `
+      <div class="leader-item">
+        <div class="leader-name">${['🥇','🥈','🥉','📌','📌'][idx]} ${entry.name}</div>
+        <div class="leader-score">${entry.score} pts</div>
+      </div>
+    `).join('');
+  }
+
+  function updateUI() {
+    scoreSpan.innerText = currentScore;
+    timerSpan.innerText = timeLeft;
+    // Легкая анимация при изменении счета
+    scoreSpan.style.transform = 'scale(1.3)';
+    setTimeout(() => scoreSpan.style.transform = 'scale(1)', 100);
+  }
+
+  // --- Эффект вылетающих очков (Juiciness) ---
+  function showParticle(x, y, value, color) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.color = color;
+    particle.innerText = value > 0 ? `+${value}` : value;
+    playArea.appendChild(particle);
+    setTimeout(() => particle.remove(), 800);
+  }
+
+  function showFloatingMessage(text, color) {
+    const msg = document.createElement('div');
+    msg.innerText = text;
+    Object.assign(msg.style, {
+      position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)',
+      background: color, color: '#fff', padding: '5px 15px', borderRadius: '20px',
+      fontWeight: 'bold', zIndex: '100', animation: 'floatUpParticle 1s forwards'
+    });
+    playArea.appendChild(msg);
+    setTimeout(() => msg.remove(), 1000);
+  }
+
+  function addPoints(basePoints, x, y) {
+    const points = multiplierActive && basePoints > 0 ? basePoints * 2 : basePoints;
+    currentScore += points;
+    updateUI();
+    showParticle(x, y, points, points > 0 ? '#2ecc71' : '#e74c3c');
+  }
+
+  function createTapItem() {
+    if (!gameActive) return;
+    const types = [
+      { name: "brasilena", v: 1, e: "🍾", c: "good" },
+      { name: "wine", v: 2, e: "🍇", c: "good" },
+      { name: "amphora", v: 3, e: "🏺", c: "good" },
+      { name: "lighthouse", v: "x2", e: "🗼", c: "special" },
+      { name: "enemy", v: -2, e: "🍕🍍", c: "enemy" },
+      { name: "friend", v: 4, e: "🧿", c: "good" }
+    ];
+
+    const r = Math.random();
+    let type = types[0];
+    if (r > 0.35) type = types[1];
+    if (r > 0.55) type = types[2];
+    if (r > 0.68) type = types[3];
+    if (r > 0.76) type = types[4];
+    if (r > 0.94) type = types[5];
+
+    const item = document.createElement('div');
+    item.className = `tap-item ${type.c === 'enemy' ? 'enemy' : ''}`;
+    item.innerText = type.e;
+
+    const size = 75;
+    const maxX = playArea.clientWidth - size - 10;
+    const maxY = playArea.clientHeight - size - 10;
+    item.style.left = `${Math.max(10, Math.random() * maxX)}px`;
+    item.style.top = `${Math.max(10, Math.random() * maxY)}px`;
+
+    // Обработка тапа
+    item.addEventListener('touchstart', handleTap, { passive: false });
+    item.addEventListener('mousedown', handleTap);
+
+    function handleTap(e) {
+      e.preventDefault();
+      if (!gameActive) return;
+
+      const parentRect = playArea.getBoundingClientRect();
+      // Центрируем частицу относительно клика/касания
+      const clickX = (e.touches ? e.touches[0].clientX : e.clientX) - parentRect.left - 10;
+      const clickY = (e.touches ? e.touches[0].clientY : e.clientY) - parentRect.top - 20;
+
+      if (type.c === 'enemy') {
+        addPoints(-2, clickX, clickY);
+        if (navigator.vibrate) navigator.vibrate(200);
+      } else if (type.c === 'special') {
+        addPoints(1, clickX, clickY);
+        multiplierActive = true;
+        showFloatingMessage('x2 FARO!', '#f39c12');
+        clearTimeout(multiplierEndTimer);
+        multiplierEndTimer = setTimeout(() => {
+          multiplierActive = false;
+        }, 3000);
+      } else {
+        addPoints(type.v, clickX, clickY);
+      }
+
+      item.style.transform = 'scale(0)';
+      setTimeout(() => item.remove(), 100);
+    }
+
+    playArea.appendChild(item);
+    activeItems.push(item);
+
+    // Автоудаление
+    setTimeout(() => {
+      if (item.parentNode) {
+        item.style.opacity = '0';
+        setTimeout(() => item.remove(), 300);
+      }
+    }, 1200);
+  }
+
+  function startGame() {
+    currentScore = 0;
+    timeLeft = 30;
+    multiplierActive = false;
+    updateUI();
+    gameActive = true;
+    playArea.innerHTML = '';
+    startBtn.style.opacity = '0.5';
+    startBtn.style.pointerEvents = 'none';
+
+    gameInterval = setInterval(() => {
+      timeLeft--;
+      timerSpan.innerText = timeLeft;
+      if (timeLeft <= 0) endGame();
+    }, 1000);
+
+    spawnInterval = setInterval(() => {
+      if (gameActive) {
+        createTapItem();
+        if (Math.random() < 0.2) setTimeout(createTapItem, 200);
+      }
+    }, 600);
+  }
+
+  function endGame() {
+    gameActive = false;
+    clearInterval(gameInterval);
+    clearInterval(spawnInterval);
+    startBtn.style.opacity = '1';
+    startBtn.style.pointerEvents = 'auto';
+
+    setTimeout(() => {
+      if (currentScore > 0) {
+        const name = prompt(
+          translations[currentLang]['game-over-text'].replace('{score}', currentScore),
+          translations[currentLang]['default-name']
+        );
+        if (name) {
+          leaderboard.push({ name: name.substring(0, 15), score: currentScore });
+          saveLeaderboard();
+        }
+      } else {
+        alert(translations[currentLang]['zero-score-msg']);
+      }
+    }, 500);
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = btn.getAttribute('data-lang');
+      localStorage.setItem('cirò_lang', currentLang);
+      applyLanguage();
+    });
+  });
+
+  startBtn.addEventListener('click', startGame);
+  loadLeaderboard();
+  applyLanguage();
+</script>
+</body>
+</html>
