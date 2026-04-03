@@ -25,10 +25,21 @@ async function writeEntries(entries: Entry[]) {
   await fs.writeFile(filePath, JSON.stringify(entries, null, 2), 'utf8');
 }
 
+function sanitizeName(name: string) {
+  const trimmed = name.trim().replace(/\s+/g, ' ');
+  const cleaned = trimmed.replace(/[^a-zA-Z0-9а-яА-ЯёЁ\u00C0-\u024F\s._-]/g, '');
+  return cleaned.substring(0, 15) || 'Guest';
+}
+
+function sanitizeScore(score: number) {
+  return Math.max(0, Math.min(9999, Math.floor(score)));
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const entries = await readEntries();
     const sorted = entries
+      .filter((entry) => Number.isFinite(entry.score))
       .sort((a, b) => b.score - a.score)
       .slice(0, 5)
       .map(({ name, score }) => ({ name, score }));
@@ -43,8 +54,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Invalid payload' });
     }
 
-    const sanitizedName = name.trim().substring(0, 15) || 'Guest';
-    const sanitizedScore = Math.max(0, Math.floor(score));
+    const sanitizedName = sanitizeName(name);
+    const sanitizedScore = sanitizeScore(score);
 
     const entries = await readEntries();
     entries.push({
@@ -53,7 +64,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       createdAt: new Date().toISOString()
     });
 
-    await writeEntries(entries);
+    const compacted = entries
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 100);
+
+    await writeEntries(compacted);
 
     return res.status(200).json({ success: true });
   }
