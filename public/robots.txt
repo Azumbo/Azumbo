@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
 Sitemap: https://azumbo.vercel.app/sitemap.xml
 Host: https://azumbo.vercel.app

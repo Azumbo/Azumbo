@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cornetto Clicker - AZUMBO</title>
+    <title>Cornetto Clicker Play Mode with Sound Toggle by AZUMBO</title>
+    <meta name="description" content="Play Cornetto Clicker game mode with accessible controls and a global sound toggle that preserves your mute preference across sessions.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://azumbo.vercel.app/cornettoclicker/game">
     <style>
         * {
             margin: 0;
@@ -96,6 +99,10 @@
             background: #d35400;
             transform: translateY(-2px);
         }
+
+        #sound-toggle.muted {
+            background: #7f8c8d;
+        }
         
         .croissant {
             position: absolute;
@@ -179,6 +186,7 @@
         <div class="controls">
             <button id="start-button">Start Game</button>
             <button id="pause-button" disabled>Pause</button>
+            <button id="sound-toggle" aria-label="Toggle game sound" aria-pressed="false">🔊 Sound On</button>
         </div>
     </div>
 
@@ -194,6 +202,29 @@
             const messageText = document.getElementById('message-text');
             const restartButton = document.getElementById('restart-button');
             
+            const MUTE_KEY = 'azumbo:audio-muted';
+            const savedVolumes = new WeakMap();
+
+            function setGlobalMute(nextMuted) {
+                localStorage.setItem(MUTE_KEY, nextMuted ? '1' : '0');
+                document.querySelectorAll('audio, video').forEach((media) => {
+                    if (!savedVolumes.has(media)) {
+                        savedVolumes.set(media, media.volume || 1);
+                    }
+                    media.muted = nextMuted;
+                    media.volume = nextMuted ? 0 : (savedVolumes.get(media) || 1);
+                });
+                soundToggle.setAttribute('aria-pressed', String(nextMuted));
+                soundToggle.textContent = nextMuted ? '🔇 Sound Off' : '🔊 Sound On';
+                soundToggle.classList.toggle('muted', nextMuted);
+            }
+
+            const soundToggle = document.getElementById('sound-toggle');
+            setGlobalMute(localStorage.getItem(MUTE_KEY) === '1');
+            soundToggle.addEventListener('click', () => {
+                setGlobalMute(localStorage.getItem(MUTE_KEY) !== '1');
+            });
+
             let score = 0;
             let highScore = localStorage.getItem('cornettoHighScore') || 0;
             let gameRunning = false;
