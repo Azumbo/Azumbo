@@ -9,6 +9,7 @@ const CORE_ROUTES = [
   '/spaceinvaders',
   '/frogger',
   '/cornettoclicker',
+  '/cirotap',
   '/cornettoclicker-landing',
   '/petonauta-landing',
   '/game',
