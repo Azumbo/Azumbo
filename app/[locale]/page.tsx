@@ -50,7 +50,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Request a quote',
     birdTitle: 'Current Project: Bird Lines',
     birdSubtitle: 'From Pages to Pixels',
-    birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'Paris in the Plain.' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
+    birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'City In The Plane' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
     waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Studio Roadmap',
@@ -93,7 +93,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Richiedi un preventivo',
     birdTitle: 'Progetto attuale: Bird Lines',
     birdSubtitle: 'Dalle pagine ai pixel',
-    birdDescription: `Bird Lines è un match-3 ispirato alla storia 'Paris in the Plain.' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
+    birdDescription: `Bird Lines è un match-3 ispirato alla storia 'City In The Plane' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
     waitlistCTA: 'Unisciti alla Waitlist',
     valuesTitle: 'Studio Roadmap',
@@ -136,7 +136,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Запросить смету',
     birdTitle: 'Текущий проект: Bird Lines',
     birdSubtitle: 'От страниц к пикселям',
-    birdDescription: `Bird Lines — это match-3 по мотивам истории 'Paris in the Plain.' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
+    birdDescription: `Bird Lines — это match-3 по мотивам истории 'City In The Plane' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
     waitlistCTA: 'В лист ожидания',
     valuesTitle: 'Studio Roadmap',
@@ -177,7 +177,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
   const t = STRINGS[routeLang];
 
   const renderBirdDescription = (description: string) => {
-    const bookTitle = 'Paris in the Plain';
+    const bookTitle = 'City In The Plane';
     const parts = description.split(bookTitle);
     if (parts.length === 1) return description;
     return (
