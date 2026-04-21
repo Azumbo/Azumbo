@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Политика конфиденциальности / Privacy Policy для приложения Italy Sun Homes." />
+  <title>Italy Sun Homes — Privacy Policy / Политика конфиденциальности</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --primary: #1e40af;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 14px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 16px 44px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.5vw, 28px);
+    }
+
+    .top {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    h1, h2 {
+      margin: 0 0 10px;
+      line-height: 1.25;
+      letter-spacing: 0.2px;
+    }
+
+    h1 { font-size: clamp(1.4rem, 3vw, 2rem); }
+    h2 { font-size: clamp(1.05rem, 2.4vw, 1.3rem); margin-top: 6px; }
+
+    p { margin: 0 0 10px; color: var(--text); }
+
+    .muted { color: var(--muted); }
+
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 0;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #334155;
+      background: transparent;
+      min-width: 56px;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    ul {
+      margin: 8px 0 12px 20px;
+      padding: 0;
+    }
+
+    li { margin: 6px 0; }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      word-break: break-word;
+    }
+
+    footer {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    [data-lang] { display: none; }
+    [data-lang].show { display: block; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="top">
+        <div>
+          <h1 data-lang="ru" class="show">Политика конфиденциальности — Italy Sun Homes</h1>
+          <h1 data-lang="en">Privacy Policy — Italy Sun Homes</h1>
+          <p data-lang="ru" class="muted show">Для пользователей приложения каталога недвижимости в Калабрии, Италия.</p>
+          <p data-lang="en" class="muted">For users of the real estate catalog app in Calabria, Italy.</p>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Language switcher">
+          <button class="lang-btn active" id="btn-ru" type="button" aria-pressed="true">RU</button>
+          <button class="lang-btn" id="btn-en" type="button" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card show" data-lang="ru">
+      <h2>1) Какие данные собираются и используются</h2>
+      <p><strong>Italy Sun Homes не собирает персональные данные пользователей.</strong></p>
+      <ul>
+        <li>Мы не запрашиваем и не храним: имя, email, номер телефона, адрес, геолокацию, данные платежей.</li>
+        <li>В приложении нет регистрации, входа в аккаунт и подписок.</li>
+        <li>Мы не используем сторонние аналитические трекеры (например, Firebase Analytics) и не ведём поведенческий профайлинг.</li>
+        <li>Контент объектов (фото, цены, описания, ссылки) загружается в режиме «только чтение» из публичной таблицы Google Sheets.</li>
+      </ul>
+      <p class="muted">Для Google Play Data safety: декларируйте, что персональные данные не собираются и не передаются приложением.</p>
+    </section>
+
+    <section class="card" data-lang="en">
+      <h2>1) What data is collected and used</h2>
+      <p><strong>Italy Sun Homes does not collect users’ personal data.</strong></p>
+      <ul>
+        <li>We do not request or store: name, email, phone number, address, geolocation, or payment details.</li>
+        <li>The app has no registration, login, or subscription flow.</li>
+        <li>We do not use third-party analytics trackers (such as Firebase Analytics) and do not build user behavior profiles.</li>
+        <li>Property content (photos, prices, descriptions, links) is loaded in read-only mode from a public Google Sheets file.</li>
+      </ul>
+      <p class="muted">For Google Play Data safety: declare that personal data is not collected or shared by the app.</p>
+    </section>
+
+    <section class="card show" data-lang="ru">
+      <h2>2) Передача данных третьим лицам</h2>
+      <p>Приложение не передаёт персональные данные третьим лицам, так как такие данные не собираются.</p>
+      <p>В приложении присутствуют открытые ссылки на внешние сервисы (Google Sheets, YouTube, Instagram, WhatsApp, Telegram). При переходе по ним обработка данных выполняется по правилам соответствующего сервиса.</p>
+    </section>
+
+    <section class="card" data-lang="en">
+      <h2>2) Sharing data with third parties</h2>
+      <p>The app does not share personal data with third parties because such data is not collected.</p>
+      <p>The app contains open links to external services (Google Sheets, YouTube, Instagram, WhatsApp, Telegram). Once you open those links, data processing is governed by the respective service policies.</p>
+    </section>
+
+    <section class="card grid show" data-lang="ru">
+      <article>
+        <h2>3) Безопасность</h2>
+        <p>Мы применяем разумные организационные и технические меры для поддержания безопасности приложения, включая контроль доступа к исходным данным и регулярное обновление программных компонентов.</p>
+        <p>Однако ни один способ передачи данных через Интернет не может гарантировать абсолютную безопасность.</p>
+      </article>
+      <article>
+        <h2>4) Сторонние сервисы</h2>
+        <p>В приложении используются ссылки/встраивания сторонних платформ:</p>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google (в т.ч. Google Sheets)</a></li>
+          <li><a href="https://www.youtube.com/howyoutubeworks/our-commitments/protecting-user-data/" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://telegram.org/privacy" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+        </ul>
+        <p>Мы не контролируем и не несем ответственность за практики конфиденциальности этих сервисов.</p>
+      </article>
+    </section>
+
+    <section class="card grid" data-lang="en">
+      <article>
+        <h2>3) Security</h2>
+        <p>We apply reasonable organizational and technical safeguards to keep the app secure, including access control to source data and regular software updates.</p>
+        <p>However, no method of Internet transmission is absolutely secure.</p>
+      </article>
+      <article>
+        <h2>4) Third-party services</h2>
+        <p>The app uses links/embeds to third-party platforms:</p>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google (including Google Sheets)</a></li>
+          <li><a href="https://www.youtube.com/howyoutubeworks/our-commitments/protecting-user-data/" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://telegram.org/privacy" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+        </ul>
+        <p>We do not control and are not responsible for the privacy practices of these services.</p>
+      </article>
+    </section>
+
+    <section class="card show" data-lang="ru">
+      <h2>5) Изменения в политике</h2>
+      <p>Мы можем периодически обновлять эту Политику конфиденциальности. Актуальная версия всегда доступна по публичной ссылке без необходимости входа в аккаунт.</p>
+      <h2>6) Контактная информация</h2>
+      <p>Если у вас есть вопросы, напишите нам: <a href="mailto:support@italysunhomes.com">support@italysunhomes.com</a>.</p>
+    </section>
+
+    <section class="card" data-lang="en">
+      <h2>5) Changes to this policy</h2>
+      <p>We may update this Privacy Policy from time to time. The current version will always be available through a public link without login.</p>
+      <h2>6) Contact information</h2>
+      <p>If you have questions, contact us at: <a href="mailto:support@italysunhomes.com">support@italysunhomes.com</a>.</p>
+    </section>
+
+    <footer class="card">
+      <p data-lang="ru" class="show"><strong>Дата последнего обновления:</strong> 21 апреля 2026 г.</p>
+      <p data-lang="en"><strong>Last updated:</strong> April 21, 2026.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const btnRu = document.getElementById('btn-ru');
+      const btnEn = document.getElementById('btn-en');
+      const ruNodes = document.querySelectorAll('[data-lang="ru"]');
+      const enNodes = document.querySelectorAll('[data-lang="en"]');
+
+      function setLang(lang) {
+        const isRu = lang === 'ru';
+        document.documentElement.lang = lang;
+
+        ruNodes.forEach(el => el.classList.toggle('show', isRu));
+        enNodes.forEach(el => el.classList.toggle('show', !isRu));
+
+        btnRu.classList.toggle('active', isRu);
+        btnEn.classList.toggle('active', !isRu);
+        btnRu.setAttribute('aria-pressed', String(isRu));
+        btnEn.setAttribute('aria-pressed', String(!isRu));
+      }
+
+      btnRu.addEventListener('click', () => setLang('ru'));
+      btnEn.addEventListener('click', () => setLang('en'));
+    })();
+  </script>
+</body>
+</html>
