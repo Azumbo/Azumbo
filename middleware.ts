@@ -30,11 +30,7 @@ export function middleware(request: NextRequest) {
   const localeMatch = pathname.match(/^\/(en|ru|it)(\/.*)?$/);
   if (localeMatch) {
     const locale = localeMatch[1];
-    const strippedPath = localeMatch[2] || '/';
-    const rewriteUrl = request.nextUrl.clone();
-    rewriteUrl.pathname = strippedPath;
-
-    const response = NextResponse.rewrite(rewriteUrl);
+    const response = NextResponse.next();
     response.cookies.set('azumbo_locale', locale, {
       path: '/',
       sameSite: 'lax',
