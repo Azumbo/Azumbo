@@ -3,12 +3,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
+import { JsonLd, VideoObjectJsonLd } from '../../components/seo/JsonLd';
+import { SITE_URL, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
 
-const SITE_URL = 'https://azumbo.vercel.app';
+const WAITLIST_MAILTO =
+  'mailto:azumbogames@gmail.com?subject=BirdLines%20Beta%20Waitlist&body=EN%3A%20Please%20send%20me%20updates%20when%20the%20BirdLines%20beta%20is%20ready.%0AIT%3A%20Per%20favore%2C%20inviatemi%20aggiornamenti%20quando%20la%20beta%20di%20BirdLines%20%C3%A8%20pronta.';
 
-const isLang = (value: string): value is Lang => ['en', 'it', 'ru'].includes(value);
+const isLang = (value: string): value is Lang => isSupportedLocale(value);
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
@@ -47,12 +50,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Request a quote',
     birdTitle: 'Current Project: Bird Lines',
     birdSubtitle: 'From Pages to Pixels',
-    birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'Paris in the Plain.' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
+    birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'City In The Plane' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
     waitlistCTA: 'Join the Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: azumbogames@gmail.com'
+    pressLine: 'For publishers & press: AzumboGames@gmail.com'
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -90,12 +93,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Richiedi un preventivo',
     birdTitle: 'Progetto attuale: Bird Lines',
     birdSubtitle: 'Dalle pagine ai pixel',
-    birdDescription: `Bird Lines è un match-3 ispirato alla storia 'Paris in the Plain.' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
+    birdDescription: `Bird Lines è un match-3 ispirato alla storia 'City In The Plane' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
     waitlistCTA: 'Unisciti alla Waitlist',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Per editori e stampa: azumbogames@gmail.com'
+    pressLine: 'Per editori e stampa: AzumboGames@gmail.com'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -133,12 +136,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     srvCTA: 'Запросить смету',
     birdTitle: 'Текущий проект: Bird Lines',
     birdSubtitle: 'От страниц к пикселям',
-    birdDescription: `Bird Lines — это match-3 по мотивам истории 'Paris in the Plain.' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
+    birdDescription: `Bird Lines — это match-3 по мотивам истории 'City In The Plane' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
     waitlistCTA: 'В лист ожидания',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Для издателей и прессы: azumbogames@gmail.com'
+    pressLine: 'Для издателей и прессы: AzumboGames@gmail.com'
   }
 };
 
@@ -146,19 +149,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const lang: Lang = isLang(locale) ? locale : 'en';
   const t = STRINGS[lang];
-  const canonicalPath = lang === 'en' ? '/' : `/${lang}`;
+  const canonicalPath = `/${lang}`;
 
   return {
+    ...baseMetadata(canonicalPath),
     title: t.title,
     description: t.seoDesc,
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
-      languages: {
-        'en': `${SITE_URL}/en`,
-        'it': `${SITE_URL}/it`,
-        'ru': `${SITE_URL}/ru`,
-        'x-default': `${SITE_URL}/en`,
-      },
+      languages: buildLanguageAlternates()
     },
     openGraph: {
       title: t.title,
@@ -178,7 +177,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
   const t = STRINGS[routeLang];
 
   const renderBirdDescription = (description: string) => {
-    const bookTitle = 'Paris in the Plain';
+    const bookTitle = 'City In The Plane';
     const parts = description.split(bookTitle);
     if (parts.length === 1) return description;
     return (
@@ -199,14 +198,24 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
 
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJson) }} />
+      <JsonLd data={orgJson} />
+      <VideoObjectJsonLd
+        name="Bird Lines — From Pages to Pixels"
+        description={t.birdDescription}
+        contentUrl={`${SITE_URL}/WhoopsBirdLines.mp4`}
+        embedUrl={`${SITE_URL}/${routeLang}#bird-lines-video`}
+        thumbnailUrl={`${SITE_URL}/assets/logo/azumbo-logo.png`}
+        uploadDate="2026-01-15"
+        duration="PT45S"
+        inLanguage={routeLang}
+      />
 
       {/* FIXED HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
           
           {/* Desktop Nav */}
-          <nav className="hidden shrink-0 items-center gap-6 text-sm md:flex">
+          <nav className="flex shrink-0 items-center gap-4 text-xs sm:gap-6 sm:text-sm">
             <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
             <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
             <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
@@ -244,26 +253,12 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           </div>
         </div>
 
-        {/* Mobile Nav (Simplified horizontal) */}
-        <nav className="mt-3 flex items-center justify-center gap-6 text-xs md:hidden">
-          <a href="#games" className="text-neutral-400">{t.navGames}</a>
-          <a href="#services" className="text-neutral-400">{t.navServices}</a>
-          <a href="#contact" className="text-neutral-400">{t.navContact}</a>
-        </nav>
       </header>
 
       {/* HERO */}
       <section className="relative mx-auto max-w-5xl px-4 py-16 md:py-24">
         <FloatingSprites />
         <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
-        <Image
-          src="/assets/logo/azumbo-logo.png"
-          alt="AZUMBO Emblem"
-          width={320}
-          height={80}
-          priority
-          className="mt-6 h-auto w-[180px] sm:w-[220px]"
-        />
         <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-8">
@@ -287,9 +282,30 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <section id="games" className="mx-auto max-w-5xl px-4 py-16">
         <h2 className="mb-8 text-3xl font-bold">{t.featured}</h2>
         <div className="grid gap-6 md:grid-cols-3">
-           <GameCard title="Frogger" href="/frogger" desc={t.frDesc} gradient="from-emerald-500 to-green-600" />
-           <GameCard title="Invaders" href="/Spaceinvaders" desc={t.siDesc} gradient="from-blue-500 to-indigo-600" />
-           <GameCard title="Pac-Man" href="/PacMan" desc={t.pmDesc} gradient="from-yellow-400 to-orange-500" />
+           <GameCard
+             title="Frogger"
+             href="/frogger"
+             desc={t.frDesc}
+             gradient="from-emerald-500 via-green-500 to-lime-500"
+             icon="🐸"
+             deco="float"
+           />
+           <GameCard
+             title="Space Invaders"
+             href="/spaceinvaders"
+             desc={t.siDesc}
+             gradient="from-indigo-500 via-blue-500 to-cyan-400"
+             icon="👾"
+             deco="stars"
+           />
+           <GameCard
+             title="Pac-Man"
+             href="/pacman"
+             desc={t.pmDesc}
+             gradient="from-yellow-400 via-amber-400 to-orange-500"
+             icon="🟡"
+             deco="dots"
+           />
         </div>
 
         {/* BIRD LINES SPOTLIGHT */}
@@ -308,7 +324,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
               </p>
               <div className="mt-8 flex items-center gap-4">
                 <span className="text-sm font-semibold text-neutral-500">{t.birdStatus}</span>
-                <a href="mailto:azumbogames@gmail.com?subject=Waitlist" className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
+                <a href={WAITLIST_MAILTO} className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
                   {t.waitlistCTA}
                 </a>
               </div>
@@ -343,15 +359,38 @@ function ServiceCard({ title, desc, price }: any) {
   );
 }
 
-function GameCard({ title, href, desc, gradient }: any) {
+function GameCard({ title, href, desc, gradient, icon, deco }: any) {
   return (
     <Link
       href={href}
       className="group block overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800"
     >
-      <div className={`h-32 bg-gradient-to-br ${gradient}`}></div>
+      <div className={`relative h-32 overflow-hidden bg-gradient-to-br ${gradient}`}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.2),transparent_50%)]"></div>
+        <div className="absolute left-4 top-4 text-4xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">{icon}</div>
+        {deco === 'float' && (
+          <>
+            <span className="absolute bottom-4 right-6 h-4 w-4 animate-bounce rounded-full bg-white/70"></span>
+            <span className="absolute right-12 top-10 h-2 w-2 animate-pulse rounded-full bg-lime-100"></span>
+          </>
+        )}
+        {deco === 'stars' && (
+          <div className="absolute inset-0">
+            <span className="absolute left-14 top-7 h-1.5 w-1.5 animate-pulse rounded-full bg-white"></span>
+            <span className="absolute right-10 top-5 h-1 w-1 animate-ping rounded-full bg-cyan-100"></span>
+            <span className="absolute bottom-7 right-16 h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-100"></span>
+          </div>
+        )}
+        {deco === 'dots' && (
+          <div className="absolute bottom-4 right-4 flex items-center gap-2">
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-yellow-100"></span>
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-100 [animation-delay:220ms]"></span>
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-orange-100 [animation-delay:420ms]"></span>
+          </div>
+        )}
+      </div>
       <div className="p-5">
-        <h4 className="font-bold">{title}</h4>
+        <h4 className="font-bold tracking-wide">{title}</h4>
         <p className="mt-1 text-sm text-neutral-500">{desc}</p>
       </div>
     </Link>

@@ -1,13 +1,26 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { pacmanAudio } from '../../lib/pacmanAudio';
 import styles from './PacMan.module.css';
+import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [level, setLevel] = useState(1);
   const [status, setStatus] = useState<'play' | 'level' | 'win'>('play');
   const [showControls, setShowControls] = useState(false);
+  const [ctaText, setCtaText] = useState('Закажите у нас свою игру');
+
+  useEffect(() => {
+    const userLang = (navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage || '').toLowerCase();
+    if (userLang.startsWith('en')) {
+      setCtaText('Order your own game from us');
+    } else if (userLang.startsWith('it')) {
+      setCtaText('Ordina il tuo gioco da noi');
+    }
+  }, []);
 
   useEffect(() => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -302,6 +315,26 @@ export default function PacManPage() {
 
   return (
     <div className={styles.container}>
+      <SoftwareApplicationJsonLd
+        name="AZUMBO PacMan"
+        description="Navigate the maze, eat dots, and dodge ghosts in AZUMBO's modern browser remake of PacMan."
+        url="https://azumbo.vercel.app/pacman"
+        image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
+      />
+      <Link
+        href="https://azumbo.vercel.app/en"
+        className={styles.logoLink}
+        aria-label="Go to AZUMBO home"
+      >
+        <Image
+          src="/logo/Azumbo Logo no background Sm.png"
+          alt="AZUMBO"
+          width={120}
+          height={44}
+          priority
+          className={styles.logoImage}
+        />
+      </Link>
       <h1>🟡 Pac-Man</h1>
       {status === 'play' && (
         <>
@@ -320,6 +353,12 @@ export default function PacManPage() {
           )}
         </>
       )}
+      <a
+        href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
+        className={styles.ctaLink}
+      >
+        {ctaText}
+      </a>
       {status === 'level' && <p>Level {level} complete!</p>}
       {status === 'win' && <p>🏆 You win!</p>}
     </div>
