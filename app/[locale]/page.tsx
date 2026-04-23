@@ -53,6 +53,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'City In The Plane' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
     waitlistCTA: 'Join the Waitlist',
+    videoLinkLabel: 'Open video link',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'For publishers & press: AzumboGames@gmail.com'
@@ -96,6 +97,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines è un match-3 ispirato alla storia 'City In The Plane' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
     waitlistCTA: 'Unisciti alla Waitlist',
+    videoLinkLabel: 'Apri link video',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Per editori e stampa: AzumboGames@gmail.com'
@@ -139,6 +141,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines — это match-3 по мотивам истории 'City In The Plane' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
     waitlistCTA: 'В лист ожидания',
+    videoLinkLabel: 'Открыть ссылку на видео',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Для издателей и прессы: AzumboGames@gmail.com'
@@ -315,6 +318,14 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
               <video className="mx-auto h-72 rounded-2xl shadow-lg" controls preload="metadata">
                 <source src="/whoops-video.mp4#t=2" type="video/mp4" />
               </video>
+              <a
+                href="https://github.com/Azumbo/Azumbo/blob/main/public/WhoopsBirdLines.mp4"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 block text-center text-sm font-medium text-blue-600 underline-offset-2 hover:underline dark:text-blue-400"
+              >
+                {t.videoLinkLabel}
+              </a>
             </div>
             <div className="p-8 md:w-2/3">
               <h3 className="text-2xl font-bold uppercase tracking-wider">{t.birdTitle}</h3>
