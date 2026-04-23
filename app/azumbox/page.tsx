@@ -125,30 +125,18 @@ export default function AzumboxPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">{t.description}</p>
 
-          <div className="group relative mt-10 overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-b from-neutral-50 to-white shadow-[0_24px_60px_rgba(10,10,10,0.08)]">
-            <div className="aspect-video w-full" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.6),transparent_45%)]" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <span className="rounded-full border border-white/70 bg-white/80 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-neutral-500 backdrop-blur-sm">
-                {t.videoLabel}
-              </span>
-              <button
-                type="button"
-                className="rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm font-medium text-neutral-800 shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:scale-105"
-              >
-                ▶ Play
-              </button>
-              <span className="text-sm text-neutral-500">{t.videoHint}</span>
-            </div>
+          {/* Видео-контейнер */}
+          <div className="mt-10 overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50 shadow-[0_24px_60px_rgba(0,0,0,0.07)]">
+            <video autoPlay loop muted playsInline className="aspect-video w-full object-cover">
+              <source src="/azumbox-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <section className="mt-12 grid gap-4 sm:grid-cols-3">
             {t.vibeItems.map((item, idx) => (
-              <article
-                key={item.title}
-                className="rounded-2xl border border-neutral-200 p-5 transition duration-300 hover:shadow-[0_16px_35px_rgba(0,0,0,0.06)]"
-              >
-                <span className="text-sm text-neutral-400">0{idx + 1}</span>
+              <article key={item.title} className="rounded-2xl border border-neutral-100 p-5">
+                <span className="text-sm text-neutral-300">0{idx + 1}</span>
                 <h2 className="mt-2 text-lg font-medium">{item.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">{item.text}</p>
               </article>
