@@ -126,16 +126,26 @@ export default function AzumboxPage() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">{t.description}</p>
 
           {/* Видео-контейнер */}
-          <div className="mt-10 overflow-hidden rounded-3xl border border-neutral-100 bg-neutral-50 shadow-[0_24px_60px_rgba(0,0,0,0.07)]">
-            <video autoPlay loop muted playsInline className="aspect-video w-full object-cover">
-              <source src="/azumbox-demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          <div className="mx-auto mt-10 w-full max-w-[24rem]">
+            <div className="rounded-[2.2rem] border border-neutral-800/60 bg-neutral-900 p-1.5 shadow-[0_28px_75px_rgba(24,24,27,0.3)]">
+              <div className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-neutral-50">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="aspect-[9/16] max-h-[70vh] w-full object-cover"
+                >
+                  <source src="/azumbox-demo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
           </div>
 
-          <section className="mt-12 grid gap-4 sm:grid-cols-3">
+          <section className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {t.vibeItems.map((item, idx) => (
-              <article key={item.title} className="rounded-2xl border border-neutral-100 p-5">
+              <article key={item.title} className="rounded-2xl border border-neutral-100 p-5 sm:p-6">
                 <span className="text-sm text-neutral-300">0{idx + 1}</span>
                 <h2 className="mt-2 text-lg font-medium">{item.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">{item.text}</p>
