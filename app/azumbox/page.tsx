@@ -12,6 +12,7 @@ type LocalizedCopy = {
   videoHint: string;
   vibeItems: { title: string; text: string }[];
   cta: string;
+  ctaHref?: string;
 };
 
 const COPY: Record<Lang, LocalizedCopy> = {
@@ -59,7 +60,9 @@ const COPY: Record<Lang, LocalizedCopy> = {
         text: 'Un rituale rilassante per tragitti, pause caffè e procrastinazione di classe.',
       },
     ],
-    cta: 'Scarica Azumbox',
+    cta: 'Supporta il lancio di Azumbox',
+    ctaHref:
+      'https://www.produzionidalbasso.com/project/azumbox-portiamo-il-minimalismo-digitale-calabrese-nell-app/',
   },
   ru: {
     nav: 'Язык',
@@ -154,12 +157,23 @@ export default function AzumboxPage() {
           </section>
 
           <div className="mt-10">
-            <button
-              type="button"
-              className="rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_16px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800"
-            >
-              {t.cta}
-            </button>
+            {t.ctaHref ? (
+              <a
+                href={t.ctaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_16px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800"
+              >
+                {t.cta}
+              </a>
+            ) : (
+              <button
+                type="button"
+                className="rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_16px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800"
+              >
+                {t.cta}
+              </button>
+            )}
           </div>
         </section>
       </div>
