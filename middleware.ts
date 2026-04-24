@@ -18,7 +18,9 @@ function getPreferredLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname !== pathname.toLowerCase()) {
+  const isFileRequest = /\/[^/]+\.[^/]+$/.test(pathname);
+
+  if (!isFileRequest && pathname !== pathname.toLowerCase()) {
     return NextResponse.redirect(new URL(pathname.toLowerCase(), request.url), 308);
   }
 
