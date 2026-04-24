@@ -325,14 +325,6 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
               >
                 <source src="/WhoopsBirdLines.mp4" type="video/mp4" />
               </video>
-              <a
-                href="https://github.com/Azumbo/Azumbo/blob/main/public/WhoopsBirdLines.mp4"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 block text-center text-sm font-medium text-blue-600 underline-offset-2 hover:underline dark:text-blue-400"
-              >
-                {t.videoLinkLabel}
-              </a>
             </div>
             <div className="p-8 md:w-2/3">
               <h3 className="text-2xl font-bold uppercase tracking-wider">{t.birdTitle}</h3>
