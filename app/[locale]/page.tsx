@@ -315,7 +315,14 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <article className="mt-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
           <div className="flex flex-col md:flex-row">
             <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
-              <video className="mx-auto h-72 rounded-2xl shadow-lg" autoPlay loop muted playsInline preload="metadata">
+              <video
+                className="mx-auto h-72 rounded-2xl shadow-lg"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              >
                 <source src="/WhoopsBirdLines.mp4" type="video/mp4" />
               </video>
               <a
