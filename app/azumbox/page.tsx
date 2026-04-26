@@ -37,7 +37,8 @@ const COPY: Record<Lang, LocalizedCopy> = {
         text: 'A relaxing ritual for commutes, coffee breaks, and elegant procrastination.',
       },
     ],
-    cta: 'Download Azumbox',
+    cta: 'Donate to support',
+    ctaHref: 'https://www.gofundme.com/u/azumbox',
   },
   it: {
     nav: 'Lingua',
