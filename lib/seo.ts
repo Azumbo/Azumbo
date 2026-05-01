@@ -3,35 +3,30 @@ export const SUPPORTED_LOCALES = ['en', 'it', 'ru'] as const;
 
 export type Locale = typeof SUPPORTED_LOCALES[number];
 
-/**
- * Проверяет, поддерживается ли данная локаль
- */
 export function isSupportedLocale(locale: string): locale is Locale {
-  return SUPPORTED_LOCALES.includes(locale as any);
+  return SUPPORTED_LOCALES.includes(locale as Locale);
 }
 
-/**
- * Генерирует ссылки на альтернативные языковые версии страницы
- */
-export function buildLanguageAlternates(path = '') {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  // Удаляем текущий префикс локали из пути, если он есть
-  const pathWithoutLocale = cleanPath.replace(/^\/(en|it|ru)/, '') || '/';
+export function buildCanonical(pathname = '/') {
+  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return `${SITE_URL}${normalizedPath}`;
+}
+
+export function buildLanguageAlternates(pathname = '/') {
+  const cleanPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  const pathWithoutLocale = cleanPath.replace(/^\/(en|it|ru)(?=\/|$)/, '') || '/';
 
   return {
-    'en-US': `/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-    'it-IT': `/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
-    'ru-RU': `/ru${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`,
+    'en-US': buildCanonical(`/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`),
+    'it-IT': buildCanonical(`/it${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`),
+    'ru-RU': buildCanonical(`/ru${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`),
+    'x-default': buildCanonical(`/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`),
   };
 }
 
-/**
- * Базовый конфиг метаданных для страниц
- */
-export const baseMetadata = (path: string) => ({
+export const baseMetadata = (pathname: string) => ({
   metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: path,
-    languages: buildLanguageAlternates(path),
+    canonical: buildCanonical(pathname),
   },
 });

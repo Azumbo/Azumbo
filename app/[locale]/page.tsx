@@ -160,7 +160,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t.seoDesc,
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
-      languages: buildLanguageAlternates()
+      languages: buildLanguageAlternates(canonicalPath)
     },
     openGraph: {
       title: t.title,
@@ -208,7 +208,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         contentUrl={`${SITE_URL}/WhoopsBirdLines.mp4`}
         embedUrl={`${SITE_URL}/${routeLang}#bird-lines-video`}
         thumbnailUrl={`${SITE_URL}/assets/logo/azumbo-logo.png`}
-        uploadDate="2026-01-15"
+        uploadDate="2026-01-15T00:00:00Z"
         duration="PT45S"
         inLanguage={routeLang}
       />
