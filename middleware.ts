@@ -49,6 +49,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}${search}`, request.url), 307);
   }
 
+
+  // 4.1 LOCALE TRAILING SLASH: /en/ -> /en (single redirect, preserve query)
+  const localeTrailingSlash = pathname.match(/^\/(en|ru|it)\/$/);
+  if (localeTrailingSlash) {
+    const locale = localeTrailingSlash[1];
+    return NextResponse.redirect(new URL(`/${locale}${search}`, request.url), 308);
+  }
+
   // 5. КУКИ ЛОКАЛИЗАЦИИ
   const localeMatch = pathname.match(/^\/(en|ru|it)(\/.*)?$/);
   if (localeMatch) {
