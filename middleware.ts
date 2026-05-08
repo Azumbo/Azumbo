@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const PRIMARY_HOST = 'azumbo.vercel.app';
-const SUPPORTED_LOCALES = ['en', 'ru', 'it'] as const;
-const DEFAULT_LOCALE = 'en';
+import { DEFAULT_LOCALE, PRIMARY_HOST, SUPPORTED_LOCALES } from './lib/seo';
 
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get('azumbo_locale')?.value;
