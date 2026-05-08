@@ -1,5 +1,7 @@
 export const SITE_URL = 'https://azumbo.vercel.app';
+export const PRIMARY_HOST = 'azumbo.vercel.app';
 export const SUPPORTED_LOCALES = ['en', 'it', 'ru'] as const;
+export const DEFAULT_LOCALE = 'en';
 
 export type Locale = typeof SUPPORTED_LOCALES[number];
 

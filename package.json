@@ -5,7 +5,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo \"No tests yet\""
+    "test": "echo \"No tests yet\"",
+    "seo:live": "bash scripts/seo-live-check.sh",
+    "seo:smoke": "node scripts/seo-smoke.mjs"
   },
   "dependencies": {
     "formidable": "^3.5.4",
