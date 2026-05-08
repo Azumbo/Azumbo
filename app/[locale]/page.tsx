@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
 import { JsonLd, VideoObjectJsonLd } from '../../components/seo/JsonLd';
-import { SITE_URL, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
+import { SITE_URL, VIDEO_PUBLISH_DATE, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -208,7 +208,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         contentUrl={`${SITE_URL}/WhoopsBirdLines.mp4`}
         embedUrl={`${SITE_URL}/${routeLang}#bird-lines-video`}
         thumbnailUrl={`${SITE_URL}/assets/logo/azumbo-logo.png`}
-        uploadDate="2026-01-15T00:00:00Z"
+        uploadDate={VIDEO_PUBLISH_DATE}
         duration="PT45S"
         inLanguage={routeLang}
       />

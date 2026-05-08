@@ -32,3 +32,5 @@ export const baseMetadata = (pathname: string) => ({
     canonical: buildCanonical(pathname),
   },
 });
+
+export const VIDEO_PUBLISH_DATE = '2026-01-15T00:00:00Z';
