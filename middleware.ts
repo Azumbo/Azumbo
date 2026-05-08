@@ -26,25 +26,32 @@ export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const hostname = request.nextUrl.hostname.toLowerCase();
 
+  // 1. DOMAIN LOCK: Убираем технические зеркала Vercel
   const isVercelMirror = hostname.endsWith('.vercel.app') && hostname !== PRIMARY_HOST;
   if (isVercelMirror) {
     const redirectUrl = `https://${PRIMARY_HOST}${pathname}${search}`;
     const response = NextResponse.redirect(redirectUrl, 301);
-    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
     return response;
   }
 
+  // 2. СТАТИКА: Пропускаем файлы (изображения, mp4, favicon) без обработки
   const isFileRequest = /\/[^/]+\.[^/]+$/.test(pathname);
+  if (isFileRequest) return NextResponse.next();
 
-  if (!isFileRequest && pathname !== pathname.toLowerCase()) {
+  // 3. НОРМАЛИЗАЦИЯ: Нижний регистр (SEO стандарт)
+  if (pathname !== pathname.toLowerCase()) {
     return NextResponse.redirect(new URL(`${pathname.toLowerCase()}${search}`, request.url), 308);
   }
 
+  // 4. ГЛАВНАЯ: Редирект на язык БЕЗ финального слэша
   if (pathname === '/') {
     const locale = getPreferredLocale(request);
-    return NextResponse.redirect(new URL(`/${locale}/`, request.url), 307);
+    // Исправлено: Редирект на /en (а не /en/), чтобы не конфликтовать с trailingSlash: false
+    return NextResponse.redirect(new URL(`/${locale}${search}`, request.url), 307);
   }
 
+  // 5. КУКИ ЛОКАЛИЗАЦИИ
   const localeMatch = pathname.match(/^\/(en|ru|it)(\/.*)?$/);
   if (localeMatch) {
     const locale = localeMatch[1];
@@ -61,5 +68,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo|images|site/assets).*)'],
+  // Исключаем API и служебные пути Next.js
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo|images|site/assets|.*\\..*).*)'],
 };
