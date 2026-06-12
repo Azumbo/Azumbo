@@ -36,6 +36,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navGames: 'Games',
     navServices: 'Services',
     navContact: 'Contact',
+    navLaPasta: 'La Pasta',
     servicesTitle: 'Services',
     servicesSubtitle: 'From prototype sprints to publishing and platform ports.',
     srvProtoTitle: 'Prototype Sprint',
@@ -80,6 +81,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navGames: 'Giochi',
     navServices: 'Servizi',
     navContact: 'Contatto',
+    navLaPasta: 'La Pasta',
     servicesTitle: 'Servizi',
     servicesSubtitle: 'Dallo sprint di prototipo al publishing e porting su console.',
     srvProtoTitle: 'Sprint di Prototipo',
@@ -124,6 +126,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navGames: 'Игры',
     navServices: 'Услуги',
     navContact: 'Контакты',
+    navLaPasta: 'La Pasta',
     servicesTitle: 'Услуги',
     servicesSubtitle: 'От прототипов до паблишинга и портирования на консоли.',
     srvProtoTitle: 'Прототип-спринт',
@@ -222,6 +225,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
             <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
             <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
+            <Link href="/lapasta" className="text-neutral-300 hover:text-white transition">{t.navLaPasta}</Link>
           </nav>
 
           {/* Centered Logo */}
@@ -348,9 +352,10 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         </article>
       </section>
 
-      <footer className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
+      <footer id="contact" className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
         <p className="text-sm text-neutral-500">{t.footer}</p>
         <p className="mt-2 text-xs text-neutral-400">{t.pressLine}</p>
+        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link></p>
       </footer>
     </main>
   );
