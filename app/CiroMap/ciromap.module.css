@@ -1,0 +1,53 @@
+.shell {
+  min-height: 100dvh;
+  background: #f0f5fc;
+  color: #1c1c1e;
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+.shell::before,
+.shell::after {
+  content: "";
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  filter: blur(8px);
+  opacity: .42;
+  pointer-events: none;
+}
+.shell::before { background: #8cc7fa; top: -90px; left: -110px; }
+.shell::after { background: #c7b8f5; right: -120px; bottom: 8%; }
+.creamBlob { position: fixed; width: 260px; height: 260px; border-radius: 999px; background: #fcf0d1; opacity: .52; right: 14%; top: 18%; pointer-events:none; }
+.header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(28,28,30,.08); background: rgba(240,245,252,.78); backdrop-filter: blur(20px); }
+.headerInner { max-width: 1040px; margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.02em; }
+.mark { width:38px; height:38px; display:grid; place-items:center; border-radius:14px; background: linear-gradient(135deg,#8cc7fa,#c7b8f5); box-shadow: 0 3px 10px rgba(0,0,0,.06); }
+.nav { display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
+.nav a, .langButton { color: rgba(60,60,67,.72); text-decoration:none; font-size: 14px; font-weight: 650; }
+.nav a:hover, .langButton:hover { color:#1c1c1e; }
+.main { position:relative; z-index:1; max-width: 920px; margin:0 auto; padding: 56px 20px 34px; }
+.hero { text-align:center; margin: 0 auto 28px; max-width:760px; }
+.kicker { color: rgba(60,60,67,.62); font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+.title { margin: 12px 0 14px; font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif; font-size: clamp(42px, 9vw, 76px); line-height:.96; letter-spacing:-.05em; }
+.subtitle { color: rgba(60,60,67,.72); font-size: clamp(17px, 2vw, 20px); line-height:1.55; margin:0 auto; max-width:680px; }
+.card { background: rgba(238,242,252,.76); border:1px solid rgba(255,255,255,.68); border-radius: 32px; box-shadow: 0 3px 10px rgba(0,0,0,.06); backdrop-filter: blur(20px); padding: clamp(22px, 5vw, 44px); }
+.langSwitch { display:flex; gap:8px; justify-content:center; margin: 26px 0; }
+.langButton { border:1px solid rgba(28,28,30,.1); background: rgba(255,255,255,.38); border-radius: 999px; padding:8px 12px; cursor:pointer; }
+.langButton[aria-pressed="true"] { background:#1c1c1e; color:white; }
+.metaGrid { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:12px; margin: 20px 0 4px; }
+.metaItem { border-radius:18px; background: rgba(255,255,255,.38); padding:14px; color: rgba(60,60,67,.72); font-size:14px; }
+.metaItem strong { display:block; color:#1c1c1e; margin-bottom:4px; }
+.policy h2 { font-size: 24px; margin: 34px 0 10px; letter-spacing:-.02em; }
+.policy h3 { font-size: 18px; margin: 22px 0 8px; }
+.policy p, .policy li { color: rgba(60,60,67,.78); line-height:1.72; }
+.policy ul { padding-left: 1.2rem; }
+.policy a, .footer a, .ctaLink { color:#155f9d; text-decoration: underline; text-underline-offset: 3px; }
+.ctaRow { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:28px; }
+.primaryCta, .secondaryCta { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:12px 18px; font-weight:800; text-decoration:none; }
+.primaryCta { background:#1c1c1e; color:#fff; }
+.secondaryCta { border:1px solid rgba(28,28,30,.12); color:#1c1c1e; background:rgba(255,255,255,.38); }
+.badge { display:inline-flex; border:1px dashed rgba(28,28,30,.26); border-radius:14px; padding:10px 14px; color:rgba(60,60,67,.72); font-weight:700; }
+.footer { position:relative; z-index:1; max-width:920px; margin: 0 auto; padding: 12px 20px 42px; text-align:center; color: rgba(60,60,67,.62); font-size:14px; }
+@media (max-width: 640px) { .headerInner { align-items:flex-start; flex-direction:column; } .nav { justify-content:flex-start; } .metaGrid { grid-template-columns:1fr; } }

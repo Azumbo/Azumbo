@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL, SUPPORTED_LOCALES } from '../lib/seo';
 
-const LAST_MODIFIED = new Date('2026-06-12T00:00:00.000Z');
+const LAST_MODIFIED = new Date('2026-06-20T00:00:00.000Z');
 
 const CORE_ROUTES = [
   '/',
@@ -19,6 +19,8 @@ const CORE_ROUTES = [
   '/lapasta',
   '/lapasta/privacy',
   '/lapasta/support',
+  '/CiroMap',
+  '/CiroMap/privacy',
   '/cityintheplane/privacy',
   '/cornettoclicker/privacy',
   '/cornettoclicker/terms'
