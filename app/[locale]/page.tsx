@@ -57,7 +57,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Open video link',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: AzumboGames@gmail.com'
+    pressLine: 'For publishers & press: AzumboGames@gmail.com',
+    ciroPrivacy: 'Ciro.Map Privacy'
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -102,7 +103,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Apri link video',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Per editori e stampa: AzumboGames@gmail.com'
+    pressLine: 'Per editori e stampa: AzumboGames@gmail.com',
+    ciroPrivacy: 'Privacy Ciro.Map'
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -147,7 +149,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Открыть ссылку на видео',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Для издателей и прессы: AzumboGames@gmail.com'
+    pressLine: 'Для издателей и прессы: AzumboGames@gmail.com',
+    ciroPrivacy: 'Конфиденциальность Ciro.Map'
   }
 };
 
@@ -355,7 +358,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <footer id="contact" className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
         <p className="text-sm text-neutral-500">{t.footer}</p>
         <p className="mt-2 text-xs text-neutral-400">{t.pressLine}</p>
-        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link></p>
+        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link><span className="mx-2 text-neutral-300">·</span><Link href="/CiroMap/privacy" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">{t.ciroPrivacy}</Link></p>
       </footer>
     </main>
   );
