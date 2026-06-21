@@ -57,7 +57,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Open video link',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'For publishers & press: AzumboGames@gmail.com',
+    pressLine: 'For publishers & press: azumbogames@gmail.com',
     ciroPrivacy: 'Ciro.Map Privacy'
   },
   it: {
@@ -103,7 +103,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Apri link video',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Per editori e stampa: AzumboGames@gmail.com',
+    pressLine: 'Per editori e stampa: azumbogames@gmail.com',
     ciroPrivacy: 'Privacy Ciro.Map'
   },
   ru: {
@@ -149,7 +149,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Открыть ссылку на видео',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
-    pressLine: 'Для издателей и прессы: AzumboGames@gmail.com',
+    pressLine: 'Для издателей и прессы: azumbogames@gmail.com',
     ciroPrivacy: 'Конфиденциальность Ciro.Map'
   }
 };

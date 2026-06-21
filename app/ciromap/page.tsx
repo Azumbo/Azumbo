@@ -44,7 +44,7 @@ export default function CiroMapLandingPage() {
           <nav className={styles.nav} aria-label="Ciro.Map navigation">
             <Link href="/en">Azumbo</Link>
             <Link href="/ciromap/privacy">Privacy Policy</Link>
-            <a href="mailto:privacy@azumbo.com">Contact</a>
+            <a href="mailto:azumbogames@gmail.com">Contact</a>
           </nav>
         </div>
       </header>
