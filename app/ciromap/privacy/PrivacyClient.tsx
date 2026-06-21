@@ -6,7 +6,7 @@ import styles from '../ciromap.module.css';
 
 type Lang = 'en' | 'it' | 'ru';
 const LANGS: Lang[] = ['en', 'it', 'ru'];
-const CONTACT_EMAIL = 'privacy@azumbo.com';
+const CONTACT_EMAIL = 'azumbogames@gmail.com';
 
 const copy = {
   en: {
