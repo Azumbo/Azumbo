@@ -6,11 +6,11 @@ import { SITE_URL } from '../../lib/seo';
 export const metadata: Metadata = {
   title: 'Ciro.Map — Cirò Marina Travel Guide',
   description: 'Ciro.Map is an iOS travel guide for Cirò Marina, Calabria, Italy, with maps, points of interest, routes, and a loyalty wallet.',
-  alternates: { canonical: `${SITE_URL}/CiroMap` },
+  alternates: { canonical: `${SITE_URL}/ciromap` },
   openGraph: {
     title: 'Ciro.Map — Cirò Marina Travel Guide',
     description: 'Maps, points of interest, routes, and a loyalty wallet for Cirò Marina, Calabria.',
-    url: `${SITE_URL}/CiroMap`,
+    url: `${SITE_URL}/ciromap`,
     siteName: 'AZUMBO',
     type: 'website',
   },
@@ -22,8 +22,8 @@ export default function CiroMapLandingPage() {
       <div className={styles.creamBlob} />
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link href="/CiroMap" className={styles.brand}><span className={styles.mark}>🗺️</span><span>Ciro.Map</span></Link>
-          <nav className={styles.nav} aria-label="Ciro.Map navigation"><Link href="/en">Azumbo</Link><Link href="/CiroMap/privacy">Privacy Policy</Link><a href="mailto:privacy@azumbo.com">Contact</a></nav>
+          <Link href="/ciromap" className={styles.brand}><span className={styles.mark}>🗺️</span><span>Ciro.Map</span></Link>
+          <nav className={styles.nav} aria-label="Ciro.Map navigation"><Link href="/en">Azumbo</Link><Link href="/ciromap/privacy">Privacy Policy</Link><a href="mailto:privacy@azumbo.com">Contact</a></nav>
         </div>
       </header>
       <main className={styles.main}>
@@ -32,7 +32,7 @@ export default function CiroMapLandingPage() {
           <h1 className={styles.title}>Ciro.Map</h1>
           <p className={styles.subtitle}>A polished iOS travel guide for Cirò Marina, Calabria, with nearby places, routes, categories, and a private loyalty wallet.</p>
           <div className={styles.ctaRow}>
-            <Link className={styles.primaryCta} href="/CiroMap/privacy">Read Privacy Policy</Link>
+            <Link className={styles.primaryCta} href="/ciromap/privacy">Read Privacy Policy</Link>
             <span className={styles.badge} aria-label="App Store badge placeholder">Download on the App Store · Soon</span>
           </div>
         </section>
@@ -47,7 +47,7 @@ export default function CiroMapLandingPage() {
           </div>
         </section>
       </main>
-      <footer className={styles.footer}>© 2026 Azumbo · <Link href="/CiroMap/privacy">Ciro.Map Privacy</Link></footer>
+      <footer className={styles.footer}>© 2026 Azumbo · <Link href="/ciromap/privacy">Ciro.Map Privacy</Link></footer>
     </div>
   );
 }

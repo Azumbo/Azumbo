@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import PrivacyClient from './PrivacyClient';
 import { SITE_URL } from '../../../lib/seo';
 
-const canonical = `${SITE_URL}/CiroMap/privacy`;
+const canonical = `${SITE_URL}/ciromap/privacy`;
 
 export const metadata: Metadata = {
   title: 'Ciro.Map Privacy Policy',
