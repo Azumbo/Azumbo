@@ -23,7 +23,8 @@
 .header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(28,28,30,.08); background: rgba(240,245,252,.78); backdrop-filter: blur(20px); }
 .headerInner { max-width: 1040px; margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.02em; }
-.mark { width:38px; height:38px; display:grid; place-items:center; border-radius:14px; background: linear-gradient(135deg,#8cc7fa,#c7b8f5); box-shadow: 0 3px 10px rgba(0,0,0,.06); }
+.appIcon { width:38px; height:38px; border-radius:9px; box-shadow: 0 3px 10px rgba(0,0,0,.08); flex-shrink:0; }
+.heroIcon { width:88px; height:88px; border-radius:20px; box-shadow: 0 8px 24px rgba(0,0,0,.08); margin: 0 auto 8px; }
 .nav { display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
 .nav a, .langButton { color: rgba(60,60,67,.72); text-decoration:none; font-size: 14px; font-weight: 650; }
 .nav a:hover, .langButton:hover { color:#1c1c1e; }

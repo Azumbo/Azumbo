@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ciromap.module.css';
 import { SITE_URL } from '../../lib/seo';
+
+const OG_IMAGE = `${SITE_URL}/ciromap/og-ciromap.jpg`;
 
 export const metadata: Metadata = {
   title: 'Ciro.Map — Cirò Marina Travel Guide',
@@ -13,6 +16,11 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/ciromap`,
     siteName: 'AZUMBO',
     type: 'website',
+    images: [{ url: OG_IMAGE, width: 512, height: 512, alt: 'Ciro.Map app icon' }],
+  },
+  twitter: {
+    card: 'summary',
+    images: [OG_IMAGE],
   },
 };
 
@@ -22,12 +30,35 @@ export default function CiroMapLandingPage() {
       <div className={styles.creamBlob} />
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link href="/ciromap" className={styles.brand}><span className={styles.mark}>🗺️</span><span>Ciro.Map</span></Link>
-          <nav className={styles.nav} aria-label="Ciro.Map navigation"><Link href="/en">Azumbo</Link><Link href="/ciromap/privacy">Privacy Policy</Link><a href="mailto:privacy@azumbo.com">Contact</a></nav>
+          <Link href="/ciromap" className={styles.brand}>
+            <Image
+              src="/ciromap/app-icon-192.png"
+              alt="Ciro.Map app icon"
+              width={38}
+              height={38}
+              className={styles.appIcon}
+              priority
+            />
+            <span>Ciro.Map</span>
+          </Link>
+          <nav className={styles.nav} aria-label="Ciro.Map navigation">
+            <Link href="/en">Azumbo</Link>
+            <Link href="/ciromap/privacy">Privacy Policy</Link>
+            <a href="mailto:privacy@azumbo.com">Contact</a>
+          </nav>
         </div>
       </header>
       <main className={styles.main}>
         <section className={styles.hero}>
+          <Image
+            src="/ciromap/app-icon-192.png"
+            alt=""
+            width={88}
+            height={88}
+            className={styles.heroIcon}
+            priority
+            aria-hidden
+          />
           <p className={styles.kicker}>Azumbo · Chic Escape</p>
           <h1 className={styles.title}>Ciro.Map</h1>
           <p className={styles.subtitle}>A polished iOS travel guide for Cirò Marina, Calabria, with nearby places, routes, categories, and a private loyalty wallet.</p>
