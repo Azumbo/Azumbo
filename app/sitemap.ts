@@ -19,8 +19,8 @@ const CORE_ROUTES = [
   '/lapasta',
   '/lapasta/privacy',
   '/lapasta/support',
-  '/CiroMap',
-  '/CiroMap/privacy',
+  '/ciromap',
+  '/ciromap/privacy',
   '/cityintheplane/privacy',
   '/cornettoclicker/privacy',
   '/cornettoclicker/terms'

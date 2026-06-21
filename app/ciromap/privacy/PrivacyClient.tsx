@@ -38,8 +38,8 @@ export default function PrivacyClient() {
       <div className={styles.creamBlob} />
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link href="/CiroMap" className={styles.brand}><span className={styles.mark}>🗺️</span><span>Ciro.Map</span></Link>
-          <nav className={styles.nav} aria-label="Ciro.Map navigation"><Link href="/en">Azumbo</Link><Link href="/CiroMap">Ciro.Map</Link><a href={`mailto:${CONTACT_EMAIL}`}>Contact</a></nav>
+          <Link href="/ciromap" className={styles.brand}><span className={styles.mark}>🗺️</span><span>Ciro.Map</span></Link>
+          <nav className={styles.nav} aria-label="Ciro.Map navigation"><Link href="/en">Azumbo</Link><Link href="/ciromap">Ciro.Map</Link><a href={`mailto:${CONTACT_EMAIL}`}>Contact</a></nav>
         </div>
       </header>
       <main className={styles.main}>
@@ -58,7 +58,7 @@ export default function PrivacyClient() {
           <h2>{t.bases}</h2><p>{t.basesText}</p><h2>{t.retention}</h2><p>{t.retentionText}</p><h2>{t.children}</h2><p>{t.childrenText}</p><h2>{t.transfers}</h2><p>{t.transfersText}</p><h2>{t.rights}</h2><p>{t.rightsText}<a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p><h2>{t.changes}</h2><p>{t.changesText}</p>
         </article>
       </main>
-      <footer className={styles.footer}>© 2026 Azumbo · <Link href="/CiroMap/privacy">Ciro.Map Privacy</Link></footer>
+      <footer className={styles.footer}>© 2026 Azumbo · <Link href="/ciromap/privacy">Ciro.Map Privacy</Link></footer>
     </div>
   );
 }

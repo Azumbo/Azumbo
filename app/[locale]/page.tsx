@@ -358,7 +358,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
       <footer id="contact" className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
         <p className="text-sm text-neutral-500">{t.footer}</p>
         <p className="mt-2 text-xs text-neutral-400">{t.pressLine}</p>
-        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link><span className="mx-2 text-neutral-300">·</span><Link href="/CiroMap/privacy" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">{t.ciroPrivacy}</Link></p>
+        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link><span className="mx-2 text-neutral-300">·</span><Link href="/ciromap/privacy" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">{t.ciroPrivacy}</Link></p>
       </footer>
     </main>
   );
