@@ -1,29 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { getPublicAppRoutes } from '../lib/apps';
 import { SITE_URL, SUPPORTED_LOCALES } from '../lib/seo';
 
 const LAST_MODIFIED = new Date('2026-06-20T00:00:00.000Z');
 
 const CORE_ROUTES = [
   '/',
-  '/pacman',
-  '/spaceinvaders',
-  '/frogger',
-  '/cornettoclicker',
-  '/cirotap',
-  '/cornettoclicker-landing',
-  '/petonauta-landing',
-  '/game',
-  '/register',
-  '/stats',
-  '/finish',
-  '/lapasta',
-  '/lapasta/privacy',
-  '/lapasta/support',
-  '/ciromap',
-  '/ciromap/privacy',
-  '/cityintheplane/privacy',
-  '/cornettoclicker/privacy',
-  '/cornettoclicker/terms'
+  '/app-ads.txt',
+  ...getPublicAppRoutes(),
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -38,10 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   const core = CORE_ROUTES.map((path) => ({
-    url: `${SITE_URL}${path === '/' ? '/en' : path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: LAST_MODIFIED,
     changeFrequency: 'weekly' as const,
-    priority: path === '/' ? 1 : 0.7
+    priority: path === '/' ? 1 : path === '/app-ads.txt' ? 0.3 : 0.8
   }));
 
   return [...core, ...localized];

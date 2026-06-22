@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '../../../lib/seo';
-import { CONTACT_EMAIL, LaPastaFooter, LaPastaNav } from '../components';
+import { APP_STORE_URL, CONTACT_EMAIL, LaPastaFooter, LaPastaNav } from '../components';
 import styles from '../lapasta.module.css';
 
 export const metadata: Metadata = {
@@ -37,6 +37,10 @@ const faqs = [
     answer: 'Use the Restore Purchases option in the app settings or purchase screen. Make sure you are signed in with the same Apple ID used for the original purchase.',
   },
   {
+    question: 'Why are ads not loading?',
+    answer: 'Ads can be unavailable because of network conditions, regional fill, consent settings, or temporary AdMob availability. Check your connection, reopen the app, and try again later. Remove Ads disables interstitial ads after the purchase is active.',
+  },
+  {
     question: 'Can I turn off haptics or sound?',
     answer: 'Yes. La Pasta is designed with calm, tactile feedback. If available in your app version, use the in-app settings to adjust haptics and sound. You can also use iOS system volume and haptic settings.',
   },
@@ -62,6 +66,7 @@ export default function LaPastaSupportPage() {
           <div className={styles.actions}>
             <a className={styles.cta} href={`mailto:${CONTACT_EMAIL}?subject=La%20Pasta%20Support`}>Contact support</a>
             <Link className={styles.secondaryCta} href="/lapasta/privacy">Privacy Policy</Link>
+            <a className={styles.secondaryCta} href={APP_STORE_URL} rel="noopener noreferrer" target="_blank">App Store</a>
           </div>
         </section>
 

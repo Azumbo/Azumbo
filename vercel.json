@@ -1,9 +1,16 @@
 {
   "cleanUrls": true,
   "redirects": [],
+  "headers": [
+    {
+      "source": "/app-ads.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/cornettoclicker/:path*", "destination": "/cornettoclicker/:path*" },
-    { "source": "/", "destination": "/site/index.html" },
     { "source": "/legal/privacy", "destination": "/site/legal/privacy/index.html" },
     { "source": "/legal/terms", "destination": "/site/legal/terms/index.html" },
     { "source": "/legal/cookies", "destination": "/site/legal/cookies/index.html" },
