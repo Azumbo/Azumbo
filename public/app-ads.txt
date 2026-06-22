@@ -1,2 +1,1 @@
-# Placeholder — replace before production.
-# Mirror entries from ads.txt unless instructed otherwise by your ad network.
+google.com, pub-2475393065586904, DIRECT, f08c47fec0942fa0

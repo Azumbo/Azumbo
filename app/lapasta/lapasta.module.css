@@ -519,3 +519,43 @@
     min-height: 112px;
   }
 }
+
+.studioTitle {
+  margin: 0;
+  max-width: 760px;
+  font-family: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(4rem, 13vw, 9rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.86;
+}
+
+.studioCard {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.studioIcon {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 24px;
+  background: rgba(111, 143, 114, 0.14);
+  font-size: 2.4rem;
+}
+
+.inlineLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.metaText {
+  margin: 10px 0 0;
+  color: #6E6E73;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}

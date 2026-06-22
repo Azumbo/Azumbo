@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import styles from './lapasta.module.css';
 
-export const APP_STORE_URL = 'https://apps.apple.com/app/id6774466615';
-export const CONTACT_EMAIL = 'azumbogames@gmail.com';
+import { apps, CONTACT_EMAIL as STUDIO_CONTACT_EMAIL } from '../../lib/apps';
+
+export const CONTACT_EMAIL = STUDIO_CONTACT_EMAIL;
+
+export const LA_PASTA = apps.find((app) => app.slug === 'lapasta')!;
+export const APP_STORE_URL = LA_PASTA.appStoreUrl;
 
 export function LaPastaNav() {
   return (
@@ -27,7 +31,7 @@ export function LaPastaFooter() {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.container} ${styles.footerInner}`}>
-        <p className={styles.sectionText}>© 2026 AZUMBO. La Pasta is crafted for iPhone and iPad.</p>
+        <p className={styles.sectionText}>© 2026 Azumbo Games. La Pasta is crafted for iPhone and iPad.</p>
         <nav className={styles.footerLinks} aria-label="Footer navigation">
           <Link href="/lapasta/privacy">Privacy</Link>
           <Link href="/lapasta/support">Support</Link>

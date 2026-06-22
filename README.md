@@ -32,3 +32,11 @@ npm run build
 - **pages/** – API routes
 - **public/** – Static files served at the site root
 
+
+## How to add a new iOS app
+
+1. Add one entry to `lib/apps.ts` with the app name, slug, App Store ID/URL, bundle ID, description, icon, privacy path, and support path.
+2. Create the app routes using the shared pattern `app/{app-slug}/page.tsx`, `app/{app-slug}/privacy/page.tsx`, and `app/{app-slug}/support/page.tsx` (or reuse the La Pasta page structure as a template).
+3. Confirm the new app appears on the studio landing page and in `/sitemap.xml`; both are config-driven from `lib/apps.ts`.
+4. Keep AdMob authorization centralized at `public/app-ads.txt`. Do not add per-app `app-ads.txt` files for Google AdMob.
+5. Update App Store Connect Marketing and Support URLs to the deployed routes, for example `https://azumbo.vercel.app/{app-slug}` and `https://azumbo.vercel.app/{app-slug}/support`.

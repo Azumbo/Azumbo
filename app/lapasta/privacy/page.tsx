@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '../../../lib/seo';
-import { CONTACT_EMAIL, LaPastaFooter, LaPastaNav } from '../components';
+import { APP_STORE_URL, CONTACT_EMAIL, LaPastaFooter, LaPastaNav } from '../components';
 import styles from '../lapasta.module.css';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const sections = [
   ['collect', 'What we collect'],
-  ['advertising', 'Advertising'],
+  ['advertising', 'Advertising and App Tracking Transparency'],
   ['iap', 'In-App Purchases'],
   ['children', 'Children’s privacy'],
   ['retention', 'Data retention'],
@@ -73,7 +73,7 @@ export default function LaPastaPrivacyPage() {
             </section>
 
             <section id="advertising" aria-labelledby="advertising-title">
-              <h2 id="advertising-title">Advertising</h2>
+              <h2 id="advertising-title">Advertising and App Tracking Transparency</h2>
               <p>
                 La Pasta may show interstitial ads through Google AdMob, including when time expires and a player chooses
                 to continue with an additional 20 seconds. Google AdMob may process device identifiers, approximate device
@@ -84,7 +84,7 @@ export default function LaPastaPrivacyPage() {
                 <a className={styles.textLink} href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">
                   Google Privacy Policy
                 </a>
-                . Your device and Apple privacy settings may let you limit ad tracking or reset advertising identifiers.
+                . If La Pasta requests permission under Apple’s App Tracking Transparency framework, your choice controls whether the app may track you across other companies’ apps and websites for advertising purposes. You can change this choice in iOS Settings. Your device and Apple privacy settings may also let you limit ad personalization or reset advertising identifiers.
               </p>
             </section>
 
@@ -128,7 +128,7 @@ export default function LaPastaPrivacyPage() {
                 <a className={styles.textLink} href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
               </p>
               <p>
-                For app help, visit <Link className={styles.textLink} href="/lapasta/support">La Pasta Support</Link>.
+                For app help, visit <Link className={styles.textLink} href="/lapasta/support">La Pasta Support</Link> or <a className={styles.textLink} href={APP_STORE_URL} rel="noopener noreferrer" target="_blank">La Pasta on the App Store</a>.
               </p>
             </section>
           </article>

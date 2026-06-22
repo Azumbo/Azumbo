@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '../../lib/seo';
-import { AppStoreButton, LaPastaFooter, LaPastaNav } from './components';
+import { AppStoreButton, LaPastaFooter, LaPastaNav, LA_PASTA } from './components';
 import styles from './lapasta.module.css';
 
 export const metadata: Metadata = {
-  title: 'La Pasta — 60s Challenge',
+  title: 'La Pasta: 60s Challenge — Azumbo Games',
   description: 'A premium 60-second iOS game about Italian pasta shapes. Shuffle glass jars, learn categories, collect pasta, and chase a calmer high score.',
   alternates: {
     canonical: `${SITE_URL}/lapasta`,
   },
   openGraph: {
-    title: 'La Pasta — 60s Challenge',
+    title: 'La Pasta: 60s Challenge — Azumbo Games',
     description: 'A premium 60-second iOS game about Italian pasta shapes, glass jars, collections, daily pasta, and warm Nonna commentary.',
     url: `${SITE_URL}/lapasta`,
     siteName: 'AZUMBO',
@@ -55,9 +55,9 @@ export default function LaPastaLandingPage() {
         <section className={`${styles.container} ${styles.hero}`}>
           <div className={styles.heroCopy}>
             <p className={styles.kicker}>iPhone + iPad · iOS 18+</p>
-            <h1 className={styles.title}>La Pasta</h1>
+            <h1 className={styles.title}>La Pasta: 60s Challenge</h1>
             <p className={styles.subtitle}>
-              A refined 60-second challenge about Italian pasta shapes. Watch the jars shuffle, name the category, and let pasta be the hero.
+              Italian pasta shape quiz for iPhone and iPad. Watch the glass jars shuffle, name the pasta family, and collect shapes in quick 60-second rounds.
             </p>
             <div className={styles.actions}>
               <AppStoreButton />
@@ -89,7 +89,7 @@ export default function LaPastaLandingPage() {
 
         <section className={`${styles.container} ${styles.section}`} aria-labelledby="features-title">
           <div className={styles.sectionHeader}>
-            <p className={styles.kicker}>Fast rounds · slow taste</p>
+            <p className={styles.kicker}>60s mode · collection · glass UI</p>
             <h2 id="features-title" className={styles.sectionTitle}>A small game with a proper Italian table setting.</h2>
             <p className={styles.sectionText}>
               La Pasta keeps the interaction crisp and the mood calm: glass, warmth, restraint, and just enough tomato-red pressure from the timer.
@@ -113,10 +113,11 @@ export default function LaPastaLandingPage() {
               <span className={styles.badge}>Remove Ads · €0.99</span>
               <h2 id="download-title" className={styles.sectionTitle}>Download on the App Store.</h2>
               <p className={styles.sectionText}>
-                Free to start with optional ad-supported continues. A one-time Remove Ads purchase is available when you want an uninterrupted plate.
+                Free to start with optional ads. A one-time Remove Ads in-app purchase is available when you want an uninterrupted plate.
               </p>
             </div>
             <AppStoreButton compact />
+            <p className={styles.metaText}>App Store ID {LA_PASTA.appStoreId} · Bundle ID {LA_PASTA.bundleId}</p>
           </div>
         </section>
       </main>

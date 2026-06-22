@@ -4,7 +4,7 @@ import { SITE_URL } from '../lib/seo';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
+      { userAgent: '*', allow: ['/', '/app-ads.txt'] },
       { userAgent: 'Googlebot', allow: '/' },
       { userAgent: 'Yandex', allow: '/' },
       { userAgent: 'CCBot', allow: '/' },
