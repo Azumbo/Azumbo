@@ -23,7 +23,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const staticPaths = [...new Set([...INDEXABLE_ROUTES, ...getPublicAppRoutes()])];
+  const mergedRoutes = [...INDEXABLE_ROUTES, ...getPublicAppRoutes()];
+  const staticPaths = mergedRoutes.filter(
+    (path, index) => mergedRoutes.indexOf(path) === index
+  );
 
   const staticRoutes = staticPaths.map((path) => ({
     url: `${SITE_URL}${path}`,
