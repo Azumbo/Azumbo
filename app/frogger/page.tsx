@@ -219,35 +219,37 @@ export default function FroggerPage() {
   }, [status, homes]);
 
   return (
-    <div className="pixel-container">
+    <div className="flex min-h-[100dvh] flex-col items-center px-4 py-3">
       <SoftwareApplicationJsonLd
         name="AZUMBO Frogger"
         description="Hop through traffic and rivers in AZUMBO's browser-friendly Frogger-inspired arcade challenge."
         url="https://azumbo.vercel.app/frogger"
         image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
       />
-      <Link
-        href="https://azumbo.vercel.app/en"
-        className="fixed left-2 top-2 z-50 rounded-md bg-white/85 p-0.5 shadow"
-        aria-label="Go to AZUMBO home"
-      >
-        <Image
-          src="/logo/Azumbo Logo no background Sm.png"
-          alt="AZUMBO"
-          width={120}
-          height={44}
-          priority
-          className="h-auto w-[64px] sm:w-[78px]"
-        />
-      </Link>
-      <h1>🐸 Frogger</h1>
+      <header className="mb-4 flex w-full max-w-lg items-center gap-3">
+        <Link
+          href="https://azumbo.vercel.app/en"
+          className="shrink-0 rounded-md bg-white/85 p-0.5 shadow"
+          aria-label="Go to AZUMBO home"
+        >
+          <Image
+            src="/logo/Azumbo Logo no background Sm.png"
+            alt="AZUMBO"
+            width={120}
+            height={44}
+            priority
+            className="h-auto w-[64px] sm:w-[78px]"
+          />
+        </Link>
+        <h1 className="text-lg font-bold sm:text-xl">🐸 Frogger</h1>
+      </header>
       <canvas
         ref={canvasRef}
         style={{ background: '#000', imageRendering: 'pixelated' }}
       />
       <a
         href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
-        className="mt-4 inline-block rounded-md border border-black px-4 py-2 text-center text-sm font-semibold"
+        className="mt-4 inline-block max-w-lg rounded-md border border-black px-4 py-2 text-center text-sm font-semibold"
       >
         {ctaText}
       </a>
