@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { isAudioMuted, subscribeMuteState, toggleMute } from '../lib/audioManager';
+import { subscribeMuteState, toggleMute } from '../lib/audioManager';
 
 export default function SoundToggle() {
   const [muted, setMuted] = useState(true);

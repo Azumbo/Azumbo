@@ -37,7 +37,9 @@ function notifyMuteListeners() {
 export function subscribeMuteState(listener: (muted: boolean) => void) {
   muteListeners.add(listener);
   listener(isMuted);
-  return () => muteListeners.delete(listener);
+  return () => {
+    muteListeners.delete(listener);
+  };
 }
 
 export function getSharedAudioContext(): AudioContext | null {
