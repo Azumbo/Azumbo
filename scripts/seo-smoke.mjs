@@ -12,5 +12,6 @@ assert(sitemapTs.includes("path === '/' ? '/en' : path"), 'sitemap default local
 assert(!sitemapTs.includes("'/en/'") && !sitemapTs.includes("'/ru/'") && !sitemapTs.includes("'/it/'"), 'sitemap contains trailing slash locale variants');
 assert(robotsTs.includes("userAgent: 'OAI-SearchBot'") && robotsTs.includes("userAgent: 'GPTBot'"), 'AI bot rules missing');
 assert(localePage.includes("languages: buildLanguageAlternates(canonicalPath)"), 'hreflang alternates not wired');
+assert(!localePage.includes('VideoObjectJsonLd'), 'homepage must not emit VideoObject (not a watch page)');
 
 console.log('SEO smoke checks passed');

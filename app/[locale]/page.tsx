@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
-import { JsonLd, VideoObjectJsonLd } from '../../components/seo/JsonLd';
-import { SITE_URL, VIDEO_PUBLISH_DATE, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
+import { JsonLd } from '../../components/seo/JsonLd';
+import { SITE_URL, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -208,16 +208,6 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <JsonLd data={orgJson} />
-      <VideoObjectJsonLd
-        name="Bird Lines — From Pages to Pixels"
-        description={t.birdDescription}
-        contentUrl={`${SITE_URL}/WhoopsBirdLines.mp4`}
-        embedUrl={`${SITE_URL}/${routeLang}#bird-lines-video`}
-        thumbnailUrl={`${SITE_URL}/assets/logo/azumbo-logo.png`}
-        uploadDate={VIDEO_PUBLISH_DATE}
-        duration="PT45S"
-        inLanguage={routeLang}
-      />
 
       {/* FIXED HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
