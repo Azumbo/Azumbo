@@ -1,23 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '../../lib/seo';
+import { buildPageMetadata } from '../../lib/seo';
 import { AppStoreButton, LaPastaFooter, LaPastaNav, LA_PASTA } from './components';
 import styles from './lapasta.module.css';
 
-export const metadata: Metadata = {
-  title: 'La Pasta: 60s Challenge — Azumbo Games',
-  description: 'A premium 60-second iOS game about Italian pasta shapes. Shuffle glass jars, learn categories, collect pasta, and chase a calmer high score.',
-  alternates: {
-    canonical: `${SITE_URL}/lapasta`,
-  },
-  openGraph: {
-    title: 'La Pasta: 60s Challenge — Azumbo Games',
-    description: 'A premium 60-second iOS game about Italian pasta shapes, glass jars, collections, daily pasta, and warm Nonna commentary.',
-    url: `${SITE_URL}/lapasta`,
-    siteName: 'AZUMBO',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = buildPageMetadata({
+  pathname: '/lapasta',
+  title: 'La Pasta: 60s Challenge — iOS Game',
+  description:
+    'A premium 60-second iOS pasta shape quiz for iPhone and iPad. Shuffle glass jars, learn Italian categories, and build your collection.',
+});
 
 const features = [
   {

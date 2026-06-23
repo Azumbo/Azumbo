@@ -1,32 +1,45 @@
 import type { MetadataRoute } from 'next';
 import { getPublicAppRoutes } from '../lib/apps';
-import { SITE_URL, SUPPORTED_LOCALES } from '../lib/seo';
+import {
+  SITE_URL,
+  SUPPORTED_LOCALES,
+  buildLanguageAlternates,
+  INDEXABLE_ROUTES,
+} from '../lib/seo';
 
-const LAST_MODIFIED = new Date('2026-06-20T00:00:00.000Z');
-
-const CORE_ROUTES = [
-  '/',
-  '/app-ads.txt',
-  ...getPublicAppRoutes(),
-] as const;
+const LAST_MODIFIED = new Date('2026-06-23T00:00:00.000Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const localized = SUPPORTED_LOCALES.map((locale) => {
+  const localeHomepages = SUPPORTED_LOCALES.map((locale) => {
     const path = `/${locale}`;
     return {
       url: `${SITE_URL}${path}`,
       lastModified: LAST_MODIFIED,
       changeFrequency: 'weekly' as const,
-      priority: path === '/en' ? 1 : 0.8
+      priority: locale === 'en' ? 1 : 0.8,
+      alternates: {
+        languages: buildLanguageAlternates(path),
+      },
     };
   });
 
-  const core = CORE_ROUTES.map((path) => ({
+  const staticPaths = [...new Set([...INDEXABLE_ROUTES, ...getPublicAppRoutes()])];
+
+  const staticRoutes = staticPaths.map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: LAST_MODIFIED,
     changeFrequency: 'weekly' as const,
-    priority: path === '/' ? 1 : path === '/app-ads.txt' ? 0.3 : 0.8
+    priority: path.startsWith('/lapasta') || path === '/ciromap' ? 0.9 : 0.7,
   }));
 
-  return [...core, ...localized];
+  const infrastructure = [
+    {
+      url: `${SITE_URL}/app-ads.txt`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+  ];
+
+  return [...localeHomepages, ...staticRoutes, ...infrastructure];
 }

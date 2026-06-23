@@ -10,7 +10,14 @@ for p in "${urls[@]}"; do
   echo
  done
 
-echo "===== video indexing: no VideoObject on locale homepages ====="
+echo "===== robots AI bot policy ====="
+robots="$(curl -sS "$BASE_URL/robots.txt")"
+echo "$robots" | grep -q 'GPTBot' && echo "OK: GPTBot listed" || { echo "FAIL: GPTBot missing"; exit 1; }
+echo "$robots" | grep -q 'Disallow' && { echo "FAIL: robots contains Disallow rules"; exit 1; } || echo "OK: no Disallow rules"
+
+echo "===== hreflang en-US on /en ====="
+html="$(curl -sS -L "$BASE_URL/en")"
+echo "$html" | grep -q 'hrefLang="en-US"' && echo "OK: en-US hreflang present" || { echo "FAIL: en-US hreflang missing"; exit 1; }
 for loc in en ru it; do
   html="$(curl -sS -L "$BASE_URL/$loc")"
   if echo "$html" | grep -q '"@type":"VideoObject"'; then

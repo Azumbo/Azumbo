@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
 import { JsonLd } from '../../components/seo/JsonLd';
-import { SITE_URL, baseMetadata, buildLanguageAlternates, isSupportedLocale } from '../../lib/seo';
+import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -15,8 +15,9 @@ const isLang = (value: string): value is Lang => isSupportedLocale(value);
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
-    title: 'AZUMBO — Indie Game Studio',
-    seoDesc: 'Crafting snackable, high-polish games for mobile and Switch. Explore Bird Lines and our prototype services.',
+    title: 'AZUMBO | Indie Mobile Game Studio USA',
+    seoDesc:
+      'US indie studio building mobile and Nintendo Switch games. Prototype sprints, publishing, UA support, and platform ports for Android and iOS.',
     kicker: 'Mobile-first games with humor & heart.',
     subtitle: 'We craft fast, funny and viral-ready casual games for Android, iOS and Nintendo Switch.',
     ctaContact: 'Contact',
@@ -173,10 +174,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t.seoDesc,
       url: `${SITE_URL}${canonicalPath}`,
       siteName: 'AZUMBO',
-      locale: lang,
+      locale: LOCALE_OG[lang],
+      alternateLocale: (['en', 'it', 'ru'] as const).filter((l) => l !== lang).map((l) => LOCALE_OG[l]),
       type: 'website',
-      images: [{ url: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg` }],
+      images: [{ url: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`, alt: 'AZUMBO logo' }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: t.title,
+      description: t.seoDesc,
+      images: [`${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`],
+    },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -196,18 +205,11 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
     );
   };
 
-  const orgJson = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'AZUMBO',
-    url: SITE_URL,
-    logo: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`,
-    email: 'azumbogames@gmail.com'
-  };
+  const structuredData = buildHomeGraph(routeLang);
 
   return (
     <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <JsonLd data={orgJson} />
+      <JsonLd data={structuredData} />
 
       {/* FIXED HEADER */}
       <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
@@ -319,6 +321,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 muted
                 playsInline
                 preload="metadata"
+                aria-label="Bird Lines game preview video"
               >
                 <source src="/WhoopsBirdLines.mp4" type="video/mp4" />
               </video>
