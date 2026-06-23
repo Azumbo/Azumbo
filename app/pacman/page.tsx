@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { pacmanAudio } from '../../lib/pacmanAudio';
+import { unlockAudio } from '../../lib/froggerAudio';
 import styles from './PacMan.module.css';
 import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 
@@ -138,6 +139,7 @@ export default function PacManPage() {
 
     const keydown = (e: KeyboardEvent) => {
       if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+        void unlockAudio();
         startMove(e.key as any);
       }
     };

@@ -1,16 +1,28 @@
 const MUTE_STORAGE_KEY = 'azumbo:audio-muted';
+const LEGACY_MUTE_STORAGE_KEY = 'muted';
 
-let ambient: HTMLAudioElement | null = null;
-let jumpSound: HTMLAudioElement | null = null;
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
-let isMuted = false;
+let isMuted = true;
+let isUnlocked = false;
 
 const mediaVolumeCache = new WeakMap<HTMLMediaElement, number>();
+const muteListeners = new Set<(muted: boolean) => void>();
+
+function migrateLegacyMuteKey() {
+  if (typeof window === 'undefined') return;
+  const legacy = window.localStorage.getItem(LEGACY_MUTE_STORAGE_KEY);
+  if (legacy === null) return;
+  window.localStorage.setItem(MUTE_STORAGE_KEY, legacy === 'true' ? '1' : '0');
+  window.localStorage.removeItem(LEGACY_MUTE_STORAGE_KEY);
+}
 
 function readMuteState() {
-  if (typeof window === 'undefined') return false;
-  return window.localStorage.getItem(MUTE_STORAGE_KEY) === '1';
+  if (typeof window === 'undefined') return true;
+  migrateLegacyMuteKey();
+  const stored = window.localStorage.getItem(MUTE_STORAGE_KEY);
+  if (stored === null) return true;
+  return stored === '1';
 }
 
 function persistMuteState(value: boolean) {
@@ -18,7 +30,29 @@ function persistMuteState(value: boolean) {
   window.localStorage.setItem(MUTE_STORAGE_KEY, value ? '1' : '0');
 }
 
-function ensureMasterGain(ctx: AudioContext) {
+function notifyMuteListeners() {
+  muteListeners.forEach((listener) => listener(isMuted));
+}
+
+export function subscribeMuteState(listener: (muted: boolean) => void) {
+  muteListeners.add(listener);
+  listener(isMuted);
+  return () => muteListeners.delete(listener);
+}
+
+export function getSharedAudioContext(): AudioContext | null {
+  if (typeof window === 'undefined') return null;
+  if (!audioCtx) {
+    const Ctx = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!Ctx) return null;
+    audioCtx = new Ctx();
+  }
+  return audioCtx;
+}
+
+export function getSharedMasterGain(): GainNode | null {
+  const ctx = getSharedAudioContext();
+  if (!ctx) return null;
   if (!masterGain) {
     masterGain = ctx.createGain();
     masterGain.gain.value = isMuted ? 0 : 1;
@@ -34,12 +68,11 @@ function syncMediaElements() {
     if (!mediaVolumeCache.has(element)) {
       mediaVolumeCache.set(element, element.volume || 1);
     }
-
     if (isMuted) {
       element.muted = true;
       element.volume = 0;
     } else {
-      element.muted = false;
+      element.muted = element.hasAttribute('data-force-muted');
       element.volume = mediaVolumeCache.get(element) ?? 1;
     }
   });
@@ -47,86 +80,81 @@ function syncMediaElements() {
 
 export function initAudioPreferences() {
   isMuted = readMuteState();
+  getSharedMasterGain();
   syncMediaElements();
 }
 
-export function playAmbientLoop() {
-  if (isMuted) return;
-  if (!ambient) {
-    ambient = new Audio('/assets/ambient.mp3');
-    ambient.loop = true;
+export function isAudioUnlocked() {
+  return isUnlocked;
+}
+
+export async function unlockAudio() {
+  if (typeof window === 'undefined') return;
+  const ctx = getSharedAudioContext();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') {
+    await ctx.resume();
   }
-  ambient.currentTime = 0;
-  ambient.play();
+  isUnlocked = true;
 }
 
-export function stopAmbientLoop() {
-  ambient?.pause();
+export function canPlayAudio() {
+  return isUnlocked && !isMuted;
 }
 
-export function playJumpSound() {
-  if (isMuted) return;
-  if (!jumpSound) {
-    jumpSound = new Audio('/assets/jump.mp3');
-  }
-  jumpSound.currentTime = 0;
-  jumpSound.play();
-}
+function beep(freq: number, duration = 0.1, volume = 0.08) {
+  if (!canPlayAudio()) return;
+  const ctx = getSharedAudioContext();
+  const output = getSharedMasterGain();
+  if (!ctx || !output) return;
 
-function getCtx() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
-  }
-  return audioCtx;
-}
-
-function beep(freq: number, duration = 0.1) {
-  if (isMuted) return;
-  const ctx = getCtx();
-  const output = ensureMasterGain(ctx);
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-
   osc.type = 'square';
   osc.frequency.value = freq;
   osc.connect(gain);
   gain.connect(output);
-
   osc.start();
-  gain.gain.setValueAtTime(0.1, ctx.currentTime);
+  gain.gain.setValueAtTime(volume, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
   osc.stop(ctx.currentTime + duration);
 }
 
-export function playClickSound() {
-  beep(220, 0.07);
+export function playJumpSound() {
+  beep(523.25, 0.1, 0.12);
 }
 
-export function playHoverSound() {
-  beep(440, 0.05);
+export function playClickSound() {
+  beep(220, 0.07, 0.06);
 }
 
 export function mute() {
   isMuted = true;
-  if (masterGain) {
-    masterGain.gain.setValueAtTime(0, getCtx().currentTime);
+  const gain = getSharedMasterGain();
+  const ctx = getSharedAudioContext();
+  if (gain && ctx) {
+    gain.gain.setValueAtTime(0, ctx.currentTime);
   }
-  ambient?.pause();
   syncMediaElements();
   persistMuteState(true);
+  notifyMuteListeners();
 }
 
 export function unmute() {
   isMuted = false;
-  if (masterGain) {
-    masterGain.gain.setValueAtTime(1, getCtx().currentTime);
+  const gain = getSharedMasterGain();
+  const ctx = getSharedAudioContext();
+  if (gain && ctx) {
+    gain.gain.setValueAtTime(1, ctx.currentTime);
   }
   syncMediaElements();
   persistMuteState(false);
+  notifyMuteListeners();
 }
 
-export function toggleMute() {
+export async function toggleMute() {
   if (isMuted) {
+    await unlockAudio();
     unmute();
   } else {
     mute();
@@ -138,4 +166,6 @@ export function isAudioMuted() {
   return isMuted;
 }
 
-initAudioPreferences();
+if (typeof window !== 'undefined') {
+  initAudioPreferences();
+}

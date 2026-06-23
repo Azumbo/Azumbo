@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { playJumpSound, playAmbientLoop, stopAmbientLoop } from '../../lib/audioManager';
+import { playJumpSound } from '../../lib/audioManager';
+import { unlockAudio } from '../../lib/froggerAudio';
 
 export default function GamePage() {
   const router = useRouter();
@@ -10,7 +11,6 @@ export default function GamePage() {
 
   useEffect(() => {
     if (level > 10) {
-      stopAmbientLoop();
       const code = localStorage.getItem('playerCode') || '';
       fetch('/api/submit-score', {
         method: 'POST',
@@ -22,15 +22,8 @@ export default function GamePage() {
     }
   }, [level, router, score]);
 
-  useEffect(() => {
-    playAmbientLoop();
-    return () => {
-      stopAmbientLoop();
-    };
-  }, []);
-
   const nextLevel = () => {
-    playJumpSound();
+    void unlockAudio().then(() => playJumpSound());
     setScore((s) => s + 10);
     setLevel((l) => l + 1);
   };

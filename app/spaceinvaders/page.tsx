@@ -3,63 +3,18 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
-
-const audioCtx = typeof window !== 'undefined' ? new (window.AudioContext || (window as any).webkitAudioContext)() : null;
-
-function playSound(freq: number, type: OscillatorType, attack = 0.05, release = 0.1) {
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = type;
-  osc.frequency.value = freq;
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  gain.gain.setValueAtTime(0, audioCtx.currentTime);
-  gain.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + attack);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + attack + release);
-  osc.start();
-  osc.stop(audioCtx.currentTime + attack + release);
-}
-
-function createNoise(ctx: AudioContext) {
-  const bufferSize = ctx.sampleRate * 0.2;
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-  const noise = ctx.createBufferSource();
-  noise.buffer = buffer;
-  noise.loop = true;
-  noise.start();
-  return noise;
-}
-
-function playLaser(freq: number, dur: number) {
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = 'sawtooth';
-  osc.frequency.value = freq;
-  osc.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
-  osc.start();
-  osc.stop(audioCtx.currentTime + dur);
-}
+import {
+  createExplosionNoise,
+  initAudioSystem,
+  playLaserSound,
+  playSound,
+  unlockAudio,
+} from '../../lib/froggerAudio';
 
 const invadersAudio = {
-  playerShot: () => playLaser(600, 0.1),
-  invaderShot: () => playLaser(300, 0.1),
-  explosion: () => {
-    if (!audioCtx) return;
-    const noise = createNoise(audioCtx);
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.value = 800;
-    noise.connect(filter).connect(audioCtx.destination);
-    setTimeout(() => noise.stop(), 200);
-  },
+  playerShot: () => playLaserSound(600, 0.1),
+  invaderShot: () => playLaserSound(300, 0.1),
+  explosion: () => createExplosionNoise(),
   move: (step: number) => playSound(100 + step * 50, 'square', 0.05, 0.1),
 };
 
@@ -85,6 +40,7 @@ export default function SpaceInvaders() {
   };
 
   useEffect(() => {
+    initAudioSystem();
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -117,6 +73,7 @@ export default function SpaceInvaders() {
     const keys: Record<string, boolean> = {};
 
     const keydown = (e: KeyboardEvent) => {
+      void unlockAudio();
       keys[e.key] = true;
     };
     const keyup = (e: KeyboardEvent) => {
