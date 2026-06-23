@@ -15,7 +15,7 @@ const isLang = (value: string): value is Lang => isSupportedLocale(value);
 
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
-    title: 'AZUMBO | Indie Mobile Game Studio USA',
+    title: 'AZUMBO | Indie Mobile Game Studio',
     seoDesc:
       'US indie studio building mobile and Nintendo Switch games. Prototype sprints, publishing, UA support, and platform ports for Android and iOS.',
     kicker: 'Mobile-first games with humor & heart.',
