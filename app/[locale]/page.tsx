@@ -321,6 +321,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 muted
                 playsInline
                 preload="metadata"
+                data-force-muted
                 aria-label="Bird Lines game preview video"
               >
                 <source src="/WhoopsBirdLines.mp4" type="video/mp4" />

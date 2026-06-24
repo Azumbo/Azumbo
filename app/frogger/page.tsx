@@ -12,6 +12,7 @@ import {
   playBackgroundMusic,
   stopBackgroundMusic,
   froggerTheme,
+  unlockAudio,
 } from '../../lib/froggerAudio';
 
 export default function FroggerPage() {
@@ -30,15 +31,16 @@ export default function FroggerPage() {
   }, []);
 
   useEffect(() => {
-    if (status === 'play') {
-      playBackgroundMusic(froggerTheme);
-    } else {
+    if (status !== 'play') {
       stopBackgroundMusic();
     }
+  }, [status]);
+
+  useEffect(() => {
     return () => {
       stopBackgroundMusic();
     };
-  }, [status]);
+  }, []);
 
   useEffect(() => {
     initAudioSystem();
@@ -68,8 +70,13 @@ export default function FroggerPage() {
     const houses = [1, 4, 7];
 
     const keys: Record<string, boolean> = {};
+    let musicStarted = false;
     const keydown = (e: KeyboardEvent) => {
       keys[e.key] = true;
+      if (!musicStarted && status === 'play') {
+        musicStarted = true;
+        void unlockAudio().then(() => playBackgroundMusic(froggerTheme));
+      }
     };
     const keyup = (e: KeyboardEvent) => {
       keys[e.key] = false;

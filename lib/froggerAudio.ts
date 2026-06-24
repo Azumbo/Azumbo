@@ -1,60 +1,44 @@
+import {
+  canPlayAudio,
+  getSharedAudioContext,
+  getSharedMasterGain,
+  unlockAudio,
+} from './audioManager';
+
 export type OscType = OscillatorType;
 
-const MUTE_STORAGE_KEY = 'azumbo:audio-muted';
-
-let audioCtx: AudioContext | null = null;
-let masterGain: GainNode | null = null;
-
-function isMuted() {
-  if (typeof window === 'undefined') return false;
-  return window.localStorage.getItem(MUTE_STORAGE_KEY) === '1';
-}
-
-function getCtx(): AudioContext {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
-  }
-  return audioCtx;
-}
-
-function getMasterGain() {
-  const ctx = getCtx();
-  if (!masterGain) {
-    masterGain = ctx.createGain();
-    masterGain.connect(ctx.destination);
-  }
-  masterGain.gain.value = isMuted() ? 0 : 1;
-  return masterGain;
-}
+export { unlockAudio };
 
 export function initAudioSystem() {
-  getCtx();
-  getMasterGain();
+  getSharedMasterGain();
 }
 
 export function playSound(freq: number, type: OscType, duration = 0.2, volume = 0.2) {
-  if (isMuted()) return;
+  if (!canPlayAudio()) return;
 
-  const ctx = getCtx();
+  const ctx = getSharedAudioContext();
+  const output = getSharedMasterGain();
+  if (!ctx || !output) return;
+
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-
   osc.type = type;
   osc.frequency.value = freq;
   gain.gain.setValueAtTime(volume, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-
   osc.connect(gain);
-  gain.connect(getMasterGain());
-
+  gain.connect(output);
   osc.start();
   osc.stop(ctx.currentTime + duration);
 }
 
 export function createExplosionNoise(duration = 0.3) {
-  if (isMuted()) return;
+  if (!canPlayAudio()) return;
 
-  const ctx = getCtx();
+  const ctx = getSharedAudioContext();
+  const output = getSharedMasterGain();
+  if (!ctx || !output) return;
+
   const bufferSize = ctx.sampleRate * duration;
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
@@ -66,8 +50,28 @@ export function createExplosionNoise(duration = 0.3) {
   filter.type = 'highpass';
   filter.frequency.value = 500;
   source.buffer = buffer;
-  source.connect(filter).connect(getMasterGain());
+  source.connect(filter).connect(output);
   source.start();
+}
+
+export function playLaserSound(startFreq: number, duration: number) {
+  if (!canPlayAudio()) return;
+
+  const ctx = getSharedAudioContext();
+  const output = getSharedMasterGain();
+  if (!ctx || !output) return;
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.value = startFreq;
+  osc.frequency.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+  osc.connect(gain);
+  gain.connect(output);
+  gain.gain.setValueAtTime(0.25, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+  osc.start();
+  osc.stop(ctx.currentTime + duration);
 }
 
 export function playJumpSound() {
@@ -95,13 +99,17 @@ let musicOsc: OscillatorNode | null = null;
 let musicPlaying = false;
 
 export function playBackgroundMusic(notes: Note[], tempo = 180) {
-  if (isMuted()) return;
+  if (!canPlayAudio()) return;
 
-  const ctx = getCtx();
+  const ctx = getSharedAudioContext();
+  const output = getSharedMasterGain();
+  if (!ctx || !output) return;
+
   musicPlaying = true;
 
   const schedule = () => {
-    if (!musicPlaying || isMuted()) return;
+    if (!musicPlaying || !canPlayAudio()) return;
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.type = 'triangle';
@@ -113,7 +121,7 @@ export function playBackgroundMusic(notes: Note[], tempo = 180) {
       time += (60 / tempo) * (n.dur || 1);
     });
 
-    osc.connect(gain).connect(getMasterGain());
+    osc.connect(gain).connect(output);
     osc.start();
     osc.stop(time);
     musicOsc = osc;

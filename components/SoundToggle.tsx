@@ -1,26 +1,26 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { toggleMute } from '../lib/audioManager';
+
+import { useEffect, useState } from 'react';
+import { subscribeMuteState, toggleMute } from '../lib/audioManager';
 
 export default function SoundToggle() {
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
-  useEffect(() => {
-    setMuted(localStorage.getItem('muted') === 'true');
-  }, []);
+  useEffect(() => subscribeMuteState(setMuted), []);
 
   const handleClick = () => {
-    toggleMute();
-    const newMuted = !muted;
-    setMuted(newMuted);
-    localStorage.setItem('muted', newMuted ? 'true' : 'false');
+    void toggleMute();
   };
 
   return (
     <button
+      type="button"
       className="pixel-button pressable"
       onClick={handleClick}
-      style={{ position: 'fixed', top: 10, right: 10 }}
+      aria-label={muted ? 'Turn sound on' : 'Turn sound off'}
+      aria-pressed={!muted}
+      title={muted ? 'Sound off' : 'Sound on'}
+      style={{ position: 'fixed', top: 10, right: 10, zIndex: 50 }}
     >
       {muted ? '🔇' : '🔊'}
     </button>
