@@ -24,5 +24,15 @@ for loc in en ru it; do
     echo "FAIL: VideoObject found on /$loc"
     exit 1
   fi
-  echo "OK: /$loc has no VideoObject JSON-LD"
+  if echo "$html" | grep -qi '<video'; then
+    echo "FAIL: <video> tag found on homepage /$loc"
+    exit 1
+  fi
+  echo "OK: /$loc homepage has no VideoObject or embedded video"
 done
+
+echo "===== Bird Lines watch page ====="
+watch_html="$(curl -sS -L "$BASE_URL/en/videos/bird-lines")"
+echo "$watch_html" | grep -q 'id="bird-lines-player"' && echo "OK: watch page video anchor present" || { echo "FAIL: bird-lines-player missing"; exit 1; }
+echo "$watch_html" | grep -q '"@type":"VideoObject"' && echo "OK: VideoObject on watch page" || { echo "FAIL: VideoObject missing on watch page"; exit 1; }
+echo "$watch_html" | grep -qi '<video' && echo "OK: watch page has video element" || { echo "FAIL: watch page missing video"; exit 1; }
