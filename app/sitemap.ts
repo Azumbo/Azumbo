@@ -8,7 +8,7 @@ import {
   INDEXABLE_ROUTES,
 } from '../lib/seo';
 
-const LAST_MODIFIED = new Date('2026-06-23T00:00:00.000Z');
+const LAST_MODIFIED = new Date('2026-07-04T00:00:00.000Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localeHomepages = SUPPORTED_LOCALES.map((locale) => {

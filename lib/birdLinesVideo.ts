@@ -12,6 +12,8 @@ export const BIRD_LINES_VIDEO_ID = 'bird-lines-player';
 export const BIRD_LINES_CONTENT_URL = `${SITE_URL}/WhoopsBirdLines.mp4`;
 export const BIRD_LINES_THUMBNAIL_URL = `${SITE_URL}/assets/logo/azumbo-logo.png`;
 export const BIRD_LINES_DURATION = 'PT45S';
+export const BIRD_LINES_WIDTH = 1280;
+export const BIRD_LINES_HEIGHT = 720;
 
 export function birdLinesWatchPath(locale: Locale) {
   return `/${locale}${BIRD_LINES_VIDEO_PATH}`;
@@ -173,6 +175,7 @@ export function buildBirdLinesWatchGraph(locale: Locale) {
       },
       {
         '@type': 'VideoObject',
+        '@id': `${pageUrl}#video`,
         name: copy.videoName,
         description: copy.videoDescription,
         contentUrl: BIRD_LINES_CONTENT_URL,
@@ -180,8 +183,13 @@ export function buildBirdLinesWatchGraph(locale: Locale) {
         thumbnailUrl: BIRD_LINES_THUMBNAIL_URL,
         uploadDate: VIDEO_PUBLISH_DATE,
         duration: BIRD_LINES_DURATION,
+        width: BIRD_LINES_WIDTH,
+        height: BIRD_LINES_HEIGHT,
         inLanguage: LOCALE_HTML_LANG[locale],
-        mainEntityOfPage: pageUrl,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+        publisher: { '@type': 'Organization', name: 'AZUMBO', url: SITE_URL },
+        isFamilyFriendly: true,
+        regionsAllowed: ['US', 'IT', 'RU', 'EU'],
       },
       {
         '@type': 'FAQPage',

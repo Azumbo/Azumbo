@@ -51,7 +51,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: copy.metaDescription,
       images: [BIRD_LINES_THUMBNAIL_URL],
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
+    },
   };
 }
 

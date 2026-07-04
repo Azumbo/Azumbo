@@ -165,7 +165,7 @@ export function buildHomeGraph(locale: Locale) {
         '@type': 'Organization',
         '@id': ORGANIZATION_ID,
         name: 'AZUMBO',
-        url: pageUrl,
+        url: SITE_URL,
         logo: {
           '@type': 'ImageObject',
           url: `${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`,
