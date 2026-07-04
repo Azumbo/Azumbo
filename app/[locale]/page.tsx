@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
 import { JsonLd } from '../../components/seo/JsonLd';
+import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
 
 type Lang = 'en' | 'it' | 'ru';
@@ -55,7 +56,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines is more than a game; it is a match-3 journey inspired by the story 'City In The Plane' Experience a meditative trip through Paris with Ellie, where puzzles meet storytelling.`,
     birdStatus: 'Status: In Development (Calabria, Italy)',
     waitlistCTA: 'Join the Waitlist',
-    videoLinkLabel: 'Open video link',
+    videoLinkLabel: 'Watch trailer',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'For publishers & press: azumbogames@gmail.com',
@@ -101,7 +102,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines è un match-3 ispirato alla storia 'City In The Plane' Un viaggio attraverso Parigi insieme ad Ellie, la protagonista del libro, dove il puzzle incontra la narrazione.`,
     birdStatus: 'Stato: In sviluppo (Calabria, Italia)',
     waitlistCTA: 'Unisciti alla Waitlist',
-    videoLinkLabel: 'Apri link video',
+    videoLinkLabel: 'Guarda il trailer',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Per editori e stampa: azumbogames@gmail.com',
@@ -147,7 +148,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     birdDescription: `Bird Lines — это match-3 по мотивам истории 'City In The Plane' Путешествие по Парижу вместе с Элли, где механика пазла переплетается с сюжетом книги.`,
     birdStatus: 'Статус: В разработке (Калабрия, Италия)',
     waitlistCTA: 'В лист ожидания',
-    videoLinkLabel: 'Открыть ссылку на видео',
+    videoLinkLabel: 'Смотреть трейлер',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Для издателей и прессы: azumbogames@gmail.com',
@@ -314,18 +315,24 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <article className="mt-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
           <div className="flex flex-col md:flex-row">
             <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
-              <video
-                className="mx-auto h-72 rounded-2xl shadow-lg"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                data-force-muted
-                aria-label="Bird Lines game preview video"
+              <Link
+                href={birdLinesWatchPath(routeLang)}
+                className="group relative mx-auto block h-72 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg ring-1 ring-neutral-200 dark:ring-neutral-700"
+                aria-label={t.videoLinkLabel}
               >
-                <source src="/WhoopsBirdLines.mp4" type="video/mp4" />
-              </video>
+                <Image
+                  src="/assets/logo/azumbo-logo.png"
+                  alt="Bird Lines trailer preview"
+                  width={320}
+                  height={288}
+                  className="h-full w-full object-contain bg-neutral-900/5 p-6 dark:bg-neutral-950"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition group-hover:bg-black/35">
+                  <span className="rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-black shadow">
+                    ▶ {t.videoLinkLabel}
+                  </span>
+                </span>
+              </Link>
             </div>
             <div className="p-8 md:w-2/3">
               <h3 className="text-2xl font-bold uppercase tracking-wider">{t.birdTitle}</h3>

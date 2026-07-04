@@ -1,11 +1,14 @@
-'use client';
-
 type JsonLdProps = {
-  data: Record<string, unknown>;
+  data: Record<string, unknown> | Record<string, unknown>[];
 };
 
 export function JsonLd({ data }: JsonLdProps) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
 }
 
 type SoftwareApplicationJsonLdProps = {
@@ -30,7 +33,7 @@ export function SoftwareApplicationJsonLd({
   operatingSystem = 'Web',
   inLanguage = 'en,it,ru',
   image,
-  offers = { price: '0', priceCurrency: 'EUR' }
+  offers = { price: '0', priceCurrency: 'EUR' },
 }: SoftwareApplicationJsonLdProps) {
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -43,51 +46,14 @@ export function SoftwareApplicationJsonLd({
     offers: {
       '@type': 'Offer',
       price: offers.price,
-      priceCurrency: offers.priceCurrency
+      priceCurrency: offers.priceCurrency,
     },
-    url
+    url,
   };
 
   if (image) {
     schema.image = image;
   }
-
-  return <JsonLd data={schema} />;
-}
-
-type VideoObjectJsonLdProps = {
-  name: string;
-  description: string;
-  contentUrl: string;
-  embedUrl: string;
-  thumbnailUrl: string;
-  uploadDate: string;
-  duration?: string;
-  inLanguage?: string;
-};
-
-export function VideoObjectJsonLd({
-  name,
-  description,
-  contentUrl,
-  embedUrl,
-  thumbnailUrl,
-  uploadDate,
-  duration = 'PT1M',
-  inLanguage = 'en'
-}: VideoObjectJsonLdProps) {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name,
-    description,
-    contentUrl,
-    embedUrl,
-    thumbnailUrl,
-    uploadDate,
-    duration,
-    inLanguage
-  };
 
   return <JsonLd data={schema} />;
 }
