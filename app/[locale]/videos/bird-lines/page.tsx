@@ -75,12 +75,15 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
     <main className="min-h-[100dvh] bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <JsonLd data={structuredData} />
 
-      <header className="border-b border-neutral-200 px-4 py-4 dark:border-neutral-800">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
-          <Link href={`/${lang}`} className="text-sm text-neutral-500 transition hover:text-neutral-900 dark:hover:text-white">
+      <header className="border-b border-neutral-200 px-4 py-3 sm:py-4 dark:border-neutral-800">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 sm:gap-4">
+          <Link
+            href={`/${lang}`}
+            className="text-xs sm:text-sm text-neutral-500 transition hover:text-neutral-900 dark:hover:text-white"
+          >
             ← {copy.backHome}
           </Link>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {(['en', 'it', 'ru'] as const).map((k) => (
               <Link
                 key={k}
@@ -96,8 +99,8 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
         </div>
       </header>
 
-      <article className="mx-auto max-w-4xl px-4 py-10">
-        <nav aria-label="Breadcrumb" className="text-sm text-neutral-500">
+      <article className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-10">
+        <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-neutral-500">
           <Link href={`/${lang}`} className="hover:underline">
             {copy.breadcrumbHome}
           </Link>
@@ -105,12 +108,18 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
           <span>{copy.breadcrumbVideo}</span>
         </nav>
 
-        <h1 className="mt-6 text-3xl font-black leading-tight sm:text-5xl">{copy.videoName}</h1>
-        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{copy.bluf}</p>
+        <h1 className="mt-4 text-2xl font-black leading-tight sm:mt-6 sm:text-3xl md:text-5xl">{copy.videoName}</h1>
+        <p className="mt-3 max-w-3xl text-base leading-relaxed text-neutral-600 sm:mt-4 sm:text-lg dark:text-neutral-300">
+          {copy.bluf}
+        </p>
 
-        <section id={BIRD_LINES_VIDEO_ID} className="mt-10" aria-label={copy.videoName}>
+        <section
+          id={BIRD_LINES_VIDEO_ID}
+          className="mt-6 flex justify-center sm:mt-8"
+          aria-label={copy.videoName}
+        >
           <video
-            className="mx-auto w-full max-w-3xl rounded-2xl shadow-2xl ring-1 ring-neutral-200 dark:ring-neutral-800"
+            className="aspect-video h-auto w-full max-w-[min(90vw,24rem)] rounded-xl shadow-lg ring-1 ring-neutral-200 sm:max-w-sm sm:rounded-2xl sm:shadow-2xl dark:ring-neutral-800"
             controls
             playsInline
             preload="metadata"
@@ -122,9 +131,11 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
           </video>
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-2xl font-bold">{copy.aboutTitle}</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-neutral-600 dark:text-neutral-300">{copy.aboutBody}</p>
+        <section className="mt-8 sm:mt-10">
+          <h2 className="text-xl font-bold sm:text-2xl">{copy.aboutTitle}</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-600 sm:mt-4 sm:text-base dark:text-neutral-300">
+            {copy.aboutBody}
+          </p>
           <a
             href={WAITLIST_MAILTO}
             className="mt-6 inline-block rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black"
@@ -133,11 +144,11 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
           </a>
         </section>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold">{copy.faqTitle}</h2>
-          <dl className="mt-6 space-y-6">
+        <section className="mt-8 sm:mt-12">
+          <h2 className="text-xl font-bold sm:text-2xl">{copy.faqTitle}</h2>
+          <dl className="mt-4 space-y-4 sm:mt-6 sm:space-y-6">
             {copy.faqs.map((faq) => (
-              <div key={faq.question} className="rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+              <div key={faq.question} className="rounded-xl border border-neutral-200 p-4 sm:rounded-2xl sm:p-5 dark:border-neutral-800">
                 <dt className="font-semibold">{faq.question}</dt>
                 <dd className="mt-2 text-neutral-600 dark:text-neutral-300">{faq.answer}</dd>
               </div>
