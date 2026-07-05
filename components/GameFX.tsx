@@ -12,17 +12,10 @@ export default function GameFX() {
       void unlockAudio();
     };
 
-    const handleDown = () => document.body.classList.add('cursor-click');
-    const handleUp = () => document.body.classList.remove('cursor-click');
-
     document.addEventListener('pointerdown', handlePointerDown, { passive: true });
-    document.addEventListener('mousedown', handleDown);
-    document.addEventListener('mouseup', handleUp);
 
     return () => {
       document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('mousedown', handleDown);
-      document.removeEventListener('mouseup', handleUp);
     };
   }, []);
 

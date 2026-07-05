@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import FloatingSprites from '../../components/FloatingSprites';
+import CinematicAmbient from '../../components/CinematicAmbient';
 import { ProjectSpotlight } from '../../components/ProjectSpotlight';
 import { JsonLd } from '../../components/seo/JsonLd';
 import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
@@ -274,45 +274,50 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
   const structuredData = buildHomeGraph(routeLang);
 
   return (
-    <main className="landing-shell min-h-[100dvh] overflow-x-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <main className="landing-shell relative min-h-[100dvh] overflow-x-hidden bg-obsidian text-ink-primary">
       <JsonLd data={structuredData} />
 
-      {/* FIXED HEADER */}
-      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/90 px-4 py-3 backdrop-blur">
+      <header className="glass-header gpu-layer sticky top-0 z-40 px-4 py-3">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
-          
-          {/* Desktop Nav */}
           <nav className="flex shrink-0 items-center gap-4 text-xs sm:gap-6 sm:text-sm">
-            <a href="#games" className="text-neutral-300 hover:text-white transition">{t.navGames}</a>
-            <a href="#services" className="text-neutral-300 hover:text-white transition">{t.navServices}</a>
-            <a href="#contact" className="text-neutral-300 hover:text-white transition">{t.navContact}</a>
-            <Link href="/lapasta" className="text-neutral-300 hover:text-white transition">{t.navLaPasta}</Link>
+            <a href="#games" className="text-ink-secondary transition-colors duration-300 ease-fluid hover:text-ink-primary">
+              {t.navGames}
+            </a>
+            <a href="#services" className="text-ink-secondary transition-colors duration-300 ease-fluid hover:text-ink-primary">
+              {t.navServices}
+            </a>
+            <a href="#contact" className="text-ink-secondary transition-colors duration-300 ease-fluid hover:text-ink-primary">
+              {t.navContact}
+            </a>
+            <Link href="/lapasta" className="text-ink-secondary transition-colors duration-300 ease-fluid hover:text-ink-primary">
+              {t.navLaPasta}
+            </Link>
           </nav>
 
-          {/* Centered Logo */}
           <div className="flex flex-1 items-center justify-center px-4">
-             <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
-             <Link href={`/${routeLang}`} className="mx-4">
-               <Image
-                  src="/assets/logo/azumbo-logo.png"
-                  alt="AZUMBO Logo"
-                  width={180}
-                  height={44}
-                  priority
-                  className="h-[32px] w-auto object-contain md:h-[40px]"
-                />
-             </Link>
-             <div className="hidden h-[1px] flex-1 bg-neutral-800 md:block"></div>
+            <div className="section-divider hidden h-px flex-1 md:block" />
+            <Link href={`/${routeLang}`} className="mx-4 gpu-layer transition-transform duration-300 ease-fluid hover:scale-[1.02]">
+              <Image
+                src="/assets/logo/azumbo-logo.png"
+                alt="AZUMBO Logo"
+                width={180}
+                height={44}
+                priority
+                className="h-[30px] w-auto object-contain opacity-95 md:h-[38px]"
+              />
+            </Link>
+            <div className="section-divider hidden h-px flex-1 md:block" />
           </div>
 
-          {/* Lang Switcher */}
-          <div className="flex gap-2">
+          <div className="flex gap-1.5">
             {(['en', 'it', 'ru'] as Lang[]).map((k) => (
               <Link
                 key={k}
                 href={k === 'en' ? '/en' : `/${k}`}
-                className={`rounded px-2 py-1 text-xs transition ${
-                  routeLang === k ? 'bg-white text-black' : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
+                className={`rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide transition-all duration-300 ease-fluid ${
+                  routeLang === k
+                    ? 'bg-champagne/90 text-obsidian shadow-glow'
+                    : 'glass-surface text-ink-secondary hover:bg-white/8 hover:text-ink-primary'
                 }`}
               >
                 {k.toUpperCase()}
@@ -320,66 +325,42 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             ))}
           </div>
         </div>
-
       </header>
 
-      {/* HERO */}
       <section className="relative mx-auto max-w-5xl px-4 py-16 md:py-24">
-        <FloatingSprites />
-        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
-        <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-neutral-800 dark:text-neutral-200">
+        <CinematicAmbient />
+        <p className="chic-kicker relative">{t.kicker}</p>
+        <h1 className="chic-heading relative mt-5 text-4xl sm:text-6xl md:text-7xl">{t.title}</h1>
+        <p className="relative mt-6 max-w-2xl text-lg font-normal leading-relaxed tracking-wide text-ink-primary/90">
           {HOME_BLUF[routeLang]}
         </p>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
-        <div className="mt-8">
-          <a href="mailto:azumbogames@gmail.com" className="inline-block rounded-xl border border-neutral-300 px-6 py-3 font-medium transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900">
+        <p className="chic-body relative mt-4 max-w-2xl text-lg">{t.subtitle}</p>
+        <div className="relative mt-8">
+          <a href="mailto:azumbogames@gmail.com" className="btn-accent gpu-layer">
             {t.ctaContact}
           </a>
         </div>
       </section>
 
-      {/* SERVICES */}
       <section id="services" className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-3xl font-bold">{t.servicesTitle}</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+        <h2 className="chic-heading text-3xl">{t.servicesTitle}</h2>
+        <p className="chic-body mt-3 max-w-2xl">{t.servicesSubtitle}</p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
           <ServiceCard title={t.srvProtoTitle} desc={t.srvProtoDesc} price={t.srvProtoPrice} />
           <ServiceCard title={t.srvPublishTitle} desc={t.srvPublishDesc} price={t.srvPublishPrice} />
           <ServiceCard title={t.srvPortTitle} desc={t.srvPortDesc} price={t.srvPortPrice} />
         </div>
       </section>
 
-      {/* GAMES SECTION & BIRD LINES */}
       <section id="games" className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="mb-8 text-3xl font-bold">{t.featured}</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-           <GameCard
-             title="Frogger"
-             href="/frogger"
-             desc={t.frDesc}
-             gradient="from-emerald-500 via-green-500 to-lime-500"
-             icon="🐸"
-             deco="float"
-           />
-           <GameCard
-             title="Space Invaders"
-             href="/spaceinvaders"
-             desc={t.siDesc}
-             gradient="from-indigo-500 via-blue-500 to-cyan-400"
-             icon="👾"
-             deco="stars"
-           />
-           <GameCard
-             title="Pac-Man"
-             href="/pacman"
-             desc={t.pmDesc}
-             gradient="from-yellow-400 via-amber-400 to-orange-500"
-             icon="🟡"
-             deco="dots"
-           />
+        <h2 className="chic-heading mb-2 text-3xl">{t.featured}</h2>
+        <div className="featured-games-grid mt-8">
+          <GameCard title="Frogger" href="/frogger" desc={t.frDesc} tone="forest" label="FR" />
+          <GameCard title="Space Invaders" href="/spaceinvaders" desc={t.siDesc} tone="midnight" label="SI" />
+          <GameCard title="Pac-Man" href="/pacman" desc={t.pmDesc} tone="amber" label="PM" />
         </div>
 
-        <h3 className="mb-6 mt-16 text-2xl font-bold sm:text-3xl">{t.projectsTitle}</h3>
+        <h3 className="chic-heading mb-6 mt-16 text-2xl sm:text-3xl">{t.projectsTitle}</h3>
         <div className="space-y-6">
           <ProjectSpotlight
             title={t.birdTitle}
@@ -391,7 +372,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             visual={
               <Link
                 href={birdLinesWatchPath(routeLang)}
-                className="group relative mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg ring-1 ring-neutral-200 dark:ring-neutral-700 sm:h-72"
+                className="group gpu-layer relative mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-squircle-lg shadow-glass-sm ring-1 ring-white/10 sm:h-72"
                 aria-label={t.videoLinkLabel}
               >
                 <Image
@@ -399,10 +380,10 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   alt="Bird Lines trailer preview"
                   width={320}
                   height={288}
-                  className="h-full w-full object-contain bg-neutral-900/5 p-6 dark:bg-neutral-950"
+                  className="h-full w-full bg-charcoal/60 object-contain p-8"
                 />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition group-hover:bg-black/35">
-                  <span className="rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-black shadow">
+                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors duration-300 ease-fluid group-hover:bg-black/40">
+                  <span className="glass-surface rounded-full px-4 py-2 text-sm font-medium text-ink-primary">
                     ▶ {t.videoLinkLabel}
                   </span>
                 </span>
@@ -420,23 +401,23 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             visual={
               <Link
                 href="/lapasta"
-                className="mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 p-6 shadow-lg ring-1 ring-amber-200/80 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/40 dark:ring-amber-900/50 sm:h-72"
+                className="gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-squircle-lg bg-gradient-to-br from-white/10 via-white/5 to-champagne/10 p-5 shadow-glass-sm ring-1 ring-white/10 sm:h-72"
                 aria-label={t.lapastaTitle}
               >
-                <div className="flex h-full flex-col justify-between rounded-xl border border-white/70 bg-white/70 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-neutral-900/60">
-                  <div className="flex items-center justify-between text-xs font-medium text-amber-900/70 dark:text-amber-100/80">
+                <div className="glass-surface flex h-full flex-col justify-between rounded-squircle p-4">
+                  <div className="flex items-center justify-between text-xs font-medium tracking-wide text-ink-secondary">
                     <span>La Pasta</span>
                     <span>00:42</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-3xl">
-                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">🍝</span>
-                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">〰️</span>
-                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">🥟</span>
-                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">✦</span>
+                  <div className="grid grid-cols-2 gap-2 text-2xl">
+                    <span className="glass-surface rounded-squircle p-3 text-center">🍝</span>
+                    <span className="glass-surface rounded-squircle p-3 text-center">〰️</span>
+                    <span className="glass-surface rounded-squircle p-3 text-center">🥟</span>
+                    <span className="glass-surface rounded-squircle p-3 text-center">✦</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-[10px] font-semibold uppercase tracking-wide text-amber-900/80 dark:text-amber-100/80">
-                    <span className="rounded-full bg-amber-100/90 px-2 py-1 text-center dark:bg-amber-900/50">corta</span>
-                    <span className="rounded-full bg-amber-100/90 px-2 py-1 text-center dark:bg-amber-900/50">lunga</span>
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-medium uppercase tracking-chic text-champagne-light/80">
+                    <span className="rounded-full bg-champagne/15 px-2 py-1 text-center">corta</span>
+                    <span className="rounded-full bg-champagne/15 px-2 py-1 text-center">lunga</span>
                   </div>
                 </div>
               </Link>
@@ -453,12 +434,12 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             visual={
               <Link
                 href="/azumbox"
-                className="mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-[2rem] border border-neutral-800/60 bg-neutral-900 p-1.5 shadow-lg sm:h-72"
+                className="gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-squircle-xl border border-white/10 bg-charcoal p-1.5 shadow-glass-sm sm:h-72"
                 aria-label={t.azumboxTitle}
               >
-                <div className="flex h-full flex-col items-center justify-center rounded-[1.6rem] border border-white/10 bg-gradient-to-b from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-950">
-                  <span className="text-5xl">◻︎</span>
-                  <span className="mt-4 text-xs uppercase tracking-[0.2em] text-neutral-500">Demo preview</span>
+                <div className="flex h-full flex-col items-center justify-center rounded-squircle-lg border border-white/10 bg-gradient-to-b from-white/8 to-white/[0.02]">
+                  <span className="text-4xl text-platinum/80">◻︎</span>
+                  <span className="chic-kicker mt-4">Demo preview</span>
                 </div>
               </Link>
             }
@@ -475,7 +456,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             visual={
               <Link
                 href="/ciromap"
-                className="mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#f6efe3] via-[#efe4d4] to-[#e7d8c3] p-8 shadow-lg ring-1 ring-[#dcc9aa] sm:h-72 dark:from-[#2a241c] dark:via-[#1f1a14] dark:to-[#15120e] dark:ring-[#4a3f31]"
+                className="gpu-layer mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden rounded-squircle-lg bg-gradient-to-br from-champagne/15 via-white/5 to-platinum/10 p-8 shadow-glass-sm ring-1 ring-white/10 sm:h-72"
                 aria-label={t.ciromapTitle}
               >
                 <Image
@@ -483,86 +464,94 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   alt="Ciro.Map app icon"
                   width={160}
                   height={160}
-                  className="rounded-[2rem] shadow-xl ring-1 ring-black/5"
+                  className="rounded-squircle-xl shadow-glass ring-1 ring-white/10"
                 />
               </Link>
             }
           />
         </div>
 
-        <article className="mt-6 rounded-3xl border border-neutral-200 bg-white/80 p-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)] backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/70">
-          <p className="text-xs uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">{t.valuesTitle}</p>
-          <p className="mt-2 text-base font-medium text-neutral-800 dark:text-neutral-100">{t.valuesItems}</p>
+        <article className="glass-card gpu-layer mt-6 p-5">
+          <p className="chic-kicker">{t.valuesTitle}</p>
+          <p className="mt-2 text-base font-medium tracking-wide text-ink-primary">{t.valuesItems}</p>
         </article>
       </section>
 
       <section id="faq" className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-3xl font-bold">{t.faqTitle}</h2>
+        <h2 className="chic-heading text-3xl">{t.faqTitle}</h2>
         <dl className="mt-8 space-y-4">
           {HOME_FAQ[routeLang].map((faq) => (
-            <div key={faq.question} className="rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
-              <dt className="font-semibold">{faq.question}</dt>
-              <dd className="mt-2 text-neutral-600 dark:text-neutral-300">{faq.answer}</dd>
+            <div key={faq.question} className="glass-card gpu-layer p-5">
+              <dt className="font-medium tracking-wide text-ink-primary">{faq.question}</dt>
+              <dd className="chic-body mt-2">{faq.answer}</dd>
             </div>
           ))}
         </dl>
       </section>
 
-      <footer id="contact" className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">
-        <p className="text-sm text-neutral-500">{t.footer}</p>
-        <p className="mt-2 text-xs text-neutral-400">{t.pressLine}</p>
-        <p className="mt-3 text-xs"><Link href="/lapasta" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">La Pasta</Link><span className="mx-2 text-neutral-300">·</span><Link href="/ciromap/privacy" className="text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline dark:hover:text-white">{t.ciroPrivacy}</Link></p>
+      <footer id="contact" className="border-t border-white/10 py-10 text-center">
+        <p className="text-sm text-ink-secondary">{t.footer}</p>
+        <p className="mt-2 text-xs text-ink-muted">{t.pressLine}</p>
+        <p className="mt-3 text-xs">
+          <Link href="/lapasta" className="text-ink-secondary underline-offset-4 transition-colors duration-300 ease-fluid hover:text-champagne-light hover:underline">
+            La Pasta
+          </Link>
+          <span className="mx-2 text-white/20">·</span>
+          <Link href="/ciromap/privacy" className="text-ink-secondary underline-offset-4 transition-colors duration-300 ease-fluid hover:text-champagne-light hover:underline">
+            {t.ciroPrivacy}
+          </Link>
+        </p>
       </footer>
     </main>
   );
 }
 
 /* UI COMPONENTS */
-function ServiceCard({ title, desc, price }: any) {
+function ServiceCard({ title, desc, price }: { title: string; desc: string; price: string }) {
   return (
-    <div className="rounded-2xl border border-neutral-200 p-6 transition hover:shadow-lg dark:border-neutral-800">
-      <h3 className="text-lg font-bold">{title}</h3>
-      <p className="mt-2 text-sm text-neutral-500">{desc}</p>
-      <div className="mt-4 inline-block rounded-lg bg-neutral-100 px-3 py-1 text-xs font-bold dark:bg-neutral-800">
+    <div className="glass-card gpu-layer interactive-lift p-6">
+      <h3 className="text-lg font-medium tracking-wide text-ink-primary">{title}</h3>
+      <p className="chic-body mt-2 text-sm">{desc}</p>
+      <div className="mt-4 inline-block rounded-full bg-champagne/15 px-3 py-1 text-xs font-medium tracking-wide text-champagne-light">
         {price}
       </div>
     </div>
   );
 }
 
-function GameCard({ title, href, desc, gradient, icon, deco }: any) {
+const GAME_TONES = {
+  forest: 'from-emerald-950/80 via-emerald-900/40 to-obsidian',
+  midnight: 'from-indigo-950/80 via-slate-900/40 to-obsidian',
+  amber: 'from-amber-950/70 via-stone-900/40 to-obsidian',
+} as const;
+
+function GameCard({
+  title,
+  href,
+  desc,
+  tone,
+  label,
+}: {
+  title: string;
+  href: string;
+  desc: string;
+  tone: keyof typeof GAME_TONES;
+  label: string;
+}) {
   return (
     <Link
       href={href}
-      className="group block overflow-hidden rounded-2xl border border-neutral-200 transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800"
+      className="glass-card gpu-layer interactive-lift group block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne/40"
     >
-      <div className={`relative h-32 overflow-hidden bg-gradient-to-br ${gradient}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.2),transparent_50%)]"></div>
-        <div className="absolute left-4 top-4 text-4xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">{icon}</div>
-        {deco === 'float' && (
-          <>
-            <span className="absolute bottom-4 right-6 h-4 w-4 animate-bounce rounded-full bg-white/70"></span>
-            <span className="absolute right-12 top-10 h-2 w-2 animate-pulse rounded-full bg-lime-100"></span>
-          </>
-        )}
-        {deco === 'stars' && (
-          <div className="absolute inset-0">
-            <span className="absolute left-14 top-7 h-1.5 w-1.5 animate-pulse rounded-full bg-white"></span>
-            <span className="absolute right-10 top-5 h-1 w-1 animate-ping rounded-full bg-cyan-100"></span>
-            <span className="absolute bottom-7 right-16 h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-100"></span>
-          </div>
-        )}
-        {deco === 'dots' && (
-          <div className="absolute bottom-4 right-4 flex items-center gap-2">
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-yellow-100"></span>
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-100 [animation-delay:220ms]"></span>
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-orange-100 [animation-delay:420ms]"></span>
-          </div>
-        )}
+      <div className={`relative h-28 overflow-hidden bg-gradient-to-br ${GAME_TONES[tone]}`}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(circle_at_80%_70%,rgba(196,165,116,0.1),transparent_50%)]" />
+        <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-squircle glass-surface text-xs font-medium tracking-chic text-champagne-light transition-transform duration-500 ease-fluid group-hover:scale-105">
+          {label}
+        </div>
       </div>
       <div className="p-5">
-        <h4 className="font-bold tracking-wide">{title}</h4>
-        <p className="mt-1 text-sm text-neutral-500">{desc}</p>
+        <h4 className="font-medium tracking-wide text-ink-primary">{title}</h4>
+        <p className="chic-body mt-1 text-sm">{desc}</p>
       </div>
     </Link>
   );
