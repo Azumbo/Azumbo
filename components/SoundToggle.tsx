@@ -11,7 +11,7 @@ export default function SoundToggle() {
   return (
     <button
       type="button"
-      className="glass-surface gpu-layer interactive-lift fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full text-sm text-ink-primary"
+      className="glass-panel gpu-layer fixed top-5 right-5 z-[60] flex h-11 w-11 items-center justify-center rounded-full text-sm transition-all duration-500 ease-out hover:scale-105"
       onClick={() => void toggleMute()}
       aria-label={muted ? 'Turn sound on' : 'Turn sound off'}
       aria-pressed={!muted}
