@@ -7,6 +7,7 @@ import { ProjectSpotlight } from '../../components/ProjectSpotlight';
 import { JsonLd } from '../../components/seo/JsonLd';
 import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
 import { getAppBySlug } from '../../lib/apps';
+import { HOME_BLUF, HOME_FAQ } from '../../lib/homeFaq';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
 
 const CIRO_MAP_APP_STORE_URL = getAppBySlug('ciromap')!.appStoreUrl;
@@ -64,6 +65,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Watch trailer',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    faqTitle: 'FAQ',
     pressLine: 'For publishers & press: azumbogames@gmail.com',
     ciroPrivacy: 'Ciro.Map Privacy',
     lapastaTitle: 'La Pasta: 60s Challenge',
@@ -129,6 +131,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Guarda il trailer',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    faqTitle: 'Domande frequenti',
     pressLine: 'Per editori e stampa: azumbogames@gmail.com',
     ciroPrivacy: 'Privacy Ciro.Map',
     lapastaTitle: 'La Pasta: 60s Challenge',
@@ -194,6 +197,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     videoLinkLabel: 'Смотреть трейлер',
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
+    faqTitle: 'Частые вопросы',
     pressLine: 'Для издателей и прессы: azumbogames@gmail.com',
     ciroPrivacy: 'Конфиденциальность Ciro.Map',
     lapastaTitle: 'La Pasta: 60s Challenge',
@@ -324,7 +328,10 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <FloatingSprites />
         <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">{t.kicker}</p>
         <h1 className="mt-5 text-5xl font-black leading-tight sm:text-7xl">{t.title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
+        <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-neutral-800 dark:text-neutral-200">
+          {HOME_BLUF[routeLang]}
+        </p>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">{t.subtitle}</p>
         <div className="mt-8">
           <a href="mailto:azumbogames@gmail.com" className="inline-block rounded-xl border border-neutral-300 px-6 py-3 font-medium transition hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900">
             {t.ctaContact}
@@ -487,6 +494,18 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           <p className="text-xs uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">{t.valuesTitle}</p>
           <p className="mt-2 text-base font-medium text-neutral-800 dark:text-neutral-100">{t.valuesItems}</p>
         </article>
+      </section>
+
+      <section id="faq" className="mx-auto max-w-5xl px-4 py-16">
+        <h2 className="text-3xl font-bold">{t.faqTitle}</h2>
+        <dl className="mt-8 space-y-4">
+          {HOME_FAQ[routeLang].map((faq) => (
+            <div key={faq.question} className="rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+              <dt className="font-semibold">{faq.question}</dt>
+              <dd className="mt-2 text-neutral-600 dark:text-neutral-300">{faq.answer}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <footer id="contact" className="border-t border-neutral-200 py-10 text-center dark:border-neutral-800">

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { DEFAULT_LOCALE, PRIMARY_HOST, SUPPORTED_LOCALES } from './lib/seo';
+import { DEFAULT_LOCALE, LOCALE_REQUEST_HEADER, PRIMARY_HOST, SUPPORTED_LOCALES } from './lib/seo';
 
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get('azumbo_locale')?.value;
@@ -61,7 +61,11 @@ export function middleware(request: NextRequest) {
   const localeMatch = pathname.match(/^\/(en|ru|it)(\/.*)?$/);
   if (localeMatch) {
     const locale = localeMatch[1];
-    const response = NextResponse.next();
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set(LOCALE_REQUEST_HEADER, locale);
+    const response = NextResponse.next({
+      request: { headers: requestHeaders },
+    });
     response.cookies.set('azumbo_locale', locale, {
       path: '/',
       sameSite: 'lax',

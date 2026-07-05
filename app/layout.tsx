@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import GameFX from '../components/GameFX';
-import { SITE_URL, baseMetadata } from '../lib/seo';
+import { LOCALE_REQUEST_HEADER, SITE_URL, baseMetadata, resolveHtmlLang } from '../lib/seo';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -67,8 +68,10 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const htmlLang = resolveHtmlLang(headers().get(LOCALE_REQUEST_HEADER));
+
   return (
-    <html lang="en-US" className="h-full">
+    <html lang={htmlLang} className="h-full">
       <body
         className={`${inter.variable} min-h-full bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100`}
       >

@@ -2,7 +2,7 @@
 set -euo pipefail
 BASE_URL="${1:-https://azumbo.vercel.app}"
 
-urls=("/" "/en" "/ru" "/it" "/en/" "/sitemap.xml" "/robots.txt")
+urls=("/" "/en" "/ru" "/it" "/en/" "/sitemap.xml" "/robots.txt" "/llms.txt")
 
 for p in "${urls[@]}"; do
   echo "===== $BASE_URL$p ====="
@@ -24,6 +24,12 @@ echo "$html" | grep -q 'rel="canonical" href="https://azumbo.vercel.app/en"' && 
 
 for loc in en ru it; do
   html="$(curl -sS -L "$BASE_URL/$loc")"
+  case "$loc" in
+    en) expected_lang='en-US' ;;
+    ru) expected_lang='ru-RU' ;;
+    it) expected_lang='it-IT' ;;
+  esac
+  echo "$html" | grep -q "<html lang=\"$expected_lang\"" && echo "OK: /$loc html lang=$expected_lang" || { echo "FAIL: /$loc html lang not $expected_lang"; exit 1; }
   if echo "$html" | grep -q '"@type":"VideoObject"'; then
     echo "FAIL: VideoObject found on /$loc homepage"
     exit 1
@@ -33,6 +39,19 @@ for loc in en ru it; do
     exit 1
   fi
   echo "OK: /$loc homepage has no VideoObject or embedded video"
+done
+
+echo "===== llms.txt AI discovery ====="
+llms="$(curl -sS "$BASE_URL/llms.txt")"
+echo "$llms" | grep -q '/en' && echo "OK: llms.txt lists /en" || { echo "FAIL: llms.txt missing /en"; exit 1; }
+echo "$llms" | grep -q '/ru' && echo "OK: llms.txt lists /ru" || { echo "FAIL: llms.txt missing /ru"; exit 1; }
+echo "$llms" | grep -q '/it' && echo "OK: llms.txt lists /it" || { echo "FAIL: llms.txt missing /it"; exit 1; }
+echo "$llms" | grep -q 'Bird Lines' && echo "OK: llms.txt lists studio projects" || { echo "FAIL: llms.txt missing projects"; exit 1; }
+
+echo "===== FAQ schema on homepages ====="
+for loc in en ru it; do
+  html="$(curl -sS -L "$BASE_URL/$loc")"
+  echo "$html" | grep -q '"@type":"FAQPage"' && echo "OK: FAQPage schema on /$loc" || { echo "FAIL: FAQPage missing on /$loc"; exit 1; }
 done
 
 echo "===== Bird Lines watch page (Google video indexing) ====="
