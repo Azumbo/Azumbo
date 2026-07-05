@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FloatingSprites from '../../components/FloatingSprites';
+import { ProjectSpotlight } from '../../components/ProjectSpotlight';
 import { JsonLd } from '../../components/seo/JsonLd';
 import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
@@ -27,6 +28,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Featured games',
+    projectsTitle: 'Studio projects',
     frDesc: 'Classic frog-style hops with modern UX.',
     siDesc: 'Defend Earth from alien invasion in this classic arcade shooter.',
     pmDesc: 'Navigate the maze, eat dots and avoid ghosts in this timeless classic.',
@@ -60,7 +62,25 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'For publishers & press: azumbogames@gmail.com',
-    ciroPrivacy: 'Ciro.Map Privacy'
+    ciroPrivacy: 'Ciro.Map Privacy',
+    lapastaTitle: 'La Pasta: 60s Challenge',
+    lapastaSubtitle: 'Italian pasta shape quiz',
+    lapastaDescription:
+      'A warm iOS quiz for iPhone and iPad: glass jars shuffle, you name the pasta family, and collect shapes in quick 60-second rounds.',
+    lapastaStatus: 'Status: Live on the App Store',
+    lapastaCTA: 'View app',
+    azumboxTitle: 'Azumbox',
+    azumboxSubtitle: 'Curated spontaneity, pocket-sized',
+    azumboxDescription:
+      'A polished mobile game concept with calm pacing, elegant visuals, and smart casual mechanics — designed as a small daily ritual.',
+    azumboxStatus: 'Status: In development',
+    azumboxCTA: 'Explore Azumbox',
+    ciromapTitle: 'Ciro.Map',
+    ciromapSubtitle: 'Cirò Marina travel guide',
+    ciromapDescription:
+      'An iOS travel guide for Cirò Marina, Calabria: discover nearby places, routes, categories, and a private loyalty wallet.',
+    ciromapStatus: 'Status: iOS · App Store soon',
+    ciromapCTA: 'Explore Ciro.Map',
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -73,6 +93,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Giochi in evidenza',
+    projectsTitle: 'Progetti dello studio',
     frDesc: 'Salti in stile frog con UX moderna.',
     siDesc: 'Difendi la Terra dall\'invasione aliena.',
     pmDesc: 'Naviga nel labirinto, mangia i puntini ed evita i fantasmi.',
@@ -106,7 +127,25 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Per editori e stampa: azumbogames@gmail.com',
-    ciroPrivacy: 'Privacy Ciro.Map'
+    ciroPrivacy: 'Privacy Ciro.Map',
+    lapastaTitle: 'La Pasta: 60s Challenge',
+    lapastaSubtitle: 'Quiz sulle forme di pasta',
+    lapastaDescription:
+      'Quiz iOS per iPhone e iPad: barattoli di vetro si mescolano, indovini la famiglia di pasta e collezioni forme in round da 60 secondi.',
+    lapastaStatus: 'Stato: Live su App Store',
+    lapastaCTA: 'Vedi app',
+    azumboxTitle: 'Azumbox',
+    azumboxSubtitle: 'Spontaneità curata, tascabile',
+    azumboxDescription:
+      'Concept di gioco mobile con ritmo calmo, estetica elegante e meccaniche casual intelligenti — un piccolo rituale quotidiano.',
+    azumboxStatus: 'Stato: In sviluppo',
+    azumboxCTA: 'Scopri Azumbox',
+    ciromapTitle: 'Ciro.Map',
+    ciromapSubtitle: 'Guida di viaggio a Cirò Marina',
+    ciromapDescription:
+      'Guida iOS per Cirò Marina, Calabria: scopri luoghi vicini, percorsi, categorie e un wallet fedeltà privato.',
+    ciromapStatus: 'Stato: iOS · App Store a breve',
+    ciromapCTA: 'Scopri Ciro.Map',
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -119,6 +158,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ios: 'iOS',
     switch: 'Nintendo Switch',
     featured: 'Избранные игры',
+    projectsTitle: 'Проекты студии',
     frDesc: 'Классические ходы лягушки с современным UX.',
     siDesc: 'Защитите Землю от инопланетного вторжения.',
     pmDesc: 'Пройдите лабиринт, собирайте точки и избегайте призраков.',
@@ -152,7 +192,25 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     valuesTitle: 'Studio Roadmap',
     valuesItems: 'Minimalism · Mental Resilience · Intelligent Humor',
     pressLine: 'Для издателей и прессы: azumbogames@gmail.com',
-    ciroPrivacy: 'Конфиденциальность Ciro.Map'
+    ciroPrivacy: 'Конфиденциальность Ciro.Map',
+    lapastaTitle: 'La Pasta: 60s Challenge',
+    lapastaSubtitle: 'Итальянская викторина о пасте',
+    lapastaDescription:
+      'iOS-викторина для iPhone и iPad: стеклянные банки перемешиваются, вы угадываете семейство пасты и собираете коллекцию за 60 секунд.',
+    lapastaStatus: 'Статус: В App Store',
+    lapastaCTA: 'Смотреть приложение',
+    azumboxTitle: 'Azumbox',
+    azumboxSubtitle: 'Продуманная спонтанность в кармане',
+    azumboxDescription:
+      'Мобильная игра с спокойным ритмом, элегантной эстетикой и умной casual-механикой — небольшой ежедневный ритуал.',
+    azumboxStatus: 'Статус: В разработке',
+    azumboxCTA: 'Об Azumbox',
+    ciromapTitle: 'Ciro.Map',
+    ciromapSubtitle: 'Путеводитель по Cirò Marina',
+    ciromapDescription:
+      'iOS-гид по Cirò Marina, Калабрия: места рядом, маршруты, категории и приватный wallet для карт лояльности.',
+    ciromapStatus: 'Статус: iOS · скоро в App Store',
+    ciromapCTA: 'Смотреть Ciro.Map',
   }
 };
 
@@ -311,13 +369,19 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
            />
         </div>
 
-        {/* BIRD LINES SPOTLIGHT */}
-        <article className="mt-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="flex flex-col md:flex-row">
-            <div className="bg-neutral-100 p-8 md:w-1/3 dark:bg-neutral-800">
+        <h3 className="mb-6 mt-16 text-2xl font-bold sm:text-3xl">{t.projectsTitle}</h3>
+        <div className="space-y-6">
+          <ProjectSpotlight
+            title={t.birdTitle}
+            subtitle={t.birdSubtitle}
+            description={renderBirdDescription(t.birdDescription)}
+            status={t.birdStatus}
+            ctaLabel={t.videoLinkLabel}
+            ctaHref={birdLinesWatchPath(routeLang)}
+            visual={
               <Link
                 href={birdLinesWatchPath(routeLang)}
-                className="group relative mx-auto block h-72 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg ring-1 ring-neutral-200 dark:ring-neutral-700"
+                className="group relative mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg ring-1 ring-neutral-200 dark:ring-neutral-700 sm:h-72"
                 aria-label={t.videoLinkLabel}
               >
                 <Image
@@ -333,22 +397,87 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   </span>
                 </span>
               </Link>
-            </div>
-            <div className="p-8 md:w-2/3">
-              <h3 className="text-2xl font-bold uppercase tracking-wider">{t.birdTitle}</h3>
-              <p className="mt-2 italic text-neutral-500">{t.birdSubtitle}</p>
-              <p className="mt-6 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
-                {renderBirdDescription(t.birdDescription)}
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <span className="text-sm font-semibold text-neutral-500">{t.birdStatus}</span>
-                <a href={WAITLIST_MAILTO} className="rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black">
-                  {t.waitlistCTA}
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
+            }
+          />
+
+          <ProjectSpotlight
+            title={t.lapastaTitle}
+            subtitle={t.lapastaSubtitle}
+            description={t.lapastaDescription}
+            status={t.lapastaStatus}
+            ctaLabel={t.lapastaCTA}
+            ctaHref="/lapasta"
+            visual={
+              <Link
+                href="/lapasta"
+                className="mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 p-6 shadow-lg ring-1 ring-amber-200/80 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/40 dark:ring-amber-900/50 sm:h-72"
+                aria-label={t.lapastaTitle}
+              >
+                <div className="flex h-full flex-col justify-between rounded-xl border border-white/70 bg-white/70 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-neutral-900/60">
+                  <div className="flex items-center justify-between text-xs font-medium text-amber-900/70 dark:text-amber-100/80">
+                    <span>La Pasta</span>
+                    <span>00:42</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-3xl">
+                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">🍝</span>
+                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">〰️</span>
+                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">🥟</span>
+                    <span className="rounded-xl bg-white/80 p-3 text-center shadow-sm dark:bg-neutral-800/80">✦</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-semibold uppercase tracking-wide text-amber-900/80 dark:text-amber-100/80">
+                    <span className="rounded-full bg-amber-100/90 px-2 py-1 text-center dark:bg-amber-900/50">corta</span>
+                    <span className="rounded-full bg-amber-100/90 px-2 py-1 text-center dark:bg-amber-900/50">lunga</span>
+                  </div>
+                </div>
+              </Link>
+            }
+          />
+
+          <ProjectSpotlight
+            title={t.azumboxTitle}
+            subtitle={t.azumboxSubtitle}
+            description={t.azumboxDescription}
+            status={t.azumboxStatus}
+            ctaLabel={t.azumboxCTA}
+            ctaHref="/azumbox"
+            visual={
+              <Link
+                href="/azumbox"
+                className="mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-[2rem] border border-neutral-800/60 bg-neutral-900 p-1.5 shadow-lg sm:h-72"
+                aria-label={t.azumboxTitle}
+              >
+                <div className="flex h-full flex-col items-center justify-center rounded-[1.6rem] border border-white/10 bg-gradient-to-b from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-950">
+                  <span className="text-5xl">◻︎</span>
+                  <span className="mt-4 text-xs uppercase tracking-[0.2em] text-neutral-500">Demo preview</span>
+                </div>
+              </Link>
+            }
+          />
+
+          <ProjectSpotlight
+            title={t.ciromapTitle}
+            subtitle={t.ciromapSubtitle}
+            description={t.ciromapDescription}
+            status={t.ciromapStatus}
+            ctaLabel={t.ciromapCTA}
+            ctaHref="/ciromap"
+            visual={
+              <Link
+                href="/ciromap"
+                className="mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#f6efe3] via-[#efe4d4] to-[#e7d8c3] p-8 shadow-lg ring-1 ring-[#dcc9aa] sm:h-72 dark:from-[#2a241c] dark:via-[#1f1a14] dark:to-[#15120e] dark:ring-[#4a3f31]"
+                aria-label={t.ciromapTitle}
+              >
+                <Image
+                  src="/ciromap/app-icon-192.png"
+                  alt="Ciro.Map app icon"
+                  width={160}
+                  height={160}
+                  className="rounded-[2rem] shadow-xl ring-1 ring-black/5"
+                />
+              </Link>
+            }
+          />
+        </div>
 
         <article className="mt-6 rounded-3xl border border-neutral-200 bg-white/80 p-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)] backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/70">
           <p className="text-xs uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">{t.valuesTitle}</p>
