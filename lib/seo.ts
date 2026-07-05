@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { HOME_FAQ } from './homeFaq';
 
 export const SITE_URL = 'https://azumbo.vercel.app';
 export const PRIMARY_HOST = 'azumbo.vercel.app';
 export const SUPPORTED_LOCALES = ['en', 'it', 'ru'] as const;
 export const DEFAULT_LOCALE = 'en';
+export const LOCALE_REQUEST_HEADER = 'x-azumbo-locale';
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -155,6 +157,13 @@ export function buildPageMetadata({
   };
 }
 
+export function resolveHtmlLang(locale: string | null | undefined): string {
+  if (locale && isSupportedLocale(locale)) {
+    return LOCALE_HTML_LANG[locale];
+  }
+  return LOCALE_HTML_LANG[DEFAULT_LOCALE];
+}
+
 export function buildHomeGraph(locale: Locale) {
   const pageUrl = buildCanonical(`/${locale}`);
 
@@ -172,21 +181,39 @@ export function buildHomeGraph(locale: Locale) {
         },
         email: 'azumbogames@gmail.com',
         sameAs: [...ORGANIZATION_SAME_AS],
-        areaServed: {
-          '@type': 'Country',
-          name: 'United States',
-        },
         knowsLanguage: ['en-US', 'it-IT', 'ru-RU'],
       },
       {
         '@type': 'WebSite',
         '@id': WEBSITE_ID,
-        url: pageUrl,
+        url: SITE_URL,
         name: 'AZUMBO',
         description:
-          'Indie game studio building mobile and Nintendo Switch games for global audiences with US-first English content.',
+          'Indie game studio building mobile and Nintendo Switch games for English, Italian, and Russian audiences.',
         publisher: { '@id': ORGANIZATION_ID },
+        inLanguage: ['en-US', 'it-IT', 'ru-RU'],
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: 'AZUMBO',
         inLanguage: LOCALE_HTML_LANG[locale],
+        isPartOf: { '@id': WEBSITE_ID },
+        about: { '@id': ORGANIZATION_ID },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        inLanguage: LOCALE_HTML_LANG[locale],
+        mainEntity: HOME_FAQ[locale].map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
       },
     ],
   };

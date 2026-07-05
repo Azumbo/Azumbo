@@ -8,6 +8,8 @@ const watchPage = fs.readFileSync('app/[locale]/videos/bird-lines/page.tsx', 'ut
 const birdLinesVideo = fs.readFileSync('lib/birdLinesVideo.ts', 'utf8');
 const rootLayout = fs.readFileSync('app/layout.tsx', 'utf8');
 const jsonLd = fs.readFileSync('components/seo/JsonLd.tsx', 'utf8');
+const middlewareTs = fs.readFileSync('middleware.ts', 'utf8');
+const homeFaq = fs.readFileSync('lib/homeFaq.ts', 'utf8');
 const rootPage = fs.readFileSync('app/page.tsx', 'utf8');
 
 function assert(cond, msg) {
@@ -38,7 +40,14 @@ assert(watchPage.includes('buildBirdLinesWatchGraph'), 'watch page must emit Vid
 assert(birdLinesVideo.includes('FAQPage'), 'watch page graph must include FAQ schema');
 assert(birdLinesVideo.includes('width: BIRD_LINES_WIDTH'), 'VideoObject must include width');
 assert(birdLinesVideo.includes('publisher:'), 'VideoObject must include publisher');
-assert(rootLayout.includes('lang="en-US"'), 'root html lang must target US English');
+assert(seoTs.includes('FAQPage'), 'homepage graph must include FAQ schema');
+assert(seoTs.includes('resolveHtmlLang'), 'html lang resolver missing');
+assert(middlewareTs.includes('LOCALE_REQUEST_HEADER'), 'middleware must pass locale request header');
+assert(fs.existsSync('app/llms.txt/route.ts'), 'llms.txt route missing');
+assert(homeFaq.includes('HOME_BLUF'), 'homepage BLUF copy missing');
+assert(localePage.includes('HOME_FAQ'), 'homepage must render visible FAQ section');
+assert(rootLayout.includes('resolveHtmlLang'), 'root layout must resolve html lang dynamically');
+assert(!rootLayout.includes('lang="en-US"'), 'root layout must not hardcode en-US html lang');
 assert(rootLayout.includes("card: 'summary_large_image'"), 'twitter card metadata missing');
 assert(!jsonLd.includes("'use client'"), 'JsonLd must render on the server for crawlers');
 assert(rootPage.includes("redirect('/en')"), 'root page must redirect to /en canonical locale');
