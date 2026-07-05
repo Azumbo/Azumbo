@@ -6,7 +6,10 @@ import FloatingSprites from '../../components/FloatingSprites';
 import { ProjectSpotlight } from '../../components/ProjectSpotlight';
 import { JsonLd } from '../../components/seo/JsonLd';
 import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
+import { getAppBySlug } from '../../lib/apps';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
+
+const CIRO_MAP_APP_STORE_URL = getAppBySlug('ciromap')!.appStoreUrl;
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -79,8 +82,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapSubtitle: 'Cirò Marina travel guide',
     ciromapDescription:
       'An iOS travel guide for Cirò Marina, Calabria: discover nearby places, routes, categories, and a private loyalty wallet.',
-    ciromapStatus: 'Status: iOS · App Store soon',
-    ciromapCTA: 'Explore Ciro.Map',
+    ciromapStatus: 'Status: Live on the App Store',
+    ciromapCTA: 'Download on App Store',
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -144,8 +147,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapSubtitle: 'Guida di viaggio a Cirò Marina',
     ciromapDescription:
       'Guida iOS per Cirò Marina, Calabria: scopri luoghi vicini, percorsi, categorie e un wallet fedeltà privato.',
-    ciromapStatus: 'Stato: iOS · App Store a breve',
-    ciromapCTA: 'Scopri Ciro.Map',
+    ciromapStatus: 'Stato: Live su App Store',
+    ciromapCTA: 'Scarica su App Store',
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -209,8 +212,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapSubtitle: 'Путеводитель по Cirò Marina',
     ciromapDescription:
       'iOS-гид по Cirò Marina, Калабрия: места рядом, маршруты, категории и приватный wallet для карт лояльности.',
-    ciromapStatus: 'Статус: iOS · скоро в App Store',
-    ciromapCTA: 'Смотреть Ciro.Map',
+    ciromapStatus: 'Статус: В App Store',
+    ciromapCTA: 'Скачать в App Store',
   }
 };
 
@@ -460,7 +463,8 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             description={t.ciromapDescription}
             status={t.ciromapStatus}
             ctaLabel={t.ciromapCTA}
-            ctaHref="/ciromap"
+            ctaHref={CIRO_MAP_APP_STORE_URL}
+            external
             visual={
               <Link
                 href="/ciromap"
