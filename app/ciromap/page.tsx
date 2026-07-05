@@ -78,7 +78,7 @@ export default function CiroMapLandingPage() {
         </section>
         <section className={styles.card} aria-labelledby="features-title">
           <p className={styles.kicker}>iOS 17+ · UIKit · MapKit</p>
-          <h2 id="features-title" className="mt-3 text-3xl font-extrabold tracking-tight">
+          <h2 id="features-title" className="type-display mt-4 text-3xl">
             Cirò Marina, beautifully mapped.
           </h2>
           <div className={styles.metaGrid}>

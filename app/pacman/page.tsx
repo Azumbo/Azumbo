@@ -1,11 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { pacmanAudio } from '../../lib/pacmanAudio';
 import { unlockAudio } from '../../lib/froggerAudio';
 import styles from './PacMan.module.css';
 import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
+import { GameChrome } from '../../components/site/SiteHeader';
 
 export default function PacManPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -316,53 +315,38 @@ export default function PacManPage() {
   }, [status, level, showControls]);
 
   return (
-    <div className={styles.container}>
-      <SoftwareApplicationJsonLd
-        name="AZUMBO PacMan"
-        description="Navigate the maze, eat dots, and dodge ghosts in AZUMBO's modern browser remake of PacMan."
-        url="https://azumbo.vercel.app/pacman"
-        image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
-      />
-      <Link
-        href="https://azumbo.vercel.app/en"
-        className={styles.logoLink}
-        aria-label="Go to AZUMBO home"
-      >
-        <Image
-          src="/logo/Azumbo Logo no background Sm.png"
-          alt="AZUMBO"
-          width={120}
-          height={44}
-          priority
-          className={styles.logoImage}
+    <GameChrome
+      title="Pac-Man"
+      footer={
+        <a href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry" className="btn-ghost gpu-layer w-full text-center text-sm">
+          {ctaText}
+        </a>
+      }
+    >
+      <div className={styles.container}>
+        <SoftwareApplicationJsonLd
+          name="AZUMBO PacMan"
+          description="Navigate the maze, eat dots, and dodge ghosts in AZUMBO's modern browser remake of PacMan."
+          url="https://azumbo.vercel.app/pacman"
+          image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
         />
-      </Link>
-      <h1>🟡 Pac-Man</h1>
-      {status === 'play' && (
-        <>
-          <p>Level {level}</p>
-          <canvas
-            ref={canvasRef}
-            className={styles.canvas}
-          />
-          {showControls && (
-            <div className={styles.controls}>
-              <button data-dir="up" className={styles.controlButton}>↑</button>
-              <button data-dir="left" className={styles.controlButton}>←</button>
-              <button data-dir="down" className={styles.controlButton}>↓</button>
-              <button data-dir="right" className={styles.controlButton}>→</button>
-            </div>
-          )}
-        </>
-      )}
-      <a
-        href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
-        className={styles.ctaLink}
-      >
-        {ctaText}
-      </a>
-      {status === 'level' && <p>Level {level} complete!</p>}
-      {status === 'win' && <p>🏆 You win!</p>}
-    </div>
+        {status === 'play' && (
+          <>
+            <p className="type-body mb-3">Level {level}</p>
+            <canvas ref={canvasRef} className={styles.canvas} />
+            {showControls && (
+              <div className={styles.controls}>
+                <button data-dir="up" type="button" className={styles.controlButton}>↑</button>
+                <button data-dir="left" type="button" className={styles.controlButton}>←</button>
+                <button data-dir="down" type="button" className={styles.controlButton}>↓</button>
+                <button data-dir="right" type="button" className={styles.controlButton}>→</button>
+              </div>
+            )}
+          </>
+        )}
+        {status === 'level' && <p className="type-body mt-4">Level {level} complete!</p>}
+        {status === 'win' && <p className="type-body mt-4">🏆 You win!</p>}
+      </div>
+    </GameChrome>
   );
 }

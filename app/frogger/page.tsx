@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { GameChrome } from '../../components/site/SiteHeader';
 import { SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
 import {
   initAudioSystem,
@@ -226,41 +225,25 @@ export default function FroggerPage() {
   }, [status, homes]);
 
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center px-4 py-3">
+    <GameChrome
+      title="Frogger"
+      footer={
+        <a
+          href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
+          className="btn-ghost gpu-layer w-full text-center text-sm"
+        >
+          {ctaText}
+        </a>
+      }
+    >
       <SoftwareApplicationJsonLd
         name="AZUMBO Frogger"
         description="Hop through traffic and rivers in AZUMBO's browser-friendly Frogger-inspired arcade challenge."
         url="https://azumbo.vercel.app/frogger"
         image="https://azumbo.vercel.app/assets/logo/azumbo-icon.png"
       />
-      <header className="mb-4 flex w-full max-w-lg items-center gap-3">
-        <Link
-          href="https://azumbo.vercel.app/en"
-          className="shrink-0 rounded-md bg-white/85 p-0.5 shadow"
-          aria-label="Go to AZUMBO home"
-        >
-          <Image
-            src="/logo/Azumbo Logo no background Sm.png"
-            alt="AZUMBO"
-            width={120}
-            height={44}
-            priority
-            className="h-auto w-[64px] sm:w-[78px]"
-          />
-        </Link>
-        <h1 className="text-lg font-bold sm:text-xl">🐸 Frogger</h1>
-      </header>
-      <canvas
-        ref={canvasRef}
-        style={{ background: '#000', imageRendering: 'pixelated' }}
-      />
-      <a
-        href="mailto:azumbogames@gmail.com?subject=Game%20Development%20Inquiry"
-        className="mt-4 inline-block max-w-lg rounded-md border border-black px-4 py-2 text-center text-sm font-semibold"
-      >
-        {ctaText}
-      </a>
-      {status === 'win' && <p>🏆 You win!</p>}
-    </div>
+      <canvas ref={canvasRef} style={{ background: '#000', imageRendering: 'pixelated' }} />
+      {status === 'win' && <p className="type-body mt-4">🏆 You win!</p>}
+    </GameChrome>
   );
 }

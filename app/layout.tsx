@@ -3,12 +3,13 @@ import { headers } from 'next/headers';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import GameFX from '../components/GameFX';
+import CinematicMesh, { SiteRoot } from '../components/site/CinematicMesh';
 import { LOCALE_REQUEST_HEADER, SITE_URL, baseMetadata, resolveHtmlLang } from '../lib/seo';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
-  weight: ['400', '600', '800'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-inter',
 });
 
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0A0A0C',
+  themeColor: '#050505',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -69,9 +70,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang={htmlLang} className="h-full">
-      <body className={`${inter.variable} min-h-full bg-obsidian text-ink-primary antialiased`}>
-        <GameFX />
-        {children}
+      <body className={`${inter.variable} min-h-full font-light antialiased`}>
+        <CinematicMesh />
+        <SiteRoot>
+          <GameFX />
+          {children}
+        </SiteRoot>
       </body>
     </html>
   );

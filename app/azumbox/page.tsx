@@ -1,6 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { SiteHeader } from '../../components/site/SiteHeader';
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -95,88 +97,71 @@ export default function AzumboxPage() {
   const t = useMemo(() => COPY[lang], [lang]);
 
   return (
-    <main className="min-h-[100dvh] bg-white text-neutral-900">
-      <div className="container-nx flex min-h-[100dvh] flex-col px-4 py-6 sm:py-8 md:py-10">
-        <header className="flex items-center justify-between border-b border-neutral-200 pb-4">
-          <span className="text-sm uppercase tracking-[0.14em] text-neutral-500">Azumbox</span>
-          <nav aria-label="Language switcher" className="flex items-center gap-2">
-            <span className="hidden text-xs text-neutral-500 sm:inline">{t.nav}</span>
-            {(['en', 'it', 'ru'] as Lang[]).map((code) => {
-              const isActive = code === lang;
-              return (
-                <button
-                  key={code}
-                  type="button"
-                  onClick={() => setLang(code)}
-                  className={`rounded-full border px-3 py-1.5 text-xs tracking-wide transition-all duration-300 ${
-                    isActive
-                      ? 'border-neutral-900 bg-neutral-900 text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)]'
-                      : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400 hover:text-neutral-900'
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  {code.toUpperCase()}
-                </button>
-              );
-            })}
-          </nav>
-        </header>
-
-        <section className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center py-12 sm:py-16 md:py-20">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-400">Mobile game landing</p>
-          <h1 className="mt-5 text-3xl font-semibold leading-tight text-neutral-950 sm:text-5xl md:text-6xl">
-            {t.headline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">{t.description}</p>
-
-          {/* Видео-контейнер */}
-          <div className="mx-auto mt-10 w-full max-w-[24rem]">
-            <div className="rounded-[2.2rem] border border-neutral-800/60 bg-neutral-900 p-1.5 shadow-[0_28px_75px_rgba(24,24,27,0.3)]">
-              <div className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-neutral-50">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="aspect-[9/16] max-h-[70vh] w-full object-cover"
-                >
-                  <source src="/azumbox-demo.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-
-          <section className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {t.vibeItems.map((item, idx) => (
-              <article key={item.title} className="rounded-2xl border border-neutral-100 p-5 sm:p-6">
-                <span className="text-sm text-neutral-300">0{idx + 1}</span>
-                <h2 className="mt-2 text-lg font-medium">{item.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">{item.text}</p>
-              </article>
-            ))}
-          </section>
-
-          <div className="mt-10">
-            {t.ctaHref ? (
-              <a
-                href={t.ctaHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_16px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800"
-              >
-                {t.cta}
-              </a>
-            ) : (
+    <main className="site-page min-h-[100dvh]">
+      <SiteHeader
+        homeHref="/en"
+        projectLabel="Azumbox"
+        projectHref="/azumbox"
+        navLinks={[
+          { href: '/en', label: 'Azumbo' },
+          { href: 'mailto:azumbogames@gmail.com', label: 'Contact', external: true },
+        ]}
+        trailing={
+          <div className="flex items-center gap-2">
+            <span className="type-kicker hidden sm:inline">{t.nav}</span>
+            {(['en', 'it', 'ru'] as Lang[]).map((code) => (
               <button
+                key={code}
                 type="button"
-                className="rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_16px_35px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800"
+                onClick={() => setLang(code)}
+                className={`locale-pill ${lang === code ? 'locale-pill--active' : ''}`}
+                aria-pressed={lang === code}
               >
-                {t.cta}
+                {code.toUpperCase()}
               </button>
-            )}
+            ))}
           </div>
+        }
+      />
+
+      <div className="site-container section-gap">
+        <p className="type-kicker">Mobile game landing</p>
+        <h1 className="type-display mt-6 max-w-4xl text-3xl sm:text-5xl md:text-6xl">{t.headline}</h1>
+        <p className="type-body mt-8 max-w-2xl text-base sm:text-lg">{t.description}</p>
+
+        <div className="mx-auto mt-12 w-full max-w-[24rem]">
+          <div className="glass-panel gpu-layer overflow-hidden p-2">
+            <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.03]">
+              <video autoPlay loop muted playsInline className="aspect-[9/16] max-h-[70vh] w-full object-cover">
+                <source src="/azumbox-demo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p className="type-kicker mt-4 text-center">{t.videoHint}</p>
+          </div>
+        </div>
+
+        <section className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {t.vibeItems.map((item, idx) => (
+            <article key={item.title} className="glass-panel gpu-layer glass-panel--interactive p-8 sm:p-10">
+              <span className="type-kicker">0{idx + 1}</span>
+              <h2 className="type-title mt-4 text-lg">{item.title}</h2>
+              <p className="type-body mt-4 text-sm">{item.text}</p>
+            </article>
+          ))}
         </section>
+
+        <div className="mt-12">
+          {t.ctaHref ? (
+            <a href={t.ctaHref} target="_blank" rel="noopener noreferrer" className="btn-accent gpu-layer">
+              {t.cta}
+            </a>
+          ) : (
+            <button type="button" className="btn-accent gpu-layer">
+              {t.cta}
+            </button>
+          )}
+        </div>
       </div>
     </main>
   );
