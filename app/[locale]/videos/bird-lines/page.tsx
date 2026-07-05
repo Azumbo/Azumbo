@@ -72,24 +72,26 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
   const structuredData = buildBirdLinesWatchGraph(lang);
 
   return (
-    <main className="min-h-[100dvh] bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <main className="min-h-[100dvh] bg-obsidian text-ink-primary">
       <JsonLd data={structuredData} />
 
-      <header className="border-b border-neutral-200 px-4 py-3 sm:py-4 dark:border-neutral-800">
+      <header className="glass-header gpu-layer px-4 py-3 sm:py-4">
         <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 sm:gap-4">
           <Link
             href={`/${lang}`}
-            className="text-xs sm:text-sm text-neutral-500 transition hover:text-neutral-900 dark:hover:text-white"
+            className="text-xs text-ink-secondary transition-colors duration-300 ease-fluid hover:text-champagne-light sm:text-sm"
           >
             ← {copy.backHome}
           </Link>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {(['en', 'it', 'ru'] as const).map((k) => (
               <Link
                 key={k}
                 href={birdLinesWatchPath(k)}
-                className={`rounded px-2 py-1 text-xs transition ${
-                  lang === k ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300'
+                className={`rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide transition-all duration-300 ease-fluid ${
+                  lang === k
+                    ? 'bg-champagne/90 text-obsidian'
+                    : 'glass-surface text-ink-secondary hover:text-ink-primary'
                 }`}
               >
                 {k.toUpperCase()}
@@ -100,18 +102,16 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
       </header>
 
       <article className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-10">
-        <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-neutral-500">
-          <Link href={`/${lang}`} className="hover:underline">
+        <nav aria-label="Breadcrumb" className="text-xs text-ink-secondary sm:text-sm">
+          <Link href={`/${lang}`} className="transition-colors duration-300 ease-fluid hover:text-champagne-light">
             {copy.breadcrumbHome}
           </Link>
-          <span className="mx-2">/</span>
+          <span className="mx-2 text-white/20">/</span>
           <span>{copy.breadcrumbVideo}</span>
         </nav>
 
-        <h1 className="mt-4 text-2xl font-black leading-tight sm:mt-6 sm:text-3xl md:text-5xl">{copy.videoName}</h1>
-        <p className="mt-3 max-w-3xl text-base leading-relaxed text-neutral-600 sm:mt-4 sm:text-lg dark:text-neutral-300">
-          {copy.bluf}
-        </p>
+        <h1 className="chic-heading mt-4 text-2xl sm:mt-6 sm:text-3xl md:text-5xl">{copy.videoName}</h1>
+        <p className="chic-body mt-3 max-w-3xl text-base sm:mt-4 sm:text-lg">{copy.bluf}</p>
 
         <section
           id={BIRD_LINES_VIDEO_ID}
@@ -119,7 +119,7 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
           aria-label={copy.videoName}
         >
           <video
-            className="aspect-video h-auto w-full max-w-[min(90vw,24rem)] rounded-xl shadow-lg ring-1 ring-neutral-200 sm:max-w-sm sm:rounded-2xl sm:shadow-2xl dark:ring-neutral-800"
+            className="gpu-layer aspect-video h-auto w-full max-w-[min(90vw,24rem)] rounded-squircle-lg shadow-glass ring-1 ring-white/10 sm:max-w-sm"
             controls
             playsInline
             preload="metadata"
@@ -132,37 +132,32 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
         </section>
 
         <section className="mt-8 sm:mt-10">
-          <h2 className="text-xl font-bold sm:text-2xl">{copy.aboutTitle}</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-600 sm:mt-4 sm:text-base dark:text-neutral-300">
-            {copy.aboutBody}
-          </p>
-          <a
-            href={WAITLIST_MAILTO}
-            className="mt-6 inline-block rounded-full bg-black px-6 py-2 text-sm text-white dark:bg-white dark:text-black"
-          >
+          <h2 className="chic-heading text-xl sm:text-2xl">{copy.aboutTitle}</h2>
+          <p className="chic-body mt-3 max-w-3xl text-sm sm:mt-4 sm:text-base">{copy.aboutBody}</p>
+          <a href={WAITLIST_MAILTO} className="btn-accent gpu-layer mt-6">
             {copy.waitlistCTA}
           </a>
         </section>
 
         <section className="mt-8 sm:mt-12">
-          <h2 className="text-xl font-bold sm:text-2xl">{copy.faqTitle}</h2>
+          <h2 className="chic-heading text-xl sm:text-2xl">{copy.faqTitle}</h2>
           <dl className="mt-4 space-y-4 sm:mt-6 sm:space-y-6">
             {copy.faqs.map((faq) => (
-              <div key={faq.question} className="rounded-xl border border-neutral-200 p-4 sm:rounded-2xl sm:p-5 dark:border-neutral-800">
-                <dt className="font-semibold">{faq.question}</dt>
-                <dd className="mt-2 text-neutral-600 dark:text-neutral-300">{faq.answer}</dd>
+              <div key={faq.question} className="glass-card gpu-layer p-4 sm:p-5">
+                <dt className="font-medium text-ink-primary">{faq.question}</dt>
+                <dd className="chic-body mt-2">{faq.answer}</dd>
               </div>
             ))}
           </dl>
         </section>
       </article>
 
-      <footer className="border-t border-neutral-200 py-8 text-center text-sm text-neutral-500 dark:border-neutral-800">
-        <Link href={`/${lang}`} className="hover:underline">
+      <footer className="border-t border-white/10 py-8 text-center text-sm text-ink-secondary">
+        <Link href={`/${lang}`} className="transition-colors duration-300 ease-fluid hover:text-champagne-light">
           {copy.backHome}
         </Link>
         <div className="mt-4 flex justify-center">
-          <Image src="/assets/logo/azumbo-logo.png" alt="AZUMBO" width={120} height={30} className="opacity-70" />
+          <Image src="/assets/logo/azumbo-logo.png" alt="AZUMBO" width={120} height={30} className="opacity-60" />
         </div>
       </footer>
     </main>

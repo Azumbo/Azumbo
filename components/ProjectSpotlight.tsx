@@ -22,21 +22,20 @@ export function ProjectSpotlight({
   visual,
   external = false,
 }: ProjectSpotlightProps) {
-  const ctaClassName =
-    'rounded-full bg-black px-6 py-2 text-sm text-white transition hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200';
+  const ctaClassName = 'btn-accent gpu-layer text-sm';
 
   return (
-    <article className="overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+    <article className="glass-card gpu-layer interactive-lift overflow-hidden">
       <div className="flex flex-col md:flex-row">
-        <div className="bg-neutral-100 p-6 sm:p-8 md:w-1/3 dark:bg-neutral-800">{visual}</div>
-        <div className="p-6 sm:p-8 md:w-2/3">
-          <h3 className="text-xl font-bold uppercase tracking-wider sm:text-2xl">{title}</h3>
-          <p className="mt-2 italic text-neutral-500">{subtitle}</p>
-          <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:mt-6 sm:text-lg dark:text-neutral-300">
-            {description}
-          </p>
+        <div className="border-b border-white/10 bg-white/[0.02] p-6 sm:p-8 md:w-[38%] md:border-b-0 md:border-r">
+          {visual}
+        </div>
+        <div className="p-6 sm:p-8 md:w-[62%]">
+          <p className="chic-kicker">{subtitle}</p>
+          <h3 className="chic-heading mt-3 text-xl sm:text-2xl">{title}</h3>
+          <p className="chic-body mt-4 text-base sm:mt-5 sm:text-[1.05rem]">{description}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4">
-            <span className="text-sm font-semibold text-neutral-500">{status}</span>
+            <span className="text-sm font-medium tracking-wide text-ink-secondary">{status}</span>
             {external ? (
               <a href={ctaHref} target="_blank" rel="noopener noreferrer" className={ctaClassName}>
                 {ctaLabel}
