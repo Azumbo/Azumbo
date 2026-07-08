@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ciro.Map — Cirò Marina · City Card</title>
+<title>Ciro.Map — Cirò Marina · Flyer</title>
 <style>
   :root {
     --blue: #1A5276;
@@ -32,8 +32,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    padding: 26px 16px 90px;
+    padding: 28px 16px 90px;
+    min-height: 100vh;
   }
 
   .page {
@@ -46,7 +46,9 @@
     box-shadow: 0 20px 50px rgba(26,82,118,0.18), 0 4px 12px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    padding: 11mm 11mm 9mm;
+    align-items: center;
+    text-align: center;
+    padding: 10mm 11mm 8mm;
   }
 
   .page::before {
@@ -57,108 +59,78 @@
     background: linear-gradient(90deg, var(--blue) 0%, var(--blue-soft) 55%, var(--gold) 140%);
   }
 
-  .pageNum {
-    position: absolute;
-    bottom: 4mm; right: 7mm;
-    font-size: 7pt;
-    color: var(--muted);
-    opacity: 0.7;
-  }
-
-  /* ---------- Shared type ---------- */
-  .kicker {
-    font-size: 7.5pt;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    text-align: center;
-  }
-
-  .sectionTitle {
-    font-size: 16pt;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    color: var(--blue);
-    text-align: center;
-    margin-top: 1.5mm;
-    line-height: 1.1;
-  }
-
-  .sectionSub {
-    text-align: center;
-    font-size: 8pt;
-    color: var(--muted);
-    margin-top: 1.5mm;
-    line-height: 1.4;
-  }
-
-  .divider { height: 1px; background: var(--line); margin: 4mm 0; }
-
-  /* ================= PAGE 1 — COVER ================= */
-  .cover { align-items: center; text-align: center; }
-
   .app-icon {
-    width: 21mm; height: 21mm;
+    width: 18mm; height: 18mm;
     border-radius: 22%;
     display: block;
-    margin: 1mm auto 2.5mm;
+    margin: 0.5mm auto 2mm;
     box-shadow: 0 6px 16px rgba(26,82,118,0.28), 0 1px 3px rgba(0,0,0,0.12);
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
 
   .brand {
-    font-size: 33pt; font-weight: 800; letter-spacing: -0.5px;
+    font-size: 31pt; font-weight: 800; letter-spacing: -0.5px;
     color: var(--blue); line-height: 1.0;
   }
-  .brand .wave { font-size: 24pt; }
+  .brand .wave { font-size: 23pt; }
 
   .motto {
-    margin-top: 2mm;
-    font-size: 11pt; font-weight: 700; font-style: italic;
+    margin-top: 1.5mm;
+    font-size: 10pt; font-weight: 700; font-style: italic;
     color: var(--gold-deep); letter-spacing: 0.3px;
   }
 
-  .tagline { margin-top: 2mm; line-height: 1.35; }
-  .tagline span { display: block; font-size: 8.6pt; font-weight: 600; color: var(--muted); }
+  .tagline { margin-top: 1.5mm; line-height: 1.3; }
+  .tagline span { display: block; font-size: 8.2pt; font-weight: 600; color: var(--muted); }
   .tagline span.en { color: var(--blue); }
 
   .qr-wrap {
-    margin: 4mm auto 2.5mm;
+    margin: 3mm auto 2mm;
     position: relative;
-    width: 46mm; height: 46mm;
+    width: 44mm; height: 44mm;
     display: flex; align-items: center; justify-content: center;
-    background: #fff; border-radius: 14px; padding: 3.5mm;
+    background: #fff; border-radius: 14px; padding: 3mm;
     box-shadow: 0 0 0 2px rgba(26,82,118,0.08);
   }
-  .qr-wrap .corner { position: absolute; width: 8mm; height: 8mm; border: 2.2px solid var(--gold); }
+  .qr-wrap .corner { position: absolute; width: 7.5mm; height: 7.5mm; border: 2.2px solid var(--gold); }
   .qr-wrap .tl { top: 0; left: 0; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
   .qr-wrap .tr { top: 0; right: 0; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
   .qr-wrap .bl { bottom: 0; left: 0; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
   .qr-wrap .br { bottom: 0; right: 0; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
-  #qrcode, #qrcode2 { display: flex; align-items: center; justify-content: center; }
-  #qrcode img, #qrcode canvas { display: block; width: 39mm !important; height: 39mm !important; }
-  #qrcode2 img, #qrcode2 canvas { display: block; width: 24mm !important; height: 24mm !important; }
+  #qrcode { display: flex; align-items: center; justify-content: center; }
+  #qrcode img, #qrcode canvas { display: block; width: 38mm !important; height: 38mm !important; }
   .qr-fallback { font-size: 7pt; color: var(--muted); text-align: center; word-break: break-all; }
 
-  .cta { text-align: center; margin: 0 0 3mm; line-height: 1.45; }
-  .cta div { font-size: 8.6pt; font-weight: 600; color: var(--blue); }
+  .cta { text-align: center; margin: 0 0 2.5mm; line-height: 1.4; }
+  .cta div { font-size: 8.4pt; font-weight: 600; color: var(--blue); }
   .cta .flag { margin-right: 5px; }
   .cta .en { color: var(--ink); }
   .cta .ru, .cta .pl { color: var(--muted); font-weight: 500; }
 
-  .langBadge {
-    display: inline-flex; gap: 5px; align-items: center;
-    font-size: 7.5pt; font-weight: 700; color: var(--blue);
-    background: rgba(244,208,63,0.18);
-    border: 1px solid rgba(183,149,11,0.35);
-    border-radius: 999px; padding: 1.4mm 3.5mm;
-    margin: 0 auto;
+  /* ---------- Features (real app highlights) ---------- */
+  .features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2.4mm 3mm;
+    width: 100%;
+    margin-top: 1mm;
+    text-align: left;
   }
+  .feature { display: flex; align-items: flex-start; gap: 2.4mm; }
+  .feature .glyph {
+    flex: 0 0 auto; width: 9mm; height: 9mm; border-radius: 24%;
+    display: flex; align-items: center; justify-content: center; font-size: 11.5pt;
+    background: linear-gradient(145deg, rgba(46,110,150,0.14), rgba(244,208,63,0.16));
+    box-shadow: inset 0 0 0 1px rgba(26,82,118,0.12);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .feature .lbl { line-height: 1.2; min-width: 0; }
+  .feature .lbl .it { font-size: 7.4pt; font-weight: 700; color: var(--ink); }
+  .feature .lbl .en { font-size: 7pt; font-weight: 600; color: var(--blue); }
+  .feature .lbl span { display: block; font-size: 6.3pt; font-weight: 500; color: var(--muted); }
 
   /* App Store badge */
-  .store { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 1.8mm; }
-  .store .hint { font-size: 7.5pt; color: var(--muted); font-weight: 600; letter-spacing: 0.2px; }
+  .store { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 1.6mm; }
+  .store .hint { font-size: 7.4pt; color: var(--muted); font-weight: 600; letter-spacing: 0.2px; }
   .badge {
     display: inline-flex; align-items: center; gap: 3mm;
     background: #000; color: #fff; border-radius: 10px;
@@ -169,99 +141,7 @@
   .badge .txt { line-height: 1.05; }
   .badge .txt small { display: block; font-size: 6pt; font-weight: 500; opacity: 0.9; }
   .badge .txt strong { font-size: 11pt; font-weight: 600; }
-  .siteUrl { margin-top: 2mm; font-size: 7.5pt; color: var(--gold-deep); font-weight: 700; letter-spacing: 0.3px; }
-
-  /* ================= PAGE 2 — FEATURES ================= */
-  .feat {
-    display: flex; align-items: flex-start; gap: 3.2mm;
-    padding: 3mm 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .feat:last-of-type { border-bottom: none; }
-  .feat .glyph {
-    flex: 0 0 auto; width: 12mm; height: 12mm; border-radius: 26%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15pt;
-    background: linear-gradient(145deg, rgba(46,110,150,0.14), rgba(244,208,63,0.16));
-    box-shadow: inset 0 0 0 1px rgba(26,82,118,0.12);
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  .feat .body { flex: 1; }
-  .feat .body h3 { font-size: 10.5pt; font-weight: 800; color: var(--blue); line-height: 1.15; }
-  .feat .body .it { font-size: 8.4pt; font-weight: 600; color: var(--ink); margin-top: 0.6mm; }
-  .feat .body .other { font-size: 8pt; font-weight: 500; color: var(--muted); margin-top: 0.6mm; line-height: 1.35; }
-
-  /* ================= PAGE 3 — RUBRICS ================= */
-  .rubGrid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm;
-    margin-top: 3mm;
-  }
-  .rub { display: flex; align-items: center; gap: 2.4mm; padding: 0.6mm 0; }
-  .rub .dot {
-    flex: 0 0 auto; width: 8.4mm; height: 8.4mm; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 10.5pt;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  .rub .lbl { line-height: 1.16; min-width: 0; }
-  .rub .lbl .it { font-size: 7.4pt; font-weight: 700; color: var(--ink); }
-  .rub .lbl .en { font-size: 7pt; font-weight: 600; color: var(--blue); }
-  .rub .lbl .ru,
-  .rub .lbl .pl { display: block; font-size: 6.4pt; font-weight: 500; color: var(--muted); }
-
-  .pastel-a { background: #FCE4EC; } .pastel-b { background: #E3F2FD; }
-  .pastel-c { background: #FFF8E1; } .pastel-d { background: #E8F5E9; }
-  .pastel-e { background: #F3E5F5; } .pastel-f { background: #E0F7FA; }
-  .pastel-g { background: #FFF3E0; } .pastel-h { background: #EDE7F6; }
-
-  /* ================= PAGES 4–5 — PLACES ================= */
-  .photoRow { display: flex; gap: 2.5mm; margin-top: 3mm; }
-  .photoRow img {
-    flex: 1; width: 100%; height: 43mm; object-fit: cover;
-    border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.14);
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  .photoTall {
-    width: 100%; height: 48mm; object-fit: cover; border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.14); margin-top: 3mm;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-
-  .placeName { font-size: 14pt; font-weight: 800; color: var(--blue); margin-top: 3.5mm; }
-  .placeMeta { font-size: 8pt; color: var(--gold-deep); font-weight: 700; letter-spacing: 0.3px; margin-top: 0.5mm; }
-  .placeDesc { margin-top: 2.5mm; line-height: 1.4; }
-  .placeDesc span { display: block; font-size: 8pt; color: var(--muted); margin-top: 1mm; }
-  .placeDesc span.it { color: var(--ink); font-weight: 600; }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 1.8mm; margin-top: 3mm; }
-  .chip {
-    font-size: 7.4pt; font-weight: 600; color: var(--blue);
-    background: rgba(46,110,150,0.10); border: 1px solid var(--line);
-    border-radius: 999px; padding: 1.2mm 3mm;
-  }
-
-  /* Menu */
-  .menuHead { font-size: 8pt; font-weight: 800; color: var(--gold-deep); letter-spacing: 0.4px; text-transform: uppercase; margin: 3mm 0 1.5mm; }
-  .menuItem { display: flex; align-items: baseline; gap: 2mm; padding: 1mm 0; border-bottom: 1px dotted var(--line); }
-  .menuItem .nm { flex: 1; line-height: 1.2; }
-  .menuItem .nm .it { font-size: 8pt; font-weight: 700; color: var(--ink); }
-  .menuItem .nm .en { font-size: 7pt; font-weight: 500; color: var(--muted); }
-  .menuItem .pr { font-size: 8.4pt; font-weight: 800; color: var(--blue); white-space: nowrap; }
-  .menuNote { font-size: 7pt; color: var(--muted); margin-top: 2mm; font-style: italic; }
-
-  .wineList { margin-top: 2.5mm; }
-  .wine { display: flex; align-items: baseline; justify-content: space-between; gap: 2mm; padding: 1.4mm 0; border-bottom: 1px solid var(--line); }
-  .wine .nm { font-size: 8.4pt; font-weight: 700; color: var(--ink); }
-  .wine .ad { font-size: 7pt; color: var(--muted); }
-
-  .closing { margin-top: auto; display: flex; align-items: center; gap: 4mm; padding-top: 3mm; }
-  .closing .txt { flex: 1; }
-  .closing .txt h3 { font-size: 11pt; font-weight: 800; color: var(--blue); line-height: 1.15; }
-  .closing .txt p { font-size: 7.6pt; color: var(--muted); margin-top: 1.2mm; line-height: 1.35; }
-  .closing .miniqr {
-    flex: 0 0 auto; width: 30mm; height: 30mm; padding: 2mm; background: #fff;
-    border-radius: 10px; box-shadow: 0 0 0 2px rgba(26,82,118,0.08);
-    display: flex; align-items: center; justify-content: center;
-  }
+  .siteUrl { margin-top: 1.5mm; font-size: 7.4pt; color: var(--gold-deep); font-weight: 700; letter-spacing: 0.3px; }
 
   /* ---------- Toolbar ---------- */
   .toolbar {
@@ -280,21 +160,16 @@
   /* ---------- Print ---------- */
   @page { size: A5 portrait; margin: 0; }
   @media print {
-    html, body { background: #fff; padding: 0; gap: 0; }
+    html, body { background: #fff; padding: 0; }
     .toolbar { display: none !important; }
-    .page {
-      width: 148mm; height: 210mm; border-radius: 0; box-shadow: none;
-      page-break-after: always; break-after: page;
-    }
-    .page:last-of-type { page-break-after: auto; break-after: auto; }
+    .page { width: 148mm; height: 210mm; border-radius: 0; box-shadow: none; page-break-after: avoid; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
 
-  <!-- ===================== PAGE 1 — COVER ===================== -->
-  <div class="page cover">
+  <div class="page">
     <img class="app-icon" alt="Ciro.Map app icon" src="https://azumbo.vercel.app/ciromap/app-icon-192.png" />
     <div class="brand">Ciro.Map <span class="wave">🌊</span></div>
     <div class="motto">« Mari meroque felix »</div>
@@ -318,7 +193,44 @@
       <div class="pl"><span class="flag">🇵🇱</span>Zeskanuj i pobierz teraz</div>
     </div>
 
-    <div class="langBadge">🇮🇹 IT · 🇬🇧 EN · 🇷🇺 RU · 🇵🇱 PL — l'app parla la tua lingua</div>
+    <div class="features">
+      <div class="feature">
+        <div class="glyph">🌊</div>
+        <div class="lbl">
+          <div class="it">Temperatura del mare e meteo</div>
+          <div class="en">Sea temperature &amp; weather</div>
+          <span>🇷🇺 Температура моря и погода</span>
+          <span>🇵🇱 Temperatura morza i pogoda</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="glyph">💳</div>
+        <div class="lbl">
+          <div class="it">Carte fedeltà e sconti</div>
+          <div class="en">Discount &amp; loyalty cards</div>
+          <span>🇷🇺 Дисконтные карты</span>
+          <span>🇵🇱 Karty lojalnościowe</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="glyph">🗺️</div>
+        <div class="lbl">
+          <div class="it">16 categorie, orari e percorsi</div>
+          <div class="en">16 categories, hours &amp; routes</div>
+          <span>🇷🇺 16 рубрик, часы и маршруты</span>
+          <span>🇵🇱 16 kategorii, godziny i trasy</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="glyph">🍷</div>
+        <div class="lbl">
+          <div class="it">Spiagge, cantine e foto luoghi</div>
+          <div class="en">Beaches, wineries &amp; photo spots</div>
+          <span>🇷🇺 Пляжи, винодельни, фотоместа</span>
+          <span>🇵🇱 Plaże, winnice i miejsca na zdjęcia</span>
+        </div>
+      </div>
+    </div>
 
     <div class="store">
       <span class="hint">Disponibile · Available · Доступно · Dostępne</span>
@@ -328,163 +240,6 @@
       </a>
       <div class="siteUrl">azumbo.vercel.app/ciromap</div>
     </div>
-    <div class="pageNum">Ciro.Map · Cirò Marina, Calabria</div>
-  </div>
-
-  <!-- ===================== PAGE 2 — FEATURES ===================== -->
-  <div class="page">
-    <div class="kicker">Perché Ciro.Map · Why Ciro.Map</div>
-    <div class="sectionTitle">La città in tasca<br>Your city, in your pocket</div>
-    <div class="sectionSub">Tutto ciò che serve a Cirò Marina — in italiano, inglese, russo e polacco.</div>
-
-    <div style="margin-top:3mm;">
-      <div class="feat">
-        <div class="glyph">🌊</div>
-        <div class="body">
-          <h3>Live sea temperature</h3>
-          <div class="it">Temperatura del mare in tempo reale + meteo a 3 giorni</div>
-          <div class="other">🇷🇺 Температура моря в реальном времени и погода на 3 дня · 🇵🇱 Temperatura morza na żywo i pogoda na 3 dni · NOAA + Apple Weather</div>
-        </div>
-      </div>
-
-      <div class="feat">
-        <div class="glyph">💳</div>
-        <div class="body">
-          <h3>Discount &amp; loyalty cards</h3>
-          <div class="it">Carte fedeltà e sconti di supermercati, farmacie e negozi — in un unico posto</div>
-          <div class="other">🇷🇺 Дисконтные карты магазинов, аптек и супермаркетов в одном месте · 🇵🇱 Karty lojalnościowe sklepów i aptek w jednym miejscu</div>
-        </div>
-      </div>
-
-      <div class="feat">
-        <div class="glyph">🧭</div>
-        <div class="body">
-          <h3>Walk &amp; drive routes</h3>
-          <div class="it">Percorsi a piedi e in auto, con ordinamento per distanza</div>
-          <div class="other">🇷🇺 Пешие и автомобильные маршруты, сортировка по расстоянию · 🇵🇱 Trasy piesze i samochodowe, sortowanie wg odległości</div>
-        </div>
-      </div>
-
-      <div class="feat">
-        <div class="glyph">📍</div>
-        <div class="body">
-          <h3>Offline maps &amp; places</h3>
-          <div class="it">Mappe e punti d'interesse anche senza rete</div>
-          <div class="other">🇷🇺 Карты и места работают офлайн · 🇵🇱 Mapy i miejsca działają offline</div>
-        </div>
-      </div>
-
-      <div class="feat">
-        <div class="glyph">📷</div>
-        <div class="body">
-          <h3>Photo spots &amp; guides</h3>
-          <div class="it">Luoghi panoramici e borghi con foto e video</div>
-          <div class="other">🇷🇺 Фотоместа и борго с фото и видео · 🇵🇱 Miejsca widokowe i borghi ze zdjęciami i wideo</div>
-        </div>
-      </div>
-    </div>
-    <div class="pageNum">2</div>
-  </div>
-
-  <!-- ===================== PAGE 3 — RUBRICS ===================== -->
-  <div class="page">
-    <div class="kicker">Le rubriche · Categories · Рубрики · Kategorie</div>
-    <div class="sectionTitle">Tutta la città in una mappa</div>
-    <div class="sectionSub">16 categorie · 16 categories · 16 рубрик · 16 kategorii</div>
-
-    <div class="rubGrid">
-      <div class="rub"><div class="dot pastel-a">🍴</div><div class="lbl"><div class="it">Cibo e drink</div><div class="en">Food &amp; Drink</div><span class="ru">Еда и напитки</span><span class="pl">Jedzenie i napoje</span></div></div>
-      <div class="rub"><div class="dot pastel-b">🐟</div><div class="lbl"><div class="it">Pescheria</div><div class="en">Seafood</div><span class="ru">Морепродукты</span><span class="pl">Owoce morza</span></div></div>
-      <div class="rub"><div class="dot pastel-c">🍟</div><div class="lbl"><div class="it">McDonald's</div><div class="en">McDonald's</div><span class="ru">McDonald's</span><span class="pl">McDonald's</span></div></div>
-      <div class="rub"><div class="dot pastel-d">🛒</div><div class="lbl"><div class="it">Supermercati</div><div class="en">Supermarkets</div><span class="ru">Супермаркеты</span><span class="pl">Supermarkety</span></div></div>
-      <div class="rub"><div class="dot pastel-e">💊</div><div class="lbl"><div class="it">Farmacie</div><div class="en">Pharmacies</div><span class="ru">Аптеки</span><span class="pl">Apteki</span></div></div>
-      <div class="rub"><div class="dot pastel-f">🐾</div><div class="lbl"><div class="it">Animali e vet</div><div class="en">Pets &amp; Vet</div><span class="ru">Зоотовары и вет</span><span class="pl">Zwierzęta i wet</span></div></div>
-      <div class="rub"><div class="dot pastel-b">🚗</div><div class="lbl"><div class="it">Auto e altro</div><div class="en">Car &amp; More</div><span class="ru">Для авто</span><span class="pl">Auto i inne</span></div></div>
-      <div class="rub"><div class="dot pastel-h">🖥️</div><div class="lbl"><div class="it">Elettrodomestici</div><div class="en">Home Appliances</div><span class="ru">Бытовая техника</span><span class="pl">AGD</span></div></div>
-      <div class="rub"><div class="dot pastel-f">🛠️</div><div class="lbl"><div class="it">Fai da te</div><div class="en">DIY Store</div><span class="ru">Хозтовары</span><span class="pl">Sklep budowlany</span></div></div>
-      <div class="rub"><div class="dot pastel-g">☕</div><div class="lbl"><div class="it">Bar</div><div class="en">Bars</div><span class="ru">Бары</span><span class="pl">Bary</span></div></div>
-      <div class="rub"><div class="dot pastel-c">✉️</div><div class="lbl"><div class="it">Posta</div><div class="en">Post</div><span class="ru">Почта</span><span class="pl">Poczta</span></div></div>
-      <div class="rub"><div class="dot pastel-d">🏛️</div><div class="lbl"><div class="it">Museo</div><div class="en">Museum</div><span class="ru">Музей</span><span class="pl">Muzeum</span></div></div>
-      <div class="rub"><div class="dot pastel-e">🎭</div><div class="lbl"><div class="it">Teatri</div><div class="en">Theaters</div><span class="ru">Театры</span><span class="pl">Teatry</span></div></div>
-      <div class="rub"><div class="dot pastel-a">🍷</div><div class="lbl"><div class="it">Cantine</div><div class="en">Wineries</div><span class="ru">Винодельни</span><span class="pl">Winnice</span></div></div>
-      <div class="rub"><div class="dot pastel-a">🚨</div><div class="lbl"><div class="it">Emergenze</div><div class="en">Emergency &amp; Safety</div><span class="ru">Экстренные службы</span><span class="pl">Pogotowie</span></div></div>
-      <div class="rub"><div class="dot pastel-h">📷</div><div class="lbl"><div class="it">Foto luoghi</div><div class="en">Photo Spots</div><span class="ru">Фотоместа</span><span class="pl">Miejsca na zdjęcia</span></div></div>
-    </div>
-
-    <div class="divider"></div>
-    <div class="sectionSub" style="margin-top:0;">
-      🇮🇹 Ogni luogo con orari, telefono, foto e percorso · 🇬🇧 Every place with hours, phone, photos &amp; route<br>
-      🇷🇺 Каждое место — часы, телефон, фото и маршрут · 🇵🇱 Każde miejsce — godziny, telefon, zdjęcia i trasa
-    </div>
-    <div class="pageNum">3</div>
-  </div>
-
-  <!-- ===================== PAGE 4 — FEATURED PLACE ===================== -->
-  <div class="page">
-    <div class="kicker">Da non perdere · Don't miss · Не пропустите</div>
-    <div class="sectionTitle">Sul mare a Cirò Marina</div>
-
-    <div class="photoRow">
-      <img src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/1.jpg" alt="Santa Chiara terrace with sea-view jacuzzi at dusk" />
-      <img src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/4.jpg" alt="Blue Flag beach at Cirò Marina" />
-    </div>
-
-    <div class="placeName">Santa Chiara Village</div>
-    <div class="placeMeta">🏖️ Lido &amp; ristorante · Lungomare · 🏳️ Bandiera Blu / Blue Flag</div>
-
-    <div class="placeDesc">
-      <span class="it">Lido sul mare con lettini, due jacuzzi idromassaggio, focaccia al forno a legna e cucina calabrese. Dog-friendly.</span>
-      <span>🇬🇧 A seafront beach club with sunbeds, two hydromassage jacuzzis, wood-fired focaccia and Calabrian cuisine. Dog-friendly.</span>
-      <span>🇷🇺 Пляжный клуб у моря: лежаки, две джакузи с гидромассажем, фокачча из дровяной печи и калабрийская кухня. Можно с собаками.</span>
-      <span>🇵🇱 Klub plażowy nad morzem: leżaki, dwa jacuzzi, focaccia z pieca na drewno i kuchnia kalabryjska. Dog-friendly.</span>
-    </div>
-
-    <div class="chips">
-      <span class="chip">🛏️ Lettini · Sunbeds €20–25</span>
-      <span class="chip">💧 2 × Jacuzzi</span>
-      <span class="chip">🔥 Focaccia al forno a legna</span>
-      <span class="chip">🐕 Dog-friendly</span>
-      <span class="chip">🎥 Video in app</span>
-    </div>
-
-    <img class="photoTall" src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/5.jpg" alt="Covered restaurant terrace at Santa Chiara" />
-    <div class="menuNote">🇮🇹 Foto, video e menu completo nell'app · 🇬🇧 Photos, video &amp; full menu in the app · 🇷🇺 Фото, видео и полное меню — в приложении · 🇵🇱 Zdjęcia, wideo i pełne menu w aplikacji</div>
-    <div class="pageNum">4</div>
-  </div>
-
-  <!-- ===================== PAGE 5 — TASTE & WINE ===================== -->
-  <div class="page">
-    <div class="kicker">Il gusto di Cirò · A taste of Cirò</div>
-    <div class="sectionTitle">Mangiare &amp; bere</div>
-    <div class="sectionSub">Un assaggio del menu · A taste of the menu — Santa Chiara Village</div>
-
-    <div class="menuHead">Primi di mare · Seafood pasta</div>
-    <div class="menuItem"><div class="nm"><div class="it">Spaghetti con vongole veraci</div><div class="en">Spaghetti with clams</div></div><div class="pr">€20</div></div>
-    <div class="menuItem"><div class="nm"><div class="it">Scialatelli ai frutti di mare</div><div class="en">Scialatelli with seafood</div></div><div class="pr">€18</div></div>
-    <div class="menuItem"><div class="nm"><div class="it">Linguine cozze, pesto di mandorle e limone</div><div class="en">Linguine, mussels &amp; almond pesto</div></div><div class="pr">€16</div></div>
-
-    <div class="menuHead">Secondi · Mains</div>
-    <div class="menuItem"><div class="nm"><div class="it">Grigliata mista di pesce</div><div class="en">Mixed grilled fish</div></div><div class="pr">€20</div></div>
-    <div class="menuItem"><div class="nm"><div class="it">Frittura mista calamari e gamberi</div><div class="en">Fried calamari &amp; shrimp</div></div><div class="pr">€18</div></div>
-    <div class="menuItem"><div class="nm"><div class="it">Fiorentina con osso (800–1000 g)</div><div class="en">Florentine steak on the bone</div></div><div class="pr">€45</div></div>
-    <div class="menuItem"><div class="nm"><div class="it">Antipasto Santa Chiara (mare &amp; terra)</div><div class="en">Land &amp; sea antipasto</div></div><div class="pr">€18</div></div>
-    <div class="menuNote">🇷🇺 Меню и цены в приложении на 4 языках · 🇵🇱 Menu i ceny w aplikacji w 4 językach · prezzi indicativi</div>
-
-    <div class="menuHead">Cantine di Cirò · Cirò DOC wineries 🍷</div>
-    <div class="wineList">
-      <div class="wine"><span class="nm">Librandi</span><span class="ad">S.S. 106 Jonica, C.da San Gennaro</span></div>
-      <div class="wine"><span class="nm">Ippolito 1845</span><span class="ad">Via Tirone 132</span></div>
-      <div class="wine"><span class="nm">Iuzzolini</span><span class="ad">Cirò Marina</span></div>
-    </div>
-
-    <div class="closing">
-      <div class="txt">
-        <h3>Scarica Ciro.Map<br>Download the free app</h3>
-        <p>🇷🇺 Твой гид по Чиро-Марина · 🇵🇱 Twój przewodnik po Cirò Marina · azumbo.vercel.app/ciromap</p>
-      </div>
-      <div class="miniqr"><div id="qrcode2"></div></div>
-    </div>
-    <div class="pageNum">5</div>
   </div>
 
   <div class="toolbar">
@@ -500,13 +255,12 @@
       "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"
     ];
 
-    function renderInto(id, size) {
-      var el = document.getElementById(id);
-      if (!el) return;
+    function renderQR() {
+      var el = document.getElementById("qrcode");
       el.innerHTML = "";
       try {
         new QRCode(el, {
-          text: APP_URL, width: size, height: size,
+          text: APP_URL, width: 720, height: 720,
           colorDark: "#1A5276", colorLight: "#ffffff",
           correctLevel: QRCode.CorrectLevel.H
         });
@@ -515,12 +269,9 @@
       }
     }
 
-    function renderQR() { renderInto("qrcode", 720); renderInto("qrcode2", 480); }
-
     function loadScript(index) {
       if (index >= CDN_SOURCES.length) {
-        var f = document.getElementById("qrcode");
-        if (f) f.innerHTML = '<div class="qr-fallback">' + APP_URL + '</div>';
+        document.getElementById("qrcode").innerHTML = '<div class="qr-fallback">' + APP_URL + '</div>';
         return;
       }
       var s = document.createElement("script");
