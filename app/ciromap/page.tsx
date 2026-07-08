@@ -76,6 +76,14 @@ export default function CiroMapLandingPage() {
             >
               Flyer (print &amp; PDF)
             </a>
+            <a
+              className={styles.secondaryCta}
+              href="/ciromap/flyer-bw.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Flyer B&amp;W (laser print)
+            </a>
             <Link className={styles.secondaryCta} href="/ciromap/privacy">
               Read Privacy Policy
             </Link>
