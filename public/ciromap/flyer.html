@@ -133,12 +133,19 @@
   </div>
 
   <!-- Web-only toolbar (hidden when printing) -->
-  <div class="no-print fixed bottom-6 left-1/2 -translate-x-1/2">
-    <button
-      onclick="window.print()"
+  <div class="no-print fixed bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+    <a
+      href="/ciromap/flyer.pdf"
+      download="Ciro.Map-flyer.pdf"
       class="rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-gray-700"
     >
-      Print / Save as PDF
+      Download PDF
+    </a>
+    <button
+      onclick="window.print()"
+      class="rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-lg transition hover:bg-gray-100"
+    >
+      Print
     </button>
   </div>
 
