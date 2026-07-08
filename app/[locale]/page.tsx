@@ -390,10 +390,17 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 className="glass-panel gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden p-2 sm:h-72"
                 aria-label={t.azumboxTitle}
               >
-                <div className="flex h-full flex-col items-center justify-center rounded-[1.5rem] border border-neutral-200 bg-neutral-50">
-                  <span className="text-4xl text-neutral-400">◻︎</span>
-                  <span className="type-kicker mt-5">Demo preview</span>
-                </div>
+                <video
+                  src="/azumbox-demo.mp4"
+                  className="h-full w-full rounded-[1.5rem] border border-neutral-200 object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster="/assets/logo/azumbo-logo.png"
+                  aria-label={`${t.azumboxTitle} demo preview`}
+                />
               </Link>
             }
           />
