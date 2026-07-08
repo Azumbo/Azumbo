@@ -344,7 +344,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   height={288}
                   className="h-full w-full object-contain p-10 opacity-90"
                 />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition-all duration-500 ease-out group-hover:bg-black/35">
+                <span className="absolute inset-0 flex items-center justify-center bg-neutral-900/15 transition-all duration-500 ease-out group-hover:bg-neutral-900/25">
                   <span className="glass-panel rounded-full px-5 py-2.5 text-sm font-light text-ink-primary shadow-none">
                     ▶ {t.videoLinkLabel}
                   </span>
@@ -363,25 +363,16 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             visual={
               <Link
                 href="/lapasta"
-                className="glass-panel gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden p-6 sm:h-72"
+                className="gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-white shadow-sm sm:h-72"
                 aria-label={t.lapastaTitle}
               >
-                <div className="flex h-full flex-col justify-between rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl">
-                  <div className="flex items-center justify-between text-xs font-light tracking-wide text-ink-secondary">
-                    <span>La Pasta</span>
-                    <span>00:42</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 text-2xl">
-                    <span className="rounded-[1rem] border border-white/10 bg-white/5 p-4 text-center backdrop-blur-xl">🍝</span>
-                    <span className="rounded-[1rem] border border-white/10 bg-white/5 p-4 text-center backdrop-blur-xl">〰️</span>
-                    <span className="rounded-[1rem] border border-white/10 bg-white/5 p-4 text-center backdrop-blur-xl">🥟</span>
-                    <span className="rounded-[1rem] border border-white/10 bg-white/5 p-4 text-center backdrop-blur-xl">✦</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-[10px] font-light uppercase tracking-chic text-champagne-light/80">
-                    <span className="rounded-full bg-champagne/15 px-2 py-1 text-center">corta</span>
-                    <span className="rounded-full bg-champagne/15 px-2 py-1 text-center">lunga</span>
-                  </div>
-                </div>
+                <Image
+                  src="/lapasta/gameplay-screenshot.jpg"
+                  alt="La Pasta gameplay on iPhone — glass jar quiz"
+                  width={390}
+                  height={844}
+                  className="h-full w-full object-cover object-[center_14%]"
+                />
               </Link>
             }
           />
@@ -399,8 +390,8 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 className="glass-panel gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden p-2 sm:h-72"
                 aria-label={t.azumboxTitle}
               >
-                <div className="flex h-full flex-col items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-                  <span className="text-4xl text-platinum/70">◻︎</span>
+                <div className="flex h-full flex-col items-center justify-center rounded-[1.5rem] border border-neutral-200 bg-neutral-50">
+                  <span className="text-4xl text-neutral-400">◻︎</span>
                   <span className="type-kicker mt-5">Demo preview</span>
                 </div>
               </Link>
@@ -426,7 +417,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   alt="Ciro.Map app icon"
                   width={160}
                   height={160}
-                  className="rounded-[1.75rem] border border-white/10 shadow-2xl shadow-black/50"
+                  className="rounded-[1.75rem] border border-neutral-200 shadow-lg shadow-neutral-200/60"
                 />
               </Link>
             }
@@ -451,15 +442,15 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         </dl>
       </section>
 
-      <footer id="contact" className="site-container border-t border-white/10 py-12 text-center">
+      <footer id="contact" className="site-container border-t border-neutral-200 py-12 text-center">
         <p className="type-body text-sm">{t.footer}</p>
         <p className="type-body mt-3 text-xs">{t.pressLine}</p>
         <p className="mt-4 text-xs">
-          <Link href="/lapasta" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne-light hover:underline">
+          <Link href="/lapasta" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne hover:underline">
             La Pasta
           </Link>
-          <span className="mx-2 text-white/15">·</span>
-          <Link href="/ciromap/privacy" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne-light hover:underline">
+          <span className="mx-2 text-neutral-300">·</span>
+          <Link href="/ciromap/privacy" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne hover:underline">
             {t.ciroPrivacy}
           </Link>
         </p>
@@ -482,9 +473,9 @@ function ServiceCard({ title, desc, price }: { title: string; desc: string; pric
 }
 
 const GAME_TONES = {
-  forest: 'from-emerald-950/60 via-emerald-900/20 to-transparent',
-  midnight: 'from-indigo-950/60 via-slate-900/20 to-transparent',
-  amber: 'from-amber-950/50 via-stone-900/20 to-transparent',
+  forest: 'from-emerald-100 via-emerald-50 to-white',
+  midnight: 'from-indigo-100 via-slate-50 to-white',
+  amber: 'from-amber-100 via-orange-50 to-white',
 } as const;
 
 function GameCard({
@@ -506,8 +497,8 @@ function GameCard({
       className="glass-panel gpu-layer glass-panel--interactive group block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne/30"
     >
       <div className={`relative h-32 overflow-hidden bg-gradient-to-br ${GAME_TONES[tone]}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06),transparent_45%)]" />
-        <div className="absolute left-6 top-6 flex h-12 w-12 items-center justify-center rounded-[1rem] border border-white/10 bg-white/5 text-xs font-light tracking-chic text-champagne-light backdrop-blur-xl transition-all duration-500 ease-out group-hover:scale-105">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(166,124,61,0.08),transparent_45%)]" />
+        <div className="absolute left-6 top-6 flex h-12 w-12 items-center justify-center rounded-[1rem] border border-neutral-200 bg-white text-xs font-light tracking-chic text-champagne backdrop-blur-xl transition-all duration-500 ease-out group-hover:scale-105">
           {label}
         </div>
       </div>

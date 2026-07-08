@@ -131,7 +131,7 @@ export default function AzumboxPage() {
 
         <div className="mx-auto mt-12 w-full max-w-[24rem]">
           <div className="glass-panel gpu-layer overflow-hidden p-2">
-            <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.03]">
+            <div className="overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-neutral-50">
               <video autoPlay loop muted playsInline className="aspect-[9/16] max-h-[70vh] w-full object-cover">
                 <source src="/azumbox-demo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.

@@ -9,6 +9,7 @@ export type StudioApp = {
   tagline: string;
   privacyPath: string;
   supportPath: string;
+  screenshot?: string;
 };
 
 export const CONTACT_EMAIL = 'azumbogames@gmail.com';
@@ -23,6 +24,7 @@ export const apps: StudioApp[] = [
     bundleId: 'com.azumbogames.lapasta',
     description: 'A warm Italian pasta shape quiz for iPhone and iPad: watch the glass jars shuffle, pick the right category, and build your collection in quick 60-second rounds.',
     icon: '🍝',
+    screenshot: '/lapasta/gameplay-screenshot.jpg',
     tagline: 'Italian pasta shape quiz',
     privacyPath: '/lapasta/privacy',
     supportPath: '/lapasta/support',

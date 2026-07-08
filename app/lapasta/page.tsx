@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { buildPageMetadata } from '../../lib/seo';
 import { AppStoreButton, LaPastaFooter, LaPastaNav, LA_PASTA } from './components';
@@ -59,22 +60,14 @@ export default function LaPastaLandingPage() {
 
           <div className={styles.heroCard} aria-label="La Pasta game preview">
             <div className={styles.phoneMock}>
-              <div className={styles.gameTopBar}>
-                <span>La Pasta</span>
-                <span className={styles.timer}>00:42</span>
-              </div>
-              <div className={styles.jarGrid} aria-hidden="true">
-                <span className={styles.jar}>🍝</span>
-                <span className={styles.jar}>〰️</span>
-                <span className={styles.jar}>🥟</span>
-                <span className={styles.jar}>✦</span>
-              </div>
-              <div className={styles.choiceGrid} aria-label="Pasta categories preview">
-                <span className={styles.choice}>corta</span>
-                <span className={styles.choice}>lunga</span>
-                <span className={styles.choice}>ripiena</span>
-                <span className={styles.choice}>pastina</span>
-              </div>
+              <Image
+                src="/lapasta/gameplay-screenshot.jpg"
+                alt="La Pasta gameplay — glass jar pasta quiz on iPhone"
+                width={390}
+                height={844}
+                className={styles.heroScreenshot}
+                priority
+              />
             </div>
           </div>
         </section>

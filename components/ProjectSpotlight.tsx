@@ -25,7 +25,7 @@ export function ProjectSpotlight({
   return (
     <article className="glass-panel gpu-layer glass-panel--interactive overflow-hidden">
       <div className="flex flex-col md:flex-row">
-        <div className="border-b border-white/10 p-8 sm:p-10 md:w-[38%] md:border-b-0 md:border-r">{visual}</div>
+        <div className="border-b border-neutral-200 p-8 sm:p-10 md:w-[38%] md:border-b-0 md:border-r">{visual}</div>
         <div className="p-8 sm:p-10 md:w-[62%]">
           <p className="type-kicker">{subtitle}</p>
           <h3 className="type-title mt-4 text-xl sm:text-2xl">{title}</h3>

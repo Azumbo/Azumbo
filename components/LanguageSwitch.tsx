@@ -8,7 +8,7 @@ export default function LanguageSwitch({ lang, setLang }: { lang: Language; setL
   const languages: Language[] = ['en', 'it', 'ru'];
 
   return (
-    <div className="sticky top-0 flex gap-2 bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 rounded-md shadow-sm">
+    <div className="sticky top-0 flex gap-2 bg-white/90 backdrop-blur px-2 py-1 rounded-md shadow-sm border border-neutral-200">
       {languages.map((l) => (
         <button
           key={l}

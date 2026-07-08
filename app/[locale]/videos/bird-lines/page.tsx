@@ -134,8 +134,8 @@ export default async function BirdLinesWatchPage({ params }: { params: Promise<{
         </section>
       </article>
 
-      <footer className="site-container border-t border-white/10 py-10 text-center">
-        <Link href={`/${lang}`} className="type-body text-sm transition-all duration-500 ease-out hover:text-champagne-light">
+      <footer className="site-container border-t border-neutral-200 py-10 text-center">
+        <Link href={`/${lang}`} className="type-body text-sm transition-all duration-500 ease-out hover:text-champagne">
           {copy.backHome}
         </Link>
         <div className="mt-5 flex justify-center">
