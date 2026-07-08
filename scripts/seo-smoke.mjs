@@ -33,7 +33,7 @@ assert(localePage.includes('languages: buildLanguageAlternates(canonicalPath)'),
 assert(localePage.includes('buildHomeGraph'), 'homepage graph schema missing');
 assert(sitemapTs.includes('birdLinesWatchPages'), 'sitemap must include Bird Lines watch pages');
 assert(!localePage.includes('VideoObjectJsonLd'), 'homepage must not emit VideoObject (not a watch page)');
-assert(!localePage.includes('<video'), 'homepage must not embed video (use watch page link)');
+assert(!localePage.includes('controls'), 'homepage must not embed a watch-style video with controls (use watch page link); decorative muted autoplay previews are allowed');
 assert(!localePage.includes('WhoopsBirdLines.mp4'), 'homepage must not reference raw video file');
 assert(watchPage.includes('BIRD_LINES_VIDEO_ID'), 'watch page must expose stable video anchor');
 assert(watchPage.includes('buildBirdLinesWatchGraph'), 'watch page must emit VideoObject graph');
