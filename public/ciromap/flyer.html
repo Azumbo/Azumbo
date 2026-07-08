@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ciro.Map — Flyer</title>
+<title>Ciro.Map — Cirò Marina · City Card</title>
 <style>
   :root {
     --blue: #1A5276;
     --blue-soft: #2E6E96;
     --gold: #F4D03F;
-    --gold-deep: #D4AC0D;
+    --gold-deep: #B7950B;
     --ink: #12222B;
     --muted: #5B6B73;
+    --line: rgba(26,82,118,0.10);
     --page-w: 148mm;
     --page-h: 210mm;
   }
@@ -27,13 +28,12 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* ---------- Screen presentation ---------- */
   body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 16px 80px;
-    min-height: 100vh;
+    gap: 16px;
+    padding: 26px 16px 90px;
   }
 
   .page {
@@ -41,231 +41,273 @@
     width: var(--page-w);
     height: var(--page-h);
     background: #ffffff;
-    border-radius: 18px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 24px 60px rgba(26, 82, 118, 0.22), 0 4px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(26,82,118,0.18), 0 4px 12px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    padding: 10mm 12mm 8mm;
+    padding: 11mm 11mm 9mm;
   }
 
-  /* Soft decorative wave band at the very top */
   .page::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 6mm;
+    height: 5mm;
     background: linear-gradient(90deg, var(--blue) 0%, var(--blue-soft) 55%, var(--gold) 140%);
   }
 
-  /* ---------- Header ---------- */
-  .header {
-    text-align: center;
-    margin-top: 0.5mm;
+  .pageNum {
+    position: absolute;
+    bottom: 4mm; right: 7mm;
+    font-size: 7pt;
+    color: var(--muted);
+    opacity: 0.7;
   }
 
+  /* ---------- Shared type ---------- */
+  .kicker {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    text-align: center;
+  }
+
+  .sectionTitle {
+    font-size: 16pt;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: var(--blue);
+    text-align: center;
+    margin-top: 1.5mm;
+    line-height: 1.1;
+  }
+
+  .sectionSub {
+    text-align: center;
+    font-size: 8pt;
+    color: var(--muted);
+    margin-top: 1.5mm;
+    line-height: 1.4;
+  }
+
+  .divider { height: 1px; background: var(--line); margin: 4mm 0; }
+
+  /* ================= PAGE 1 — COVER ================= */
+  .cover { align-items: center; text-align: center; }
+
   .app-icon {
-    width: 18mm;
-    height: 18mm;
+    width: 21mm; height: 21mm;
     border-radius: 22%;
     display: block;
-    margin: 0 auto 2mm;
+    margin: 1mm auto 2.5mm;
     box-shadow: 0 6px 16px rgba(26,82,118,0.28), 0 1px 3px rgba(0,0,0,0.12);
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
 
   .brand {
-    font-size: 30pt;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--blue);
-    line-height: 1.02;
+    font-size: 33pt; font-weight: 800; letter-spacing: -0.5px;
+    color: var(--blue); line-height: 1.0;
+  }
+  .brand .wave { font-size: 24pt; }
+
+  .motto {
+    margin-top: 2mm;
+    font-size: 11pt; font-weight: 700; font-style: italic;
+    color: var(--gold-deep); letter-spacing: 0.3px;
   }
 
-  .brand .wave { -webkit-text-fill-color: initial; font-size: 22pt; }
+  .tagline { margin-top: 2mm; line-height: 1.35; }
+  .tagline span { display: block; font-size: 8.6pt; font-weight: 600; color: var(--muted); }
+  .tagline span.en { color: var(--blue); }
 
-  .tagline {
-    margin-top: 1.5mm;
-    line-height: 1.32;
-  }
-
-  .tagline .line {
-    display: block;
-    font-size: 8.8pt;
-    font-weight: 600;
-    color: var(--muted);
-  }
-  .tagline .line.it { color: var(--gold-deep); font-style: italic; }
-  .tagline .line.en { color: var(--blue); }
-
-  /* ---------- QR block ---------- */
   .qr-wrap {
-    margin: 3mm auto 2.5mm;
+    margin: 4mm auto 2.5mm;
     position: relative;
-    width: 48mm;
-    height: 48mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border-radius: 16px;
-    padding: 4mm;
+    width: 46mm; height: 46mm;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff; border-radius: 14px; padding: 3.5mm;
     box-shadow: 0 0 0 2px rgba(26,82,118,0.08);
   }
-
-  /* gold corner brackets */
-  .qr-wrap .corner {
-    position: absolute;
-    width: 9mm; height: 9mm;
-    border: 2.4px solid var(--gold);
-  }
+  .qr-wrap .corner { position: absolute; width: 8mm; height: 8mm; border: 2.2px solid var(--gold); }
   .qr-wrap .tl { top: 0; left: 0; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
   .qr-wrap .tr { top: 0; right: 0; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
   .qr-wrap .bl { bottom: 0; left: 0; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
   .qr-wrap .br { bottom: 0; right: 0; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
-
-  #qrcode { display: flex; align-items: center; justify-content: center; }
+  #qrcode, #qrcode2 { display: flex; align-items: center; justify-content: center; }
   #qrcode img, #qrcode canvas { display: block; width: 39mm !important; height: 39mm !important; }
+  #qrcode2 img, #qrcode2 canvas { display: block; width: 24mm !important; height: 24mm !important; }
+  .qr-fallback { font-size: 7pt; color: var(--muted); text-align: center; word-break: break-all; }
 
-  .qr-fallback {
-    font-size: 8pt;
-    color: var(--muted);
-    text-align: center;
-    padding: 6px;
-    line-height: 1.4;
-    word-break: break-all;
-  }
-
-  /* ---------- CTA languages ---------- */
-  .cta {
-    text-align: center;
-    margin: 0.5mm 0 3mm;
-    line-height: 1.45;
-  }
-  .cta div {
-    font-size: 9pt;
-    font-weight: 600;
-    color: var(--blue);
-  }
+  .cta { text-align: center; margin: 0 0 3mm; line-height: 1.45; }
+  .cta div { font-size: 8.6pt; font-weight: 600; color: var(--blue); }
   .cta .flag { margin-right: 5px; }
   .cta .en { color: var(--ink); }
   .cta .ru, .cta .pl { color: var(--muted); font-weight: 500; }
 
-  /* ---------- Features ---------- */
-  .features {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6mm;
-    margin-top: auto;
-    padding-top: 1mm;
+  .langBadge {
+    display: inline-flex; gap: 5px; align-items: center;
+    font-size: 7.5pt; font-weight: 700; color: var(--blue);
+    background: rgba(244,208,63,0.18);
+    border: 1px solid rgba(183,149,11,0.35);
+    border-radius: 999px; padding: 1.4mm 3.5mm;
+    margin: 0 auto;
   }
 
-  .feature {
-    display: flex;
-    align-items: center;
-    gap: 2.6mm;
-  }
-
-  .feature .icon {
-    flex: 0 0 auto;
-    width: 9mm; height: 9mm;
-    border-radius: 50%;
-    background: linear-gradient(145deg, rgba(244,208,63,0.22), rgba(244,208,63,0.10));
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: inset 0 0 0 1.2px rgba(212,172,13,0.35);
-  }
-  .feature .icon svg { width: 5mm; height: 5mm; fill: none; stroke: var(--blue); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-
-  .feature .label {
-    line-height: 1.22;
-  }
-  .feature .label span { display: block; font-size: 6.6pt; font-weight: 500; color: var(--muted); }
-  .feature .label span.it { font-size: 7.4pt; font-weight: 700; color: var(--ink); }
-  .feature .label span.en { color: var(--blue); font-weight: 600; }
-
-  /* ---------- App Store badge ---------- */
-  .store {
-    margin-top: 3mm;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5mm;
-  }
-  .store .hint { font-size: 7.5pt; color: var(--muted); letter-spacing: 0.2px; font-weight: 600; }
+  /* App Store badge */
+  .store { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 1.8mm; }
+  .store .hint { font-size: 7.5pt; color: var(--muted); font-weight: 600; letter-spacing: 0.2px; }
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 3mm;
-    background: #000;
-    color: #fff;
-    border-radius: 10px;
-    padding: 2.2mm 4.5mm;
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 3mm;
+    background: #000; color: #fff; border-radius: 10px;
+    padding: 2.2mm 4.5mm; text-decoration: none;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  .badge svg { width: 7mm; height: 7mm; fill: #fff; }
+  .badge svg { width: 6.5mm; height: 6.5mm; fill: #fff; }
   .badge .txt { line-height: 1.05; }
-  .badge .txt small { display: block; font-size: 6.5pt; font-weight: 500; opacity: 0.9; }
-  .badge .txt strong { font-size: 12pt; font-weight: 600; letter-spacing: 0.2px; }
+  .badge .txt small { display: block; font-size: 6pt; font-weight: 500; opacity: 0.9; }
+  .badge .txt strong { font-size: 11pt; font-weight: 600; }
+  .siteUrl { margin-top: 2mm; font-size: 7.5pt; color: var(--gold-deep); font-weight: 700; letter-spacing: 0.3px; }
 
-  /* ---------- Print / PDF button ---------- */
+  /* ================= PAGE 2 — FEATURES ================= */
+  .feat {
+    display: flex; align-items: flex-start; gap: 3.2mm;
+    padding: 3mm 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .feat:last-of-type { border-bottom: none; }
+  .feat .glyph {
+    flex: 0 0 auto; width: 12mm; height: 12mm; border-radius: 26%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15pt;
+    background: linear-gradient(145deg, rgba(46,110,150,0.14), rgba(244,208,63,0.16));
+    box-shadow: inset 0 0 0 1px rgba(26,82,118,0.12);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .feat .body { flex: 1; }
+  .feat .body h3 { font-size: 10.5pt; font-weight: 800; color: var(--blue); line-height: 1.15; }
+  .feat .body .it { font-size: 8.4pt; font-weight: 600; color: var(--ink); margin-top: 0.6mm; }
+  .feat .body .other { font-size: 8pt; font-weight: 500; color: var(--muted); margin-top: 0.6mm; line-height: 1.35; }
+
+  /* ================= PAGE 3 — RUBRICS ================= */
+  .rubGrid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 3mm;
+    margin-top: 3mm;
+  }
+  .rub { display: flex; align-items: center; gap: 2.4mm; padding: 0.6mm 0; }
+  .rub .dot {
+    flex: 0 0 auto; width: 8.4mm; height: 8.4mm; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 10.5pt;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .rub .lbl { line-height: 1.16; min-width: 0; }
+  .rub .lbl .it { font-size: 7.4pt; font-weight: 700; color: var(--ink); }
+  .rub .lbl .en { font-size: 7pt; font-weight: 600; color: var(--blue); }
+  .rub .lbl .ru,
+  .rub .lbl .pl { display: block; font-size: 6.4pt; font-weight: 500; color: var(--muted); }
+
+  .pastel-a { background: #FCE4EC; } .pastel-b { background: #E3F2FD; }
+  .pastel-c { background: #FFF8E1; } .pastel-d { background: #E8F5E9; }
+  .pastel-e { background: #F3E5F5; } .pastel-f { background: #E0F7FA; }
+  .pastel-g { background: #FFF3E0; } .pastel-h { background: #EDE7F6; }
+
+  /* ================= PAGES 4–5 — PLACES ================= */
+  .photoRow { display: flex; gap: 2.5mm; margin-top: 3mm; }
+  .photoRow img {
+    flex: 1; width: 100%; height: 43mm; object-fit: cover;
+    border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.14);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .photoTall {
+    width: 100%; height: 48mm; object-fit: cover; border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.14); margin-top: 3mm;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .placeName { font-size: 14pt; font-weight: 800; color: var(--blue); margin-top: 3.5mm; }
+  .placeMeta { font-size: 8pt; color: var(--gold-deep); font-weight: 700; letter-spacing: 0.3px; margin-top: 0.5mm; }
+  .placeDesc { margin-top: 2.5mm; line-height: 1.4; }
+  .placeDesc span { display: block; font-size: 8pt; color: var(--muted); margin-top: 1mm; }
+  .placeDesc span.it { color: var(--ink); font-weight: 600; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 1.8mm; margin-top: 3mm; }
+  .chip {
+    font-size: 7.4pt; font-weight: 600; color: var(--blue);
+    background: rgba(46,110,150,0.10); border: 1px solid var(--line);
+    border-radius: 999px; padding: 1.2mm 3mm;
+  }
+
+  /* Menu */
+  .menuHead { font-size: 8pt; font-weight: 800; color: var(--gold-deep); letter-spacing: 0.4px; text-transform: uppercase; margin: 3mm 0 1.5mm; }
+  .menuItem { display: flex; align-items: baseline; gap: 2mm; padding: 1mm 0; border-bottom: 1px dotted var(--line); }
+  .menuItem .nm { flex: 1; line-height: 1.2; }
+  .menuItem .nm .it { font-size: 8pt; font-weight: 700; color: var(--ink); }
+  .menuItem .nm .en { font-size: 7pt; font-weight: 500; color: var(--muted); }
+  .menuItem .pr { font-size: 8.4pt; font-weight: 800; color: var(--blue); white-space: nowrap; }
+  .menuNote { font-size: 7pt; color: var(--muted); margin-top: 2mm; font-style: italic; }
+
+  .wineList { margin-top: 2.5mm; }
+  .wine { display: flex; align-items: baseline; justify-content: space-between; gap: 2mm; padding: 1.4mm 0; border-bottom: 1px solid var(--line); }
+  .wine .nm { font-size: 8.4pt; font-weight: 700; color: var(--ink); }
+  .wine .ad { font-size: 7pt; color: var(--muted); }
+
+  .closing { margin-top: auto; display: flex; align-items: center; gap: 4mm; padding-top: 3mm; }
+  .closing .txt { flex: 1; }
+  .closing .txt h3 { font-size: 11pt; font-weight: 800; color: var(--blue); line-height: 1.15; }
+  .closing .txt p { font-size: 7.6pt; color: var(--muted); margin-top: 1.2mm; line-height: 1.35; }
+  .closing .miniqr {
+    flex: 0 0 auto; width: 30mm; height: 30mm; padding: 2mm; background: #fff;
+    border-radius: 10px; box-shadow: 0 0 0 2px rgba(26,82,118,0.08);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ---------- Toolbar ---------- */
   .toolbar {
-    position: fixed;
-    bottom: 20px; left: 50%; transform: translateX(-50%);
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
     display: flex; gap: 10px; z-index: 50;
   }
   .toolbar button {
-    font: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    background: var(--blue);
-    border: none;
-    border-radius: 999px;
-    padding: 12px 22px;
-    cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 600; color: #fff;
+    background: var(--blue); border: none; border-radius: 999px;
+    padding: 11px 20px; cursor: pointer;
     box-shadow: 0 8px 22px rgba(26,82,118,0.35);
     transition: transform .12s ease, background .12s ease;
   }
   .toolbar button:hover { background: var(--blue-soft); transform: translateY(-1px); }
-  .toolbar button:active { transform: translateY(0); }
 
-  /* ---------- Print rules ---------- */
+  /* ---------- Print ---------- */
   @page { size: A5 portrait; margin: 0; }
-
   @media print {
-    html, body { background: #fff; padding: 0; }
+    html, body { background: #fff; padding: 0; gap: 0; }
     .toolbar { display: none !important; }
     .page {
-      width: 148mm; height: 210mm;
-      border-radius: 0;
-      box-shadow: none;
-      page-break-after: avoid;
+      width: 148mm; height: 210mm; border-radius: 0; box-shadow: none;
+      page-break-after: always; break-after: page;
     }
-    .page::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page:last-of-type { page-break-after: auto; break-after: auto; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
 
-  <div class="page">
-    <div class="header">
-      <img class="app-icon" alt="Ciro.Map app icon" src="data:image/jpeg;base64,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" />
-      <div class="brand">Ciro.Map <span class="wave">🌊</span></div>
-      <div class="tagline">
-        <span class="line it">La tua guida di Cirò Marina</span>
-        <span class="line en">Your guide to Cirò Marina</span>
-        <span class="line ru">Ваш гид по Чиро-Марина</span>
-        <span class="line pl">Twój przewodnik po Cirò Marina</span>
-      </div>
+  <!-- ===================== PAGE 1 — COVER ===================== -->
+  <div class="page cover">
+    <img class="app-icon" alt="Ciro.Map app icon" src="https://azumbo.vercel.app/ciromap/app-icon-192.png" />
+    <div class="brand">Ciro.Map <span class="wave">🌊</span></div>
+    <div class="motto">« Mari meroque felix »</div>
+    <div class="tagline">
+      <span class="it">Felice del mare e del vino</span>
+      <span class="en">Blest by sea and wine</span>
+      <span class="ru">Счастливый морем и вином</span>
+      <span class="pl">Szczęśliwi morzem i winem</span>
     </div>
 
     <div class="qr-wrap">
-      <span class="corner tl"></span>
-      <span class="corner tr"></span>
-      <span class="corner bl"></span>
-      <span class="corner br"></span>
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
       <div id="qrcode"></div>
     </div>
 
@@ -276,59 +318,7 @@
       <div class="pl"><span class="flag">🇵🇱</span>Zeskanuj i pobierz teraz</div>
     </div>
 
-    <div class="features">
-      <div class="feature">
-        <div class="icon">
-          <!-- wave / beach -->
-          <svg viewBox="0 0 24 24"><path d="M2 15c2 0 2-1.5 4-1.5S8 15 10 15s2-1.5 4-1.5S16 15 18 15s2-1.5 4-1.5"/><path d="M2 19c2 0 2-1.5 4-1.5S8 19 10 19s2-1.5 4-1.5S16 19 18 19s2-1.5 4-1.5"/><path d="M12 11V4M12 4c-3 0-5 2-5 4h10c0-2-2-4-5-4z"/></svg>
-        </div>
-        <div class="label">
-          <span class="it">Spiagge &amp; Bandiera Blu</span>
-          <span class="en">Beaches &amp; Blue Flag</span>
-          <span class="ru">Пляжи и Голубой флаг</span>
-          <span class="pl">Plaże i Błękitna Flaga</span>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">
-          <!-- wineglass -->
-          <svg viewBox="0 0 24 24"><path d="M7 3h10l-1 5a4 4 0 0 1-8 0L7 3z"/><path d="M12 12v6"/><path d="M8 21h8"/><path d="M8 18h8"/></svg>
-        </div>
-        <div class="label">
-          <span class="it">Cantine &amp; Ristoranti</span>
-          <span class="en">Wineries &amp; restaurants</span>
-          <span class="ru">Винодельни и рестораны</span>
-          <span class="pl">Winiarnie i restauracje</span>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">
-          <!-- map -->
-          <svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>
-        </div>
-        <div class="label">
-          <span class="it">Arte, storia &amp; natura</span>
-          <span class="en">Art, history &amp; nature</span>
-          <span class="ru">Искусство, история и природа</span>
-          <span class="pl">Sztuka, historia i natura</span>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">
-          <!-- location -->
-          <svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg>
-        </div>
-        <div class="label">
-          <span class="it">Mappe offline &amp; navigazione</span>
-          <span class="en">Offline maps &amp; navigation</span>
-          <span class="ru">Офлайн-карты и навигация</span>
-          <span class="pl">Mapy offline i nawigacja</span>
-        </div>
-      </div>
-    </div>
+    <div class="langBadge">🇮🇹 IT · 🇬🇧 EN · 🇷🇺 RU · 🇵🇱 PL — l'app parla la tua lingua</div>
 
     <div class="store">
       <span class="hint">Disponibile · Available · Доступно · Dostępne</span>
@@ -336,7 +326,165 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.417 2.2-1.11 2.99-.79.9-2.07 1.6-3.28 1.5-.13-1.13.44-2.28 1.12-3.03.78-.86 2.14-1.5 3.27-1.46zM20.9 17.06c-.6 1.38-.88 1.99-1.65 3.21-1.08 1.7-2.6 3.82-4.48 3.83-1.67.02-2.1-1.09-4.37-1.08-2.27.01-2.74 1.1-4.41 1.09-1.88-.02-3.32-1.93-4.4-3.63C-1.02 15.3-1.34 8.29 2.36 5.6c1.32-.97 3.06-1.5 4.6-1.5 1.63 0 2.66 1.09 4.01 1.09 1.31 0 2.11-1.1 4-.99 1.53.06 3.04.7 4.02 2-3.53 2.13-2.96 6.87.91 8.86z"/></svg>
         <span class="txt"><small>Download on the</small><strong>App Store</strong></span>
       </a>
+      <div class="siteUrl">azumbo.vercel.app/ciromap</div>
     </div>
+    <div class="pageNum">Ciro.Map · Cirò Marina, Calabria</div>
+  </div>
+
+  <!-- ===================== PAGE 2 — FEATURES ===================== -->
+  <div class="page">
+    <div class="kicker">Perché Ciro.Map · Why Ciro.Map</div>
+    <div class="sectionTitle">La città in tasca<br>Your city, in your pocket</div>
+    <div class="sectionSub">Tutto ciò che serve a Cirò Marina — in italiano, inglese, russo e polacco.</div>
+
+    <div style="margin-top:3mm;">
+      <div class="feat">
+        <div class="glyph">🌊</div>
+        <div class="body">
+          <h3>Live sea temperature</h3>
+          <div class="it">Temperatura del mare in tempo reale + meteo a 3 giorni</div>
+          <div class="other">🇷🇺 Температура моря в реальном времени и погода на 3 дня · 🇵🇱 Temperatura morza na żywo i pogoda na 3 dni · NOAA + Apple Weather</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="glyph">💳</div>
+        <div class="body">
+          <h3>Discount &amp; loyalty cards</h3>
+          <div class="it">Carte fedeltà e sconti di supermercati, farmacie e negozi — in un unico posto</div>
+          <div class="other">🇷🇺 Дисконтные карты магазинов, аптек и супермаркетов в одном месте · 🇵🇱 Karty lojalnościowe sklepów i aptek w jednym miejscu</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="glyph">🧭</div>
+        <div class="body">
+          <h3>Walk &amp; drive routes</h3>
+          <div class="it">Percorsi a piedi e in auto, con ordinamento per distanza</div>
+          <div class="other">🇷🇺 Пешие и автомобильные маршруты, сортировка по расстоянию · 🇵🇱 Trasy piesze i samochodowe, sortowanie wg odległości</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="glyph">📍</div>
+        <div class="body">
+          <h3>Offline maps &amp; places</h3>
+          <div class="it">Mappe e punti d'interesse anche senza rete</div>
+          <div class="other">🇷🇺 Карты и места работают офлайн · 🇵🇱 Mapy i miejsca działają offline</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="glyph">📷</div>
+        <div class="body">
+          <h3>Photo spots &amp; guides</h3>
+          <div class="it">Luoghi panoramici e borghi con foto e video</div>
+          <div class="other">🇷🇺 Фотоместа и борго с фото и видео · 🇵🇱 Miejsca widokowe i borghi ze zdjęciami i wideo</div>
+        </div>
+      </div>
+    </div>
+    <div class="pageNum">2</div>
+  </div>
+
+  <!-- ===================== PAGE 3 — RUBRICS ===================== -->
+  <div class="page">
+    <div class="kicker">Le rubriche · Categories · Рубрики · Kategorie</div>
+    <div class="sectionTitle">Tutta la città in una mappa</div>
+    <div class="sectionSub">16 categorie · 16 categories · 16 рубрик · 16 kategorii</div>
+
+    <div class="rubGrid">
+      <div class="rub"><div class="dot pastel-a">🍴</div><div class="lbl"><div class="it">Cibo e drink</div><div class="en">Food &amp; Drink</div><span class="ru">Еда и напитки</span><span class="pl">Jedzenie i napoje</span></div></div>
+      <div class="rub"><div class="dot pastel-b">🐟</div><div class="lbl"><div class="it">Pescheria</div><div class="en">Seafood</div><span class="ru">Морепродукты</span><span class="pl">Owoce morza</span></div></div>
+      <div class="rub"><div class="dot pastel-c">🍟</div><div class="lbl"><div class="it">McDonald's</div><div class="en">McDonald's</div><span class="ru">McDonald's</span><span class="pl">McDonald's</span></div></div>
+      <div class="rub"><div class="dot pastel-d">🛒</div><div class="lbl"><div class="it">Supermercati</div><div class="en">Supermarkets</div><span class="ru">Супермаркеты</span><span class="pl">Supermarkety</span></div></div>
+      <div class="rub"><div class="dot pastel-e">💊</div><div class="lbl"><div class="it">Farmacie</div><div class="en">Pharmacies</div><span class="ru">Аптеки</span><span class="pl">Apteki</span></div></div>
+      <div class="rub"><div class="dot pastel-f">🐾</div><div class="lbl"><div class="it">Animali e vet</div><div class="en">Pets &amp; Vet</div><span class="ru">Зоотовары и вет</span><span class="pl">Zwierzęta i wet</span></div></div>
+      <div class="rub"><div class="dot pastel-b">🚗</div><div class="lbl"><div class="it">Auto e altro</div><div class="en">Car &amp; More</div><span class="ru">Для авто</span><span class="pl">Auto i inne</span></div></div>
+      <div class="rub"><div class="dot pastel-h">🖥️</div><div class="lbl"><div class="it">Elettrodomestici</div><div class="en">Home Appliances</div><span class="ru">Бытовая техника</span><span class="pl">AGD</span></div></div>
+      <div class="rub"><div class="dot pastel-f">🛠️</div><div class="lbl"><div class="it">Fai da te</div><div class="en">DIY Store</div><span class="ru">Хозтовары</span><span class="pl">Sklep budowlany</span></div></div>
+      <div class="rub"><div class="dot pastel-g">☕</div><div class="lbl"><div class="it">Bar</div><div class="en">Bars</div><span class="ru">Бары</span><span class="pl">Bary</span></div></div>
+      <div class="rub"><div class="dot pastel-c">✉️</div><div class="lbl"><div class="it">Posta</div><div class="en">Post</div><span class="ru">Почта</span><span class="pl">Poczta</span></div></div>
+      <div class="rub"><div class="dot pastel-d">🏛️</div><div class="lbl"><div class="it">Museo</div><div class="en">Museum</div><span class="ru">Музей</span><span class="pl">Muzeum</span></div></div>
+      <div class="rub"><div class="dot pastel-e">🎭</div><div class="lbl"><div class="it">Teatri</div><div class="en">Theaters</div><span class="ru">Театры</span><span class="pl">Teatry</span></div></div>
+      <div class="rub"><div class="dot pastel-a">🍷</div><div class="lbl"><div class="it">Cantine</div><div class="en">Wineries</div><span class="ru">Винодельни</span><span class="pl">Winnice</span></div></div>
+      <div class="rub"><div class="dot pastel-a">🚨</div><div class="lbl"><div class="it">Emergenze</div><div class="en">Emergency &amp; Safety</div><span class="ru">Экстренные службы</span><span class="pl">Pogotowie</span></div></div>
+      <div class="rub"><div class="dot pastel-h">📷</div><div class="lbl"><div class="it">Foto luoghi</div><div class="en">Photo Spots</div><span class="ru">Фотоместа</span><span class="pl">Miejsca na zdjęcia</span></div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sectionSub" style="margin-top:0;">
+      🇮🇹 Ogni luogo con orari, telefono, foto e percorso · 🇬🇧 Every place with hours, phone, photos &amp; route<br>
+      🇷🇺 Каждое место — часы, телефон, фото и маршрут · 🇵🇱 Każde miejsce — godziny, telefon, zdjęcia i trasa
+    </div>
+    <div class="pageNum">3</div>
+  </div>
+
+  <!-- ===================== PAGE 4 — FEATURED PLACE ===================== -->
+  <div class="page">
+    <div class="kicker">Da non perdere · Don't miss · Не пропустите</div>
+    <div class="sectionTitle">Sul mare a Cirò Marina</div>
+
+    <div class="photoRow">
+      <img src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/1.jpg" alt="Santa Chiara terrace with sea-view jacuzzi at dusk" />
+      <img src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/4.jpg" alt="Blue Flag beach at Cirò Marina" />
+    </div>
+
+    <div class="placeName">Santa Chiara Village</div>
+    <div class="placeMeta">🏖️ Lido &amp; ristorante · Lungomare · 🏳️ Bandiera Blu / Blue Flag</div>
+
+    <div class="placeDesc">
+      <span class="it">Lido sul mare con lettini, due jacuzzi idromassaggio, focaccia al forno a legna e cucina calabrese. Dog-friendly.</span>
+      <span>🇬🇧 A seafront beach club with sunbeds, two hydromassage jacuzzis, wood-fired focaccia and Calabrian cuisine. Dog-friendly.</span>
+      <span>🇷🇺 Пляжный клуб у моря: лежаки, две джакузи с гидромассажем, фокачча из дровяной печи и калабрийская кухня. Можно с собаками.</span>
+      <span>🇵🇱 Klub plażowy nad morzem: leżaki, dwa jacuzzi, focaccia z pieca na drewno i kuchnia kalabryjska. Dog-friendly.</span>
+    </div>
+
+    <div class="chips">
+      <span class="chip">🛏️ Lettini · Sunbeds €20–25</span>
+      <span class="chip">💧 2 × Jacuzzi</span>
+      <span class="chip">🔥 Focaccia al forno a legna</span>
+      <span class="chip">🐕 Dog-friendly</span>
+      <span class="chip">🎥 Video in app</span>
+    </div>
+
+    <img class="photoTall" src="https://azumbo.vercel.app/ciromap/photos/santa-chiara/5.jpg" alt="Covered restaurant terrace at Santa Chiara" />
+    <div class="menuNote">🇮🇹 Foto, video e menu completo nell'app · 🇬🇧 Photos, video &amp; full menu in the app · 🇷🇺 Фото, видео и полное меню — в приложении · 🇵🇱 Zdjęcia, wideo i pełne menu w aplikacji</div>
+    <div class="pageNum">4</div>
+  </div>
+
+  <!-- ===================== PAGE 5 — TASTE & WINE ===================== -->
+  <div class="page">
+    <div class="kicker">Il gusto di Cirò · A taste of Cirò</div>
+    <div class="sectionTitle">Mangiare &amp; bere</div>
+    <div class="sectionSub">Un assaggio del menu · A taste of the menu — Santa Chiara Village</div>
+
+    <div class="menuHead">Primi di mare · Seafood pasta</div>
+    <div class="menuItem"><div class="nm"><div class="it">Spaghetti con vongole veraci</div><div class="en">Spaghetti with clams</div></div><div class="pr">€20</div></div>
+    <div class="menuItem"><div class="nm"><div class="it">Scialatelli ai frutti di mare</div><div class="en">Scialatelli with seafood</div></div><div class="pr">€18</div></div>
+    <div class="menuItem"><div class="nm"><div class="it">Linguine cozze, pesto di mandorle e limone</div><div class="en">Linguine, mussels &amp; almond pesto</div></div><div class="pr">€16</div></div>
+
+    <div class="menuHead">Secondi · Mains</div>
+    <div class="menuItem"><div class="nm"><div class="it">Grigliata mista di pesce</div><div class="en">Mixed grilled fish</div></div><div class="pr">€20</div></div>
+    <div class="menuItem"><div class="nm"><div class="it">Frittura mista calamari e gamberi</div><div class="en">Fried calamari &amp; shrimp</div></div><div class="pr">€18</div></div>
+    <div class="menuItem"><div class="nm"><div class="it">Fiorentina con osso (800–1000 g)</div><div class="en">Florentine steak on the bone</div></div><div class="pr">€45</div></div>
+    <div class="menuItem"><div class="nm"><div class="it">Antipasto Santa Chiara (mare &amp; terra)</div><div class="en">Land &amp; sea antipasto</div></div><div class="pr">€18</div></div>
+    <div class="menuNote">🇷🇺 Меню и цены в приложении на 4 языках · 🇵🇱 Menu i ceny w aplikacji w 4 językach · prezzi indicativi</div>
+
+    <div class="menuHead">Cantine di Cirò · Cirò DOC wineries 🍷</div>
+    <div class="wineList">
+      <div class="wine"><span class="nm">Librandi</span><span class="ad">S.S. 106 Jonica, C.da San Gennaro</span></div>
+      <div class="wine"><span class="nm">Ippolito 1845</span><span class="ad">Via Tirone 132</span></div>
+      <div class="wine"><span class="nm">Iuzzolini</span><span class="ad">Cirò Marina</span></div>
+    </div>
+
+    <div class="closing">
+      <div class="txt">
+        <h3>Scarica Ciro.Map<br>Download the free app</h3>
+        <p>🇷🇺 Твой гид по Чиро-Марина · 🇵🇱 Twój przewodnik po Cirò Marina · azumbo.vercel.app/ciromap</p>
+      </div>
+      <div class="miniqr"><div id="qrcode2"></div></div>
+    </div>
+    <div class="pageNum">5</div>
   </div>
 
   <div class="toolbar">
@@ -346,54 +494,44 @@
 <script>
   (function () {
     var APP_URL = "https://apps.apple.com/it/app/ciro-map-guide-cir%C3%B2-marina/id6776004922?l=en-GB";
-
     var CDN_SOURCES = [
       "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js",
       "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js",
       "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"
     ];
 
-    function renderQR() {
-      var el = document.getElementById("qrcode");
+    function renderInto(id, size) {
+      var el = document.getElementById(id);
+      if (!el) return;
       el.innerHTML = "";
       try {
-        // High-resolution render for crisp print output.
         new QRCode(el, {
-          text: APP_URL,
-          width: 720,
-          height: 720,
-          colorDark: "#1A5276",
-          colorLight: "#ffffff",
+          text: APP_URL, width: size, height: size,
+          colorDark: "#1A5276", colorLight: "#ffffff",
           correctLevel: QRCode.CorrectLevel.H
         });
       } catch (e) {
-        showFallback(el);
+        el.innerHTML = '<div class="qr-fallback">' + APP_URL + '</div>';
       }
     }
 
-    function showFallback(el) {
-      el.innerHTML = '<div class="qr-fallback">QR could not load.<br>Open:<br>' + APP_URL + '</div>';
-    }
+    function renderQR() { renderInto("qrcode", 720); renderInto("qrcode2", 480); }
 
     function loadScript(index) {
       if (index >= CDN_SOURCES.length) {
-        showFallback(document.getElementById("qrcode"));
+        var f = document.getElementById("qrcode");
+        if (f) f.innerHTML = '<div class="qr-fallback">' + APP_URL + '</div>';
         return;
       }
       var s = document.createElement("script");
       s.src = CDN_SOURCES[index];
-      s.onload = function () {
-        if (window.QRCode) { renderQR(); } else { loadScript(index + 1); }
-      };
+      s.onload = function () { window.QRCode ? renderQR() : loadScript(index + 1); };
       s.onerror = function () { loadScript(index + 1); };
       document.head.appendChild(s);
     }
 
-    document.getElementById("printBtn").addEventListener("click", function () {
-      window.print();
-    });
-
-    if (window.QRCode) { renderQR(); } else { loadScript(0); }
+    document.getElementById("printBtn").addEventListener("click", function () { window.print(); });
+    window.QRCode ? renderQR() : loadScript(0);
   })();
 </script>
 </body>
