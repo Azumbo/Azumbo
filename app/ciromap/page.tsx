@@ -68,6 +68,14 @@ export default function CiroMapLandingPage() {
           </p>
           <div className={styles.ctaRow}>
             <AppStoreButton />
+            <a
+              className={styles.secondaryCta}
+              href="/ciromap/flyer.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Flyer (print &amp; PDF)
+            </a>
             <Link className={styles.secondaryCta} href="/ciromap/privacy">
               Read Privacy Policy
             </Link>
