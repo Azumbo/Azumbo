@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PrivacyClient from './PrivacyClient';
 import { SITE_URL } from '../../../lib/seo';
+import { CIRO_MAP } from '../components';
 
 const canonical = `${SITE_URL}/ciromap/privacy`;
 
@@ -15,6 +16,9 @@ export const metadata: Metadata = {
       'ru-RU': canonical,
       'x-default': canonical,
     },
+  },
+  other: {
+    'apple-itunes-app': `app-id=${CIRO_MAP.appStoreId}`,
   },
   openGraph: {
     title: 'Ciro.Map Privacy Policy',

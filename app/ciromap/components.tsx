@@ -12,14 +12,15 @@ export const CIRO_MAP = apps.find((app) => app.slug === 'ciromap')!;
 /** Canonical App Store product URL (Apple marketing guidelines). */
 export const APP_STORE_URL = `https://apps.apple.com/app/id${CIRO_MAP.appStoreId}`;
 
+/** Official Apple badge alt text — do not localize the badge artwork. */
+const APP_STORE_BADGE_ALT = 'Download on the App Store';
+
 export function AppStoreBadge({
   className,
   ariaLabel = LANDING_COPY.en.badgeAria,
-  alt = 'Download on the App Store',
 }: {
   className?: string;
   ariaLabel?: string;
-  alt?: string;
 }) {
   return (
     <a
@@ -29,30 +30,15 @@ export function AppStoreBadge({
       rel="noopener noreferrer"
       aria-label={ariaLabel}
     >
-      {/* Official Apple artwork — do not restyle beyond size/clearspace. */}
+      {/* Official Apple Marketing Guidelines artwork — size/clearspace only. */}
       <img
         className={styles.appStoreBadge}
         src="/ciromap/badges/download-on-the-app-store.svg"
-        alt={alt}
+        alt={APP_STORE_BADGE_ALT}
         width={150}
         height={50}
         decoding="async"
       />
-    </a>
-  );
-}
-
-/** @deprecated Use AppStoreBadge — kept for compact text CTAs if needed. */
-export function AppStoreButton({ compact = false }: { compact?: boolean }) {
-  return (
-    <a
-      className={styles.primaryCta}
-      href={APP_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={LANDING_COPY.en.badgeAria}
-    >
-      {compact ? 'App Store' : 'Download on the App Store'}
     </a>
   );
 }
@@ -64,7 +50,7 @@ export function AppStoreGetCard({ copy = LANDING_COPY.en }: { copy?: LandingCopy
         <p className={styles.kicker}>{copy.getAppKicker}</p>
         <h2 className={styles.getAppTitle}>{copy.getAppTitle}</h2>
         <p className={styles.getAppLead}>{copy.getAppLead}</p>
-        <AppStoreBadge ariaLabel={copy.badgeAria} alt={copy.badgeAria} />
+        <AppStoreBadge ariaLabel={copy.badgeAria} />
       </div>
       <a
         className={styles.qrLink}
