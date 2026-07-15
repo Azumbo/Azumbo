@@ -11,7 +11,7 @@ import {
   WHATS_NEW,
 } from '../../lib/ciromap-store-content';
 import { SITE_URL } from '../../lib/seo';
-import { APP_STORE_URL, AppStoreBadge, AppStoreGetCard, CIRO_MAP } from './components';
+import { APP_STORE_URL, AppStoreGetCard, CIRO_MAP } from './components';
 import ScreenshotShowcase from './ScreenshotShowcase';
 import styles from './ciromap.module.css';
 
@@ -195,7 +195,6 @@ export default function CiroMapLandingPage() {
             </p>
           </div>
           <div className={styles.downloadGetRow}>
-            <AppStoreBadge />
             <a
               className={styles.secondaryCta}
               href="/ciromap/flyer.html"

@@ -52,7 +52,7 @@ export function AppStoreGetCard() {
     <div className={styles.getAppCard}>
       <div className={styles.getAppCopy}>
         <p className={styles.kicker}>Get the app</p>
-        <h2 className={styles.getAppTitle}>Download on the App Store</h2>
+        <h2 className={styles.getAppTitle}>Get Ciro.Map</h2>
         <p className={styles.getAppLead}>
           Tap the official badge on your iPhone or iPad, or scan the QR code with Camera.
         </p>

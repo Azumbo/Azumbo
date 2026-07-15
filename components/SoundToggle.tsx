@@ -1,12 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { subscribeMuteState, toggleMute } from '../lib/audioManager';
 
 export default function SoundToggle() {
+  const pathname = usePathname();
   const [muted, setMuted] = useState(true);
 
   useEffect(() => subscribeMuteState(setMuted), []);
+
+  if (pathname?.startsWith('/ciromap')) {
+    return null;
+  }
 
   return (
     <button
