@@ -420,7 +420,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 aria-label={t.ciromapTitle}
               >
                 <Image
-                  src="/ciromap/app-icon-192.png?v=2"
+                  src="/ciromap/app-icon-192.png?v=3"
                   alt="Ciro.Map app icon"
                   width={160}
                   height={160}
