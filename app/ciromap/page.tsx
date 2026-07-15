@@ -44,7 +44,7 @@ export default function CiroMapLandingPage() {
         <div className={styles.headerInner}>
           <Link href="/ciromap" className={styles.brand}>
             <Image
-              src="/ciromap/app-icon-192.png"
+              src="/ciromap/app-icon-192.png?v=2"
               alt="Ciro.Map app icon"
               width={38}
               height={38}
@@ -64,7 +64,7 @@ export default function CiroMapLandingPage() {
       <main className={styles.main}>
         <section className={styles.hero}>
           <Image
-            src="/ciromap/app-icon-192.png"
+            src="/ciromap/app-icon-192.png?v=2"
             alt=""
             width={88}
             height={88}
