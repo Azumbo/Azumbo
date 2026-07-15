@@ -33,7 +33,7 @@ export const apps: StudioApp[] = [
     name: 'Ciro.Map',
     slug: 'ciromap',
     appStoreId: '6776004922',
-    appStoreUrl: 'https://apps.apple.com/us/app/ciro-map/id6776004922',
+    appStoreUrl: 'https://apps.apple.com/app/id6776004922',
     bundleId: 'com.azumbo.ciromap',
     description:
       'Wander Cirò Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',

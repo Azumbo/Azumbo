@@ -11,7 +11,7 @@ import {
   WHATS_NEW,
 } from '../../lib/ciromap-store-content';
 import { SITE_URL } from '../../lib/seo';
-import { AppStoreButton, CIRO_MAP } from './components';
+import { APP_STORE_URL, AppStoreBadge, AppStoreGetCard, CIRO_MAP } from './components';
 import ScreenshotShowcase from './ScreenshotShowcase';
 import styles from './ciromap.module.css';
 
@@ -76,8 +76,12 @@ export default function CiroMapLandingPage() {
           <h1 className={styles.title}>Ciro.Map: Guide Cirò Marina</h1>
           <p className={styles.subtitleStrong}>{APP_STORE_SUBTITLE}</p>
           <p className={styles.subtitle}>{APP_STORE_PROMO}</p>
+
+          <div className={styles.heroGetWrap} aria-label="Download Ciro.Map">
+            <AppStoreGetCard />
+          </div>
+
           <div className={styles.ctaRow}>
-            <AppStoreButton />
             <a
               className={styles.secondaryCta}
               href="/ciromap/flyer.html"
@@ -91,7 +95,10 @@ export default function CiroMapLandingPage() {
             </Link>
           </div>
           <p className={styles.storeMeta}>
-            Free on the App Store · Version {APP_INFO.version} · App ID {CIRO_MAP.appStoreId}
+            Free on the App Store · Version {APP_INFO.version} ·{' '}
+            <a className={styles.ctaLink} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
+              App ID {CIRO_MAP.appStoreId}
+            </a>
           </p>
         </section>
 
@@ -187,8 +194,8 @@ export default function CiroMapLandingPage() {
               before — one tap, everything local.
             </p>
           </div>
-          <div className={styles.ctaRow}>
-            <AppStoreButton />
+          <div className={styles.downloadGetRow}>
+            <AppStoreBadge />
             <a
               className={styles.secondaryCta}
               href="/ciromap/flyer.html"
@@ -205,7 +212,13 @@ export default function CiroMapLandingPage() {
       </main>
 
       <footer className={styles.footer}>
-        © 2026 Azumbo · <Link href="/ciromap/privacy">Ciro.Map Privacy</Link>
+        <p>
+          © 2026 Azumbo · <Link href="/ciromap/privacy">Ciro.Map Privacy</Link>
+        </p>
+        <p className={styles.legalCredit}>
+          Apple, the Apple logo, App Store, and the App Store badge are trademarks of Apple Inc., registered in the
+          U.S. and other countries and regions.
+        </p>
       </footer>
     </div>
   );

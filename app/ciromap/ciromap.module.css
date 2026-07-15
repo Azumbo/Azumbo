@@ -96,6 +96,99 @@
   max-width: 44rem;
 }
 
+.heroGetWrap {
+  margin: 1.75rem auto 0;
+  max-width: 34rem;
+}
+
+.getAppCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem 1.5rem;
+  align-items: center;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.getAppCopy {
+  min-width: 0;
+}
+
+.getAppTitle {
+  margin: 0.4rem 0 0.5rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+}
+
+.getAppLead {
+  margin: 0 0 1rem;
+  color: #6b7280;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.appStoreBadgeLink {
+  display: inline-flex;
+  line-height: 0;
+  /* Apple clearspace ≈ 1/4 badge height (~10–12px) */
+  padding: 0.65rem 0.15rem;
+}
+
+.appStoreBadge {
+  display: block;
+  height: 50px;
+  width: auto;
+  min-height: 40px;
+}
+
+.qrLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: #6b7280;
+  padding: 0.5rem;
+}
+
+.qrImage {
+  width: 9.25rem;
+  height: 9.25rem;
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.qrCaption {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.downloadGetRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.875rem 1.25rem;
+}
+
+.legalCredit {
+  margin: 0.75rem auto 0;
+  max-width: 40rem;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
 .kicker {
   color: #6b7280;
   font-size: 0.6875rem;
@@ -542,5 +635,25 @@
   .primaryCta,
   .secondaryCta {
     width: 100%;
+  }
+
+  .getAppCard {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .getAppCopy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .downloadGetRow {
+    justify-content: center;
+  }
+
+  .downloadGetRow .secondaryCta {
+    width: auto;
   }
 }
