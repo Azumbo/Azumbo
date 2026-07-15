@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styles from './ciromap.module.css';
 
 import { apps, CONTACT_EMAIL as STUDIO_CONTACT_EMAIL } from '../../lib/apps';
+import type { LandingCopy } from '../../lib/ciromap-store-content';
+import { LANDING_COPY } from '../../lib/ciromap-store-content';
 
 export const CONTACT_EMAIL = STUDIO_CONTACT_EMAIL;
 
@@ -10,20 +12,28 @@ export const CIRO_MAP = apps.find((app) => app.slug === 'ciromap')!;
 /** Canonical App Store product URL (Apple marketing guidelines). */
 export const APP_STORE_URL = `https://apps.apple.com/app/id${CIRO_MAP.appStoreId}`;
 
-export function AppStoreBadge({ className }: { className?: string }) {
+export function AppStoreBadge({
+  className,
+  ariaLabel = LANDING_COPY.en.badgeAria,
+  alt = 'Download on the App Store',
+}: {
+  className?: string;
+  ariaLabel?: string;
+  alt?: string;
+}) {
   return (
     <a
       className={className ?? styles.appStoreBadgeLink}
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download Ciro.Map on the App Store"
+      aria-label={ariaLabel}
     >
       {/* Official Apple artwork — do not restyle beyond size/clearspace. */}
       <img
         className={styles.appStoreBadge}
         src="/ciromap/badges/download-on-the-app-store.svg"
-        alt="Download on the App Store"
+        alt={alt}
         width={150}
         height={50}
         decoding="async"
@@ -40,40 +50,38 @@ export function AppStoreButton({ compact = false }: { compact?: boolean }) {
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download Ciro.Map on the App Store"
+      aria-label={LANDING_COPY.en.badgeAria}
     >
       {compact ? 'App Store' : 'Download on the App Store'}
     </a>
   );
 }
 
-export function AppStoreGetCard() {
+export function AppStoreGetCard({ copy = LANDING_COPY.en }: { copy?: LandingCopy }) {
   return (
     <div className={styles.getAppCard}>
       <div className={styles.getAppCopy}>
-        <p className={styles.kicker}>Get the app</p>
-        <h2 className={styles.getAppTitle}>Get Ciro.Map</h2>
-        <p className={styles.getAppLead}>
-          Tap the official badge on your iPhone or iPad, or scan the QR code with Camera.
-        </p>
-        <AppStoreBadge />
+        <p className={styles.kicker}>{copy.getAppKicker}</p>
+        <h2 className={styles.getAppTitle}>{copy.getAppTitle}</h2>
+        <p className={styles.getAppLead}>{copy.getAppLead}</p>
+        <AppStoreBadge ariaLabel={copy.badgeAria} alt={copy.badgeAria} />
       </div>
       <a
         className={styles.qrLink}
         href={APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Open Ciro.Map on the App Store via QR destination"
+        aria-label={copy.qrAria}
       >
         <Image
           src="/ciromap/badges/app-store-qr.png"
-          alt="QR code linking to Ciro.Map on the App Store"
+          alt={copy.qrAria}
           width={148}
           height={148}
           className={styles.qrImage}
           priority
         />
-        <span className={styles.qrCaption}>Scan to download</span>
+        <span className={styles.qrCaption}>{copy.qrCaption}</span>
       </a>
     </div>
   );
@@ -86,10 +94,10 @@ export function CiroMapNav() {
         <Link href="/ciromap" className={styles.brand}>
           <span>Ciro.Map</span>
         </Link>
-        <nav className={styles.nav} aria-label="Ciro.Map navigation">
+        <nav className={styles.nav} aria-label={LANDING_COPY.en.navAria}>
           <Link href="/en">Azumbo</Link>
-          <Link href="/ciromap/privacy">Privacy Policy</Link>
-          <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+          <Link href="/ciromap/privacy">{LANDING_COPY.en.privacy}</Link>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{LANDING_COPY.en.contact}</a>
         </nav>
       </div>
     </header>

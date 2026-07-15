@@ -1,49 +1,31 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { CIROMAP_LOCALES, SCREENSHOTS, type CiroMapLocale } from '../../lib/ciromap-store-content';
+import { useEffect, useState } from 'react';
+import { SCREENSHOTS, type CiroMapLocale, type LandingCopy } from '../../lib/ciromap-store-content';
 import styles from './ciromap.module.css';
 
-export default function ScreenshotShowcase() {
-  const [locale, setLocale] = useState<CiroMapLocale>('en');
+type Props = {
+  locale: CiroMapLocale;
+  copy: LandingCopy;
+};
+
+export default function ScreenshotShowcase({ locale, copy }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const slides = SCREENSHOTS[locale];
 
-  function selectLocale(next: CiroMapLocale) {
-    setLocale(next);
+  useEffect(() => {
     setActiveIndex(0);
-  }
+  }, [locale]);
 
   return (
     <section className={styles.showcase} aria-labelledby="screenshots-title">
       <div className={styles.sectionIntro}>
-        <p className={styles.kicker}>Screenshots</p>
+        <p className={styles.kicker}>{copy.screenshotsKicker}</p>
         <h2 id="screenshots-title" className={styles.sectionTitle}>
-          See the app in your language.
+          {copy.screenshotsTitle}
         </h2>
-        <p className={styles.sectionLead}>
-          English, Italiano, Polski, and Русский — the same Cirò Marina guide, localized for residents and visitors.
-        </p>
-      </div>
-
-      <div
-        className={styles.segmentedControl}
-        role="tablist"
-        aria-label="Screenshot language"
-      >
-        {CIROMAP_LOCALES.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            aria-selected={locale === item.id}
-            className={locale === item.id ? styles.segmentActive : styles.segment}
-            onClick={() => selectLocale(item.id)}
-          >
-            {item.label}
-          </button>
-        ))}
+        <p className={styles.sectionLead}>{copy.screenshotsLead}</p>
       </div>
 
       <div className={styles.showcaseLayout}>
@@ -62,27 +44,29 @@ export default function ScreenshotShowcase() {
           <p className={styles.screenCaption}>{slides[activeIndex].caption}</p>
         </div>
 
-        <div className={styles.thumbRail} aria-label="Screenshot thumbnails">
-          {slides.map((slide, index) => (
-            <button
-              key={`${locale}-${slide.src}`}
-              type="button"
-              className={index === activeIndex ? styles.thumbButtonActive : styles.thumbButton}
-              aria-label={`${slide.caption} screenshot`}
-              aria-current={index === activeIndex}
-              onClick={() => setActiveIndex(index)}
-            >
-              <Image
-                src={slide.src}
-                alt=""
-                width={72}
-                height={156}
-                className={styles.thumbImage}
-                aria-hidden
-              />
-            </button>
-          ))}
-        </div>
+        {slides.length > 1 ? (
+          <div className={styles.thumbRail} aria-label={copy.thumbsAria}>
+            {slides.map((slide, index) => (
+              <button
+                key={`${locale}-${slide.src}`}
+                type="button"
+                className={index === activeIndex ? styles.thumbButtonActive : styles.thumbButton}
+                aria-label={slide.caption}
+                aria-current={index === activeIndex}
+                onClick={() => setActiveIndex(index)}
+              >
+                <Image
+                  src={slide.src}
+                  alt=""
+                  width={72}
+                  height={156}
+                  className={styles.thumbImage}
+                  aria-hidden
+                />
+              </button>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );
