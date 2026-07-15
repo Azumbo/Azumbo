@@ -36,7 +36,7 @@ export const apps: StudioApp[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/ciro-map/id6776004922',
     bundleId: 'com.azumbo.ciromap',
     description:
-      'A polished iOS travel guide for Cirò Marina, Calabria, with nearby places, routes, categories, and a private loyalty wallet.',
+      'Wander Cirò Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',
     icon: '🗺️',
     tagline: 'Cirò Marina travel guide',
     privacyPath: '/ciromap/privacy',
