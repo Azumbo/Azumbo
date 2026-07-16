@@ -315,9 +315,8 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 9 / 16;
-  max-height: 560px;
-  object-fit: cover;
+  max-height: 520px;
+  object-fit: contain;
   object-position: center top;
 }
 
@@ -353,7 +352,7 @@
 .heroCard {
   overflow: hidden;
   border-radius: 34px;
-  padding: 29px;
+  padding: 22px;
 }
 
 .glassCard,
@@ -377,10 +376,10 @@
 
 .phoneMock {
   overflow: hidden;
-  max-width: 280px;
+  max-width: 240px;
   margin: 0 auto;
-  border-radius: 30px;
-  background: #ffffff;
+  border-radius: 28px;
+  background: #f5f2ec;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
   padding: 0;
@@ -390,10 +389,10 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 9 / 16;
-  max-height: 520px;
-  object-fit: cover;
-  object-position: center 14%;
+  max-height: 480px;
+  object-fit: contain;
+  object-position: center top;
+  vertical-align: top;
 }
 
 /* ── Sections ── */
@@ -658,12 +657,11 @@
   }
 
   .museumCard .phoneMock {
-    max-width: 280px;
+    max-width: 240px;
   }
 
   .phoneMock {
-    min-height: 456px;
-    padding: 23px;
+    max-width: 220px;
   }
 
   .jarGrid {

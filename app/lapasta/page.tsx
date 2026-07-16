@@ -77,9 +77,9 @@ export default function LaPastaLandingPage() {
             <div className={styles.phoneMock}>
               <Image
                 src="/lapasta/gameplay-screenshot.jpg"
-                alt="La Pasta gameplay — glass jar pasta quiz on iPhone"
-                width={390}
-                height={844}
+                alt="La Pasta gameplay — Tagliatelle round with glass jars and combo score"
+                width={473}
+                height={1024}
                 className={styles.heroScreenshot}
                 priority
               />
