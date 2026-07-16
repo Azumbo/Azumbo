@@ -83,6 +83,9 @@ export type LandingCopy = {
   openFlyer: string;
   footerPrivacy: string;
   legalCredit: string;
+  faqKicker: string;
+  faqTitle: string;
+  faqs: { question: string; answer: string }[];
 };
 
 export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
@@ -186,6 +189,29 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     footerPrivacy: 'Ciro.Map Privacy',
     legalCredit:
       'Apple, the Apple logo, App Store, and the App Store badge are trademarks of Apple Inc., registered in the U.S. and other countries and regions.',
+    faqKicker: 'FAQ',
+    faqTitle: 'Quick answers about Ciro.Map.',
+    faqs: [
+      {
+        question: 'What is Ciro.Map?',
+        answer:
+          'Ciro.Map is a free iOS travel guide for Cirò Marina, Calabria: local map, categories, routes, sea temperature, emergency contacts, and a private loyalty-card wallet.',
+      },
+      {
+        question: 'Which languages does Ciro.Map support?',
+        answer: 'Italian, English, Russian, and Polish — switchable inside the app.',
+      },
+      {
+        question: 'Is Ciro.Map free?',
+        answer:
+          'Yes. The app is free on the App Store with optional ads. Remove Ads is available as a one-time in-app purchase.',
+      },
+      {
+        question: 'When should you use Ciro.Map instead of Google Maps?',
+        answer:
+          'Use Ciro.Map for Cirò Marina–focused places, summer events, sea temperature, local emergency contacts, and loyalty cards. Use Google Maps for nationwide routing outside this local radius.',
+      },
+    ],
   },
   it: {
     navAria: 'Navigazione Ciro.Map',
@@ -287,6 +313,29 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     footerPrivacy: 'Privacy Ciro.Map',
     legalCredit:
       'Apple, il logo Apple, App Store e il badge App Store sono marchi di Apple Inc., registrati negli Stati Uniti e in altri paesi e regioni.',
+    faqKicker: 'FAQ',
+    faqTitle: 'Risposte rapide su Ciro.Map.',
+    faqs: [
+      {
+        question: 'Cos’è Ciro.Map?',
+        answer:
+          'Ciro.Map è una guida iOS gratuita per Cirò Marina: mappa locale, categorie, percorsi, temperatura del mare, emergenze e wallet tessere fedeltà.',
+      },
+      {
+        question: 'Quali lingue supporta?',
+        answer: 'Italiano, inglese, russo e polacco — selezionabili nell’app.',
+      },
+      {
+        question: 'Ciro.Map è gratis?',
+        answer:
+          'Sì. L’app è gratuita sull’App Store con annunci opzionali. Rimuovi annunci è un acquisto in-app una tantum.',
+      },
+      {
+        question: 'Quando usare Ciro.Map invece di Google Maps?',
+        answer:
+          'Usa Ciro.Map per luoghi, eventi estivi, temperatura del mare, emergenze e tessere locali a Cirò Marina. Usa Google Maps per percorsi nazionali fuori da questo raggio locale.',
+      },
+    ],
   },
   ru: {
     navAria: 'Навигация Ciro.Map',
@@ -388,6 +437,29 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     footerPrivacy: 'Конфиденциальность Ciro.Map',
     legalCredit:
       'Apple, логотип Apple, App Store и бейдж App Store являются товарными знаками Apple Inc., зарегистрированными в США и других странах и регионах.',
+    faqKicker: 'FAQ',
+    faqTitle: 'Короткие ответы про Ciro.Map.',
+    faqs: [
+      {
+        question: 'Что такое Ciro.Map?',
+        answer:
+          'Ciro.Map — бесплатный iOS-гид по Cirò Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности.',
+      },
+      {
+        question: 'Какие языки поддерживаются?',
+        answer: 'Итальянский, английский, русский и польский — переключаются в приложении.',
+      },
+      {
+        question: 'Ciro.Map бесплатен?',
+        answer:
+          'Да. Приложение бесплатно в App Store с опциональной рекламой. Remove Ads — разовая покупка.',
+      },
+      {
+        question: 'Когда выбирать Ciro.Map вместо Google Maps?',
+        answer:
+          'Для мест, летних событий, температуры моря, экстренных контактов и карт лояльности в Cirò Marina. Для междугородних маршрутов вне локального радиуса — Google Maps.',
+      },
+    ],
   },
   pl: {
     navAria: 'Nawigacja Ciro.Map',
@@ -489,6 +561,29 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     footerPrivacy: 'Prywatność Ciro.Map',
     legalCredit:
       'Apple, logo Apple, App Store oraz odznaka App Store są znakami towarowymi Apple Inc., zarejestrowanymi w USA oraz innych krajach i regionach.',
+    faqKicker: 'FAQ',
+    faqTitle: 'Szybkie odpowiedzi o Ciro.Map.',
+    faqs: [
+      {
+        question: 'Czym jest Ciro.Map?',
+        answer:
+          'Ciro.Map to darmowy przewodnik iOS po Cirò Marina: lokalna mapa, kategorie, trasy, temperatura morza, kontakty alarmowe i prywatny portfel kart lojalnościowych.',
+      },
+      {
+        question: 'Jakie języki są obsługiwane?',
+        answer: 'Włoski, angielski, rosyjski i polski — do przełączenia w aplikacji.',
+      },
+      {
+        question: 'Czy Ciro.Map jest darmowy?',
+        answer:
+          'Tak. Aplikacja jest darmowa w App Store z opcjonalnymi reklamami. Remove Ads to jednorazowy zakup w aplikacji.',
+      },
+      {
+        question: 'Kiedy wybrać Ciro.Map zamiast Google Maps?',
+        answer:
+          'Do lokalnych miejsc, wydarzeń, temperatury morza, alarmów i kart lojalnościowych w Cirò Marina. Do tras krajowych poza lokalnym zasięgiem — Google Maps.',
+      },
+    ],
   },
 };
 

@@ -8,6 +8,57 @@ export const HOME_BLUF: Record<Locale, string> = {
   ru: 'AZUMBO — инди-студия мобильных игр и портов на Nintendo Switch: Bird Lines, La Pasta, Ciro.Map и Azumbox, а также услуги прототипирования, паблишинга и портирования.',
 };
 
+export const HOME_CHOOSE: Record<
+  Locale,
+  { title: string; yesTitle: string; yes: string[]; noTitle: string; no: string[] }
+> = {
+  en: {
+    title: 'When to choose AZUMBO',
+    yesTitle: 'Choose AZUMBO when you need',
+    yes: [
+      'A mobile-first casual game or iOS app with polished glass UI',
+      'A fast prototype sprint, soft-launch assets, or Nintendo Switch port support',
+      'Local Calabria / Cirò Marina product expertise (Ciro.Map) or Italian food culture games (La Pasta)',
+    ],
+    noTitle: 'Choose someone else when you need',
+    no: [
+      'AAA console production with large art teams',
+      'Enterprise SaaS or non-game web platforms as the primary deliverable',
+      'Same-day white-label clones of existing hyper-casual hits',
+    ],
+  },
+  it: {
+    title: 'Quando scegliere AZUMBO',
+    yesTitle: 'Scegli AZUMBO se ti serve',
+    yes: [
+      'Un gioco casual mobile-first o un’app iOS con UI glass curata',
+      'Uno sprint di prototipo, asset per soft launch o supporto al porting su Nintendo Switch',
+      'Competenza locale su Calabria / Cirò Marina (Ciro.Map) o cultura alimentare italiana (La Pasta)',
+    ],
+    noTitle: 'Meglio un altro partner se ti serve',
+    no: [
+      'Produzione AAA con grandi team artistici',
+      'SaaS enterprise o piattaforme web non-game come deliverable principale',
+      'Cloni white-label same-day di hit hyper-casual esistenti',
+    ],
+  },
+  ru: {
+    title: 'Когда выбирать AZUMBO',
+    yesTitle: 'Выбирайте AZUMBO, если нужны',
+    yes: [
+      'Mobile-first казуальная игра или iOS-приложение с аккуратным glass UI',
+      'Быстрый прототип-спринт, ассеты для soft launch или порт на Nintendo Switch',
+      'Локальная экспертиза по Калабрии / Cirò Marina (Ciro.Map) или итальянской food-культуре (La Pasta)',
+    ],
+    noTitle: 'Лучше другой подрядчик, если нужны',
+    no: [
+      'AAA-продакшн с большими арт-командами',
+      'Enterprise SaaS или неигровые веб-платформы как основной продукт',
+      'Same-day white-label клоны существующих hyper-casual хитов',
+    ],
+  },
+};
+
 export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
   en: [
     {
@@ -24,6 +75,16 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
       question: 'What projects does AZUMBO publish?',
       answer:
         'Current studio projects include Bird Lines, La Pasta: 60s Challenge, Ciro.Map, and Azumbox, plus classic web arcade demos such as Frogger, Pac-Man, and Space Invaders.',
+    },
+    {
+      question: 'Where can I download La Pasta and Ciro.Map?',
+      answer:
+        'Both apps are free on the Apple App Store. Use /lapasta and /ciromap for product pages, privacy policies, and direct App Store links.',
+    },
+    {
+      question: 'How do I contact AZUMBO for publishing or a prototype quote?',
+      answer:
+        'Email azumbogames@gmail.com. Include your platform targets (iOS, Android, Switch), timeline, and whether you need prototype, publishing, or porting.',
     },
   ],
   it: [
@@ -42,6 +103,16 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
       answer:
         'I progetti dello studio includono Bird Lines, La Pasta: 60s Challenge, Ciro.Map e Azumbox, oltre a demo arcade web come Frogger, Pac-Man e Space Invaders.',
     },
+    {
+      question: 'Dove scarico La Pasta e Ciro.Map?',
+      answer:
+        'Entrambe le app sono gratuite sull’Apple App Store. Usa /lapasta e /ciromap per le pagine prodotto, privacy e link diretti allo Store.',
+    },
+    {
+      question: 'Come contatto AZUMBO per publishing o un preventivo di prototipo?',
+      answer:
+        'Scrivi a azumbogames@gmail.com. Indica piattaforme (iOS, Android, Switch), tempistiche e se ti serve prototipo, publishing o porting.',
+    },
   ],
   ru: [
     {
@@ -58,6 +129,16 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
       question: 'Какие проекты есть у AZUMBO?',
       answer:
         'Среди проектов студии — Bird Lines, La Pasta: 60s Challenge, Ciro.Map и Azumbox, а также веб-аркады Frogger, Pac-Man и Space Invaders.',
+    },
+    {
+      question: 'Где скачать La Pasta и Ciro.Map?',
+      answer:
+        'Оба приложения бесплатны в Apple App Store. Страницы /lapasta и /ciromap содержат описание, privacy и прямые ссылки в Store.',
+    },
+    {
+      question: 'Как связаться с AZUMBO по паблишингу или прототипу?',
+      answer:
+        'Пишите на azumbogames@gmail.com. Укажите платформы (iOS, Android, Switch), сроки и нужен ли прототип, паблишинг или порт.',
     },
   ],
 };

@@ -75,6 +75,7 @@ export function buildLanguageAlternates(pathname = '/') {
   };
 }
 
+/** Public content URLs safe to list in sitemap (no utility / session flows). */
 export const INDEXABLE_ROUTES = [
   '/pacman',
   '/frogger',
@@ -83,11 +84,9 @@ export const INDEXABLE_ROUTES = [
   '/cornettoclicker',
   '/cornettoclicker-landing',
   '/petonauta-landing',
-  '/game',
-  '/register',
-  '/stats',
-  '/finish',
   '/lapasta',
+  '/lapasta/privacy',
+  '/lapasta/support',
   '/ciromap',
   '/ciromap/privacy',
   '/azumbox',
@@ -100,6 +99,19 @@ export const INDEXABLE_ROUTES = [
   '/redlines/privacy',
   '/petonauta/privacy',
 ] as const;
+
+/** Session / demo utility paths — keep out of sitemap and mark noindex. */
+export const NOINDEX_PATHS = ['/register', '/stats', '/finish', '/game'] as const;
+
+export const noindexRobots: Metadata['robots'] = {
+  index: false,
+  follow: false,
+  googleBot: {
+    index: false,
+    follow: false,
+    noimageindex: true,
+  },
+};
 
 export const baseMetadata = (pathname: string): Metadata => ({
   metadataBase: new URL(SITE_URL),
@@ -201,6 +213,19 @@ export function buildHomeGraph(locale: Locale) {
         inLanguage: LOCALE_HTML_LANG[locale],
         isPartOf: { '@id': WEBSITE_ID },
         about: { '@id': ORGANIZATION_ID },
+        breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'AZUMBO',
+            item: pageUrl,
+          },
+        ],
       },
       {
         '@type': 'FAQPage',
@@ -215,7 +240,64 @@ export function buildHomeGraph(locale: Locale) {
           },
         })),
       },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${SITE_URL}/lapasta#app`,
+        name: 'La Pasta: 60s Challenge',
+        applicationCategory: 'GameApplication',
+        operatingSystem: 'iOS 18+',
+        url: `${SITE_URL}/lapasta`,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+        publisher: { '@id': ORGANIZATION_ID },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${SITE_URL}/ciromap#app`,
+        name: 'Ciro.Map',
+        applicationCategory: 'TravelApplication',
+        operatingSystem: 'iOS 17+',
+        url: `${SITE_URL}/ciromap`,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        publisher: { '@id': ORGANIZATION_ID },
+      },
     ],
+  };
+}
+
+export function buildFaqPageSchema(
+  pageUrl: string,
+  locale: Locale,
+  faqs: { question: string; answer: string }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: LOCALE_HTML_LANG[locale],
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function buildBreadcrumbSchema(
+  items: { name: string; path: string }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: buildCanonical(item.path),
+    })),
   };
 }
 

@@ -1,15 +1,22 @@
+import { JsonLd, SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
+import { LA_PASTA_FAQ } from '../../lib/lapastaFaq';
+import {
+  SITE_URL,
+  buildBreadcrumbSchema,
+  buildFaqPageSchema,
+  buildPageMetadata,
+} from '../../lib/seo';
+import { AppStoreButton, LaPastaFooter, LaPastaNav, LA_PASTA } from './components';
+import styles from './lapasta.module.css';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { buildPageMetadata } from '../../lib/seo';
-import { AppStoreButton, LaPastaFooter, LaPastaNav, LA_PASTA } from './components';
-import styles from './lapasta.module.css';
 
 export const metadata: Metadata = buildPageMetadata({
   pathname: '/lapasta',
-  title: 'La Pasta: 60s Challenge — iOS Game',
+  title: 'La Pasta: 60s Challenge — iOS Pasta Quiz Game',
   description:
-    'A premium 60-second iOS pasta shape quiz for iPhone and iPad. Shuffle glass jars, learn Italian categories, and build your collection.',
+    'La Pasta is a free iOS pasta-shape quiz for iPhone and iPad: glass jars shuffle, you name Italian categories, and collect shapes in 60-second rounds.',
 });
 
 const features = [
@@ -58,6 +65,24 @@ const museumShots = [
 export default function LaPastaLandingPage() {
   return (
     <div className={styles.shell}>
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: 'AZUMBO', path: '/en' },
+            { name: 'La Pasta', path: '/lapasta' },
+          ]),
+          buildFaqPageSchema(`${SITE_URL}/lapasta`, 'en', [...LA_PASTA_FAQ]),
+        ]}
+      />
+      <SoftwareApplicationJsonLd
+        name="La Pasta: 60s Challenge"
+        description="Italian pasta shape quiz for iPhone and iPad with glass-jar rounds, collection, and Daily Pasta."
+        url={`${SITE_URL}/lapasta`}
+        applicationCategory="GameApplication"
+        operatingSystem="iOS 18+"
+        image={`${SITE_URL}/lapasta/gameplay-screenshot.jpg`}
+        offers={{ price: '0', priceCurrency: 'EUR' }}
+      />
       <LaPastaNav />
       <main>
         <section className={`${styles.container} ${styles.hero}`}>
@@ -65,7 +90,8 @@ export default function LaPastaLandingPage() {
             <p className={styles.kicker}>For iPhone and iPad</p>
             <h1 className={styles.title}>La Pasta: 60s Challenge</h1>
             <p className={styles.subtitle}>
-              Italian pasta shape quiz for iPhone and iPad. Watch the glass jars shuffle, name the pasta family, and collect shapes in quick 60-second rounds.
+              <strong>Bottom line:</strong> La Pasta is a free Italian pasta-shape quiz for iPhone and iPad.
+              Watch the glass jars shuffle, name the pasta family, and collect shapes in quick 60-second rounds.
             </p>
             <div className={styles.actions}>
               <AppStoreButton />
@@ -134,6 +160,33 @@ export default function LaPastaLandingPage() {
                 </figcaption>
               </figure>
             ))}
+          </div>
+        </section>
+
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="faq-title">
+          <div className={styles.sectionHeader}>
+            <p className={styles.kicker}>FAQ</p>
+            <h2 id="faq-title" className={styles.sectionTitle}>Quick answers.</h2>
+            <p className={styles.sectionText}>
+              Short factual answers for search and AI overviews. Full support details live on the support page.
+            </p>
+          </div>
+          <div className={styles.legalCard}>
+            <div className={styles.faqList}>
+              {LA_PASTA_FAQ.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}</summary>
+                  <p className={styles.faqAnswer}>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+            <p className={styles.metaText} style={{ marginTop: '1.25rem' }}>
+              Need restore purchases or ad troubleshooting?{' '}
+              <Link className={styles.textLink} href="/lapasta/support">
+                Open La Pasta Support
+              </Link>
+              .
+            </p>
           </div>
         </section>
 

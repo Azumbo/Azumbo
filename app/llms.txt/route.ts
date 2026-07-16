@@ -11,6 +11,11 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - ${SITE_URL}/it
 - ${SITE_URL}/ru
 
+## Answer Hub (citeable FAQ)
+- ${SITE_URL}/en/answers
+- ${SITE_URL}/it/answers
+- ${SITE_URL}/ru/answers
+
 ## Studio projects
 - Bird Lines (match-3, in development): ${SITE_URL}/en/videos/bird-lines
 - La Pasta: 60s Challenge (iOS, live): ${SITE_URL}/lapasta

@@ -190,6 +190,21 @@ export default function CiroMapLandingClient() {
           </article>
         </section>
 
+        <section className={styles.card} aria-labelledby="faq-title">
+          <p className={styles.kicker}>{t.faqKicker}</p>
+          <h2 id="faq-title" className={styles.sectionTitle}>
+            {t.faqTitle}
+          </h2>
+          <div className={styles.faqList}>
+            {t.faqs.map((faq) => (
+              <details key={faq.question} className={styles.faqItem}>
+                <summary>{faq.question}</summary>
+                <p className={styles.bodyText}>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
         <section className={styles.downloadPanel} aria-labelledby="download-title">
           <div>
             <p className={styles.kicker}>{t.downloadKicker}</p>

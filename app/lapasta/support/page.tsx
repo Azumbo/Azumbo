@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '../../../lib/seo';
+import { JsonLd } from '../../../components/seo/JsonLd';
+import { SITE_URL, buildFaqPageSchema } from '../../../lib/seo';
 import { APP_STORE_URL, CONTACT_EMAIL, LaPastaFooter, LaPastaNav } from '../components';
 import styles from '../lapasta.module.css';
 
@@ -57,6 +58,7 @@ const faqs = [
 export default function LaPastaSupportPage() {
   return (
     <div className={styles.shell}>
+      <JsonLd data={buildFaqPageSchema(`${SITE_URL}/lapasta/support`, 'en', faqs)} />
       <LaPastaNav />
       <main>
         <section className={`${styles.container} ${styles.legalHero}`}>

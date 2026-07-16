@@ -1,35 +1,23 @@
-# SEO bot policy — azumbo.vercel.app
+# SEO bot policy — AZUMBO (https://azumbo.vercel.app)
 
-**Last updated:** 2026-07-04  
-**Primary host:** `https://azumbo.vercel.app`
+**Updated:** 2026-07-16
 
-## Policy summary
+## Intent
+- Allow search and answer-engine crawlers to discover and cite public pages.
+- Keep utility/demo session flows out of the index.
+- Keep crawl budget on commercial and informational URLs.
 
-All search and AI discovery crawlers listed in `lib/seo.ts` (`AI_AND_SEARCH_BOTS`) are **allowed** to crawl public pages and `/app-ads.txt`. There are **no Disallow rules** in production `robots.txt`.
+## Allowed (indexing / discovery)
+Googlebot, Bingbot, Yandex, OAI-SearchBot, GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Applebot, and related discovery bots listed in `lib/seo.ts` (`AI_AND_SEARCH_BOTS`).
 
-This supports:
+## Disallowed paths (robots.txt)
+- `/register`, `/stats`, `/finish`, `/game` — demo/session utility
+- `/api/` — application endpoints
 
-- Google Search indexing (Googlebot)
-- Google AI training/discovery surfaces (Google-Extended)
-- ChatGPT Search visibility (OAI-SearchBot, GPTBot)
-- Other major AI/search bots (Bingbot, Yandex, PerplexityBot, ClaudeBot, etc.)
+These paths also send `X-Robots-Tag: noindex, nofollow, noarchive` where applicable.
 
-## Video indexing policy
+## Soft-404 guard
+Unknown single-segment paths (for example former `/stats` homepage soft matches) return HTTP 404 + noindex so they do not pollute the index as duplicate locale pages.
 
-- **Homepage (`/en`, `/ru`, `/it`):** no `VideoObject` schema, no embedded `<video>`. Promo clips link to dedicated watch pages.
-- **Watch pages (`/{locale}/videos/bird-lines`):** primary video content with `VideoObject`, `FAQPage`, and `BreadcrumbList` JSON-LD.
-
-This follows Google's requirement that indexed videos live on a **watch page** whose main purpose is viewing that video.
-
-## Canonical & locale policy
-
-- `trailingSlash: false` — URLs never end with `/` except protocol/host.
-- `/` → `307` → `/{locale}` (default `en`).
-- `/{locale}/` → `308` → `/{locale}`.
-- Self-canonical + reciprocal hreflang on all locale homepages and watch pages.
-
-## Changing the policy
-
-1. Edit `AI_AND_SEARCH_BOTS` in `lib/seo.ts`.
-2. If blocking training bots, add explicit `disallow` rules in `app/robots.ts` **only** for bots you intend to block (e.g. `GPTBot`), while keeping `OAI-SearchBot` allowed for ChatGPT Search citation.
-3. Run `npm run seo:smoke` and `npm run seo:live` after deploy.
+## Sitemap source of truth
+`app/sitemap.ts` lists only indexable content URLs (locale homes, Answer Hub, watch pages, product landings, legal). Utility routes are excluded.

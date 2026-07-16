@@ -8,7 +8,7 @@ import {
   INDEXABLE_ROUTES,
 } from '../lib/seo';
 
-const LAST_MODIFIED = new Date('2026-07-05T00:00:00.000Z');
+const LAST_MODIFIED = new Date('2026-07-16T00:00:00.000Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localeHomepages = SUPPORTED_LOCALES.map((locale) => {
@@ -37,6 +37,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const answerHubPages = SUPPORTED_LOCALES.map((locale) => {
+    const path = `/${locale}/answers`;
+    return {
+      url: `${SITE_URL}${path}`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+      alternates: {
+        languages: buildLanguageAlternates('/answers'),
+      },
+    };
+  });
+
   const mergedRoutes = [...INDEXABLE_ROUTES, ...getPublicAppRoutes()];
   const staticPaths = mergedRoutes.filter(
     (path, index) => mergedRoutes.indexOf(path) === index
@@ -49,14 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path.startsWith('/lapasta') || path === '/ciromap' ? 0.9 : 0.7,
   }));
 
-  const infrastructure = [
-    {
-      url: `${SITE_URL}/app-ads.txt`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly' as const,
-      priority: 0.3,
-    },
-  ];
-
-  return [...localeHomepages, ...birdLinesWatchPages, ...staticRoutes, ...infrastructure];
+  return [...localeHomepages, ...birdLinesWatchPages, ...answerHubPages, ...staticRoutes];
 }

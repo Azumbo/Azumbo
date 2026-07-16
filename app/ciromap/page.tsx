@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { APP_STORE_PROMO } from '../../lib/ciromap-store-content';
-import { SITE_URL } from '../../lib/seo';
+import { JsonLd, SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
+import { APP_STORE_PROMO, LANDING_COPY } from '../../lib/ciromap-store-content';
+import { SITE_URL, buildBreadcrumbSchema, buildFaqPageSchema } from '../../lib/seo';
 import { CIRO_MAP } from './components';
 import CiroMapLandingClient from './LandingClient';
 
@@ -30,5 +31,29 @@ export const metadata: Metadata = {
 };
 
 export default function CiroMapLandingPage() {
-  return <CiroMapLandingClient />;
+  const faqs = LANDING_COPY.en.faqs;
+
+  return (
+    <>
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: 'AZUMBO', path: '/en' },
+            { name: 'Ciro.Map', path: '/ciromap' },
+          ]),
+          buildFaqPageSchema(`${SITE_URL}/ciromap`, 'en', faqs),
+        ]}
+      />
+      <SoftwareApplicationJsonLd
+        name="Ciro.Map"
+        description={APP_STORE_PROMO}
+        url={`${SITE_URL}/ciromap`}
+        applicationCategory="TravelApplication"
+        operatingSystem="iOS 17+"
+        image={OG_IMAGE}
+        offers={{ price: '0', priceCurrency: 'USD' }}
+      />
+      <CiroMapLandingClient />
+    </>
+  );
 }

@@ -7,7 +7,7 @@ import { SiteHeader } from '../../components/site/SiteHeader';
 import { JsonLd } from '../../components/seo/JsonLd';
 import { birdLinesWatchPath } from '../../lib/birdLinesVideo';
 import { getAppBySlug } from '../../lib/apps';
-import { HOME_BLUF, HOME_FAQ } from '../../lib/homeFaq';
+import { HOME_BLUF, HOME_CHOOSE, HOME_FAQ } from '../../lib/homeFaq';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
 
 const CIRO_MAP_APP_STORE_URL = getAppBySlug('ciromap')!.appStoreUrl;
@@ -68,6 +68,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     faqTitle: 'FAQ',
     pressLine: 'For publishers & press: azumbogames@gmail.com',
     ciroPrivacy: 'Ciro.Map Privacy',
+    answersNav: 'Answers',
+    answersLink: 'Browse Answer Hub',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Italian pasta shape quiz',
     lapastaDescription:
@@ -134,6 +136,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     faqTitle: 'Domande frequenti',
     pressLine: 'Per editori e stampa: azumbogames@gmail.com',
     ciroPrivacy: 'Privacy Ciro.Map',
+    answersNav: 'Risposte',
+    answersLink: 'Apri Answer Hub',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Quiz sulle forme di pasta',
     lapastaDescription:
@@ -200,6 +204,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     faqTitle: 'Частые вопросы',
     pressLine: 'Для издателей и прессы: azumbogames@gmail.com',
     ciroPrivacy: 'Конфиденциальность Ciro.Map',
+    answersNav: 'Ответы',
+    answersLink: 'Открыть Answer Hub',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Итальянская викторина о пасте',
     lapastaDescription:
@@ -282,6 +288,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         navLinks={[
           { href: '#games', label: t.navGames },
           { href: '#services', label: t.navServices },
+          { href: `/${routeLang}/answers`, label: t.answersNav },
           { href: '#contact', label: t.navContact },
           { href: '/lapasta', label: t.navLaPasta },
         ]}
@@ -435,6 +442,33 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           <p className="type-kicker">{t.valuesTitle}</p>
           <p className="type-body-strong mt-3 text-base">{t.valuesItems}</p>
         </article>
+      </section>
+
+      <section id="choose" className="site-container section-gap">
+        <h2 className="type-display text-3xl">{HOME_CHOOSE[routeLang].title}</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <article className="glass-panel gpu-layer p-8 sm:p-10">
+            <h3 className="type-title text-lg">{HOME_CHOOSE[routeLang].yesTitle}</h3>
+            <ul className="type-body mt-5 list-disc space-y-3 pl-5 text-sm">
+              {HOME_CHOOSE[routeLang].yes.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+          <article className="glass-panel gpu-layer p-8 sm:p-10">
+            <h3 className="type-title text-lg">{HOME_CHOOSE[routeLang].noTitle}</h3>
+            <ul className="type-body mt-5 list-disc space-y-3 pl-5 text-sm">
+              {HOME_CHOOSE[routeLang].no.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+        <div className="mt-8">
+          <Link href={`/${routeLang}/answers`} className="btn-ghost gpu-layer">
+            {t.answersLink}
+          </Link>
+        </div>
       </section>
 
       <section id="faq" className="site-container section-gap">
