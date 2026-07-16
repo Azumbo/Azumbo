@@ -43,15 +43,15 @@ const features = [
 const museumShots = [
   {
     src: '/lapasta/museum-mandilli.jpg',
-    alt: 'Museum of Pasta — Mandilli de saea, Ligurian silk handkerchiefs with pesto',
+    alt: 'La Pasta Museum of Pasta — Mandilli de saea full-screen artwork',
     name: 'Mandilli de saea',
     note: 'Insolita · Liguria',
   },
   {
-    src: '/lapasta/museum-pillus.jpg',
-    alt: 'Museum of Pasta — Pillus, Sardinian disks baked like lasagna',
-    name: 'Pillus',
-    note: 'Insolita · Sardinia',
+    src: '/lapasta/museum-collection.jpg',
+    alt: 'La Pasta Collection — Orecchiette, Corzetti, Mandilli de saea, and Pillus',
+    name: 'Collection',
+    note: 'Insolita · Mandilli & Pillus',
   },
 ];
 

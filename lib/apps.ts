@@ -20,7 +20,7 @@ export const apps: StudioApp[] = [
     name: 'La Pasta: 60s Challenge',
     slug: 'lapasta',
     appStoreId: '6774466615',
-    appStoreUrl: 'https://apps.apple.com/app/id6774466615',
+    appStoreUrl: 'https://apps.apple.com/it/app/la-pasta-60s-challenge/id6774466615?l=en-GB',
     bundleId: 'com.azumbogames.lapasta',
     description: 'A warm Italian pasta shape quiz for iPhone and iPad: watch the glass jars shuffle, pick the right category, and build your collection in quick 60-second rounds.',
     icon: '🍝',
