@@ -40,6 +40,21 @@ const features = [
   },
 ];
 
+const museumShots = [
+  {
+    src: '/lapasta/museum-mandilli.jpg',
+    alt: 'Museum of Pasta — Mandilli de saea, Ligurian silk handkerchiefs with pesto',
+    name: 'Mandilli de saea',
+    note: 'Insolita · Liguria',
+  },
+  {
+    src: '/lapasta/museum-pillus.jpg',
+    alt: 'Museum of Pasta — Pillus, Sardinian disks baked like lasagna',
+    name: 'Pillus',
+    note: 'Insolita · Sardinia',
+  },
+];
+
 export default function LaPastaLandingPage() {
   return (
     <div className={styles.shell}>
@@ -47,7 +62,7 @@ export default function LaPastaLandingPage() {
       <main>
         <section className={`${styles.container} ${styles.hero}`}>
           <div className={styles.heroCopy}>
-            <p className={styles.kicker}>iPhone + iPad · iOS 18+</p>
+            <p className={styles.kicker}>For iPhone and iPad</p>
             <h1 className={styles.title}>La Pasta: 60s Challenge</h1>
             <p className={styles.subtitle}>
               Italian pasta shape quiz for iPhone and iPad. Watch the glass jars shuffle, name the pasta family, and collect shapes in quick 60-second rounds.
@@ -92,13 +107,43 @@ export default function LaPastaLandingPage() {
           </div>
         </section>
 
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="museum-title">
+          <div className={styles.sectionHeader}>
+            <p className={styles.kicker}>Museum of Pasta</p>
+            <h2 id="museum-title" className={styles.sectionTitle}>The unusual shapes.</h2>
+            <p className={styles.sectionText}>
+              Collection is not only classics. Insolita brings rare regional forms — silk handkerchiefs from Liguria, baked disks from Sardinia — into a quiet full-screen browse.
+            </p>
+          </div>
+
+          <div className={styles.museumGrid}>
+            {museumShots.map((shot) => (
+              <figure className={styles.museumCard} key={shot.name}>
+                <div className={styles.phoneMock}>
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={390}
+                    height={844}
+                    className={styles.museumScreenshot}
+                  />
+                </div>
+                <figcaption className={styles.museumCaption}>
+                  <strong>{shot.name}</strong>
+                  <span>{shot.note}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section className={`${styles.container} ${styles.section}`} aria-labelledby="download-title">
           <div className={`${styles.downloadPanel} ${styles.glassCard}`}>
             <div>
-              <span className={styles.badge}>Remove Ads · €0.99</span>
-              <h2 id="download-title" className={styles.sectionTitle}>Download on the App Store.</h2>
+              <span className={styles.badge}>Remove Ads · one-time purchase</span>
+              <h2 id="download-title" className={styles.sectionTitle}>Get it on the App Store.</h2>
               <p className={styles.sectionText}>
-                Free to start with optional ads. A one-time Remove Ads in-app purchase is available when you want an uninterrupted plate.
+                Free to start with optional ads. A one-time Remove Ads purchase is available when you want an uninterrupted plate.
               </p>
             </div>
             <AppStoreButton compact />

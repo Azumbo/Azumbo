@@ -42,10 +42,27 @@ export function LaPastaFooter() {
   );
 }
 
+/** Official Apple badge — Marketing Resources and Identity Guidelines. */
+const APP_STORE_BADGE_ALT = 'Download on the App Store';
+
 export function AppStoreButton({ compact = false }: { compact?: boolean }) {
   return (
-    <a className={styles.cta} href={APP_STORE_URL} aria-label="Download La Pasta on the App Store">
-      {compact ? 'App Store' : 'Download on the App Store'}
+    <a
+      className={compact ? styles.appStoreBadgeLinkCompact : styles.appStoreBadgeLink}
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Download La Pasta on the App Store"
+    >
+      {/* Official badge artwork — do not modify, angle, or animate. */}
+      <img
+        className={styles.appStoreBadge}
+        src="/lapasta/download-on-the-app-store.svg"
+        alt={APP_STORE_BADGE_ALT}
+        width={compact ? 120 : 156}
+        height={compact ? 40 : 52}
+        decoding="async"
+      />
     </a>
   );
 }

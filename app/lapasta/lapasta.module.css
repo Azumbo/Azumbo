@@ -105,7 +105,9 @@
 .footerLinks a:focus-visible,
 .textLink:focus-visible,
 .cta:focus-visible,
-.secondaryCta:focus-visible {
+.secondaryCta:focus-visible,
+.appStoreBadgeLink:focus-visible,
+.appStoreBadgeLinkCompact:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(196, 165, 116, 0.28), 0 0 0 1px #c4a574;
 }
@@ -236,6 +238,37 @@
   transition: all 500ms ease-out;
 }
 
+/* Official App Store badge — clear space ≈ ¼ badge height; no styling on artwork */
+.appStoreBadgeLink,
+.appStoreBadgeLinkCompact {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.appStoreBadgeLink {
+  padding: 13px 0; /* ~¼ of 52px badge height */
+}
+
+.appStoreBadgeLinkCompact {
+  padding: 10px 0;
+}
+
+.appStoreBadge {
+  display: block;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.appStoreBadgeLink:hover,
+.appStoreBadgeLinkCompact:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
 .cta {
   color: #ffffff !important;
   background: linear-gradient(135deg, #d4bc8e, #c4a574);
@@ -262,6 +295,46 @@
   background: rgba(255, 255, 255, 0.96);
   border-color: rgba(0, 0, 0, 0.12);
   color: #d4bc8e !important;
+}
+
+.museumGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.museumCard {
+  margin: 0;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.museumScreenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  max-height: 560px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.museumCaption {
+  display: grid;
+  gap: 4px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.museumCaption strong {
+  color: #1a1a1a;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 /* ── Glass cards (shared material) ── */
@@ -579,8 +652,13 @@
   }
 
   .featuresGrid,
-  .choiceGrid {
+  .choiceGrid,
+  .museumGrid {
     grid-template-columns: 1fr;
+  }
+
+  .museumCard .phoneMock {
+    max-width: 280px;
   }
 
   .phoneMock {
