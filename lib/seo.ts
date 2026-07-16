@@ -90,13 +90,8 @@ export const INDEXABLE_ROUTES = [
   '/ciromap',
   '/ciromap/privacy',
   '/azumbox',
-  '/legal/privacy',
-  '/legal/terms',
-  '/legal/cookies',
-  '/legal/gdpr-ccpa',
   '/support',
   '/cornettoclicker/privacy',
-  '/redlines/privacy',
   '/petonauta/privacy',
 ] as const;
 

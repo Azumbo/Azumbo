@@ -16,7 +16,7 @@ type AnswerHubCopy = {
 
 export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
   en: {
-    metaTitle: 'AZUMBO Answers — Studio, Apps & Services FAQ',
+    metaTitle: 'Answers — Studio, Apps & Services FAQ',
     metaDescription:
       'Short expert answers about AZUMBO, La Pasta, Ciro.Map, Bird Lines, prototype sprints, and Nintendo Switch porting.',
     kicker: 'Answer Hub',
@@ -59,7 +59,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
     ],
   },
   it: {
-    metaTitle: 'Risposte AZUMBO — Studio, App e Servizi',
+    metaTitle: 'Risposte — Studio, App e Servizi',
     metaDescription:
       'Risposte brevi su AZUMBO, La Pasta, Ciro.Map, Bird Lines, sprint di prototipo e porting su Nintendo Switch.',
     kicker: 'Answer Hub',
@@ -102,7 +102,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
     ],
   },
   ru: {
-    metaTitle: 'Ответы AZUMBO — студия, приложения и услуги',
+    metaTitle: 'Ответы — студия, приложения и услуги',
     metaDescription:
       'Короткие ответы про AZUMBO, La Pasta, Ciro.Map, Bird Lines, прототип-спринты и портирование на Nintendo Switch.',
     kicker: 'Answer Hub',

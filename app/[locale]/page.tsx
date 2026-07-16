@@ -22,6 +22,7 @@ const isLang = (value: string): value is Lang => isSupportedLocale(value);
 const STRINGS: Record<Lang, Record<string, string>> = {
   en: {
     title: 'AZUMBO | Indie Mobile Game Studio',
+    seoTitle: 'Indie Mobile Game Studio',
     seoDesc:
       'US indie studio building mobile and Nintendo Switch games. Prototype sprints, publishing, UA support, and platform ports for Android and iOS.',
     kicker: 'Mobile-first games with humor & heart.',
@@ -91,6 +92,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
+    seoTitle: 'Studio Giochi Indie',
     seoDesc: 'Sviluppo giochi mobile e Switch in Calabria. Scopri Bird Lines e i nostri servizi di prototipazione.',
     kicker: 'Giochi mobile-first con umorismo e cuore.',
     subtitle: 'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
@@ -159,6 +161,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
+    seoTitle: 'Инди-студия игр',
     seoDesc: 'Разработка мобильных игр и портов на Switch. Bird Lines — match-3 по книге в атмосфере Парижа.',
     kicker: 'Мобильные игры с юмором и душой',
     subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
@@ -235,14 +238,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     ...baseMetadata(canonicalPath),
-    title: t.title,
+    title: t.seoTitle,
     description: t.seoDesc,
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
       languages: buildLanguageAlternates(canonicalPath)
     },
     openGraph: {
-      title: t.title,
+      title: `${t.seoTitle} | AZUMBO`,
       description: t.seoDesc,
       url: `${SITE_URL}${canonicalPath}`,
       siteName: 'AZUMBO',
@@ -253,7 +256,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: 'summary_large_image',
-      title: t.title,
+      title: `${t.seoTitle} | AZUMBO`,
       description: t.seoDesc,
       images: [`${SITE_URL}/logo/Azumbo Logo no background small size.jpeg`],
     },

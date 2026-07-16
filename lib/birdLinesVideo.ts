@@ -41,7 +41,7 @@ type BirdLinesCopy = {
 
 export const BIRD_LINES_COPY: Record<Locale, BirdLinesCopy> = {
   en: {
-    metaTitle: 'Bird Lines — From Pages to Pixels | AZUMBO',
+    metaTitle: 'Bird Lines — From Pages to Pixels',
     metaDescription:
       'Watch the Bird Lines reveal trailer: a match-3 journey inspired by City In The Plane, set in Paris with Ellie.',
     breadcrumbHome: 'Home',
@@ -75,7 +75,7 @@ export const BIRD_LINES_COPY: Record<Locale, BirdLinesCopy> = {
       'Official Bird Lines reveal trailer: a match-3 journey inspired by City In The Plane, featuring Ellie in Paris where puzzles meet storytelling.',
   },
   it: {
-    metaTitle: 'Bird Lines — Dalle pagine ai pixel | AZUMBO',
+    metaTitle: 'Bird Lines — Dalle pagine ai pixel',
     metaDescription:
       'Guarda il trailer di Bird Lines: un match-3 ispirato a City In The Plane, ambientato a Parigi con Ellie.',
     breadcrumbHome: 'Home',
@@ -109,7 +109,7 @@ export const BIRD_LINES_COPY: Record<Locale, BirdLinesCopy> = {
       'Trailer ufficiale di Bird Lines: un match-3 ispirato a City In The Plane con Ellie a Parigi, dove puzzle e storytelling si incontrano.',
   },
   ru: {
-    metaTitle: 'Bird Lines — От страниц к пикселям | AZUMBO',
+    metaTitle: 'Bird Lines — От страниц к пикселям',
     metaDescription:
       'Смотрите трейлер Bird Lines: match-3 по мотивам City In The Plane, действие в Париже с Элли.',
     breadcrumbHome: 'Главная',
