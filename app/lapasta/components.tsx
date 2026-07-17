@@ -1,64 +1,98 @@
-import Link from 'next/link';
-import styles from './lapasta.module.css';
+'use client';
 
+import Link from 'next/link';
+import {
+  LAPASTA_LOCALES,
+  type LaPastaLocale,
+  type LandingCopy,
+} from '../../lib/lapasta-store-content';
 import { apps, CONTACT_EMAIL as STUDIO_CONTACT_EMAIL } from '../../lib/apps';
+import styles from './lapasta.module.css';
 
 export const CONTACT_EMAIL = STUDIO_CONTACT_EMAIL;
 
 export const LA_PASTA = apps.find((app) => app.slug === 'lapasta')!;
 export const APP_STORE_URL = LA_PASTA.appStoreUrl;
 
-export function LaPastaNav() {
+type ChromeProps = {
+  copy: LandingCopy;
+  locale: LaPastaLocale;
+  onLocaleChange: (locale: LaPastaLocale) => void;
+};
+
+export function LaPastaNav({ copy, locale, onLocaleChange }: ChromeProps) {
   return (
     <header className={styles.nav}>
       <div className={styles.navInner}>
-        <Link className={styles.brand} href="/lapasta" aria-label="La Pasta home">
-          <span className={styles.brandMark} aria-hidden="true">🍝</span>
+        <Link className={styles.brand} href="/lapasta" aria-label={copy.brandHomeAria}>
+          <span className={styles.brandMark} aria-hidden="true">
+            🍝
+          </span>
           <span>La Pasta</span>
         </Link>
-        <nav className={styles.navLinks} aria-label="La Pasta navigation">
-          <Link href="/lapasta">App</Link>
-          <Link href="/lapasta/privacy">Privacy</Link>
-          <Link href="/lapasta/support">Support</Link>
-          <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
-        </nav>
+        <div className={styles.navActions}>
+          <div className={styles.langSwitch} role="group" aria-label={copy.langSwitcherAria}>
+            {LAPASTA_LOCALES.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={locale === item.id ? styles.langButtonActive : styles.langButton}
+                aria-pressed={locale === item.id}
+                onClick={() => onLocaleChange(item.id)}
+              >
+                {item.short}
+              </button>
+            ))}
+          </div>
+          <nav className={styles.navLinks} aria-label={copy.navAria}>
+            <Link href="/lapasta">{copy.navApp}</Link>
+            <Link href="/lapasta/privacy">{copy.navPrivacy}</Link>
+            <Link href="/lapasta/support">{copy.navSupport}</Link>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{copy.navContact}</a>
+          </nav>
+        </div>
       </div>
     </header>
   );
 }
 
-export function LaPastaFooter() {
+export function LaPastaFooter({ copy }: { copy: LandingCopy }) {
   return (
     <footer className={styles.footer}>
       <div className={`${styles.container} ${styles.footerInner}`}>
-        <p className={styles.sectionText}>© 2026 Azumbo Games. La Pasta is crafted for iPhone and iPad.</p>
-        <nav className={styles.footerLinks} aria-label="Footer navigation">
-          <Link href="/lapasta/privacy">Privacy</Link>
-          <Link href="/lapasta/support">Support</Link>
-          <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+        <p className={styles.sectionText}>{copy.footerCredit}</p>
+        <nav className={styles.footerLinks} aria-label={copy.footerAria}>
+          <Link href="/lapasta/privacy">{copy.navPrivacy}</Link>
+          <Link href="/lapasta/support">{copy.navSupport}</Link>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{copy.navContact}</a>
         </nav>
       </div>
     </footer>
   );
 }
 
-/** Official Apple badge — Marketing Resources and Identity Guidelines. */
-const APP_STORE_BADGE_ALT = 'Download on the App Store';
-
-export function AppStoreButton({ compact = false }: { compact?: boolean }) {
+export function AppStoreButton({
+  compact = false,
+  ariaLabel = 'Download La Pasta on the App Store',
+  badgeAlt = 'Download on the App Store',
+}: {
+  compact?: boolean;
+  ariaLabel?: string;
+  badgeAlt?: string;
+}) {
   return (
     <a
       className={compact ? styles.appStoreBadgeLinkCompact : styles.appStoreBadgeLink}
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download La Pasta on the App Store"
+      aria-label={ariaLabel}
     >
       {/* Official badge artwork — do not modify, angle, or animate. */}
       <img
         className={styles.appStoreBadge}
         src="/lapasta/download-on-the-app-store.svg"
-        alt={APP_STORE_BADGE_ALT}
+        alt={badgeAlt}
         width={compact ? 120 : 156}
         height={compact ? 40 : 52}
         decoding="async"
