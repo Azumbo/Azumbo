@@ -393,24 +393,25 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             description={t.azumboxDescription}
             status={t.azumboxStatus}
             ctaLabel={t.azumboxCTA}
-            ctaHref="/azumbox"
+            ctaHref={`/${routeLang}/videos/azumbox`}
             visual={
               <Link
-                href="/azumbox"
-                className="glass-panel gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden p-2 sm:h-72"
+                href={`/${routeLang}/videos/azumbox`}
+                className="group glass-panel gpu-layer relative mx-auto block h-64 w-full max-w-xs overflow-hidden sm:h-72"
                 aria-label={t.azumboxTitle}
               >
-                <video
-                  src="/azumbox-demo.mp4"
-                  className="h-full w-full rounded-[1.5rem] border border-neutral-200 object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  poster="/assets/logo/azumbo-logo.png"
-                  aria-label={`${t.azumboxTitle} demo preview`}
+                <Image
+                  src="/assets/logo/azumbo-logo.png"
+                  alt="Azumbox demo preview"
+                  width={320}
+                  height={288}
+                  className="h-full w-full object-contain p-10 opacity-90"
                 />
+                <span className="absolute inset-0 flex items-center justify-center bg-neutral-900/10 transition-all duration-500 ease-out group-hover:bg-neutral-900/20">
+                  <span className="glass-panel rounded-full px-5 py-2.5 text-sm font-light text-ink-primary shadow-none">
+                    ▶ {t.azumboxCTA}
+                  </span>
+                </span>
               </Link>
             }
           />

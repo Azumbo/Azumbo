@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/site/SiteHeader';
 
@@ -131,12 +132,24 @@ export default function AzumboxPage() {
 
         <div className="mx-auto mt-12 w-full max-w-[24rem]">
           <div className="glass-panel gpu-layer overflow-hidden p-2">
-            <div className="overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-neutral-50">
-              <video autoPlay loop muted playsInline className="aspect-[9/16] max-h-[70vh] w-full object-cover">
-                <source src="/azumbox-demo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+            <Link
+              href={lang === 'en' ? '/en/videos/azumbox' : `/${lang}/videos/azumbox`}
+              className="group relative block overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-neutral-50"
+              aria-label={t.videoLabel}
+            >
+              <Image
+                src="/assets/logo/azumbo-logo.png"
+                alt="Azumbox demo preview"
+                width={720}
+                height={1280}
+                className="aspect-[9/16] max-h-[70vh] w-full object-contain p-16 opacity-90"
+              />
+              <span className="absolute inset-0 flex items-center justify-center bg-neutral-900/10 transition group-hover:bg-neutral-900/20">
+                <span className="glass-panel rounded-full px-5 py-2.5 text-sm font-light text-ink-primary shadow-none">
+                  ▶ {t.videoLabel}
+                </span>
+              </span>
+            </Link>
             <p className="type-kicker mt-4 text-center">{t.videoHint}</p>
           </div>
         </div>

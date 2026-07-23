@@ -37,6 +37,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const azumboxWatchPages = SUPPORTED_LOCALES.map((locale) => {
+    const path = `/${locale}/videos/azumbox`;
+    return {
+      url: `${SITE_URL}${path}`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: buildLanguageAlternates('/videos/azumbox'),
+      },
+    };
+  });
+
   const answerHubPages = SUPPORTED_LOCALES.map((locale) => {
     const path = `/${locale}/answers`;
     return {
@@ -62,5 +75,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path.startsWith('/lapasta') || path === '/ciromap' ? 0.9 : 0.7,
   }));
 
-  return [...localeHomepages, ...birdLinesWatchPages, ...answerHubPages, ...staticRoutes];
+  return [
+    ...localeHomepages,
+    ...birdLinesWatchPages,
+    ...azumboxWatchPages,
+    ...answerHubPages,
+    ...staticRoutes,
+  ];
 }
