@@ -46,6 +46,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navServices: 'Services',
     navContact: 'Contact',
     navLaPasta: 'La Pasta',
+    navAInclusive: 'AInclusive',
     servicesTitle: 'Services',
     servicesSubtitle: 'From prototype sprints to publishing and platform ports.',
     srvProtoTitle: 'Prototype Sprint',
@@ -71,6 +72,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciroPrivacy: 'Ciro.Map Privacy',
     answersNav: 'Answers',
     answersLink: 'Browse Answer Hub',
+    ainclusiveTitle: 'AInclusive',
+    ainclusiveSubtitle: 'Accessible lessons for every learner',
+    ainclusiveDescription:
+      'An Education app for teachers, parents, and LSAs: photograph or paste worksheets and turn them into inclusive lesson materials on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
+    ainclusiveStatus: 'Status: App Store ready · TestFlight / school pilots',
+    ainclusiveCTA: 'View app',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Italian pasta shape quiz',
     lapastaDescription:
@@ -115,6 +122,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navServices: 'Servizi',
     navContact: 'Contatto',
     navLaPasta: 'La Pasta',
+    navAInclusive: 'AInclusive',
     servicesTitle: 'Servizi',
     servicesSubtitle: 'Dallo sprint di prototipo al publishing e porting su console.',
     srvProtoTitle: 'Sprint di Prototipo',
@@ -140,6 +148,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciroPrivacy: 'Privacy Ciro.Map',
     answersNav: 'Risposte',
     answersLink: 'Apri Answer Hub',
+    ainclusiveTitle: 'AInclusive',
+    ainclusiveSubtitle: 'Lezioni accessibili per ogni studente',
+    ainclusiveDescription:
+      'App Education per insegnanti, genitori e LSA: fotografa o incolla schede e trasformale in materiali inclusivi su iPhone, iPad e Mac. Inglese, ebraico e italiano.',
+    ainclusiveStatus: 'Stato: Pronto per App Store · TestFlight / piloti scolastici',
+    ainclusiveCTA: 'Vedi app',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Quiz sulle forme di pasta',
     lapastaDescription:
@@ -184,6 +198,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     navServices: 'Услуги',
     navContact: 'Контакты',
     navLaPasta: 'La Pasta',
+    navAInclusive: 'AInclusive',
     servicesTitle: 'Услуги',
     servicesSubtitle: 'От прототипов до паблишинга и портирования на консоли.',
     srvProtoTitle: 'Прототип-спринт',
@@ -209,6 +224,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciroPrivacy: 'Конфиденциальность Ciro.Map',
     answersNav: 'Ответы',
     answersLink: 'Открыть Answer Hub',
+    ainclusiveTitle: 'AInclusive',
+    ainclusiveSubtitle: 'Доступные уроки для каждого ученика',
+    ainclusiveDescription:
+      'Education-приложение для учителей, родителей и LSA: сфотографируйте или вставьте worksheet и получите инклюзивные материалы на iPhone, iPad и Mac. Английский, иврит и итальянский.',
+    ainclusiveStatus: 'Статус: Готово к App Store · TestFlight / школьные пилоты',
+    ainclusiveCTA: 'Смотреть приложение',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Итальянская викторина о пасте',
     lapastaDescription:
@@ -293,6 +314,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           { href: '#services', label: t.navServices },
           { href: `/${routeLang}/answers`, label: t.answersNav },
           { href: '#contact', label: t.navContact },
+          { href: '/ainclusive', label: t.navAInclusive },
           { href: '/lapasta', label: t.navLaPasta },
         ]}
         localeLinks={(['en', 'it', 'ru'] as Lang[]).map((k) => ({
@@ -359,6 +381,30 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                     ▶ {t.videoLinkLabel}
                   </span>
                 </span>
+              </Link>
+            }
+          />
+
+          <ProjectSpotlight
+            title={t.ainclusiveTitle}
+            subtitle={t.ainclusiveSubtitle}
+            description={t.ainclusiveDescription}
+            status={t.ainclusiveStatus}
+            ctaLabel={t.ainclusiveCTA}
+            ctaHref="/ainclusive"
+            visual={
+              <Link
+                href="/ainclusive"
+                className="gpu-layer mx-auto block h-64 w-full max-w-xs overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-white shadow-sm sm:h-72"
+                aria-label={t.ainclusiveTitle}
+              >
+                <Image
+                  src="/ainclusive/app-preview.png"
+                  alt="AInclusive home screen on iPhone"
+                  width={390}
+                  height={844}
+                  className="h-full w-full object-cover object-[center_12%]"
+                />
               </Link>
             }
           />
@@ -491,6 +537,10 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <p className="type-body text-sm">{t.footer}</p>
         <p className="type-body mt-3 text-xs">{t.pressLine}</p>
         <p className="mt-4 text-xs">
+          <Link href="/ainclusive" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne hover:underline">
+            AInclusive
+          </Link>
+          <span className="mx-2 text-neutral-300">·</span>
           <Link href="/lapasta" className="text-ink-secondary transition-all duration-500 ease-out hover:text-champagne hover:underline">
             La Pasta
           </Link>
