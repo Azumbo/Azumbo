@@ -199,7 +199,7 @@ export function buildHomeGraph(locale: Locale) {
         url: SITE_URL,
         name: 'AZUMBO',
         description:
-          'Indie game studio building mobile and Nintendo Switch games for English, Italian, and Russian audiences.',
+          'Indie studio building mobile and Nintendo Switch games and Education apps such as AInclusive for English, Italian, and Russian audiences.',
         publisher: { '@id': ORGANIZATION_ID },
         inLanguage: ['en-US', 'it-IT', 'ru-RU'],
       },
@@ -237,6 +237,17 @@ export function buildHomeGraph(locale: Locale) {
             text: faq.answer,
           },
         })),
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${SITE_URL}/ainclusive#app`,
+        name: 'AInclusive',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'iOS 17+, macOS',
+        url: `${SITE_URL}/ainclusive`,
+        inLanguage: ['en', 'he', 'it'],
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+        publisher: { '@id': ORGANIZATION_ID },
       },
       {
         '@type': 'SoftwareApplication',

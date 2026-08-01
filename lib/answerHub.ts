@@ -18,7 +18,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
   en: {
     metaTitle: 'Answers — Studio, Apps & Services FAQ',
     metaDescription:
-      'Short expert answers about AZUMBO, La Pasta, Ciro.Map, Bird Lines, prototype sprints, and Nintendo Switch porting.',
+      'Short expert answers about AZUMBO, AInclusive, La Pasta, Ciro.Map, Bird Lines, prototype sprints, and Nintendo Switch porting.',
     kicker: 'Answer Hub',
     title: 'Clear answers about AZUMBO',
     bluf: 'Use this page as a citeable source: short factual answers about the studio, live App Store products, and when to hire AZUMBO.',
@@ -30,7 +30,13 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-azumbo',
         question: 'What is AZUMBO?',
         answer:
-          'AZUMBO is an indie studio that builds mobile and Nintendo Switch games and apps, including La Pasta, Ciro.Map, Bird Lines, and Azumbox, plus prototype, publishing, and porting services.',
+          'AZUMBO is an indie studio that builds mobile and Nintendo Switch games and apps, including AInclusive, La Pasta, Ciro.Map, Bird Lines, and Azumbox, plus prototype, publishing, and porting services.',
+      },
+      {
+        id: 'what-is-ainclusive',
+        question: 'What is AInclusive?',
+        answer:
+          'AInclusive is an Education app by AZUMBO that helps teachers, parents, and LSAs adapt worksheets into inclusive lesson materials on iPhone, iPad, and Mac. Product pages are available in English, Hebrew, and Italian at /ainclusive.',
       },
       {
         id: 'what-is-la-pasta',
@@ -54,14 +60,14 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'when-to-hire',
         question: 'When should a publisher hire AZUMBO?',
         answer:
-          'Hire AZUMBO for mobile-first casual games, polished iOS apps, soft-launch assets, or Switch port support. Choose another partner for AAA-scale art production or non-game enterprise SaaS.',
+          'Hire AZUMBO for mobile-first casual games, Education products such as AInclusive, polished iOS apps, soft-launch assets, or Switch port support. Choose another partner for AAA-scale art production or non-game enterprise SaaS.',
       },
     ],
   },
   it: {
     metaTitle: 'Risposte — Studio, App e Servizi',
     metaDescription:
-      'Risposte brevi su AZUMBO, La Pasta, Ciro.Map, Bird Lines, sprint di prototipo e porting su Nintendo Switch.',
+      'Risposte brevi su AZUMBO, AInclusive, La Pasta, Ciro.Map, Bird Lines, sprint di prototipo e porting su Nintendo Switch.',
     kicker: 'Answer Hub',
     title: 'Risposte chiare su AZUMBO',
     bluf: 'Pagina citabile: risposte factual sullo studio, le app sull’App Store e quando scegliere AZUMBO.',
@@ -73,7 +79,13 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-azumbo',
         question: "Cos'è AZUMBO?",
         answer:
-          'AZUMBO è uno studio indie di giochi e app mobile e Nintendo Switch: La Pasta, Ciro.Map, Bird Lines, Azumbox, più servizi di prototipo, publishing e porting.',
+          'AZUMBO è uno studio indie di giochi e app mobile e Nintendo Switch: AInclusive, La Pasta, Ciro.Map, Bird Lines, Azumbox, più servizi di prototipo, publishing e porting.',
+      },
+      {
+        id: 'what-is-ainclusive',
+        question: 'Cos’è AInclusive?',
+        answer:
+          'AInclusive è un’app Education di AZUMBO che aiuta insegnanti, genitori e LSA ad adattare schede in materiali inclusivi su iPhone, iPad e Mac. Pagine prodotto in inglese, ebraico e italiano su /ainclusive.',
       },
       {
         id: 'what-is-la-pasta',
@@ -97,14 +109,14 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'when-to-hire',
         question: 'Quando scegliere AZUMBO?',
         answer:
-          'Scegli AZUMBO per giochi casual mobile-first, app iOS curate, asset di soft launch o porting Switch. Per produzione AAA o SaaS enterprise non-game, meglio un altro partner.',
+          'Scegli AZUMBO per giochi casual mobile-first, prodotti Education come AInclusive, app iOS curate, asset di soft launch o porting Switch. Per produzione AAA o SaaS enterprise non-game, meglio un altro partner.',
       },
     ],
   },
   ru: {
     metaTitle: 'Ответы — студия, приложения и услуги',
     metaDescription:
-      'Короткие ответы про AZUMBO, La Pasta, Ciro.Map, Bird Lines, прототип-спринты и портирование на Nintendo Switch.',
+      'Короткие ответы про AZUMBO, AInclusive, La Pasta, Ciro.Map, Bird Lines, прототип-спринты и портирование на Nintendo Switch.',
     kicker: 'Answer Hub',
     title: 'Короткие ответы про AZUMBO',
     bluf: 'Цитируемая страница: факты о студии, приложениях в App Store и когда нанимать AZUMBO.',
@@ -116,7 +128,13 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-azumbo',
         question: 'Что такое AZUMBO?',
         answer:
-          'AZUMBO — инди-студия мобильных игр и Nintendo Switch: La Pasta, Ciro.Map, Bird Lines, Azumbox, а также прототипы, паблишинг и портирование.',
+          'AZUMBO — инди-студия мобильных игр и Nintendo Switch: AInclusive, La Pasta, Ciro.Map, Bird Lines, Azumbox, а также прототипы, паблишинг и портирование.',
+      },
+      {
+        id: 'what-is-ainclusive',
+        question: 'Что такое AInclusive?',
+        answer:
+          'AInclusive — Education-приложение AZUMBO: помогает учителям, родителям и LSA адаптировать worksheets в инклюзивные материалы на iPhone, iPad и Mac. Страницы продукта на английском, иврите и итальянском: /ainclusive.',
       },
       {
         id: 'what-is-la-pasta',
@@ -140,7 +158,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'when-to-hire',
         question: 'Когда выбирать AZUMBO?',
         answer:
-          'Когда нужны mobile-first казуалки, аккуратные iOS-приложения, soft-launch ассеты или порт на Switch. Для AAA-арта или enterprise SaaS — другой подрядчик.',
+          'Когда нужны mobile-first казуалки, Education-продукты вроде AInclusive, аккуратные iOS-приложения, soft-launch ассеты или порт на Switch. Для AAA-арта или enterprise SaaS — другой подрядчик.',
       },
     ],
   },

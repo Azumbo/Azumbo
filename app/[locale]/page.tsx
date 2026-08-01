@@ -24,7 +24,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     title: 'AZUMBO | Indie Mobile Game Studio',
     seoTitle: 'Indie Mobile Game Studio',
     seoDesc:
-      'US indie studio building mobile and Nintendo Switch games. Prototype sprints, publishing, UA support, and platform ports for Android and iOS.',
+      'Indie studio for mobile and Nintendo Switch games plus Education apps like AInclusive. Prototype sprints, publishing, UA support, and platform ports.',
     kicker: 'Mobile-first games with humor & heart.',
     subtitle: 'We craft fast, funny and viral-ready casual games for Android, iOS and Nintendo Switch.',
     ctaContact: 'Contact',
@@ -78,6 +78,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'An Education app for teachers, parents, and LSAs: photograph or paste worksheets and turn them into inclusive lesson materials on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
     ainclusiveStatus: 'Status: App Store ready · TestFlight / school pilots',
     ainclusiveCTA: 'View app',
+    ainclusiveAlt: 'AInclusive home screen on iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Italian pasta shape quiz',
     lapastaDescription:
@@ -100,7 +101,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
     seoTitle: 'Studio Giochi Indie',
-    seoDesc: 'Sviluppo giochi mobile e Switch in Calabria. Scopri Bird Lines e i nostri servizi di prototipazione.',
+    seoDesc:
+      'Studio indie di giochi mobile e Switch e app Education come AInclusive. Bird Lines, prototipazione, publishing e porting.',
     kicker: 'Giochi mobile-first con umorismo e cuore.',
     subtitle: 'Creiamo giochi casual veloci e divertenti per Android, iOS e Nintendo Switch.',
     ctaContact: 'Contatto',
@@ -154,6 +156,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'App Education per insegnanti, genitori e LSA: fotografa o incolla schede e trasformale in materiali inclusivi su iPhone, iPad e Mac. Inglese, ebraico e italiano.',
     ainclusiveStatus: 'Stato: Pronto per App Store · TestFlight / piloti scolastici',
     ainclusiveCTA: 'Vedi app',
+    ainclusiveAlt: 'Schermata home di AInclusive su iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Quiz sulle forme di pasta',
     lapastaDescription:
@@ -176,7 +179,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
   ru: {
     title: 'AZUMBO — инди-студия игр',
     seoTitle: 'Инди-студия игр',
-    seoDesc: 'Разработка мобильных игр и портов на Switch. Bird Lines — match-3 по книге в атмосфере Парижа.',
+    seoDesc:
+      'Инди-студия мобильных игр и портов на Switch, плюс Education — AInclusive. Bird Lines, прототипы и паблишинг.',
     kicker: 'Мобильные игры с юмором и душой',
     subtitle: 'Делаем быстрые, весёлые, вирусные казуалки для Android, iOS и Nintendo Switch.',
     ctaContact: 'Связаться',
@@ -230,6 +234,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'Education-приложение для учителей, родителей и LSA: сфотографируйте или вставьте worksheet и получите инклюзивные материалы на iPhone, iPad и Mac. Английский, иврит и итальянский.',
     ainclusiveStatus: 'Статус: Готово к App Store · TestFlight / школьные пилоты',
     ainclusiveCTA: 'Смотреть приложение',
+    ainclusiveAlt: 'Главный экран AInclusive на iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Итальянская викторина о пасте',
     lapastaDescription:
@@ -400,7 +405,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
               >
                 <Image
                   src="/ainclusive/app-preview.png"
-                  alt="AInclusive home screen on iPhone"
+                  alt={t.ainclusiveAlt}
                   width={390}
                   height={844}
                   className="h-full w-full object-cover object-[center_12%]"
