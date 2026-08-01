@@ -10,7 +10,7 @@ import {
   localeDirection,
   type AInclusiveLocale,
 } from '../../lib/ainclusive-store-content';
-import { AInclusiveFooter, AInclusiveNav, BETA_MAIL, CONTACT_EMAIL } from './components';
+import { AInclusiveFooter, AInclusiveNav, betaMailto, CONTACT_EMAIL } from './components';
 import styles from './ainclusive.module.css';
 
 export default function AInclusiveSupportClient() {
@@ -18,6 +18,7 @@ export default function AInclusiveSupportClient() {
   const [ready, setReady] = useState(false);
   const chrome = AINCLUSIVE_LANDING[locale];
   const t = AINCLUSIVE_SUPPORT[locale];
+  const betaMail = betaMailto(locale);
 
   useEffect(() => {
     setLocale(detectAInclusiveLocale());
@@ -43,7 +44,7 @@ export default function AInclusiveSupportClient() {
           <h1 className={styles.legalTitle}>{t.title}</h1>
           <p className={styles.subtitle}>{t.subtitle}</p>
           <div className={styles.actions}>
-            <a className={styles.cta} href={BETA_MAIL}>
+            <a className={styles.cta} href={betaMail}>
               {t.contactSupport}
             </a>
             <Link className={styles.secondaryCta} href="/ainclusive/privacy">
@@ -72,7 +73,7 @@ export default function AInclusiveSupportClient() {
           </div>
         </section>
       </main>
-      <AInclusiveFooter copy={chrome} />
+      <AInclusiveFooter copy={chrome} locale={locale} />
     </div>
   );
 }

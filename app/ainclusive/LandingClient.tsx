@@ -10,13 +10,14 @@ import {
   localeDirection,
   type AInclusiveLocale,
 } from '../../lib/ainclusive-store-content';
-import { AInclusiveFooter, AInclusiveNav, BETA_MAIL } from './components';
+import { AInclusiveFooter, AInclusiveNav, betaMailto } from './components';
 import styles from './ainclusive.module.css';
 
 export default function AInclusiveLandingClient() {
   const [locale, setLocale] = useState<AInclusiveLocale>('en');
   const [ready, setReady] = useState(false);
   const t = AINCLUSIVE_LANDING[locale];
+  const betaMail = betaMailto(locale);
 
   useEffect(() => {
     setLocale(detectAInclusiveLocale());
@@ -45,7 +46,7 @@ export default function AInclusiveLandingClient() {
               <strong>{t.subtitleLead}</strong> {t.subtitle}
             </p>
             <div className={styles.actions}>
-              <a className={styles.cta} href={BETA_MAIL}>
+              <a className={styles.cta} href={betaMail}>
                 {t.primaryCta}
               </a>
               <Link className={styles.secondaryCta} href="/ainclusive/support">
@@ -170,7 +171,7 @@ export default function AInclusiveLandingClient() {
             </h2>
             <p className={styles.sectionText}>{t.downloadBody}</p>
             <div className={styles.actions}>
-              <a className={styles.cta} href={BETA_MAIL}>
+              <a className={styles.cta} href={betaMail}>
                 {t.primaryCta}
               </a>
               <Link className={styles.secondaryCta} href="/ainclusive/privacy">
@@ -180,7 +181,7 @@ export default function AInclusiveLandingClient() {
           </div>
         </section>
       </main>
-      <AInclusiveFooter copy={t} />
+      <AInclusiveFooter copy={t} locale={locale} />
     </div>
   );
 }
