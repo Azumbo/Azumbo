@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   AINCLUSIVE_LOCALES,
@@ -23,9 +24,14 @@ export function AInclusiveNav({ copy, locale, onLocaleChange }: ChromeProps) {
     <header className={styles.nav}>
       <div className={styles.navInner}>
         <Link className={styles.brand} href="/ainclusive" aria-label={copy.brandHomeAria}>
-          <span className={styles.brandMark} aria-hidden="true">
-            📚
-          </span>
+          <Image
+            className={styles.brandMark}
+            src="/ainclusive/icon-180.png"
+            alt=""
+            width={28}
+            height={28}
+            aria-hidden="true"
+          />
           <span>AInclusive</span>
         </Link>
         <div className={styles.navActions}>

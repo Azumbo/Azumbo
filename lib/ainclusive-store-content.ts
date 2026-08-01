@@ -46,6 +46,10 @@ export type LandingCopy = {
   readSupport: string;
   heroPreviewAria: string;
   heroAlt: string;
+  shotsKicker: string;
+  shotsTitle: string;
+  shotsLead: string;
+  shots: { src: string; name: string; note: string; alt: string }[];
   featuresKicker: string;
   featuresTitle: string;
   featuresLead: string;
@@ -106,7 +110,24 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     primaryCta: 'Request beta access',
     readSupport: 'Support & FAQ',
     heroPreviewAria: 'AInclusive app preview',
-    heroAlt: 'AInclusive home screen on iPhone',
+    heroAlt: 'AInclusive app home: Create learning materials',
+    shotsKicker: 'Real product screens',
+    shotsTitle: 'What educators open on the phone.',
+    shotsLead: 'Fresh simulator captures of the live build — Home and the iOS app icon on the device springboard.',
+    shots: [
+      {
+        src: '/ainclusive/app-preview.png',
+        name: 'Home',
+        note: 'Create adapted learning materials in one tap.',
+        alt: 'AInclusive home screen with Create learning materials button',
+      },
+      {
+        src: '/ainclusive/home-screen.png',
+        name: 'On the Home Screen',
+        note: 'The real AInclusive icon as it appears on iPhone.',
+        alt: 'iPhone Home Screen showing the AInclusive app icon',
+      },
+    ],
     featuresKicker: 'Camera · languages · privacy-safe metrics',
     featuresTitle: 'Built for real classrooms, not demos.',
     featuresLead:
@@ -203,7 +224,24 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     primaryCta: 'בקשת גישה לבטא',
     readSupport: 'תמיכה ושאלות נפוצות',
     heroPreviewAria: 'תצוגה מקדימה של האפליקציה',
-    heroAlt: 'מסך הבית של AInclusive באייפון',
+    heroAlt: 'מסך הבית של AInclusive: יצירת חומרי למידה',
+    shotsKicker: 'מסכים אמיתיים',
+    shotsTitle: 'מה שנפתח בטלפון.',
+    shotsLead: 'צילומי סימולטור מהבילד החי — מסך הבית ואייקון האפליקציה על מסך הבית של האייפון.',
+    shots: [
+      {
+        src: '/ainclusive/app-preview.png',
+        name: 'Home',
+        note: 'יצירת חומרי למידה מותאמים בלחיצה אחת.',
+        alt: 'מסך הבית של AInclusive עם כפתור יצירת חומרי למידה',
+      },
+      {
+        src: '/ainclusive/home-screen.png',
+        name: 'על מסך הבית',
+        note: 'האייקון האמיתי של AInclusive באייפון.',
+        alt: 'מסך הבית של האייפון עם אייקון AInclusive',
+      },
+    ],
     featuresKicker: 'מצלמה · שפות · מדידה שומרת פרטיות',
     featuresTitle: 'בנוי לכיתות אמיתיות, לא לדמו.',
     featuresLead:
@@ -300,7 +338,25 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     primaryCta: 'Richiedi accesso beta',
     readSupport: 'Supporto e FAQ',
     heroPreviewAria: 'Anteprima app AInclusive',
-    heroAlt: 'Schermata home di AInclusive su iPhone',
+    heroAlt: 'Home di AInclusive: Crea materiali didattici',
+    shotsKicker: 'Schermate reali',
+    shotsTitle: 'Cosa aprono gli educatori sul telefono.',
+    shotsLead:
+      'Screenshot aggiornati dal build live — Home e l’icona AInclusive sulla Springboard di iPhone.',
+    shots: [
+      {
+        src: '/ainclusive/app-preview.png',
+        name: 'Home',
+        note: 'Crea materiali didattici adattati con un tocco.',
+        alt: 'Schermata home di AInclusive con il pulsante Crea materiali',
+      },
+      {
+        src: '/ainclusive/home-screen.png',
+        name: 'Sulla Home Screen',
+        note: 'L’icona reale di AInclusive sull’iPhone.',
+        alt: 'Home Screen iPhone con l’icona dell’app AInclusive',
+      },
+    ],
     featuresKicker: 'Fotocamera · lingue · metriche privacy-safe',
     featuresTitle: 'Pensata per le classi vere, non per le demo.',
     featuresLead:

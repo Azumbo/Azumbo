@@ -24,7 +24,7 @@ export const apps: StudioApp[] = [
     bundleId: 'education.ainclusive.app',
     description:
       'Adapt worksheets into inclusive lesson materials for teachers, parents, and LSAs — on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
-    icon: '📚',
+    icon: '/ainclusive/icon.png',
     screenshot: '/ainclusive/app-preview.png',
     tagline: 'Accessible lessons for every learner',
     privacyPath: '/ainclusive/privacy',

@@ -406,9 +406,9 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                 <Image
                   src="/ainclusive/app-preview.png"
                   alt={t.ainclusiveAlt}
-                  width={390}
-                  height={844}
-                  className="h-full w-full object-cover object-[center_12%]"
+                  width={575}
+                  height={1024}
+                  className="h-full w-full object-cover object-top"
                 />
               </Link>
             }

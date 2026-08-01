@@ -59,12 +59,41 @@ export default function AInclusiveLandingClient() {
               <Image
                 src="/ainclusive/app-preview.png"
                 alt={t.heroAlt}
-                width={1170}
-                height={2532}
+                width={575}
+                height={1024}
                 className={styles.heroScreenshot}
                 priority
               />
             </div>
+          </div>
+        </section>
+
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="shots-title">
+          <div className={styles.sectionHeader}>
+            <p className={styles.kicker}>{t.shotsKicker}</p>
+            <h2 id="shots-title" className={styles.sectionTitle}>
+              {t.shotsTitle}
+            </h2>
+            <p className={styles.sectionText}>{t.shotsLead}</p>
+          </div>
+          <div className={styles.museumGrid}>
+            {t.shots.map((shot) => (
+              <figure className={styles.museumCard} key={shot.src}>
+                <div className={styles.phoneMock}>
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={575}
+                    height={1024}
+                    className={styles.museumScreenshot}
+                  />
+                </div>
+                <figcaption className={styles.museumCaption}>
+                  <strong>{shot.name}</strong>
+                  <span>{shot.note}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
