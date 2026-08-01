@@ -118,20 +118,17 @@
 }
 
 .brandMark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(196, 165, 116, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: all 500ms ease-out;
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 500ms ease-out;
 }
 
 .brand:hover .brandMark {
-  background: rgba(196, 165, 116, 0.18);
-  border-color: rgba(212, 188, 142, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.28);
 }
 
 .navLinks {
