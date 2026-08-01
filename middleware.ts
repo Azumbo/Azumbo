@@ -40,6 +40,7 @@ const KNOWN_APP_ROOTS = new Set([
   'cornettoclicker',
   'cornettoclicker-landing',
   'petonauta-landing',
+  'ainclusive',
   'lapasta',
   'ciromap',
   'azumbox',

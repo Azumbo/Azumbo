@@ -18,6 +18,7 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 
 ## Studio projects
 - Bird Lines (match-3, in development): ${SITE_URL}/en/videos/bird-lines
+- AInclusive (Education app, iOS/macOS): ${SITE_URL}/ainclusive
 - La Pasta: 60s Challenge (iOS, live): ${SITE_URL}/lapasta
 - Ciro.Map (iOS travel guide, live): ${SITE_URL}/ciromap
 - Azumbox (mobile game concept): ${SITE_URL}/azumbox
@@ -27,6 +28,8 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - Contact: azumbogames@gmail.com
 
 ## Legal and policies
+- AInclusive privacy: ${SITE_URL}/ainclusive/privacy
+- AInclusive support: ${SITE_URL}/ainclusive/support
 - Ciro.Map privacy: ${SITE_URL}/ciromap/privacy
 - La Pasta privacy: ${SITE_URL}/lapasta/privacy
 

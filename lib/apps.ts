@@ -17,6 +17,20 @@ export const ADMOB_PUBLISHER_ID = 'pub-2475393065586904';
 
 export const apps: StudioApp[] = [
   {
+    name: 'AInclusive',
+    slug: 'ainclusive',
+    appStoreId: '',
+    appStoreUrl: 'https://azumbo.vercel.app/ainclusive',
+    bundleId: 'education.ainclusive.app',
+    description:
+      'Adapt worksheets into inclusive lesson materials for teachers, parents, and LSAs — on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
+    icon: '📚',
+    screenshot: '/ainclusive/app-preview.png',
+    tagline: 'Accessible lessons for every learner',
+    privacyPath: '/ainclusive/privacy',
+    supportPath: '/ainclusive/support',
+  },
+  {
     name: 'La Pasta: 60s Challenge',
     slug: 'lapasta',
     appStoreId: '6774466615',
