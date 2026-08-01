@@ -73,7 +73,7 @@ export default function AInclusivePrivacyClient() {
           </article>
         </div>
       </main>
-      <AInclusiveFooter copy={chrome} />
+      <AInclusiveFooter copy={chrome} locale={locale} />
     </div>
   );
 }
