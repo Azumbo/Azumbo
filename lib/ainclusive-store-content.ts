@@ -31,6 +31,7 @@ export type LandingCopy = {
   navAria: string;
   navApp: string;
   navPrivacy: string;
+  navAccessibility: string;
   navSupport: string;
   navContact: string;
   brandHomeAria: string;
@@ -89,12 +90,15 @@ export type PrivacyCopy = {
   toc: { id: string; label: string }[];
 };
 
+export type AccessibilityCopy = PrivacyCopy;
+
 export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
   en: {
     langSwitcherAria: 'Page language',
     navAria: 'AInclusive navigation',
     navApp: 'App',
     navPrivacy: 'Privacy',
+    navAccessibility: 'Accessibility',
     navSupport: 'Support',
     navContact: 'Contact',
     brandHomeAria: 'AInclusive home',
@@ -209,6 +213,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     navAria: 'ניווט AInclusive',
     navApp: 'אפליקציה',
     navPrivacy: 'פרטיות',
+    navAccessibility: 'נגישות',
     navSupport: 'תמיכה',
     navContact: 'יצירת קשר',
     brandHomeAria: 'דף הבית של AInclusive',
@@ -322,6 +327,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     navAria: 'Navigazione AInclusive',
     navApp: 'App',
     navPrivacy: 'Privacy',
+    navAccessibility: 'Accessibilità',
     navSupport: 'Supporto',
     navContact: 'Contatti',
     brandHomeAria: 'Home AInclusive',
@@ -798,6 +804,198 @@ export const AINCLUSIVE_PRIVACY: Record<AInclusiveLocale, PrivacyCopy> = {
         paragraphs: [
           'Privacy e supporto: azumbogames@gmail.com',
           'https://azumbo.vercel.app/ainclusive/support',
+        ],
+      },
+    ],
+  },
+};
+
+const accessibilityTocEn = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'supported', label: 'Features we declare' },
+  { id: 'in-progress', label: 'In progress' },
+  { id: 'devices', label: 'Devices' },
+  { id: 'feedback', label: 'Feedback' },
+];
+
+export const AINCLUSIVE_ACCESSIBILITY: Record<AInclusiveLocale, AccessibilityCopy> = {
+  en: {
+    kicker: 'App Store · Accessibility',
+    title: 'Accessibility',
+    subtitle:
+      'How AInclusive supports Apple accessibility features on iPhone and iPad. We only declare features that work for common tasks such as creating a lesson, reviewing History, and sharing or saving results.',
+    tocAria: 'Accessibility table of contents',
+    toc: accessibilityTocEn,
+    sections: [
+      {
+        id: 'overview',
+        title: 'Overview',
+        paragraphs: [
+          'AInclusive is an Education app for teachers, parents, and learning-support staff. We design inclusive lesson workflows and follow Apple Human Interface Guidelines where practical.',
+          'This page matches the accessibility features listed on our App Store product page. We update it as we audit and expand support.',
+        ],
+      },
+      {
+        id: 'supported',
+        title: 'Features we declare on the App Store',
+        paragraphs: [
+          'Users can complete common tasks with these system features enabled:',
+        ],
+        bullets: [
+          'Differentiate Without Color Alone — status and delivery badges use text and icons in addition to color (for example Ready and Given), so information is not color-only.',
+          'Reduced Motion — when Reduce Motion is on in Settings, we minimize non-essential animation so vestibular-sensitive users can work more comfortably.',
+        ],
+      },
+      {
+        id: 'in-progress',
+        title: 'In progress (not yet declared)',
+        paragraphs: [
+          'We are improving and testing these areas before claiming them on the App Store:',
+        ],
+        bullets: [
+          'VoiceOver — many controls already have accessibility labels and hints; we continue auditing every common task end to end.',
+          'Larger Text / Dynamic Type — layouts aim to respect larger text sizes; we verify at 200%+ before declaring support.',
+          'Dark Interface and Sufficient Contrast — SwiftUI follows system appearance; we validate readability under Dark Mode and Increase Contrast.',
+          'Voice Control — not fully audited yet.',
+          'Captions and Audio Descriptions — not applicable today; the app does not play video or audio programs with dialogue.',
+        ],
+      },
+      {
+        id: 'devices',
+        title: 'Devices',
+        paragraphs: [
+          'Declared App Store accessibility support currently covers iPhone and iPad. AInclusive also runs on Mac; we will extend this page when Mac accessibility declarations are published.',
+        ],
+      },
+      {
+        id: 'feedback',
+        title: 'Feedback',
+        paragraphs: [
+          'Accessibility issues or requests: azumbogames@gmail.com (subject: AInclusive accessibility).',
+          'Support: https://azumbo.vercel.app/ainclusive/support',
+          'Privacy: https://azumbo.vercel.app/ainclusive/privacy',
+        ],
+      },
+    ],
+  },
+  he: {
+    kicker: 'App Store · נגישות',
+    title: 'נגישות',
+    subtitle:
+      'כיצד AInclusive תומכת בתכונות נגישות של Apple ב-iPhone וב-iPad. אנו מצהירים רק על תכונות שעובדות במשימות נפוצות כמו יצירת שיעור, היסטוריה ושיתוף או שמירת תוצאה.',
+    tocAria: 'תוכן עניינים — נגישות',
+    toc: [
+      { id: 'overview', label: 'סקירה' },
+      { id: 'supported', label: 'תכונות שאנו מצהירים' },
+      { id: 'in-progress', label: 'בפיתוח' },
+      { id: 'devices', label: 'מכשירים' },
+      { id: 'feedback', label: 'משוב' },
+    ],
+    sections: [
+      {
+        id: 'overview',
+        title: 'סקירה',
+        paragraphs: [
+          'AInclusive היא אפליקציית Education למורים, הורים ואנשי תמיכה בלמידה. אנו בונים תהליכי שיעור כוללניים ופועלים לפי הנחיות הממשק של Apple ככל האפשר.',
+          'עמוד זה תואם את תכונות הנגישות בעמוד המוצר ב-App Store ומתעדכן ככל שאנו מרחיבים ובודקים תמיכה.',
+        ],
+      },
+      {
+        id: 'supported',
+        title: 'תכונות שאנו מצהירים ב-App Store',
+        paragraphs: ['ניתן להשלים משימות נפוצות עם התכונות הבאות:'],
+        bullets: [
+          'Differentiate Without Color Alone — תגי סטטוס ומסירה משתמשים גם בטקסט ובאייקונים, לא רק בצבע (למשל Ready ו-Given).',
+          'Reduced Motion — כשמופעל Reduce Motion בהגדרות, אנו ממזערים אנימציות שאינן חיוניות.',
+        ],
+      },
+      {
+        id: 'in-progress',
+        title: 'בפיתוח (עדיין לא מוצהר)',
+        paragraphs: ['אנו משפרים ובודקים לפני הצהרה ב-App Store:'],
+        bullets: [
+          'VoiceOver — לפקדים רבים כבר יש תוויות ורמזים; ממשיכים לבדוק את כל המשימות מקצה לקצה.',
+          'Larger Text / Dynamic Type — הפריסות מיועדות לכבד טקסט גדול; נצהיר לאחר בדיקה ב-200%+.',
+          'Dark Interface ו-Sufficient Contrast — SwiftUI עוקב אחרי מראה המערכת; נאמת קריאות ב-Dark Mode ו-Increase Contrast.',
+          'Voice Control — עדיין לא נבדק במלואו.',
+          'Captions ו-Audio Descriptions — אינם רלוונטיים כיום; אין נגן וידאו/אודיו עם דיאלוג.',
+        ],
+      },
+      {
+        id: 'devices',
+        title: 'מכשירים',
+        paragraphs: [
+          'הצהרת הנגישות ב-App Store מכסה כרגע iPhone ו-iPad. האפליקציה רצה גם ב-Mac; נרחיב עמוד זה כשנפרסם הצהרות ל-Mac.',
+        ],
+      },
+      {
+        id: 'feedback',
+        title: 'משוב',
+        paragraphs: [
+          'בעיות או בקשות נגישות: azumbogames@gmail.com (נושא: AInclusive accessibility).',
+          'תמיכה: https://azumbo.vercel.app/ainclusive/support',
+          'פרטיות: https://azumbo.vercel.app/ainclusive/privacy',
+        ],
+      },
+    ],
+  },
+  it: {
+    kicker: 'App Store · Accessibilità',
+    title: 'Accessibilità',
+    subtitle:
+      'Come AInclusive supporta le funzioni di accessibilità Apple su iPhone e iPad. Dichiariamo solo le funzioni che funzionano per attività comuni come creare una lezione, consultare la Cronologia e condividere o salvare il risultato.',
+    tocAria: 'Indice accessibilità',
+    toc: [
+      { id: 'overview', label: 'Panoramica' },
+      { id: 'supported', label: 'Funzioni dichiarate' },
+      { id: 'in-progress', label: 'In corso' },
+      { id: 'devices', label: 'Dispositivi' },
+      { id: 'feedback', label: 'Feedback' },
+    ],
+    sections: [
+      {
+        id: 'overview',
+        title: 'Panoramica',
+        paragraphs: [
+          'AInclusive è un’app Education per insegnanti, genitori e personale di supporto. Progettiamo flussi di lezione inclusivi e seguiamo le Human Interface Guidelines di Apple dove pratico.',
+          'Questa pagina corrisponde alle funzioni di accessibilità sulla scheda App Store e viene aggiornata man mano che ampliamo e verifichiamo il supporto.',
+        ],
+      },
+      {
+        id: 'supported',
+        title: 'Funzioni dichiarate sull’App Store',
+        paragraphs: ['Gli utenti possono completare le attività comuni con:'],
+        bullets: [
+          'Differentiate Without Color Alone — badge di stato e consegna usano testo e icone oltre al colore (ad es. Ready e Given).',
+          'Reduced Motion — con Riduci movimento attivo nelle Impostazioni, riduciamo le animazioni non essenziali.',
+        ],
+      },
+      {
+        id: 'in-progress',
+        title: 'In corso (non ancora dichiarate)',
+        paragraphs: ['Stiamo migliorando e testando prima di dichiararle sull’App Store:'],
+        bullets: [
+          'VoiceOver — molti controlli hanno già etichette e suggerimenti; continuiamo l’audit end-to-end.',
+          'Larger Text / Dynamic Type — i layout mirano a rispettare testo più grande; dichiareremo dopo verifica a 200%+.',
+          'Dark Interface e Sufficient Contrast — SwiftUI segue l’aspetto di sistema; validiamo leggibilità in Dark Mode e Aumenta contrasto.',
+          'Voice Control — non ancora completamente auditato.',
+          'Captions e Audio Descriptions — non applicabili oggi; l’app non riproduce video/audio con dialogo.',
+        ],
+      },
+      {
+        id: 'devices',
+        title: 'Dispositivi',
+        paragraphs: [
+          'Il supporto di accessibilità dichiarato sull’App Store copre attualmente iPhone e iPad. AInclusive gira anche su Mac; estenderemo questa pagina quando pubblicheremo dichiarazioni per Mac.',
+        ],
+      },
+      {
+        id: 'feedback',
+        title: 'Feedback',
+        paragraphs: [
+          'Problemi o richieste di accessibilità: azumbogames@gmail.com (oggetto: AInclusive accessibility).',
+          'Supporto: https://azumbo.vercel.app/ainclusive/support',
+          'Privacy: https://azumbo.vercel.app/ainclusive/privacy',
         ],
       },
     ],

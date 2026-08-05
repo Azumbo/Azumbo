@@ -9,6 +9,7 @@ export type StudioApp = {
   tagline: string;
   privacyPath: string;
   supportPath: string;
+  accessibilityPath?: string;
   screenshot?: string;
 };
 
@@ -29,6 +30,7 @@ export const apps: StudioApp[] = [
     tagline: 'Accessible lessons for every learner',
     privacyPath: '/ainclusive/privacy',
     supportPath: '/ainclusive/support',
+    accessibilityPath: '/ainclusive/accessibility',
   },
   {
     name: 'La Pasta: 60s Challenge',
@@ -63,5 +65,9 @@ export function getAppBySlug(slug: string) {
 }
 
 export function getPublicAppRoutes() {
-  return apps.flatMap((app) => [`/${app.slug}`, app.privacyPath, app.supportPath]);
+  return apps.flatMap((app) =>
+    [`/${app.slug}`, app.privacyPath, app.supportPath, app.accessibilityPath].filter(
+      (path): path is string => Boolean(path)
+    )
+  );
 }

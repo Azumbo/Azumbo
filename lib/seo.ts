@@ -86,6 +86,7 @@ export const INDEXABLE_ROUTES = [
   '/petonauta-landing',
   '/ainclusive',
   '/ainclusive/privacy',
+  '/ainclusive/accessibility',
   '/ainclusive/support',
   '/lapasta',
   '/lapasta/privacy',

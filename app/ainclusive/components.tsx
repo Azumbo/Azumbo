@@ -93,6 +93,7 @@ export function AInclusiveNav({ copy, locale, onLocaleChange }: ChromeProps) {
           <nav className={styles.navLinks} aria-label={copy.navAria}>
             <Link href="/ainclusive">{copy.navApp}</Link>
             <Link href="/ainclusive/privacy">{copy.navPrivacy}</Link>
+            <Link href="/ainclusive/accessibility">{copy.navAccessibility}</Link>
             <Link href="/ainclusive/support">{copy.navSupport}</Link>
             <a href={contactMailto(locale)}>{copy.navContact}</a>
           </nav>
@@ -115,6 +116,7 @@ export function AInclusiveFooter({
         <p className={styles.sectionText}>{copy.footerCredit}</p>
         <nav className={styles.footerLinks} aria-label={copy.footerAria}>
           <Link href="/ainclusive/privacy">{copy.navPrivacy}</Link>
+          <Link href="/ainclusive/accessibility">{copy.navAccessibility}</Link>
           <Link href="/ainclusive/support">{copy.navSupport}</Link>
           <a href={contactMailto(locale)}>{copy.navContact}</a>
         </nav>
