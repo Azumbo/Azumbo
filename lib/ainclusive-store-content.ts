@@ -1,15 +1,16 @@
-export type AInclusiveLocale = 'en' | 'he' | 'it';
+export type AInclusiveLocale = 'en' | 'he' | 'it' | 'ru';
 
 export const AINCLUSIVE_LOCALES: { id: AInclusiveLocale; label: string; short: string }[] = [
   { id: 'en', label: 'English', short: 'EN' },
   { id: 'he', label: 'עברית', short: 'HE' },
   { id: 'it', label: 'Italiano', short: 'IT' },
+  { id: 'ru', label: 'Русский', short: 'RU' },
 ];
 
 export const AINCLUSIVE_LANG_STORAGE_KEY = 'ainclusive.lang';
 
 export function isAInclusiveLocale(value: string | null | undefined): value is AInclusiveLocale {
-  return value === 'en' || value === 'he' || value === 'it';
+  return value === 'en' || value === 'he' || value === 'it' || value === 'ru';
 }
 
 export function detectAInclusiveLocale(): AInclusiveLocale {
@@ -461,6 +462,130 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     downloadBody:
       'La scheda App Store è in preparazione. Scrivici per accesso TestFlight per educatori e scuole partner.',
   },
+
+  ru: {
+    langSwitcherAria: 'Язык страницы',
+    navAria: 'Навигация AInclusive',
+    navApp: 'Приложение',
+    navPrivacy: 'Конфиденциальность',
+    navAccessibility: 'Доступность',
+    navSupport: 'Поддержка',
+    navContact: 'Контакты',
+    brandHomeAria: 'Главная AInclusive',
+    footerAria: 'Нижняя навигация',
+    footerCredit:
+      '© 2026 AZUMBO. AInclusive помогает педагогам адаптировать учебные материалы для каждого ученика.',
+    badgeAria: 'Связаться по поводу бета-доступа к AInclusive',
+    badgeAlt: 'Запросить бета-доступ',
+    kicker: 'Для учителей, родителей и специалистов поддержки',
+    title: 'AInclusive',
+    subtitleLead:
+      'Превратите любой рабочий лист в доступный урок меньше чем за час — без спецподготовки и ручной переписки.',
+    subtitle:
+      'Сфотографируйте или вставьте материалы урока, и AInclusive адаптирует их для учеников с особыми образовательными потребностями и для тех, кто сталкивается с языковым барьером — на iPhone, iPad и Mac. Приложение на английском, иврите и итальянском; этот сайт также на русском.',
+    primaryCta: 'Запросить бета-доступ',
+    readSupport: 'Поддержка и FAQ',
+    heroPreviewAria: 'Превью приложения AInclusive',
+    heroAlt: 'Главный экран AInclusive: создание учебных материалов',
+    shotsKicker: 'Реальные экраны',
+    shotsTitle: 'Что открывают педагоги на телефоне.',
+    shotsLead:
+      'Актуальные снимки из живого билда — Home и иконка AInclusive на домашнем экране iPhone.',
+    shots: [
+      {
+        src: '/ainclusive/app-preview.png',
+        name: 'Home',
+        note: 'Создавайте адаптированные материалы одним касанием.',
+        alt: 'Главный экран AInclusive с кнопкой создания учебных материалов',
+      },
+      {
+        src: '/ainclusive/home-screen.png',
+        name: 'На домашнем экране',
+        note: 'Настоящая иконка AInclusive на iPhone.',
+        alt: 'Домашний экран iPhone с иконкой приложения AInclusive',
+      },
+    ],
+    featuresKicker: 'Камера · языки · privacy-safe метрики',
+    featuresTitle: 'Для настоящих классов, а не для демо.',
+    featuresLead:
+      'Адаптация материалов для ученика с особыми потребностями раньше занимала часы ручной переписки и требовала экспертизы. AInclusive сохраняет спокойный и практичный поток: сфотографируйте лист, выберите контекст ученика и получите адаптированные материалы для проверки и отправки за минуты.',
+    features: [
+      {
+        icon: '📷',
+        title: 'Съёмка рабочих листов',
+        text: 'Камера или библиотека фото — чтобы отправить рабочие листы на адаптацию, с понятными формулировками разрешений для App Review.',
+      },
+      {
+        icon: '🌍',
+        title: 'EN · HE · IT',
+        text: 'Интерфейс приложения и язык урока: английский, иврит (RTL) и итальянский — готово к локальным пилотам и отчётности для грантов.',
+      },
+      {
+        icon: '♿',
+        title: 'Инклюзивность в дизайне',
+        text: 'Крупные зоны касания, дружелюбность к Dynamic Type и сдержанный визуал по Apple HIG для педагогов в условиях нехватки времени.',
+      },
+      {
+        icon: '📊',
+        title: 'Аналитика с уважением к приватности',
+        text: 'Firebase Analytics и Crashlytics дают продуктовые метрики без отправки email, имён, тем или фото в события аналитики.',
+      },
+    ],
+    impactKicker: 'Социальный эффект',
+    impactTitle: 'Почему это важно для грантов и школ.',
+    impactLead:
+      'Десять учителей и родителей детей с особыми потребностями уже протестировали AInclusive — а израильское общество синдрома Дауна (Yated) выдало письмо о намерениях по коммерческой лицензии после завершения MVP. AInclusive показывает пользу в классе и ответственное обращение с данными, а не только презентацию.',
+    impactPoints: [
+      {
+        title: 'Ученики, которым нужна адаптация',
+        text: 'Поддерживает учителей, родителей и LSA, которые часами переписывают материалы для детей с особыми потребностями — и для детей и молодых людей с языковым барьером.',
+      },
+      {
+        title: 'Многоязычная Европа и Израиль',
+        text: 'Итальянский и иврит локализуют UI и открывают путь к региональным пилотам.',
+      },
+      {
+        title: 'Прозрачность по умолчанию',
+        text: 'Публичная политика конфиденциальности, страница поддержки и App Privacy labels готовы к проверке в категории Education.',
+      },
+    ],
+    testimonialKicker: 'Отзыв раннего пилота',
+    testimonialQuote:
+      'Использование приложения AInclusive стало вдохновляющим опытом. Удобный интерфейс и творческий подход к ученикам с особыми потребностями действительно впечатляют… Я уверена, что это приложение поможет учителям.',
+    testimonialAttribution: 'Учитель специального образования, отзыв раннего пилота',
+    testimonialAria: 'Отзыв учителя из пилота',
+    faqKicker: 'FAQ',
+    faqTitle: 'Короткие ответы.',
+    faqLead: 'Для App Store, школ и грантовых рецензентов.',
+    faqs: [
+      {
+        question: 'Что такое AInclusive?',
+        answer:
+          'AInclusive — приложение категории Education, которое помогает учителям, родителям и специалистам поддержки адаптировать рабочие листы в более доступные учебные материалы на iPhone, iPad и Mac.',
+      },
+      {
+        question: 'Зачем приложению камера?',
+        answer:
+          'Чтобы фотографировать рабочие листы и учебные материалы для адаптации. Доступ к библиотеке фото нужен, если вы выбираете уже существующее изображение вместо новой съёмки.',
+      },
+      {
+        question: 'Какие языки поддерживаются?',
+        answer:
+          'В интерфейсе приложения — английский, иврит (справа налево) и итальянский; язык урока выбирается для каждой задачи. Этот сайт также доступен на русском.',
+      },
+      {
+        question: 'Какую аналитику вы собираете?',
+        answer:
+          'Privacy-safe продуктовые события через Firebase (например, шаги воронки и диагностика сбоев). Мы не отправляем email, имя ученика, текст темы, тело урока или фото в Analytics.',
+      },
+    ],
+    faqCtaPrefix: 'Нужна помощь или школьный пилот?',
+    faqCtaLink: 'Открыть поддержку AInclusive',
+    downloadBadge: 'TestFlight / школьные пилоты',
+    downloadTitle: 'Попробуйте бету.',
+    downloadBody:
+      'Публичный листинг в App Store готовится. Напишите нам за TestFlight-доступом для педагогов и школ-партнёров.',
+  },
 };
 
 export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
@@ -562,6 +687,41 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
         question: 'Come richiedere la cancellazione dei dati?',
         answer:
           'Email a azumbogames@gmail.com con l’indirizzo usato nell’app. Tratteremo la richiesta secondo l’Informativa privacy.',
+      },
+    ],
+  },
+  ru: {
+    kicker: 'Помощь · требование App Store',
+    title: 'Поддержка',
+    subtitle: 'Вопросы об AInclusive, камере, языках или школьных пилотах.',
+    contactSupport: 'Написать в поддержку',
+    privacyPolicy: 'Политика конфиденциальности',
+    appHome: 'Главная AInclusive',
+    faqTitle: 'Частые вопросы',
+    faqs: [
+      {
+        question: 'Сколько занимает генерация урока?',
+        answer:
+          'Обычно несколько минут в зависимости от нагрузки. С разрешением на уведомления можно выйти из приложения и вернуться, когда материалы готовы.',
+      },
+      {
+        question: 'Зачем запрашивать камеру или фото?',
+        answer:
+          'Только чтобы снимать рабочие листы и учебные материалы для адаптации в доступные уроки. Можно отказаться и вставить текст, где это поддерживается.',
+      },
+      {
+        question: 'На каких устройствах работает?',
+        answer: 'iPhone и iPad (iOS 17+), а также Mac в той же продуктовой линейке.',
+      },
+      {
+        question: 'Как попасть в школьный пилот / TestFlight?',
+        answer:
+          'Напишите на azumbogames@gmail.com с указанием школы или роли. Мы отправляем приглашения TestFlight для закрытых бета-тестов для педагогов.',
+      },
+      {
+        question: 'Как запросить удаление данных?',
+        answer:
+          'Напишите на azumbogames@gmail.com с адресом, использованным в приложении. Мы обработаем запрос согласно Политике конфиденциальности.',
       },
     ],
   },
@@ -830,6 +990,94 @@ export const AINCLUSIVE_PRIVACY: Record<AInclusiveLocale, PrivacyCopy> = {
       },
     ],
   },
+  ru: {
+    kicker: 'Юридическое · требование App Store',
+    title: 'Политика конфиденциальности',
+    subtitle: 'Для AInclusive от AZUMBO. Обновлено: август 2026.',
+    tocAria: 'Разделы политики конфиденциальности',
+    toc: [
+      { id: 'intro', label: 'О политике' },
+      { id: 'service', label: 'Данные сервиса' },
+      { id: 'analytics', label: 'Аналитика и Crashlytics' },
+      { id: 'notifications', label: 'Уведомления' },
+      { id: 'children', label: 'Дети и образование' },
+      { id: 'gdpr', label: 'Права GDPR' },
+      { id: 'retention', label: 'Хранение' },
+      { id: 'contact', label: 'Контакты' },
+    ],
+    sections: [
+      {
+        id: 'intro',
+        title: 'Об этой политике',
+        paragraphs: [
+          'Эта Политика конфиденциальности объясняет, как AZUMBO («мы») обрабатывает информацию в приложениях AInclusive для iPhone, iPad и Mac и в связанных backend API, используемых для генерации адаптированных учебных материалов.',
+          'Сайт: https://azumbo.vercel.app/ainclusive · продукт также упоминается на ainclusive.education.',
+        ],
+      },
+      {
+        id: 'service',
+        title: 'Данные, обрабатываемые для оказания услуги',
+        paragraphs: [
+          'При создании урока вы можете предоставить контент, необходимый для выполнения задания через наш API.',
+        ],
+        bullets: [
+          'Адрес электронной почты (для связи заданий и доставки результатов)',
+          'Имя или прозвище ученика (необязательная метка в процессе)',
+          'Тема урока и вставленный текст',
+          'Фото или файлы рабочих листов / учебных материалов',
+          'Выбранный язык урока и варианты активностей',
+        ],
+      },
+      {
+        id: 'analytics',
+        title: 'Аналитика и диагностика сбоев (Firebase)',
+        paragraphs: [
+          'Приложения используют Google Firebase Analytics и Firebase Crashlytics.',
+          'События Analytics — это privacy-safe продуктовые метрики (например, открытие приложения, шаги воронки урока, корзины времени ожидания, открытие загрузки/редактора, исходы уведомлений, язык UI). Мы не отправляем email, имя ученика, текст темы, тело урока, фото или сырые session token в Analytics.',
+          'Crashlytics собирает информацию о сбоях и диагностике для повышения стабильности. Обработка Firebase подчиняется условиям Google: https://firebase.google.com/support/privacy',
+        ],
+      },
+      {
+        id: 'notifications',
+        title: 'Уведомления',
+        paragraphs: [
+          'С вашего разрешения приложение может отправлять локальные уведомления, когда урок готов. Удалённый push для текущего продукта не обязателен. Разрешение можно изменить в системных Настройках.',
+        ],
+      },
+      {
+        id: 'children',
+        title: 'Дети и образовательный контекст',
+        paragraphs: [
+          'AInclusive предназначено для педагогов и опекунов. Если материалы относятся к ученикам (включая детей или людей с особыми образовательными потребностями), используйте минимальные идентификаторы, соблюдайте правила школы и родителей и не загружайте контент, которым вы не вправе делиться.',
+          'Мы сознательно не используем приложение для создания рекламных профилей детей.',
+        ],
+      },
+      {
+        id: 'gdpr',
+        title: 'Правовые основания и права (GDPR / EEA / UK, где применимо)',
+        paragraphs: [
+          'Мы можем опираться на договор/оказание услуги для входных данных урока, законный интерес для privacy-safe аналитики и диагностики сбоев, а также согласие там, где оно требуется для опциональных уведомлений.',
+          'У вас могут быть права на доступ, исправление, удаление, ограничение, возражение или переносимость данных, а также право подать жалобу в надзорный орган. Свяжитесь с нами по адресу ниже.',
+        ],
+      },
+      {
+        id: 'retention',
+        title: 'Хранение и передачи',
+        paragraphs: [
+          'Данные заданий урока хранятся столько, сколько нужно для выдачи результатов и работы сервиса, затем удаляются или обезличиваются по нашему операционному графику. Логи аналитики и сбоев следуют настройкам retention проекта Firebase.',
+          'Инфраструктура и Firebase могут обрабатывать данные в ЕС и/или других регионах с соответствующими гарантиями, где это требуется.',
+        ],
+      },
+      {
+        id: 'contact',
+        title: 'Контакты',
+        paragraphs: [
+          'Конфиденциальность и поддержка: azumbogames@gmail.com',
+          'Страницы продукта: https://azumbo.vercel.app/ainclusive · https://azumbo.vercel.app/ainclusive/support',
+        ],
+      },
+    ],
+  },
 };
 
 const accessibilityTocEn = [
@@ -1018,6 +1266,67 @@ export const AINCLUSIVE_ACCESSIBILITY: Record<AInclusiveLocale, AccessibilityCop
           'Problemi o richieste di accessibilità: azumbogames@gmail.com (oggetto: AInclusive accessibility).',
           'Supporto: https://azumbo.vercel.app/ainclusive/support',
           'Privacy: https://azumbo.vercel.app/ainclusive/privacy',
+        ],
+      },
+    ],
+  },
+  ru: {
+    kicker: 'App Store · Доступность',
+    title: 'Доступность',
+    subtitle:
+      'Как AInclusive поддерживает функции доступности Apple на iPhone и iPad. Мы заявляем только те функции, которые работают для типовых задач: создание урока, просмотр History, отправка или сохранение результата.',
+    tocAria: 'Оглавление раздела доступности',
+    toc: [
+      { id: 'overview', label: 'Обзор' },
+      { id: 'supported', label: 'Заявленные функции' },
+      { id: 'in-progress', label: 'В работе' },
+      { id: 'devices', label: 'Устройства' },
+      { id: 'feedback', label: 'Обратная связь' },
+    ],
+    sections: [
+      {
+        id: 'overview',
+        title: 'Обзор',
+        paragraphs: [
+          'AInclusive — приложение Education для учителей, родителей и специалистов поддержки. Мы проектируем инклюзивные сценарии урока и следуем Apple Human Interface Guidelines там, где это практично.',
+          'Эта страница соответствует функциям доступности на нашей странице продукта в App Store. Мы обновляем её по мере аудита и расширения поддержки.',
+        ],
+      },
+      {
+        id: 'supported',
+        title: 'Функции, которые мы заявляем в App Store',
+        paragraphs: ['Пользователи могут выполнять типовые задачи при включённых системных функциях:'],
+        bullets: [
+          'Differentiate Without Color Alone — бейджи статуса и доставки используют текст и иконки в дополнение к цвету (например Ready и Given), так что информация не передаётся только цветом.',
+          'Reduced Motion — когда в Настройках включён Reduce Motion, мы минимизируем неосновную анимацию, чтобы пользователям с вестибулярной чувствительностью было комфортнее работать.',
+        ],
+      },
+      {
+        id: 'in-progress',
+        title: 'В работе (ещё не заявлено)',
+        paragraphs: ['Мы улучшаем и тестируем эти области перед заявлением в App Store:'],
+        bullets: [
+          'VoiceOver — у многих элементов уже есть accessibility labels и hints; продолжаем полный end-to-end аудит типовых задач.',
+          'Larger Text / Dynamic Type — макеты рассчитаны на крупные размеры текста; заявим поддержку после проверки при 200%+.',
+          'Dark Interface и Sufficient Contrast — SwiftUI следует системному оформлению; проверяем читаемость в Dark Mode и Increase Contrast.',
+          'Voice Control — пока не полностью проаудировано.',
+          'Captions и Audio Descriptions — сейчас не применимы; приложение не воспроизводит видео/аудио с диалогами.',
+        ],
+      },
+      {
+        id: 'devices',
+        title: 'Устройства',
+        paragraphs: [
+          'Заявленная поддержка доступности в App Store сейчас охватывает iPhone и iPad. AInclusive также работает на Mac; мы расширим эту страницу, когда опубликуем заявления для Mac.',
+        ],
+      },
+      {
+        id: 'feedback',
+        title: 'Обратная связь',
+        paragraphs: [
+          'Проблемы или запросы по доступности: azumbogames@gmail.com (тема: AInclusive accessibility).',
+          'Поддержка: https://azumbo.vercel.app/ainclusive/support',
+          'Конфиденциальность: https://azumbo.vercel.app/ainclusive/privacy',
         ],
       },
     ],

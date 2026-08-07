@@ -31,6 +31,11 @@ const BETA_MAIL_COPY: Record<
     body: 'Ciao AZUMBO,\n\nVorrei accesso TestFlight / pilota scolastico ad AInclusive.\n\nRuolo (insegnante / genitore / LSA):\nScuola o organizzazione (opzionale):\nDispositivo (iPhone / iPad / Mac):\n\nGrazie!',
     contactSubject: 'Contatto AInclusive',
   },
+  ru: {
+    subject: 'Бета-доступ к AInclusive',
+    body: 'Здравствуйте, AZUMBO,\n\nХочу получить доступ TestFlight / школьный пилот к AInclusive.\n\nРоль (учитель / родитель / LSA):\nШкола или организация (по желанию):\nУстройство (iPhone / iPad / Mac):\n\nСпасибо!',
+    contactSubject: 'Связь по AInclusive',
+  },
 };
 
 export function buildMailto(options: { subject: string; body?: string }): string {
