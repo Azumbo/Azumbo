@@ -80,11 +80,15 @@ export default function AInclusiveLandingClient() {
           <div className={styles.museumGrid}>
             {t.shots.map((shot) => (
               <figure className={styles.museumCard} key={shot.src}>
-                <div className={styles.phoneMock}>
+                <div
+                  className={
+                    shot.hasDeviceFrame ? styles.framedDevice : styles.phoneMock
+                  }
+                >
                   <Image
                     src={shot.src}
                     alt={shot.alt}
-                    width={575}
+                    width={shot.hasDeviceFrame ? 512 : 575}
                     height={1024}
                     className={styles.museumScreenshot}
                   />

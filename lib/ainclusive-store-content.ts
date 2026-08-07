@@ -51,7 +51,7 @@ export type LandingCopy = {
   shotsKicker: string;
   shotsTitle: string;
   shotsLead: string;
-  shots: { src: string; name: string; note: string; alt: string }[];
+  shots: { src: string; name: string; note: string; alt: string; hasDeviceFrame?: boolean }[];
   featuresKicker: string;
   featuresTitle: string;
   featuresLead: string;
@@ -133,6 +133,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
       {
         src: '/ainclusive/home-screen.png',
+        hasDeviceFrame: true,
         name: 'On the Home Screen',
         note: 'The real AInclusive icon as it appears on iPhone.',
         alt: 'iPhone Home Screen showing the AInclusive app icon',
@@ -254,6 +255,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
       {
         src: '/ainclusive/home-screen.png',
+        hasDeviceFrame: true,
         name: 'על מסך הבית',
         note: 'האייקון האמיתי של AInclusive באייפון.',
         alt: 'מסך הבית של האייפון עם אייקון AInclusive',
@@ -376,6 +378,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
       {
         src: '/ainclusive/home-screen.png',
+        hasDeviceFrame: true,
         name: 'Sulla Home Screen',
         note: 'L’icona reale di AInclusive sull’iPhone.',
         alt: 'Home Screen iPhone con l’icona dell’app AInclusive',
@@ -500,6 +503,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
       {
         src: '/ainclusive/home-screen.png',
+        hasDeviceFrame: true,
         name: 'На домашнем экране',
         note: 'Настоящая иконка AInclusive на iPhone.',
         alt: 'Домашний экран iPhone с иконкой приложения AInclusive',
