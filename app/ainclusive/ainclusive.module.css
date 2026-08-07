@@ -454,6 +454,7 @@
 /* Hardware-framed screenshots already include bezel + home button */
 .framedDevice {
   overflow: visible;
+  width: fit-content;
   max-width: 260px;
   margin: 0 auto;
   background: transparent;
@@ -461,6 +462,7 @@
   border-radius: 0;
   box-shadow: none;
   padding: 0;
+  line-height: 0;
 }
 
 .heroScreenshot {
