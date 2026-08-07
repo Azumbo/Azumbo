@@ -122,7 +122,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     heroPreviewAria: 'AInclusive app preview',
     heroAlt: 'AInclusive app home: Create learning materials',
     shotsKicker: 'Real product screens',
-    shotsTitle: 'What educators open on the phone.',
+    shotsTitle: 'How app works',
     shotsLead: 'Fresh simulator captures of the live build — Home and the iOS app icon on the device springboard.',
     shots: [
       {
@@ -166,7 +166,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
     ],
     impactKicker: 'Social impact',
-    impactTitle: 'Why this matters for grants and schools.',
+    impactTitle: 'Why it works for a special kid in your class',
     impactLead:
       "Ten teachers and parents of children with special needs have already tested AInclusive — and Israel's Down Syndrome Society (Yated) has issued a letter of intent for commercial licensing once the MVP is complete. AInclusive is built to show classroom usefulness and responsible data practice, not just a pitch deck.",
     impactPoints: [
@@ -244,7 +244,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     heroPreviewAria: 'תצוגה מקדימה של האפליקציה',
     heroAlt: 'מסך הבית של AInclusive: יצירת חומרי למידה',
     shotsKicker: 'מסכים אמיתיים',
-    shotsTitle: 'מה שנפתח בטלפון.',
+    shotsTitle: 'איך האפליקציה עובדת',
     shotsLead: 'צילומי סימולטור מהבילד החי — מסך הבית ואייקון האפליקציה על מסך הבית של האייפון.',
     shots: [
       {
@@ -288,7 +288,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
     ],
     impactKicker: 'השפעה חברתית',
-    impactTitle: 'למה זה חשוב לבתי ספר ולקרנות.',
+    impactTitle: 'למה זה עובד לתלמיד מיוחד בכיתה שלך',
     impactLead:
       'עשרה מורים והורים לילדים עם צרכים מיוחדים כבר בדקו את AInclusive — ואגודת תסמונת דאון בישראל (יָתֵד) הוציאה מכתב כוונות לרישוי מסחרי עם השלמת ה-MVP. AInclusive בנויה להראות שימושיות בכיתה וטיפול אחראי בנתונים — לא רק מצגת.',
     impactPoints: [
@@ -366,7 +366,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     heroPreviewAria: 'Anteprima app AInclusive',
     heroAlt: 'Home di AInclusive: Crea materiali didattici',
     shotsKicker: 'Schermate reali',
-    shotsTitle: 'Cosa aprono gli educatori sul telefono.',
+    shotsTitle: 'Come funziona l’app',
     shotsLead:
       'Screenshot aggiornati dal build live — Home e l’icona AInclusive sulla Springboard di iPhone.',
     shots: [
@@ -411,7 +411,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
     ],
     impactKicker: 'Impatto sociale',
-    impactTitle: 'Perché conta per scuole e bandi.',
+    impactTitle: 'Perché funziona per un alunno speciale nella tua classe',
     impactLead:
       'Dieci insegnanti e genitori di bambini con bisogni speciali hanno già testato AInclusive — e la Società israeliana per la sindrome di Down (Yated) ha rilasciato una lettera di intenti per la licenza commerciale a MVP completato. AInclusive è costruita per mostrare utilità in classe e pratica responsabile dei dati, non solo un pitch deck.',
     impactPoints: [
@@ -491,7 +491,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     heroPreviewAria: 'Превью приложения AInclusive',
     heroAlt: 'Главный экран AInclusive: создание учебных материалов',
     shotsKicker: 'Реальные экраны',
-    shotsTitle: 'Что открывают педагоги на телефоне.',
+    shotsTitle: 'Как работает приложение',
     shotsLead:
       'Актуальные снимки из живого билда — Home и иконка AInclusive на домашнем экране iPhone.',
     shots: [
@@ -536,7 +536,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
       },
     ],
     impactKicker: 'Социальный эффект',
-    impactTitle: 'Почему это важно для грантов и школ.',
+    impactTitle: 'Почему это работает для особенного ребёнка в вашем классе',
     impactLead:
       'Десять учителей и родителей детей с особыми потребностями уже протестировали AInclusive — а израильское общество синдрома Дауна (Yated) выдало письмо о намерениях по коммерческой лицензии после завершения MVP. AInclusive показывает пользу в классе и ответственное обращение с данными, а не только презентацию.',
     impactPoints: [
