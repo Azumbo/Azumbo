@@ -347,120 +347,120 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     navAccessibility: 'Accessibilità',
     navSupport: 'Supporto',
     navContact: 'Contatti',
-    brandHomeAria: 'Home AInclusive',
-    footerAria: 'Navigazione footer',
+    brandHomeAria: 'Home di AInclusive',
+    footerAria: 'Link a piè di pagina',
     footerCredit:
       '© 2026 AZUMBO. AInclusive aiuta gli educatori ad adattare i materiali didattici per ogni studente.',
-    badgeAria: 'Richiedi accesso beta ad AInclusive',
-    badgeAlt: 'Richiedi beta',
-    kicker: 'Per insegnanti, genitori e personale di supporto',
+    badgeAria: 'Scrivici per chiedere l’accesso alla beta di AInclusive',
+    badgeAlt: 'Richiedi accesso alla beta',
+    kicker: 'Per insegnanti, genitori e personale di sostegno',
     title: 'AInclusive',
     subtitleLead:
-      'Trasforma qualsiasi scheda in una lezione accessibile in meno di un’ora — senza formazione speciale e senza riscritture manuali.',
+      'Trasforma qualsiasi scheda in una lezione accessibile in meno di un’ora — senza formazione speciale e senza riscrivere tutto a mano.',
     subtitle:
-      'Fotografa o incolla i materiali di classe e AInclusive li adatta per alunni con bisogni speciali e per chi affronta barriere linguistiche, su iPhone, iPad e Mac. Disponibile in inglese, ebraico e italiano.',
-    primaryCta: 'Richiedi accesso beta',
+      'Fotografa o incolla i materiali di classe: AInclusive li adatta per alunni con bisogni speciali e per chi ha barriere linguistiche, su iPhone, iPad e Mac. L’interfaccia è disponibile in inglese, ebraico e italiano.',
+    primaryCta: 'Richiedi accesso alla beta',
     readSupport: 'Supporto e FAQ',
-    heroPreviewAria: 'Anteprima app AInclusive',
-    heroAlt: 'Home di AInclusive: Crea materiali didattici',
+    heroPreviewAria: 'Anteprima dell’app AInclusive',
+    heroAlt: 'Schermata iniziale di AInclusive: crea materiali didattici',
     shotsKicker: 'Schermate reali',
     shotsTitle: 'Come funziona l’app',
     shotsLead:
-      'Screenshot aggiornati dal build live — Home e l’icona AInclusive sulla Springboard di iPhone.',
+      'Screenshot dalla build attuale: la home dell’app e l’icona AInclusive sulla schermata Home dell’iPhone.',
     shots: [
       {
         src: '/ainclusive/app-preview.png',
         name: 'Home',
-        note: 'Crea materiali didattici adattati con un tocco.',
+        note: 'Crea materiali adattati con un tocco.',
         alt: 'Schermata home di AInclusive con il pulsante Crea materiali',
       },
       {
         src: '/ainclusive/home-screen.png',
-        name: 'Sulla Home Screen',
-        note: 'L’icona reale di AInclusive sull’iPhone.',
-        alt: 'Home Screen iPhone con l’icona dell’app AInclusive',
+        name: 'Sulla schermata Home',
+        note: 'Così appare l’icona AInclusive sull’iPhone.',
+        alt: 'Schermata Home di iPhone con l’icona dell’app AInclusive',
       },
     ],
-    featuresKicker: 'Fotocamera · lingue · metriche privacy-safe',
-    featuresTitle: 'Pensata per le classi vere, non per le demo.',
+    featuresKicker: 'Fotocamera · lingue · analytics rispettosa della privacy',
+    featuresTitle: 'Pensata per il lavoro in classe, non per le demo.',
     featuresLead:
-      'Adattare materiali per un alunno con bisogni speciali significava ore di riscrittura manuale e competenze specialistiche. AInclusive mantiene un flusso calmo e pratico: cattura una scheda, scegli il contesto dello studente e ottieni materiali adattati da rivedere e condividere in pochi minuti.',
+      'Adattare i materiali per un alunno con bisogni speciali richiedeva ore di lavoro manuale e competenze specialistiche. Con AInclusive il percorso è più semplice: fotografa una scheda, indica il contesto dello studente e ricevi materiali pronti da rivedere e condividere.',
     features: [
       {
         icon: '📷',
-        title: 'Cattura schede',
-        text: 'Usa fotocamera o libreria per inviare schede da adattare — con finalità di permesso chiare per App Review.',
+        title: 'Scatta le schede',
+        text: 'Usa la fotocamera o la libreria foto per inviare schede da adattare, con testi di permesso chiari per la revisione App Store.',
       },
       {
         icon: '🌍',
         title: 'EN · HE · IT',
-        text: 'UI in inglese, ebraico (RTL) e italiano — pronta per piloti locali e evidenze per grant UE.',
+        text: 'Interfaccia e lingua della lezione in inglese, ebraico (da destra a sinistra) e italiano — utile per i piloti locali e per la rendicontazione dei bandi.',
       },
       {
         icon: '♿',
-        title: 'Inclusiva di progetto',
-        text: 'Target di tocco ampi, layout amichevole con Dynamic Type e visuale sobria secondo le HIG Apple.',
+        title: 'Design inclusivo',
+        text: 'Pulsanti grandi, testo ingrandibile e interfaccia sobria secondo le linee guida Apple: comoda anche quando hai poco tempo.',
       },
       {
         icon: '📊',
-        title: 'Analytics privacy-safe',
-        text: 'Firebase Analytics e Crashlytics per metriche di prodotto senza inviare email, nomi, topic o foto agli eventi analytics.',
+        title: 'Analytics senza dati inutili',
+        text: 'Firebase Analytics e Crashlytics aiutano a capire il prodotto, ma non inviano email, nomi, argomenti delle lezioni o foto agli eventi analytics.',
       },
     ],
     impactKicker: 'Impatto sociale',
-    impactTitle: 'Perché funziona per un alunno speciale nella tua classe',
+    impactTitle: 'Perché funziona per un alunno con bisogni speciali nella tua classe',
     impactLead:
-      'Dieci insegnanti e genitori di bambini con bisogni speciali hanno già testato AInclusive — e la Società israeliana per la sindrome di Down (Yated) ha rilasciato una lettera di intenti per la licenza commerciale a MVP completato. AInclusive è costruita per mostrare utilità in classe e pratica responsabile dei dati, non solo un pitch deck.',
+      'Dieci insegnanti e genitori di bambini con bisogni speciali hanno già provato AInclusive. La Società israeliana per la sindrome di Down (Yated) ha inviato una lettera di intenti per la licenza commerciale a MVP completato. Puntiamo sull’utilità reale in classe e su un uso responsabile dei dati — non solo su una bella presentazione.',
     impactPoints: [
       {
-        title: 'Studenti che necessitano adattamento',
-        text: 'Supporta insegnanti, genitori e LSA che dedicano ore a riscrivere materiali per bambini con bisogni speciali — e per bambini e giovani adulti che affrontano barriere linguistiche.',
+        title: 'Studenti che hanno bisogno di adattamento',
+        text: 'Aiutiamo insegnanti, genitori e assistenti che passano ore a riscrivere materiali per bambini con bisogni speciali — e per chi affronta barriere linguistiche.',
       },
       {
         title: 'Europa e Israele multilingue',
-        text: 'Italiano ed ebraico aprono la strada a piloti regionali.',
+        text: 'Italiano ed ebraico nell’interfaccia aprono la strada a piloti regionali.',
       },
       {
-        title: 'Trasparenza di default',
-        text: 'Privacy policy pubblica, supporto e App Privacy labels pronti per la categoria Education.',
+        title: 'Trasparenza fin dal primo giorno',
+        text: 'Informativa privacy e pagina di supporto pubbliche, più le App Privacy labels — pronte per la revisione nella categoria Education.',
       },
     ],
     testimonialKicker: 'Feedback dal pilota iniziale',
     testimonialQuote:
-      'Usare l’app AInclusive è stata un’esperienza ispirante. L’interfaccia intuitiva e l’approccio creativo verso gli alunni con bisogni speciali sono davvero notevoli… Sono sicura che questa app darà forza agli insegnanti.',
-    testimonialAttribution: 'Insegnante di sostegno, feedback dal pilota iniziale',
+      'Usare l’app AInclusive è stata un’esperienza ispirante. L’interfaccia intuitiva e l’approccio creativo verso gli alunni con bisogni speciali sono davvero notevoli… Sono sicura che questa app sarà di grande aiuto per gli insegnanti.',
+    testimonialAttribution: 'Insegnante di sostegno, pilota iniziale',
     testimonialAria: 'Testimonianza di un’insegnante del pilota',
     faqKicker: 'FAQ',
     faqTitle: 'Risposte rapide.',
-    faqLead: 'Per App Store, scuole e revisori di grant.',
+    faqLead: 'Per App Store, scuole e chi valuta i bandi.',
     faqs: [
       {
         question: 'Cos’è AInclusive?',
         answer:
-          'Un’app Education che aiuta insegnanti, genitori e personale di supporto ad adattare schede in materiali didattici più accessibili su iPhone, iPad e Mac.',
+          'AInclusive è un’app educativa per insegnanti, genitori e personale di sostegno. Aiuta a trasformare schede e materiali in attività più accessibili su iPhone, iPad e Mac.',
       },
       {
         question: 'Perché serve la fotocamera?',
         answer:
-          'Per fotografare schede e materiali didattici da adattare in lezioni accessibili. La libreria foto si usa quando scegli un’immagine esistente.',
+          'Per fotografare schede e materiali da adattare. La libreria foto serve se scegli un’immagine già salvata invece di scattarne una nuova.',
       },
       {
         question: 'Quali lingue sono supportate?',
         answer:
-          'Inglese, ebraico (da destra a sinistra) e italiano nell’interfaccia; la lingua della lezione si sceglie per ogni attività.',
+          'Nell’interfaccia: inglese, ebraico (da destra a sinistra) e italiano. La lingua della lezione si può scegliere per ogni attività.',
       },
       {
-        question: 'Quali analytics raccogliete?',
+        question: 'Quali dati analytics raccogliete?',
         answer:
-          'Eventi di prodotto privacy-safe via Firebase. Non inviamo email, nome studente, testo del topic, corpo della lezione o foto ad Analytics.',
+          'Solo eventi di prodotto anonimizzati via Firebase — ad esempio i passaggi del flusso e le segnalazioni di crash. Non inviamo ad Analytics email, nome dello studente, testo dell’argomento, testo della lezione o foto.',
       },
     ],
     faqCtaPrefix: 'Serve aiuto o un pilota scolastico?',
-    faqCtaLink: 'Apri il Supporto AInclusive',
+    faqCtaLink: 'Vai al supporto AInclusive',
     downloadBadge: 'TestFlight / piloti scolastici',
-    downloadTitle: 'Prova la beta.',
+    downloadTitle: 'Prova la versione beta',
     downloadBody:
-      'La scheda App Store è in preparazione. Scrivici per accesso TestFlight per educatori e scuole partner.',
+      'Presto l’app sarà su App Store. Scrivici: ti mandiamo un invito TestFlight per insegnanti e scuole partner.',
   },
 
   ru: {
@@ -658,35 +658,35 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
   it: {
     kicker: 'Aiuto · requisito App Store',
     title: 'Supporto',
-    subtitle: 'Domande su AInclusive, fotocamera, lingue o piloti scolastici.',
-    contactSupport: 'Email di supporto',
+    subtitle: 'Domande su AInclusive, fotocamera, lingue e piloti scolastici.',
+    contactSupport: 'Scrivi al supporto',
     privacyPolicy: 'Informativa privacy',
-    appHome: 'Home AInclusive',
+    appHome: 'Vai alla home di AInclusive',
     faqTitle: 'Domande frequenti',
     faqs: [
       {
-        question: 'Quanto tempo richiede la generazione?',
+        question: 'Quanto tempo ci vuole per generare una lezione?',
         answer:
-          'Di solito pochi minuti in base al carico. Con le notifiche attive puoi uscire dall’app e tornare quando i materiali sono pronti.',
+          'Di solito pochi minuti, in base al carico del server. Con le notifiche attive puoi chiudere l’app e tornare quando i materiali sono pronti.',
       },
       {
-        question: 'Perché chiedete fotocamera o foto?',
+        question: 'Perché chiedete l’accesso a fotocamera o foto?',
         answer:
-          'Solo per catturare schede e materiali da adattare in lezioni accessibili. Puoi rifiutare e incollare testo dove supportato.',
+          'Solo per fotografare o scegliere una scheda da adattare in una lezione più accessibile. Puoi rifiutare e, dove previsto, incollare il testo.',
       },
       {
-        question: 'Quali dispositivi sono supportati?',
-        answer: 'iPhone e iPad (iOS 17+), con percorso Mac nella stessa famiglia di prodotto.',
+        question: 'Su quali dispositivi funziona?',
+        answer: 'Su iPhone e iPad (iOS 17 o successivo) e anche su Mac.',
       },
       {
         question: 'Come partecipare a un pilota / TestFlight?',
         answer:
-          'Scrivi a azumbogames@gmail.com indicando scuola o ruolo. Invieremo inviti TestFlight per beta chiuse per educatori.',
+          'Scrivi a azumbogames@gmail.com indicando scuola o ruolo. Ti invieremo un invito TestFlight per la beta chiusa dedicata agli educatori.',
       },
       {
         question: 'Come richiedere la cancellazione dei dati?',
         answer:
-          'Email a azumbogames@gmail.com con l’indirizzo usato nell’app. Tratteremo la richiesta secondo l’Informativa privacy.',
+          'Scrivi a azumbogames@gmail.com dall’indirizzo usato nell’app. Tratteremo la richiesta secondo l’Informativa privacy.',
       },
     ],
   },

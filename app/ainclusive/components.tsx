@@ -27,9 +27,9 @@ const BETA_MAIL_COPY: Record<
     contactSubject: 'יצירת קשר בנושא AInclusive',
   },
   it: {
-    subject: 'Accesso beta AInclusive',
-    body: 'Ciao AZUMBO,\n\nVorrei accesso TestFlight / pilota scolastico ad AInclusive.\n\nRuolo (insegnante / genitore / LSA):\nScuola o organizzazione (opzionale):\nDispositivo (iPhone / iPad / Mac):\n\nGrazie!',
-    contactSubject: 'Contatto AInclusive',
+    subject: 'Accesso alla beta di AInclusive',
+    body: 'Ciao AZUMBO,\n\nVorrei l’accesso a TestFlight / a un pilota scolastico di AInclusive.\n\nRuolo (insegnante / genitore / assistente):\nScuola o organizzazione (opzionale):\nDispositivo (iPhone / iPad / Mac):\n\nGrazie!',
+    contactSubject: 'Domanda su AInclusive',
   },
   ru: {
     subject: 'Доступ к бета-версии AInclusive',
