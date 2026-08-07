@@ -137,6 +137,21 @@ export default function AInclusiveLandingClient() {
           </div>
         </section>
 
+        <section
+          className={`${styles.container} ${styles.section}`}
+          aria-labelledby="testimonial-quote"
+        >
+          <figure className={styles.testimonialCard} aria-label={t.testimonialAria}>
+            <p className={styles.kicker}>{t.testimonialKicker}</p>
+            <blockquote className={styles.testimonialQuote} id="testimonial-quote">
+              <p>{t.testimonialQuote}</p>
+            </blockquote>
+            <figcaption className={styles.testimonialAttribution}>
+              — {t.testimonialAttribution}
+            </figcaption>
+          </figure>
+        </section>
+
         <section className={`${styles.container} ${styles.section}`} aria-labelledby="faq-title">
           <div className={styles.sectionHeader}>
             <p className={styles.kicker}>{t.faqKicker}</p>

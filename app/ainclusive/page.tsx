@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   pathname: '/ainclusive',
   title: 'AInclusive — Accessible lessons for every learner | AZUMBO',
   description:
-    'AInclusive helps teachers, parents, and LSAs adapt worksheets into inclusive lesson materials on iPhone, iPad, and Mac. English, Hebrew, and Italian. Privacy-safe analytics for Education.',
+    'Turn any worksheet into an accessible lesson in under an hour. AInclusive helps teachers, parents, and LSAs adapt materials for special needs and language-barrier learners on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
   imagePath: '/ainclusive/icon.png',
 });
 

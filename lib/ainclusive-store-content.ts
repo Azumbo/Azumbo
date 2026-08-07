@@ -59,6 +59,10 @@ export type LandingCopy = {
   impactTitle: string;
   impactLead: string;
   impactPoints: { title: string; text: string }[];
+  testimonialKicker: string;
+  testimonialQuote: string;
+  testimonialAttribution: string;
+  testimonialAria: string;
   faqKicker: string;
   faqTitle: string;
   faqLead: string;
@@ -108,9 +112,10 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     badgeAlt: 'Request beta access',
     kicker: 'For teachers, parents & learning-support staff',
     title: 'AInclusive',
-    subtitleLead: 'Accessible lessons from real worksheets.',
+    subtitleLead:
+      'Turn any worksheet into an accessible lesson in under an hour — no special training, no manual rewriting.',
     subtitle:
-      'Photograph or paste learning materials and turn them into clearer, more inclusive lesson activities — on iPhone, iPad, and Mac. Available in English, Hebrew, and Italian.',
+      'Photograph or paste your classroom materials and AInclusive adapts them for special needs and language-barrier learners, on iPhone, iPad, and Mac. Available in English, Hebrew, and Italian.',
     primaryCta: 'Request beta access',
     readSupport: 'Support & FAQ',
     heroPreviewAria: 'AInclusive app preview',
@@ -135,7 +140,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     featuresKicker: 'Camera · languages · privacy-safe metrics',
     featuresTitle: 'Built for real classrooms, not demos.',
     featuresLead:
-      'AInclusive keeps the flow calm and practical: capture a worksheet, choose the learner context, and get adapted materials you can review and share.',
+      'Adapting materials for a special needs pupil used to mean hours of manual rewriting and specialist expertise. AInclusive keeps the flow calm and practical: capture a worksheet, choose the learner context, and get adapted materials you can review and share in minutes.',
     features: [
       {
         icon: '📷',
@@ -161,11 +166,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     impactKicker: 'Social impact',
     impactTitle: 'Why this matters for grants and schools.',
     impactLead:
-      'Funders and educators need proof of inclusion — not just a pitch deck. AInclusive is built to show classroom usefulness and responsible data practice.',
+      "Ten teachers and parents of children with special needs have already tested AInclusive — and Israel's Down Syndrome Society (Yated) has issued a letter of intent for commercial licensing once the MVP is complete. AInclusive is built to show classroom usefulness and responsible data practice, not just a pitch deck.",
     impactPoints: [
       {
         title: 'Learners who need adaptation',
-        text: 'Supports teachers and LSAs who spend hours rewriting materials for diverse needs.',
+        text: 'Supports teachers, parents, and LSAs who spend hours rewriting materials for children with special needs — and for children and young adults facing language barriers.',
       },
       {
         title: 'Multilingual Europe & Israel',
@@ -176,6 +181,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
         text: 'Public privacy policy, support page, and App Store nutrition labels ready for Education review.',
       },
     ],
+    testimonialKicker: 'Early pilot feedback',
+    testimonialQuote:
+      'Using the AInclusive app has been an inspiring experience. Its user-friendly interface and creative approach towards pupils with special needs are truly remarkable… I’m confident this app will empower teachers.',
+    testimonialAttribution: 'A special needs teacher, early pilot feedback',
+    testimonialAria: 'Pilot teacher testimonial',
     faqKicker: 'FAQ',
     faqTitle: 'Quick answers.',
     faqLead: 'Short answers for App Store, schools, and grant reviewers.',
@@ -223,9 +233,10 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     badgeAlt: 'בקשת בטא',
     kicker: 'למורים, הורים ואנשי תמיכה בלמידה',
     title: 'AInclusive',
-    subtitleLead: 'שיעורים נגישים מדפי עבודה אמיתיים.',
+    subtitleLead:
+      'הפכו כל דף עבודה לשיעור נגיש בפחות משעה — בלי הכשרה מיוחדת ובלי שכתוב ידני.',
     subtitle:
-      'צלמו או הדביקו חומרי למידה והפכו אותם לפעילויות שיעור ברורות ונגישות יותר — באייפון, אייפד ומק. זמין באנגלית, עברית ואיטלקית.',
+      'צלמו או הדביקו חומרי כיתה, ו-AInclusive מתאימה אותם ללומדים עם צרכים מיוחדים וללומדים עם מחסום שפה — באייפון, אייפד ומק. זמין באנגלית, עברית ואיטלקית.',
     primaryCta: 'בקשת גישה לבטא',
     readSupport: 'תמיכה ושאלות נפוצות',
     heroPreviewAria: 'תצוגה מקדימה של האפליקציה',
@@ -250,7 +261,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     featuresKicker: 'מצלמה · שפות · מדידה שומרת פרטיות',
     featuresTitle: 'בנוי לכיתות אמיתיות, לא לדמו.',
     featuresLead:
-      'הזרימה רגועה ומעשית: צילום דף עבודה, בחירת הקשר הלומד, וקבלת חומרים מותאמים לבדיקה ולשיתוף.',
+      'התאמת חומרים לתלמיד עם צרכים מיוחדים דרשה פעם שעות של שכתוב ידני ומומחיות. AInclusive שומרת על זרימה רגועה ומעשית: צילום דף עבודה, בחירת הקשר הלומד, וקבלת חומרים מותאמים לבדיקה ולשיתוף תוך דקות.',
     features: [
       {
         icon: '📷',
@@ -276,11 +287,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     impactKicker: 'השפעה חברתית',
     impactTitle: 'למה זה חשוב לבתי ספר ולקרנות.',
     impactLead:
-      'מממנים ומחנכים צריכים הוכחת הכללה — לא רק מצגת. AInclusive בנויה לשימושיות בכיתה ולטיפול אחראי בנתונים.',
+      'עשרה מורים והורים לילדים עם צרכים מיוחדים כבר בדקו את AInclusive — ואגודת תסמונת דאון בישראל (יָתֵד) הוציאה מכתב כוונות לרישוי מסחרי עם השלמת ה-MVP. AInclusive בנויה להראות שימושיות בכיתה וטיפול אחראי בנתונים — לא רק מצגת.',
     impactPoints: [
       {
         title: 'לומדים שזקוקים להתאמה',
-        text: 'תומכת במורים ובאנשי LSA שמשקיעים שעות בהתאמת חומרים לצרכים מגוונים.',
+        text: 'תומכת במורים, הורים ואנשי LSA שמשקיעים שעות בשכתוב חומרים לילדים עם צרכים מיוחדים — וגם לילדים ולצעירים עם מחסום שפה.',
       },
       {
         title: 'אירופה וישראל רב-לשוניות',
@@ -291,6 +302,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
         text: 'מדיניות פרטיות, תמיכה ותוויות פרטיות ב-App Store מוכנים לקטגוריית Education.',
       },
     ],
+    testimonialKicker: 'משוב מפיילוט מוקדם',
+    testimonialQuote:
+      'השימוש באפליקציית AInclusive היה חוויה מעוררת השראה. הממשק הידידותי והגישה היצירתית לתלמידים עם צרכים מיוחדים מרשימים באמת… אני בטוחה שהאפליקציה תעצים מורים.',
+    testimonialAttribution: 'מורה לחינוך מיוחד, משוב מפיילוט מוקדם',
+    testimonialAria: 'עדות ממורה בפיילוט',
     faqKicker: 'שאלות נפוצות',
     faqTitle: 'תשובות קצרות.',
     faqLead: 'לביקורת App Store, בתי ספר וגורמי מענקים.',
@@ -338,9 +354,10 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     badgeAlt: 'Richiedi beta',
     kicker: 'Per insegnanti, genitori e personale di supporto',
     title: 'AInclusive',
-    subtitleLead: 'Lezioni accessibili da schede reali.',
+    subtitleLead:
+      'Trasforma qualsiasi scheda in una lezione accessibile in meno di un’ora — senza formazione speciale e senza riscritture manuali.',
     subtitle:
-      'Fotografa o incolla materiali didattici e trasformali in attività più chiare e inclusive — su iPhone, iPad e Mac. Disponibile in inglese, ebraico e italiano.',
+      'Fotografa o incolla i materiali di classe e AInclusive li adatta per alunni con bisogni speciali e per chi affronta barriere linguistiche, su iPhone, iPad e Mac. Disponibile in inglese, ebraico e italiano.',
     primaryCta: 'Richiedi accesso beta',
     readSupport: 'Supporto e FAQ',
     heroPreviewAria: 'Anteprima app AInclusive',
@@ -366,7 +383,7 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     featuresKicker: 'Fotocamera · lingue · metriche privacy-safe',
     featuresTitle: 'Pensata per le classi vere, non per le demo.',
     featuresLead:
-      'Flusso calmo e pratico: cattura una scheda, scegli il contesto dello studente e ottieni materiali adattati da rivedere e condividere.',
+      'Adattare materiali per un alunno con bisogni speciali significava ore di riscrittura manuale e competenze specialistiche. AInclusive mantiene un flusso calmo e pratico: cattura una scheda, scegli il contesto dello studente e ottieni materiali adattati da rivedere e condividere in pochi minuti.',
     features: [
       {
         icon: '📷',
@@ -392,11 +409,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     impactKicker: 'Impatto sociale',
     impactTitle: 'Perché conta per scuole e bandi.',
     impactLead:
-      'Fondi ed educatori chiedono prova di inclusione — non solo slide. AInclusive è costruita per utilità in classe e dati responsabili.',
+      'Dieci insegnanti e genitori di bambini con bisogni speciali hanno già testato AInclusive — e la Società israeliana per la sindrome di Down (Yated) ha rilasciato una lettera di intenti per la licenza commerciale a MVP completato. AInclusive è costruita per mostrare utilità in classe e pratica responsabile dei dati, non solo un pitch deck.',
     impactPoints: [
       {
         title: 'Studenti che necessitano adattamento',
-        text: 'Supporta docenti e LSA che dedicano ore a riscrivere materiali per bisogni diversi.',
+        text: 'Supporta insegnanti, genitori e LSA che dedicano ore a riscrivere materiali per bambini con bisogni speciali — e per bambini e giovani adulti che affrontano barriere linguistiche.',
       },
       {
         title: 'Europa e Israele multilingue',
@@ -407,6 +424,11 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
         text: 'Privacy policy pubblica, supporto e App Privacy labels pronti per la categoria Education.',
       },
     ],
+    testimonialKicker: 'Feedback dal pilota iniziale',
+    testimonialQuote:
+      'Usare l’app AInclusive è stata un’esperienza ispirante. L’interfaccia intuitiva e l’approccio creativo verso gli alunni con bisogni speciali sono davvero notevoli… Sono sicura che questa app darà forza agli insegnanti.',
+    testimonialAttribution: 'Insegnante di sostegno, feedback dal pilota iniziale',
+    testimonialAria: 'Testimonianza di un’insegnante del pilota',
     faqKicker: 'FAQ',
     faqTitle: 'Risposte rapide.',
     faqLead: 'Per App Store, scuole e revisori di grant.',
