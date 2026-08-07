@@ -32,9 +32,9 @@ const BETA_MAIL_COPY: Record<
     contactSubject: 'Contatto AInclusive',
   },
   ru: {
-    subject: 'Бета-доступ к AInclusive',
-    body: 'Здравствуйте, AZUMBO,\n\nХочу получить доступ TestFlight / школьный пилот к AInclusive.\n\nРоль (учитель / родитель / LSA):\nШкола или организация (по желанию):\nУстройство (iPhone / iPad / Mac):\n\nСпасибо!',
-    contactSubject: 'Связь по AInclusive',
+    subject: 'Доступ к бета-версии AInclusive',
+    body: 'Здравствуйте, команда AZUMBO,\n\nХочу получить доступ к TestFlight / школьному пилоту AInclusive.\n\nРоль (учитель / родитель / ассистент):\nШкола или организация (по желанию):\nУстройство (iPhone / iPad / Mac):\n\nСпасибо!',
+    contactSubject: 'Вопрос по AInclusive',
   },
 };
 
