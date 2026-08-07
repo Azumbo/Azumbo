@@ -427,8 +427,8 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     ],
     testimonialKicker: 'Feedback dal pilota iniziale',
     testimonialQuote:
-      'Usare l’app AInclusive è stata un’esperienza ispirante. L’interfaccia intuitiva e l’approccio creativo verso gli alunni con bisogni speciali sono davvero notevoli… Sono sicura che questa app sarà di grande aiuto per gli insegnanti.',
-    testimonialAttribution: 'Insegnante di sostegno, pilota iniziale',
+      'L’uso dell’app AInclusive è stato un’esperienza davvero stimolante. L’interfaccia intuitiva e la flessibilità nell’adattare i materiali per gli alunni con bisogni speciali sono semplicemente straordinarie… Sono convinta che quest’app sarà un valido alleato per gli insegnanti.',
+    testimonialAttribution: 'Insegnante di sostegno, partecipante al test pilota',
     testimonialAria: 'Testimonianza di un’insegnante del pilota',
     faqKicker: 'FAQ',
     faqTitle: 'Risposte rapide.',
