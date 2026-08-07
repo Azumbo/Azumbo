@@ -88,8 +88,8 @@ export default function AInclusiveLandingClient() {
                   <Image
                     src={shot.src}
                     alt={shot.alt}
-                    width={shot.hasDeviceFrame ? 419 : 575}
-                    height={shot.hasDeviceFrame ? 849 : 1024}
+                    width={shot.hasDeviceFrame ? 504 : 575}
+                    height={shot.hasDeviceFrame ? 978 : 1024}
                     className={styles.museumScreenshot}
                   />
                 </div>
