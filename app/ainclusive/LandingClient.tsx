@@ -10,14 +10,13 @@ import {
   localeDirection,
   type AInclusiveLocale,
 } from '../../lib/ainclusive-store-content';
-import { AInclusiveFooter, AInclusiveNav, betaMailto } from './components';
+import { APP_STORE_URL, AInclusiveFooter, AInclusiveNav, AppStoreBadge } from './components';
 import styles from './ainclusive.module.css';
 
 export default function AInclusiveLandingClient() {
   const [locale, setLocale] = useState<AInclusiveLocale>('en');
   const [ready, setReady] = useState(false);
   const t = AINCLUSIVE_LANDING[locale];
-  const betaMail = betaMailto(locale);
 
   useEffect(() => {
     setLocale(detectAInclusiveLocale());
@@ -46,13 +45,19 @@ export default function AInclusiveLandingClient() {
               <strong>{t.subtitleLead}</strong> {t.subtitle}
             </p>
             <div className={styles.actions}>
-              <a className={styles.cta} href={betaMail}>
+              <a
+                className={styles.cta}
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t.primaryCta}
               </a>
               <Link className={styles.secondaryCta} href="/ainclusive/support">
                 {t.readSupport}
               </Link>
             </div>
+            <AppStoreBadge ariaLabel={t.badgeAria} />
           </div>
 
           <div className={styles.heroCard} aria-label={t.heroPreviewAria}>
@@ -186,9 +191,7 @@ export default function AInclusiveLandingClient() {
             </h2>
             <p className={styles.sectionText}>{t.downloadBody}</p>
             <div className={styles.actions}>
-              <a className={styles.cta} href={betaMail}>
-                {t.primaryCta}
-              </a>
+              <AppStoreBadge ariaLabel={t.badgeAria} />
               <Link className={styles.secondaryCta} href="/ainclusive/privacy">
                 {t.navPrivacy}
               </Link>

@@ -7,35 +7,52 @@ import {
   type AInclusiveLocale,
   type LandingCopy,
 } from '../../lib/ainclusive-store-content';
-import { CONTACT_EMAIL as STUDIO_CONTACT_EMAIL } from '../../lib/apps';
+import { apps, CONTACT_EMAIL as STUDIO_CONTACT_EMAIL } from '../../lib/apps';
 import styles from './ainclusive.module.css';
 
 export const CONTACT_EMAIL = STUDIO_CONTACT_EMAIL;
 
-const BETA_MAIL_COPY: Record<
-  AInclusiveLocale,
-  { subject: string; body: string; contactSubject: string }
-> = {
-  en: {
-    subject: 'AInclusive beta access',
-    body: 'Hello AZUMBO,\n\nI would like TestFlight / school-pilot access to AInclusive.\n\nRole (teacher / parent / LSA):\nSchool or organization (optional):\nDevice (iPhone / iPad / Mac):\n\nThank you!',
-    contactSubject: 'AInclusive contact',
-  },
-  he: {
-    subject: 'גישה לבטא של AInclusive',
-    body: 'שלום AZUMBO,\n\nאשמח לקבל גישת TestFlight / פיילוט בית-ספרי ל-AInclusive.\n\nתפקיד (מורה / הורה / LSA):\nבית ספר או ארגון (אופציונלי):\nמכשיר (iPhone / iPad / Mac):\n\nתודה!',
-    contactSubject: 'יצירת קשר בנושא AInclusive',
-  },
-  it: {
-    subject: 'Accesso alla beta di AInclusive',
-    body: 'Ciao AZUMBO,\n\nVorrei l’accesso a TestFlight / a un pilota scolastico di AInclusive.\n\nRuolo (insegnante / genitore / assistente):\nScuola o organizzazione (opzionale):\nDispositivo (iPhone / iPad / Mac):\n\nGrazie!',
-    contactSubject: 'Domanda su AInclusive',
-  },
-  ru: {
-    subject: 'Доступ к бета-версии AInclusive',
-    body: 'Здравствуйте, команда AZUMBO,\n\nХочу получить доступ к TestFlight / школьному пилоту AInclusive.\n\nРоль (учитель / родитель / ассистент):\nШкола или организация (по желанию):\nУстройство (iPhone / iPad / Mac):\n\nСпасибо!',
-    contactSubject: 'Вопрос по AInclusive',
-  },
+export const AINCLUSIVE = apps.find((app) => app.slug === 'ainclusive')!;
+/** Canonical App Store product URL (Apple marketing guidelines). */
+export const APP_STORE_URL =
+  AINCLUSIVE.appStoreUrl || `https://apps.apple.com/app/id${AINCLUSIVE.appStoreId}`;
+
+const APP_STORE_BADGE_ALT = 'Download on the App Store';
+
+export function AppStoreBadge({
+  className,
+  ariaLabel,
+  compact = false,
+}: {
+  className?: string;
+  ariaLabel: string;
+  compact?: boolean;
+}) {
+  return (
+    <a
+      className={className ?? (compact ? styles.appStoreBadgeLinkCompact : styles.appStoreBadgeLink)}
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+    >
+      <img
+        className={styles.appStoreBadge}
+        src="/ainclusive/download-on-the-app-store.svg"
+        alt={APP_STORE_BADGE_ALT}
+        width={150}
+        height={50}
+        decoding="async"
+      />
+    </a>
+  );
+}
+
+const CONTACT_MAIL_COPY: Record<AInclusiveLocale, { contactSubject: string }> = {
+  en: { contactSubject: 'AInclusive contact' },
+  he: { contactSubject: 'יצירת קשר בנושא AInclusive' },
+  it: { contactSubject: 'Domanda su AInclusive' },
+  ru: { contactSubject: 'Вопрос по AInclusive' },
 };
 
 export function buildMailto(options: { subject: string; body?: string }): string {
@@ -48,17 +65,9 @@ export function buildMailto(options: { subject: string; body?: string }): string
   return `mailto:${CONTACT_EMAIL}?${params.toString().replace(/\+/g, '%20')}`;
 }
 
-export function betaMailto(locale: AInclusiveLocale = 'en'): string {
-  const copy = BETA_MAIL_COPY[locale];
-  return buildMailto({ subject: copy.subject, body: copy.body });
-}
-
 export function contactMailto(locale: AInclusiveLocale = 'en'): string {
-  return buildMailto({ subject: BETA_MAIL_COPY[locale].contactSubject });
+  return buildMailto({ subject: CONTACT_MAIL_COPY[locale].contactSubject });
 }
-
-/** Default English beta mailto (subject + body). Prefer betaMailto(locale). */
-export const BETA_MAIL = betaMailto('en');
 
 type ChromeProps = {
   copy: LandingCopy;

@@ -109,15 +109,15 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     brandHomeAria: 'AInclusive home',
     footerAria: 'Footer navigation',
     footerCredit: '© 2026 AZUMBO. AInclusive helps educators adapt learning materials for every learner.',
-    badgeAria: 'Contact us about AInclusive beta',
-    badgeAlt: 'Request beta access',
+    badgeAria: 'Download AInclusive on the App Store',
+    badgeAlt: 'Download on the App Store',
     kicker: 'For teachers, parents & learning-support staff',
     title: 'AInclusive',
     subtitleLead:
       'Turn any worksheet into an accessible lesson in under an hour — no special training, no manual rewriting.',
     subtitle:
       'Photograph or paste your classroom materials and AInclusive adapts them for special needs and language-barrier learners, on iPhone, iPad, and Mac. Available in English, Hebrew, and Italian.',
-    primaryCta: 'Request beta access',
+    primaryCta: 'Download on the App Store',
     readSupport: 'Support & FAQ',
     heroPreviewAria: 'AInclusive app preview',
     heroAlt: 'AInclusive app home: Create learning materials',
@@ -211,12 +211,12 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
           'Privacy-safe product events via Firebase (for example funnel steps and crash diagnostics). We do not send email, student name, topic text, lesson body, or photos to Analytics.',
       },
     ],
-    faqCtaPrefix: 'Need help or a school pilot?',
+    faqCtaPrefix: 'Need help for your school or classroom?',
     faqCtaLink: 'Open AInclusive Support',
-    downloadBadge: 'TestFlight / school pilots',
-    downloadTitle: 'Try the beta.',
+    downloadBadge: 'Live on the App Store',
+    downloadTitle: 'Get AInclusive today.',
     downloadBody:
-      'Public App Store listing is in preparation. Email us for TestFlight access for educators and partner schools.',
+      'AInclusive is free on the App Store for iPhone, iPad, and Mac. Download it for teachers, parents, and learning-support staff.',
   },
 
   he: {
@@ -230,15 +230,15 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     brandHomeAria: 'דף הבית של AInclusive',
     footerAria: 'ניווט תחתון',
     footerCredit: '© 2026 AZUMBO. AInclusive מסייעת למחנכים להתאים חומרי למידה לכל תלמיד.',
-    badgeAria: 'בקשת גישה לבטא של AInclusive',
-    badgeAlt: 'בקשת בטא',
+    badgeAria: 'הורדת AInclusive מ-App Store',
+    badgeAlt: 'Download on the App Store',
     kicker: 'למורים, הורים ואנשי תמיכה בלמידה',
     title: 'AInclusive',
     subtitleLead:
       'הפכו כל דף עבודה לשיעור נגיש בפחות משעה — בלי הכשרה מיוחדת ובלי שכתוב ידני.',
     subtitle:
       'צלמו או הדביקו חומרי כיתה, ו-AInclusive מתאימה אותם ללומדים עם צרכים מיוחדים וללומדים עם מחסום שפה — באייפון, אייפד ומק. זמין באנגלית, עברית ואיטלקית.',
-    primaryCta: 'בקשת גישה לבטא',
+    primaryCta: 'הורדה מ-App Store',
     readSupport: 'תמיכה ושאלות נפוצות',
     heroPreviewAria: 'תצוגה מקדימה של האפליקציה',
     heroAlt: 'מסך הבית של AInclusive: יצירת חומרי למידה',
@@ -332,11 +332,12 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
           'אירועי מוצר שומרי פרטיות דרך Firebase. לא נשלחים אימייל, שם תלמיד, טקסט נושא, גוף השיעור או תמונות לאנליטיקה.',
       },
     ],
-    faqCtaPrefix: 'צריכים עזרה או פיילוט בבית ספר?',
+    faqCtaPrefix: 'צריכים עזרה לבית הספר או לכיתה?',
     faqCtaLink: 'לדף התמיכה של AInclusive',
-    downloadBadge: 'TestFlight / פיילוטים בבתי ספר',
-    downloadTitle: 'נסו את הבטא.',
-    downloadBody: 'רישום ב-App Store בהכנה. כתבו לנו לגישת TestFlight למחנכים ולבתי ספר שותפים.',
+    downloadBadge: 'זמין ב-App Store',
+    downloadTitle: 'הורידו את AInclusive עכשיו.',
+    downloadBody:
+      'AInclusive בחינם ב-App Store לאייפון, אייפד ומק. מתאים למורים, הורים ואנשי תמיכה בלמידה.',
   },
 
   it: {
@@ -351,15 +352,15 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     footerAria: 'Link a piè di pagina',
     footerCredit:
       '© 2026 AZUMBO. AInclusive aiuta gli educatori ad adattare i materiali didattici per ogni studente.',
-    badgeAria: 'Scrivici per chiedere l’accesso alla beta di AInclusive',
-    badgeAlt: 'Richiedi accesso alla beta',
+    badgeAria: 'Scarica AInclusive sull’App Store',
+    badgeAlt: 'Download on the App Store',
     kicker: 'Per insegnanti, genitori e personale di sostegno',
     title: 'AInclusive',
     subtitleLead:
       'Trasforma qualsiasi scheda in una lezione accessibile in meno di un’ora — senza formazione speciale e senza riscrivere tutto a mano.',
     subtitle:
       'Fotografa o incolla i materiali di classe: AInclusive li adatta per alunni con bisogni speciali e per chi ha barriere linguistiche, su iPhone, iPad e Mac. L’interfaccia è disponibile in inglese, ebraico e italiano.',
-    primaryCta: 'Richiedi accesso alla beta',
+    primaryCta: 'Scarica sull’App Store',
     readSupport: 'Supporto e FAQ',
     heroPreviewAria: 'Anteprima dell’app AInclusive',
     heroAlt: 'Schermata iniziale di AInclusive: crea materiali didattici',
@@ -455,12 +456,12 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
           'Solo eventi di prodotto anonimizzati via Firebase — ad esempio i passaggi del flusso e le segnalazioni di crash. Non inviamo ad Analytics email, nome dello studente, testo dell’argomento, testo della lezione o foto.',
       },
     ],
-    faqCtaPrefix: 'Serve aiuto o un pilota scolastico?',
+    faqCtaPrefix: 'Serve aiuto per la scuola o la classe?',
     faqCtaLink: 'Vai al supporto AInclusive',
-    downloadBadge: 'TestFlight / piloti scolastici',
-    downloadTitle: 'Prova la versione beta',
+    downloadBadge: 'Disponibile sull’App Store',
+    downloadTitle: 'Scarica AInclusive ora.',
     downloadBody:
-      'Presto l’app sarà su App Store. Scrivici: ti mandiamo un invito TestFlight per insegnanti e scuole partner.',
+      'AInclusive è gratis sull’App Store per iPhone, iPad e Mac. Pensata per insegnanti, genitori e personale di sostegno.',
   },
 
   ru: {
@@ -475,15 +476,15 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
     footerAria: 'Ссылки внизу страницы',
     footerCredit:
       '© 2026 AZUMBO. AInclusive помогает педагогам адаптировать учебные материалы под каждого ученика.',
-    badgeAria: 'Написать нам про доступ к бета-версии AInclusive',
-    badgeAlt: 'Запросить доступ к бете',
+    badgeAria: 'Скачать AInclusive в App Store',
+    badgeAlt: 'Download on the App Store',
     kicker: 'Для учителей, родителей и специалистов сопровождения',
     title: 'AInclusive',
     subtitleLead:
       'Превратите любой рабочий лист в доступный урок менее чем за час — без специального обучения и без ручной переделки материалов.',
     subtitle:
       'Сфотографируйте или вставьте материалы урока — и AInclusive адаптирует их для учеников с особыми образовательными потребностями и для тех, кому мешает языковой барьер. Работает на iPhone, iPad и Mac. Интерфейс на английском, иврите и итальянском.',
-    primaryCta: 'Запросить доступ к бете',
+    primaryCta: 'Скачать в App Store',
     readSupport: 'Поддержка и FAQ',
     heroPreviewAria: 'Превью приложения AInclusive',
     heroAlt: 'Главный экран AInclusive: создание учебных материалов',
@@ -579,12 +580,12 @@ export const AINCLUSIVE_LANDING: Record<AInclusiveLocale, LandingCopy> = {
           'Только обезличенные продуктовые события через Firebase — например, шаги сценария и сведения о сбоях. Мы не отправляем в Analytics email, имя ученика, текст темы, текст урока или фото.',
       },
     ],
-    faqCtaPrefix: 'Нужна помощь или школьный пилот?',
+    faqCtaPrefix: 'Нужна помощь школе или классу?',
     faqCtaLink: 'Перейти в поддержку AInclusive',
-    downloadBadge: 'TestFlight / школьные пилоты',
-    downloadTitle: 'Попробуйте бета-версию',
+    downloadBadge: 'Уже в App Store',
+    downloadTitle: 'Скачайте AInclusive сейчас.',
     downloadBody:
-      'Скоро приложение появится в App Store. Напишите нам — пришлём приглашение в TestFlight для учителей и школ-партнёров.',
+      'AInclusive бесплатно в App Store для iPhone, iPad и Mac. Для учителей, родителей и специалистов сопровождения.',
   },
 };
 
@@ -592,7 +593,7 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
   en: {
     kicker: 'Help · App Store requirement',
     title: 'Support',
-    subtitle: 'Questions about AInclusive, camera access, languages, or school pilots.',
+    subtitle: 'Questions about AInclusive, camera access, languages, or classroom use.',
     contactSupport: 'Email support',
     privacyPolicy: 'Privacy Policy',
     appHome: 'AInclusive home',
@@ -613,8 +614,9 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
         answer: 'iPhone and iPad (iOS 17+), with a Mac path in the same product family.',
       },
       {
-        question: 'How do I join a school pilot / TestFlight?',
-        answer: 'Email azumbogames@gmail.com with your school or role. We send TestFlight invites for closed educator betas.',
+        question: 'Where can I download AInclusive?',
+        answer:
+          'AInclusive is live on the App Store: https://apps.apple.com/us/app/ainclusive/id6798403080. For schools and classroom rollout questions, email azumbogames@gmail.com.',
       },
       {
         question: 'How do I request data deletion?',
@@ -625,7 +627,7 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
   he: {
     kicker: 'עזרה · דרישת App Store',
     title: 'תמיכה',
-    subtitle: 'שאלות על AInclusive, מצלמה, שפות או פיילוטים בבתי ספר.',
+    subtitle: 'שאלות על AInclusive, מצלמה, שפות או שימוש בכיתה.',
     contactSupport: 'אימייל לתמיכה',
     privacyPolicy: 'מדיניות פרטיות',
     appHome: 'דף הבית',
@@ -646,8 +648,9 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
         answer: 'אייפון ואייפד (iOS 17 ומעלה), עם נתיב מק באותה משפחת מוצר.',
       },
       {
-        question: 'איך מצטרפים לפיילוט / TestFlight?',
-        answer: 'שלחו אימייל ל-azumbogames@gmail.com עם בית הספר או התפקיד. נשלח הזמנות TestFlight לבטא סגורה למחנכים.',
+        question: 'איפה מורידים את AInclusive?',
+        answer:
+          'AInclusive זמינה ב-App Store: https://apps.apple.com/us/app/ainclusive/id6798403080. לשאלות על הטמעה בבתי ספר — azumbogames@gmail.com.',
       },
       {
         question: 'איך מבקשים מחיקת נתונים?',
@@ -658,7 +661,7 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
   it: {
     kicker: 'Aiuto · requisito App Store',
     title: 'Supporto',
-    subtitle: 'Domande su AInclusive, fotocamera, lingue e piloti scolastici.',
+    subtitle: 'Domande su AInclusive, fotocamera, lingue e uso in classe.',
     contactSupport: 'Scrivi al supporto',
     privacyPolicy: 'Informativa privacy',
     appHome: 'Vai alla home di AInclusive',
@@ -679,9 +682,9 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
         answer: 'Su iPhone e iPad (iOS 17 o successivo) e anche su Mac.',
       },
       {
-        question: 'Come partecipare a un pilota / TestFlight?',
+        question: 'Dove scarico AInclusive?',
         answer:
-          'Scrivi a azumbogames@gmail.com indicando scuola o ruolo. Ti invieremo un invito TestFlight per la beta chiusa dedicata agli educatori.',
+          'AInclusive è disponibile sull’App Store: https://apps.apple.com/us/app/ainclusive/id6798403080. Per domande su scuole e adozione in classe: azumbogames@gmail.com.',
       },
       {
         question: 'Come richiedere la cancellazione dei dati?',
@@ -693,7 +696,7 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
   ru: {
     kicker: 'Помощь · требование App Store',
     title: 'Поддержка',
-    subtitle: 'Вопросы про AInclusive, камеру, языки и школьные пилоты.',
+    subtitle: 'Вопросы про AInclusive, камеру, языки и использование в классе.',
     contactSupport: 'Написать в поддержку',
     privacyPolicy: 'Политика конфиденциальности',
     appHome: 'На главную AInclusive',
@@ -714,9 +717,9 @@ export const AINCLUSIVE_SUPPORT: Record<AInclusiveLocale, SupportCopy> = {
         answer: 'На iPhone и iPad (iOS 17 и новее), а также на Mac.',
       },
       {
-        question: 'Как попасть в школьный пилот / TestFlight?',
+        question: 'Где скачать AInclusive?',
         answer:
-          'Напишите на azumbogames@gmail.com — укажите школу или роль. Мы отправим приглашение в TestFlight для закрытой беты для педагогов.',
+          'AInclusive уже в App Store: https://apps.apple.com/us/app/ainclusive/id6798403080. Вопросы по школьному внедрению — на azumbogames@gmail.com.',
       },
       {
         question: 'Как запросить удаление данных?',

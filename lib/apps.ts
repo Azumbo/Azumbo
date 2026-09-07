@@ -20,8 +20,8 @@ export const apps: StudioApp[] = [
   {
     name: 'AInclusive',
     slug: 'ainclusive',
-    appStoreId: '',
-    appStoreUrl: 'https://azumbo.vercel.app/ainclusive',
+    appStoreId: '6798403080',
+    appStoreUrl: 'https://apps.apple.com/us/app/ainclusive/id6798403080',
     bundleId: 'education.ainclusive.app',
     description:
       'Turn any worksheet into an accessible lesson in under an hour for teachers, parents, and LSAs — on iPhone, iPad, and Mac. English, Hebrew, and Italian.',

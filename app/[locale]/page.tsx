@@ -11,6 +11,7 @@ import { HOME_BLUF, HOME_CHOOSE, HOME_FAQ } from '../../lib/homeFaq';
 import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupportedLocale, LOCALE_OG } from '../../lib/seo';
 
 const CIRO_MAP_APP_STORE_URL = getAppBySlug('ciromap')!.appStoreUrl;
+const AINCLUSIVE_APP_STORE_URL = getAppBySlug('ainclusive')!.appStoreUrl;
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -76,8 +77,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ainclusiveSubtitle: 'Accessible lessons for every learner',
     ainclusiveDescription:
       'An Education app for teachers, parents, and LSAs: photograph or paste worksheets and turn them into inclusive lesson materials on iPhone, iPad, and Mac. English, Hebrew, and Italian.',
-    ainclusiveStatus: 'Status: App Store ready · TestFlight / school pilots',
-    ainclusiveCTA: 'View app',
+    ainclusiveStatus: 'Status: Live on the App Store',
+    ainclusiveCTA: 'Download on App Store',
     ainclusiveAlt: 'AInclusive home screen on iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Italian pasta shape quiz',
@@ -154,8 +155,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ainclusiveSubtitle: 'Lezioni accessibili per ogni studente',
     ainclusiveDescription:
       'App Education per insegnanti, genitori e LSA: fotografa o incolla schede e trasformale in materiali inclusivi su iPhone, iPad e Mac. Inglese, ebraico e italiano.',
-    ainclusiveStatus: 'Stato: Pronto per App Store · TestFlight / piloti scolastici',
-    ainclusiveCTA: 'Vedi app',
+    ainclusiveStatus: 'Stato: Live su App Store',
+    ainclusiveCTA: 'Scarica su App Store',
     ainclusiveAlt: 'Schermata home di AInclusive su iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Quiz sulle forme di pasta',
@@ -232,8 +233,8 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ainclusiveSubtitle: 'Доступные уроки для каждого ученика',
     ainclusiveDescription:
       'Education-приложение для учителей, родителей и LSA: сфотографируйте или вставьте worksheet и получите инклюзивные материалы на iPhone, iPad и Mac. Английский, иврит и итальянский.',
-    ainclusiveStatus: 'Статус: Готово к App Store · TestFlight / школьные пилоты',
-    ainclusiveCTA: 'Смотреть приложение',
+    ainclusiveStatus: 'Статус: В App Store',
+    ainclusiveCTA: 'Скачать в App Store',
     ainclusiveAlt: 'Главный экран AInclusive на iPhone',
     lapastaTitle: 'La Pasta: 60s Challenge',
     lapastaSubtitle: 'Итальянская викторина о пасте',
@@ -396,7 +397,8 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             description={t.ainclusiveDescription}
             status={t.ainclusiveStatus}
             ctaLabel={t.ainclusiveCTA}
-            ctaHref="/ainclusive"
+            ctaHref={AINCLUSIVE_APP_STORE_URL}
+            external
             visual={
               <Link
                 href="/ainclusive"

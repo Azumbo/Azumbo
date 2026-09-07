@@ -82,7 +82,7 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
     {
       question: 'Where can I learn about AInclusive, La Pasta, and Ciro.Map?',
       answer:
-        'Use /ainclusive (product, privacy, support in English, Hebrew, and Italian), /lapasta, and /ciromap for product pages, privacy policies, and App Store or beta links.',
+        'Use /ainclusive (product, privacy, support in English, Hebrew, and Italian), /lapasta, and /ciromap for product pages, privacy policies, and App Store links.',
     },
     {
       question: 'How do I contact AZUMBO for publishing or a prototype quote?',
@@ -109,7 +109,7 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
     {
       question: 'Dove trovo AInclusive, La Pasta e Ciro.Map?',
       answer:
-        'Usa /ainclusive (prodotto, privacy e supporto in inglese, ebraico e italiano), /lapasta e /ciromap per pagine prodotto, privacy e link allo Store o alla beta.',
+        'Usa /ainclusive (prodotto, privacy e supporto in inglese, ebraico e italiano), /lapasta e /ciromap per pagine prodotto, privacy e link allo Store.',
     },
     {
       question: 'Come contatto AZUMBO per publishing o un preventivo di prototipo?',

@@ -7,7 +7,7 @@ import AInclusiveSupportClient from '../SupportClient';
 export const metadata: Metadata = {
   title: 'AInclusive Support',
   description:
-    'Support and FAQ for AInclusive: camera access, lesson generation, languages (English, Hebrew, Italian), TestFlight school pilots, and data deletion requests.',
+    'Support and FAQ for AInclusive: camera access, lesson generation, languages (English, Hebrew, Italian), App Store download, and data deletion requests.',
   alternates: {
     canonical: `${SITE_URL}/ainclusive/support`,
   },

@@ -19,6 +19,7 @@ type SoftwareApplicationJsonLdProps = {
   operatingSystem?: string;
   inLanguage?: string;
   image?: string;
+  downloadUrl?: string;
   offers?: {
     price: string;
     priceCurrency: string;
@@ -33,6 +34,7 @@ export function SoftwareApplicationJsonLd({
   operatingSystem = 'Web',
   inLanguage = 'en,it,ru',
   image,
+  downloadUrl,
   offers = { price: '0', priceCurrency: 'EUR' },
 }: SoftwareApplicationJsonLdProps) {
   const schema: Record<string, unknown> = {
@@ -53,6 +55,12 @@ export function SoftwareApplicationJsonLd({
 
   if (image) {
     schema.image = image;
+  }
+
+  if (downloadUrl) {
+    schema.downloadUrl = downloadUrl;
+    schema.installUrl = downloadUrl;
+    schema.sameAs = [downloadUrl];
   }
 
   return <JsonLd data={schema} />;
