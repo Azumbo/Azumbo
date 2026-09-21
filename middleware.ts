@@ -52,6 +52,7 @@ const KNOWN_APP_ROOTS = new Set([
   'redlines',
   'petonauta',
   'cityintheplane',
+  'press',
 ]);
 
 export function middleware(request: NextRequest) {
