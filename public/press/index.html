@@ -3,21 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ciro.Map — Press Kit | AzumboGames</title>
-  <meta name="description" content="Press kit for Ciro.Map — first digital tourist guide for Cirò Marina. Media coverage in L'Altravoce, 30 July 2026." />
+  <title>Azumbo Press Kit</title>
+  <meta name="description" content="Official press kit for Azumbo — an indie digital studio building mobile apps, games, and local digital platforms." />
   <link rel="canonical" href="https://azumbo.vercel.app/press" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ciro.Map — Press Kit" />
-  <meta property="og:description" content="Media coverage of Ciro.Map in L'Altravoce, 30 July 2026." />
+  <meta property="og:title" content="Azumbo Press Kit" />
+  <meta property="og:description" content="Official press kit for Azumbo — indie digital studio. Media assets and project coverage." />
   <meta property="og:url" content="https://azumbo.vercel.app/press" />
   <meta property="og:image" content="https://azumbo.vercel.app/press/og-press.jpg" />
-  <meta property="og:site_name" content="AzumboGames" />
+  <meta property="og:site_name" content="Azumbo" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ciro.Map — Press Kit" />
-  <meta name="twitter:description" content="Media coverage of Ciro.Map in L'Altravoce, 30 July 2026." />
+  <meta name="twitter:title" content="Azumbo Press Kit" />
+  <meta name="twitter:description" content="Official press kit for Azumbo — indie digital studio. Media assets and project coverage." />
   <meta name="twitter:image" content="https://azumbo.vercel.app/press/og-press.jpg" />
 
   <style>
@@ -61,7 +60,6 @@
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text);
       margin-bottom: 1.25rem;
     }
 
@@ -69,13 +67,13 @@
       font-size: clamp(1.6rem, 4vw, 2.25rem);
       line-height: 1.2;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.65rem;
     }
 
-    .subtitle {
+    .lede {
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 36rem;
+      max-width: 40rem;
     }
 
     section { margin-bottom: 2.5rem; }
@@ -89,123 +87,48 @@
       display: inline-block;
     }
 
-    p { margin-bottom: 0.85rem; color: var(--text); }
-    .muted { color: var(--muted); }
-
-    .lang-block {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .lang-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    ul.features {
+    .projects {
       list-style: none;
       display: grid;
-      gap: 0.55rem;
-      margin: 1rem 0 1.25rem;
+      gap: 0.85rem;
     }
 
-    ul.features li {
-      padding-left: 1.2rem;
-      position: relative;
-    }
-
-    ul.features li::before {
-      content: "";
-      width: 0.45rem;
-      height: 0.45rem;
-      border-radius: 50%;
-      background: var(--accent);
-      position: absolute;
-      left: 0.15rem;
-      top: 0.55rem;
-    }
-
-    .creators {
-      background: var(--soft);
-      border-radius: 12px;
+    .project-card {
+      display: block;
       border: 1px solid var(--border);
-      padding: 1rem 1.1rem;
-    }
-
-    .creators strong { font-weight: 650; }
-
-    .meta {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .meta strong { color: var(--text); }
-
-    blockquote {
-      margin: 1rem 0 1.25rem;
-      padding: 1rem 1.1rem;
-      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
       background: var(--soft);
-      border-radius: 0 10px 10px 0;
-      font-style: italic;
+      color: inherit;
+      text-decoration: none !important;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
       color: var(--text);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin: 1.25rem 0;
-    }
-
-    @media (min-width: 700px) {
-      .gallery { grid-template-columns: 1fr 1fr; }
-    }
-
-    figure {
+    .project-card p {
       margin: 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-      vertical-align: middle;
-    }
-
-    figcaption {
-      font-size: 0.85rem;
       color: var(--muted);
-      padding: 0.65rem 0.8rem 0.85rem;
-      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
     }
 
-    .btn {
+    .project-card .cta {
       display: inline-block;
-      background: var(--accent);
-      color: #fff !important;
+      margin-top: 0.65rem;
       font-weight: 650;
-      padding: 0.85rem 1.25rem;
-      border-radius: 10px;
-      text-decoration: none !important;
-      transition: background 0.15s ease;
+      color: var(--accent);
+      font-size: 0.95rem;
     }
-
-    .btn:hover { background: var(--accent-hover); }
-
-    .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 
     .contact-list {
       list-style: none;
@@ -220,117 +143,52 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+
+    .note {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="logo">AZUMBO</div>
-      <h1>Ciro.Map — Press Kit</h1>
-      <p class="subtitle">First digital tourist guide for Cirò Marina, Calabria</p>
+      <h1>Azumbo Press Kit</h1>
+      <p class="lede">
+        Azumbo is an indie digital studio building mobile apps, games, and local digital platforms.
+        This page collects official press materials and media coverage for studio projects.
+      </p>
     </header>
 
-    <section aria-labelledby="about">
-      <h2 id="about">About Ciro.Map</h2>
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
 
-      <div class="lang-block">
-        <div class="lang-label">English</div>
-        <p>
-          Ciro.Map is the first digital tourist guide built exclusively for Cirò Marina, Calabria.
-          It helps visitors and residents orient themselves in town with practical, local information in one app.
-        </p>
-        <p>
-          The product combines maps, live local context, and essential contacts so people can move around with confidence — online or offline.
-        </p>
-      </div>
-
-      <div class="lang-block">
-        <div class="lang-label">Italiano</div>
-        <p>
-          Ciro.Map è la prima guida turistica digitale realizzata esclusivamente per orientarsi a Cirò Marina, in Calabria.
-          Aiuta visitatori e residenti a trovare luoghi, servizi e informazioni utili in un’unica app.
-        </p>
-        <p>
-          Combina mappa interattiva, contesto locale aggiornato e contatti essenziali per muoversi in sicurezza — online o offline.
-        </p>
-      </div>
-
-      <p><strong>Key features</strong></p>
-      <ul class="features">
-        <li>Interactive map</li>
-        <li>Multilingual: IT / EN / RU / PL / DE</li>
-        <li>Offline mode</li>
-        <li>Sea temperature</li>
-        <li>Local events</li>
-        <li>Emergency contacts</li>
-        <li>Digital wallet</li>
+      <!--
+        HOW TO ADD MORE PROJECTS:
+        Duplicate a <li>…</li> block below (or append to the PROJECTS array
+        if you later convert this page to a small inline script).
+        Example:
+          <li>
+            <a class="project-card" href="/press/your-project">
+              <h3>Your Project</h3>
+              <p>One-line description.</p>
+              <span class="cta">Open press kit →</span>
+            </a>
+          </li>
+        Then add public/press/your-project/index.html (and a Vercel rewrite if needed).
+      -->
+      <ul class="projects" id="project-list">
+        <li>
+          <a class="project-card" href="/press/ciromap">
+            <h3>Ciro.Map</h3>
+            <p>First digital tourism platform for Cirò Marina, Calabria — media coverage and press assets.</p>
+            <span class="cta">Open Ciro.Map press kit →</span>
+          </a>
+        </li>
       </ul>
-
-      <div class="creators">
-        <p style="margin-bottom:0.35rem"><strong>Creators</strong></p>
-        <p class="muted" style="margin-bottom:0">
-          Maria Kravtsova (Ukraine),
-          Kostiantyn Kravchenko (Ukraine/Italy),
-          Santo Scerra (Scerra Immobiliare, Italy).
-        </p>
-      </div>
-    </section>
-
-    <section aria-labelledby="media">
-      <h2 id="media">Media Coverage</h2>
-
-      <p class="meta">
-        <strong>Newspaper:</strong> L'Altravoce (Quotidiano Nazionale, Catanzaro–Lamezia–Crotone)<br />
-        <strong>Date:</strong> 30 July 2026 (Giovedì 30 luglio 2026, Anno 26 – N. 206)<br />
-        <strong>Headline:</strong> “Prima guida turistica digitale per orientarsi in città”
-      </p>
-
-      <blockquote lang="it">
-        “Si chiama 'Ciro.Map' la prima guida turistica digitale realizzata esclusivamente per orientarsi a Cirò Marina. Gli ideatori sono due professionisti stranieri, Maria Kravtsova, ucraina, Kostiantyn Kravchenko, russo, e il titolare della società 'Scerra Immobiliare', Santo Scerra.”
-      </blockquote>
-
-      <div class="gallery">
-        <!-- Front page scan from L'Altravoce, 30 July 2026 -->
-        <figure>
-          <img
-            src="/press/laltravoce-front.jpg"
-            alt="Front page of L'Altravoce newspaper dated Giovedì 30 luglio 2026, Anno 26 – N. 206, Catanzaro-Lamezia-Crotone"
-            width="952"
-            height="1348"
-            loading="lazy"
-          />
-          <figcaption>Front page — L'Altravoce, 30 July 2026</figcaption>
-        </figure>
-
-        <!-- Interior article page (page 17) featuring Ciro.Map -->
-        <figure>
-          <img
-            src="/press/laltravoce-article.jpg"
-            alt="Page 17 of L'Altravoce featuring the article Prima guida turistica digitale per orientarsi in città about Ciro.Map"
-            width="952"
-            height="1348"
-            loading="lazy"
-          />
-          <figcaption>Article page — “Prima guida turistica digitale per orientarsi in città”</figcaption>
-        </figure>
-      </div>
-
-      <p>
-        Full scanned issue pages (PDF):
-        <a href="/press/laltravoce-30-07-2026.pdf" target="_blank" rel="noopener noreferrer">
-          /press/laltravoce-30-07-2026.pdf
-        </a>
-      </p>
-    </section>
-
-    <section aria-labelledby="download">
-      <h2 id="download">Download</h2>
-      <div class="btn-row">
-        <a class="btn" href="/press/laltravoce-30-07-2026.pdf" download>
-          Download Press Kit (PDF)
-        </a>
-        <a href="https://azumbo.vercel.app/ciromap">View Ciro.Map product page →</a>
-      </div>
+      <p class="note">More project press kits will be listed here as they become available.</p>
     </section>
 
     <section aria-labelledby="contact">
@@ -338,7 +196,7 @@
       <ul class="contact-list">
         <li><strong>Email:</strong> <a href="mailto:azumbogames@gmail.com">azumbogames@gmail.com</a></li>
         <li><strong>Phone:</strong> <a href="tel:+393791815588">+39 379 181 55 88</a></li>
-        <li><strong>Website:</strong> <a href="https://azumbo.vercel.app/ciromap">https://azumbo.vercel.app/ciromap</a></li>
+        <li><strong>Website:</strong> <a href="https://azumbo.vercel.app">https://azumbo.vercel.app</a></li>
       </ul>
     </section>
 
