@@ -5,7 +5,7 @@ import { SITE_URL, buildBreadcrumbSchema, buildFaqPageSchema } from '../../lib/s
 import { CIRO_MAP } from './components';
 import CiroMapLandingClient from './LandingClient';
 
-const OG_IMAGE = `${SITE_URL}/ciromap/og-ciromap.jpg`;
+const OG_IMAGE = `${SITE_URL}/ciromap/og-ciromap.jpg?v=2`;
 
 export const metadata: Metadata = {
   title: 'Ciro.Map: Guide Cirò Marina',
