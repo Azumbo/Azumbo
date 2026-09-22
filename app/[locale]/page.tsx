@@ -399,6 +399,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             ctaLabel={t.ainclusiveCTA}
             ctaHref={AINCLUSIVE_APP_STORE_URL}
             external
+            appStoreBadge
             visual={
               <Link
                 href="/ainclusive"
@@ -477,6 +478,7 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
             ctaLabel={t.ciromapCTA}
             ctaHref={CIRO_MAP_APP_STORE_URL}
             external
+            appStoreBadge
             visual={
               <Link
                 href="/ciromap"
