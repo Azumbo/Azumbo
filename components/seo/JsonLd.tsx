@@ -20,6 +20,8 @@ type SoftwareApplicationJsonLdProps = {
   inLanguage?: string;
   image?: string;
   downloadUrl?: string;
+  datePublished?: string;
+  authors?: string[];
   offers?: {
     price: string;
     priceCurrency: string;
@@ -35,6 +37,8 @@ export function SoftwareApplicationJsonLd({
   inLanguage = 'en,it,ru',
   image,
   downloadUrl,
+  datePublished,
+  authors,
   offers = { price: '0', priceCurrency: 'EUR' },
 }: SoftwareApplicationJsonLdProps) {
   const schema: Record<string, unknown> = {
@@ -61,6 +65,19 @@ export function SoftwareApplicationJsonLd({
     schema.downloadUrl = downloadUrl;
     schema.installUrl = downloadUrl;
     schema.sameAs = [downloadUrl];
+  }
+
+  if (datePublished) {
+    schema.datePublished = datePublished;
+    schema.releaseDate = datePublished;
+  }
+
+  if (authors?.length) {
+    schema.author = authors.map((authorName) => ({
+      '@type': 'Person',
+      name: authorName,
+    }));
+    schema.creator = schema.author;
   }
 
   return <JsonLd data={schema} />;
