@@ -146,7 +146,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-ciromap',
         question: 'Что такое Ciro.Map?',
         answer:
-          'Ciro.Map — бесплатная iOS цифровая платформа по Ciro Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности на IT/EN/RU/PL.',
+          'Ciro.Map — бесплатная iOS цифровая платформа для Ciro Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности на IT/EN/RU/PL.',
       },
       {
         id: 'prototype-sprint',
