@@ -8,23 +8,23 @@ import CiroMapLandingClient from './LandingClient';
 const OG_IMAGE = `${SITE_URL}/ciromap/og-ciromap.jpg?v=2`;
 
 export const metadata: Metadata = {
-  title: 'Ciro.Map: Guide Cirò Marina',
+  title: 'Ciro.Map — Digital platform for Ciro Marina',
   description: APP_STORE_PROMO,
   alternates: { canonical: `${SITE_URL}/ciromap` },
   other: {
     'apple-itunes-app': `app-id=${CIRO_MAP.appStoreId}`,
   },
   openGraph: {
-    title: 'Ciro.Map: Guide Cirò Marina',
+    title: 'Ciro.Map — Digital platform for Ciro Marina',
     description: APP_STORE_PROMO,
     url: `${SITE_URL}/ciromap`,
     siteName: 'AZUMBO',
     type: 'website',
-    images: [{ url: OG_IMAGE, width: 512, height: 512, alt: 'Ciro.Map app icon' }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 1200, alt: 'Ciro.Map app icon' }],
   },
   twitter: {
     card: 'summary',
-    title: 'Ciro.Map: Guide Cirò Marina',
+    title: 'Ciro.Map — Digital platform for Ciro Marina',
     description: APP_STORE_PROMO,
     images: [OG_IMAGE],
   },

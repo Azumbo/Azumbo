@@ -94,11 +94,11 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     privacy: 'Privacy Policy',
     contact: 'Contact',
     langSwitcherAria: 'Page language',
-    kicker: 'Travel · Cirò Marina, Calabria · iOS 17+',
-    title: 'Ciro.Map: Guide Cirò Marina',
+    kicker: 'Travel · Ciro Marina, Calabria · iOS 17+',
+    title: 'Ciro.Map — Digital platform for Ciro Marina',
     subtitle: 'Sea Temp, Helplines, Map',
     promo:
-      'Wander Cirò Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',
+      'Wander Ciro Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',
     getAppKicker: 'Get the app',
     getAppTitle: 'Get Ciro.Map',
     getAppLead: 'Tap the official badge on your iPhone or iPad, or scan the QR code with Camera.',
@@ -114,10 +114,10 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     aboutKicker: 'Why Ciro.Map',
     aboutTitle: 'Your all-in-one local companion on the Ionian coast.',
     intro: [
-      'Benvenuti a Cirò Marina! Ciro.Map — your all-in-one local companion on the stunning Calabrian Ionian coast.',
+      'Benvenuti a Ciro Marina! Ciro.Map — your all-in-one local companion on the stunning Calabrian Ionian coast.',
       'No more switching between confusing maps, weather apps, and a pile of plastic loyalty cards. Whether you’re a tourist hunting for the best gelato and Instagram spots, an expat needing the nearest farmacia, or a local juggling discount cards — Ciro.Map puts everything at your fingertips, beautifully designed and lightning fast.',
     ],
-    why: 'Unlike generic map apps, we focus exclusively on Cirò Marina and its surroundings (up to 52 km). Every place is personally verified, clutter-free, and sorted into real-life categories: from Supermarkets and Pharmacies to Fishmongers and Emergency Services.',
+    why: 'Unlike generic map apps, we focus exclusively on Ciro Marina and its surroundings (up to 52 km). Every place is personally verified, clutter-free, and sorted into real-life categories: from Supermarkets and Pharmacies to Fishmongers and Emergency Services.',
     featuresKicker: "Here's what you can do",
     featuresTitle: 'Everything local, one tap away.',
     features: [
@@ -184,7 +184,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     downloadKicker: 'Join the local community',
     downloadTitle: 'Download Ciro.Map now.',
     downloadBody:
-      'Loved by travellers and residents who call Cirò Marina home. Experience the Ionian coast like never before — one tap, everything local.',
+      'Loved by travellers and residents who call Ciro Marina home. Experience the Ionian coast like never before — one tap, everything local.',
     openFlyer: 'Open flyer with QR code',
     footerPrivacy: 'Ciro.Map Privacy',
     legalCredit:
@@ -195,7 +195,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'What is Ciro.Map?',
         answer:
-          'Ciro.Map is a free iOS travel guide for Cirò Marina, Calabria: local map, categories, routes, sea temperature, emergency contacts, and a private loyalty-card wallet.',
+          'Ciro.Map is a free iOS digital platform for Ciro Marina, Calabria: local map, categories, routes, sea temperature, emergency contacts, and a private loyalty-card wallet.',
       },
       {
         question: 'Which languages does Ciro.Map support?',
@@ -209,7 +209,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'When should you use Ciro.Map instead of Google Maps?',
         answer:
-          'Use Ciro.Map for Cirò Marina–focused places, summer events, sea temperature, local emergency contacts, and loyalty cards. Use Google Maps for nationwide routing outside this local radius.',
+          'Use Ciro.Map for Ciro Marina–focused places, summer events, sea temperature, local emergency contacts, and loyalty cards. Use Google Maps for nationwide routing outside this local radius.',
       },
     ],
   },
@@ -218,11 +218,11 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     privacy: 'Informativa privacy',
     contact: 'Contatti',
     langSwitcherAria: 'Lingua della pagina',
-    kicker: 'Viaggi · Cirò Marina, Calabria · iOS 17+',
-    title: 'Ciro.Map: Guida Cirò Marina',
+    kicker: 'Viaggi · Ciro Marina, Calabria · iOS 17+',
+    title: 'Ciro.Map — Piattaforma digitale per Ciro Marina',
     subtitle: 'Temp. mare, emergenze, mappa',
     promo:
-      'Esplora Cirò Marina con sicurezza. Percorsi, eventi estivi, negozi, farmacie e contatti di emergenza — in italiano, inglese, russo e polacco.',
+      'Esplora Ciro Marina con sicurezza. Percorsi, eventi estivi, negozi, farmacie e contatti di emergenza — in italiano, inglese, russo e polacco.',
     getAppKicker: "Scarica l'app",
     getAppTitle: 'Scarica Ciro.Map',
     getAppLead: 'Tocca il badge ufficiale su iPhone o iPad, oppure inquadra il QR con Fotocamera.',
@@ -238,10 +238,10 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     aboutKicker: 'Perché Ciro.Map',
     aboutTitle: 'Il tuo compagno locale tutto-in-uno sulla costa ionica.',
     intro: [
-      'Benvenuti a Cirò Marina! Ciro.Map — il tuo compagno locale tutto-in-uno sulla stupenda costa ionica calabrese.',
+      'Benvenuti a Ciro Marina! Ciro.Map — il tuo compagno locale tutto-in-uno sulla stupenda costa ionica calabrese.',
       'Niente più salti tra mappe confuse, meteo e un mucchio di tessere fedeltà di plastica. Che tu sia un turista in cerca del miglior gelato e degli spot Instagram, un expat che cerca la farmacia più vicina o un residente con tante carte sconto — Ciro.Map ti mette tutto a portata di tap, con un design curato e velocità al top.',
     ],
-    why: 'A differenza delle mappe generiche, ci concentriamo esclusivamente su Cirò Marina e dintorni (fino a 52 km). Ogni luogo è verificato, senza confusione, e ordinato in categorie reali: da supermercati e farmacie a pescherie e servizi di emergenza.',
+    why: 'A differenza delle mappe generiche, ci concentriamo esclusivamente su Ciro Marina e dintorni (fino a 52 km). Ogni luogo è verificato, senza confusione, e ordinato in categorie reali: da supermercati e farmacie a pescherie e servizi di emergenza.',
     featuresKicker: 'Cosa puoi fare',
     featuresTitle: 'Tutto il locale, a un tap.',
     features: [
@@ -308,7 +308,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     downloadKicker: 'Unisciti alla community locale',
     downloadTitle: 'Scarica Ciro.Map ora.',
     downloadBody:
-      'Amata da viaggiatori e residenti che chiamano Cirò Marina casa. Vivi la costa ionica come mai prima — un tap, tutto il locale.',
+      'Amata da viaggiatori e residenti che chiamano Ciro Marina casa. Vivi la costa ionica come mai prima — un tap, tutto il locale.',
     openFlyer: 'Apri il flyer con QR',
     footerPrivacy: 'Privacy Ciro.Map',
     legalCredit:
@@ -319,7 +319,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Cos’è Ciro.Map?',
         answer:
-          'Ciro.Map è una guida iOS gratuita per Cirò Marina: mappa locale, categorie, percorsi, temperatura del mare, emergenze e wallet tessere fedeltà.',
+          'Ciro.Map è una piattaforma digitale iOS gratuita per Ciro Marina: mappa locale, categorie, percorsi, temperatura del mare, emergenze e wallet tessere fedeltà.',
       },
       {
         question: 'Quali lingue supporta?',
@@ -333,7 +333,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Quando usare Ciro.Map invece di Google Maps?',
         answer:
-          'Usa Ciro.Map per luoghi, eventi estivi, temperatura del mare, emergenze e tessere locali a Cirò Marina. Usa Google Maps per percorsi nazionali fuori da questo raggio locale.',
+          'Usa Ciro.Map per luoghi, eventi estivi, temperatura del mare, emergenze e tessere locali a Ciro Marina. Usa Google Maps per percorsi nazionali fuori da questo raggio locale.',
       },
     ],
   },
@@ -342,11 +342,11 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     privacy: 'Конфиденциальность',
     contact: 'Контакты',
     langSwitcherAria: 'Язык страницы',
-    kicker: 'Путешествия · Cirò Marina, Калабрия · iOS 17+',
-    title: 'Ciro.Map: путеводитель Cirò Marina',
+    kicker: 'Путешествия · Ciro Marina, Калабрия · iOS 17+',
+    title: 'Ciro.Map — Цифровая платформа для Ciro Marina',
     subtitle: 'Температура моря, службы, карта',
     promo:
-      'Исследуйте Cirò Marina уверенно. Маршруты, летние события, магазины, аптеки и экстренные контакты — на итальянском, английском, русском и польском.',
+      'Исследуйте Ciro Marina уверенно. Маршруты, летние события, магазины, аптеки и экстренные контакты — на итальянском, английском, русском и польском.',
     getAppKicker: 'Скачать приложение',
     getAppTitle: 'Скачать Ciro.Map',
     getAppLead: 'Нажмите официальный бейдж на iPhone или iPad либо отсканируйте QR-код камерой.',
@@ -362,10 +362,10 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     aboutKicker: 'Почему Ciro.Map',
     aboutTitle: 'Ваш локальный компаньон «всё в одном» на Ионическом побережье.',
     intro: [
-      'Benvenuti a Cirò Marina! Ciro.Map — ваш локальный компаньон «всё в одном» на потрясающем Ионическом побережье Калабрии.',
+      'Benvenuti a Ciro Marina! Ciro.Map — ваш локальный компаньон «всё в одном» на потрясающем Ионическом побережье Калабрии.',
       'Больше не нужно прыгать между запутанными картами, погодой и стопкой пластиковых карт лояльности. Турист в поисках лучшего джелато и Instagram-точек, экспат, которому нужна ближайшая farmacia, или местный житель с кучей скидочных карт — Ciro.Map даёт всё под рукой, красиво и быстро.',
     ],
-    why: 'В отличие от обычных карт, мы фокусируемся только на Cirò Marina и окрестностях (до 52 км). Каждое место проверено лично, без лишнего шума и разложено по реальным категориям: от супермаркетов и аптек до рыбных лавок и экстренных служб.',
+    why: 'В отличие от обычных карт, мы фокусируемся только на Ciro Marina и окрестностях (до 52 км). Каждое место проверено лично, без лишнего шума и разложено по реальным категориям: от супермаркетов и аптек до рыбных лавок и экстренных служб.',
     featuresKicker: 'Что можно делать',
     featuresTitle: 'Всё местное — в один тап.',
     features: [
@@ -432,7 +432,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     downloadKicker: 'Присоединяйтесь к локальному сообществу',
     downloadTitle: 'Скачайте Ciro.Map сейчас.',
     downloadBody:
-      'Любимо путешественниками и жителями Cirò Marina. Откройте Ионическое побережье по-новому — один тап, всё местное.',
+      'Любимо путешественниками и жителями Ciro Marina. Откройте Ионическое побережье по-новому — один тап, всё местное.',
     openFlyer: 'Открыть флаер с QR-кодом',
     footerPrivacy: 'Конфиденциальность Ciro.Map',
     legalCredit:
@@ -443,7 +443,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Что такое Ciro.Map?',
         answer:
-          'Ciro.Map — бесплатный iOS-гид по Cirò Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности.',
+          'Ciro.Map — бесплатная iOS цифровая платформа по Ciro Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности.',
       },
       {
         question: 'Какие языки поддерживаются?',
@@ -457,7 +457,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Когда выбирать Ciro.Map вместо Google Maps?',
         answer:
-          'Для мест, летних событий, температуры моря, экстренных контактов и карт лояльности в Cirò Marina. Для междугородних маршрутов вне локального радиуса — Google Maps.',
+          'Для мест, летних событий, температуры моря, экстренных контактов и карт лояльности в Ciro Marina. Для междугородних маршрутов вне локального радиуса — Google Maps.',
       },
     ],
   },
@@ -466,11 +466,11 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     privacy: 'Polityka prywatności',
     contact: 'Kontakt',
     langSwitcherAria: 'Język strony',
-    kicker: 'Podróże · Cirò Marina, Kalabria · iOS 17+',
-    title: 'Ciro.Map: przewodnik Cirò Marina',
+    kicker: 'Podróże · Ciro Marina, Kalabria · iOS 17+',
+    title: 'Ciro.Map — Cyfrowa platforma dla Ciro Marina',
     subtitle: 'Temp. morza, pogotowie, mapa',
     promo:
-      'Odkrywaj Cirò Marina ze spokojem. Trasy, letnie wydarzenia, sklepy, apteki i kontakty alarmowe — po włosku, angielsku, rosyjsku i polsku.',
+      'Odkrywaj Ciro Marina ze spokojem. Trasy, letnie wydarzenia, sklepy, apteki i kontakty alarmowe — po włosku, angielsku, rosyjsku i polsku.',
     getAppKicker: 'Pobierz aplikację',
     getAppTitle: 'Pobierz Ciro.Map',
     getAppLead: 'Dotknij oficjalnej odznaki na iPhonie lub iPadzie albo zeskanuj kod QR aparatem.',
@@ -486,10 +486,10 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     aboutKicker: 'Dlaczego Ciro.Map',
     aboutTitle: 'Twój lokalny kompaktowy przewodnik na wybrzeżu jońskim.',
     intro: [
-      'Benvenuti a Cirò Marina! Ciro.Map — Twój lokalny kompaktowy przewodnik na pięknym jońskim wybrzeżu Kalabrii.',
+      'Benvenuti a Ciro Marina! Ciro.Map — Twój lokalny kompaktowy przewodnik na pięknym jońskim wybrzeżu Kalabrii.',
       'Koniec skakania między mylącymi mapami, pogodą i stertą plastikowych kart lojalnościowych. Turysta szukający najlepszego gelato i miejsc na Instagram, ekspata potrzebująca najbliższej farmacii albo mieszkaniec z wieloma kartami rabatowymi — Ciro.Map daje wszystko pod ręką, ładnie i szybko.',
     ],
-    why: 'W przeciwieństwie do ogólnych map skupiamy się wyłącznie na Cirò Marina i okolicach (do 52 km). Każde miejsce jest sprawdzone, bez bałaganu i ułożone w realne kategorie: od supermarketów i aptek po sklepy rybne i służby ratunkowe.',
+    why: 'W przeciwieństwie do ogólnych map skupiamy się wyłącznie na Ciro Marina i okolicach (do 52 km). Każde miejsce jest sprawdzone, bez bałaganu i ułożone w realne kategorie: od supermarketów i aptek po sklepy rybne i służby ratunkowe.',
     featuresKicker: 'Co możesz zrobić',
     featuresTitle: 'Wszystko lokalne — jednym tapnięciem.',
     features: [
@@ -556,7 +556,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
     downloadKicker: 'Dołącz do lokalnej społeczności',
     downloadTitle: 'Pobierz Ciro.Map teraz.',
     downloadBody:
-      'Ulubiona przez podróżników i mieszkańców Cirò Marina. Poznaj wybrzeże jońskie jak nigdy — jedno tapnięcie, wszystko lokalne.',
+      'Ulubiona przez podróżników i mieszkańców Ciro Marina. Poznaj wybrzeże jońskie jak nigdy — jedno tapnięcie, wszystko lokalne.',
     openFlyer: 'Otwórz ulotkę z kodem QR',
     footerPrivacy: 'Prywatność Ciro.Map',
     legalCredit:
@@ -567,7 +567,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Czym jest Ciro.Map?',
         answer:
-          'Ciro.Map to darmowy przewodnik iOS po Cirò Marina: lokalna mapa, kategorie, trasy, temperatura morza, kontakty alarmowe i prywatny portfel kart lojalnościowych.',
+          'Ciro.Map to darmowa cyfrowa platforma iOS po Ciro Marina: lokalna mapa, kategorie, trasy, temperatura morza, kontakty alarmowe i prywatny portfel kart lojalnościowych.',
       },
       {
         question: 'Jakie języki są obsługiwane?',
@@ -581,7 +581,7 @@ export const LANDING_COPY: Record<CiroMapLocale, LandingCopy> = {
       {
         question: 'Kiedy wybrać Ciro.Map zamiast Google Maps?',
         answer:
-          'Do lokalnych miejsc, wydarzeń, temperatury morza, alarmów i kart lojalnościowych w Cirò Marina. Do tras krajowych poza lokalnym zasięgiem — Google Maps.',
+          'Do lokalnych miejsc, wydarzeń, temperatury morza, alarmów i kart lojalnościowych w Ciro Marina. Do tras krajowych poza lokalnym zasięgiem — Google Maps.',
       },
     ],
   },
@@ -615,7 +615,7 @@ export const SCREENSHOTS: Record<CiroMapLocale, ScreenshotSlide[]> = {
     },
     {
       src: '/ciromap/screenshots/en/03-events.png',
-      alt: 'Events hub for Cirò Marina in Ciro.Map',
+      alt: 'Events hub for Ciro Marina in Ciro.Map',
       caption: 'Events',
     },
     {
@@ -625,7 +625,7 @@ export const SCREENSHOTS: Record<CiroMapLocale, ScreenshotSlide[]> = {
     },
     {
       src: '/ciromap/screenshots/en/05-instaplaces.png',
-      alt: 'InstaPlaces scenic viewpoints near Cirò Marina in Ciro.Map',
+      alt: 'InstaPlaces scenic viewpoints near Ciro Marina in Ciro.Map',
       caption: 'InstaPlaces',
     },
   ],

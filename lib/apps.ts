@@ -52,9 +52,9 @@ export const apps: StudioApp[] = [
     appStoreUrl: 'https://apps.apple.com/app/id6776004922',
     bundleId: 'com.azumbo.ciromap',
     description:
-      'Wander Cirò Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',
+      'Wander Ciro Marina with confidence. Map routes, summer events, shops, pharmacies, and emergency contacts — in Italian, English, Russian & Polish.',
     icon: '🗺️',
-    tagline: 'Cirò Marina travel guide',
+    tagline: 'Digital platform for Ciro Marina',
     privacyPath: '/ciromap/privacy',
     supportPath: '/ciromap',
   },

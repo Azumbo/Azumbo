@@ -20,7 +20,7 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - Bird Lines (match-3, in development): ${SITE_URL}/en/videos/bird-lines
 - AInclusive (Education app, iOS/macOS): ${SITE_URL}/ainclusive
 - La Pasta: 60s Challenge (iOS, live): ${SITE_URL}/lapasta
-- Ciro.Map (iOS travel guide, live): ${SITE_URL}/ciromap
+- Ciro.Map (iOS digital platform, live): ${SITE_URL}/ciromap
 - Azumbox (mobile game concept): ${SITE_URL}/azumbox
 
 ## Services

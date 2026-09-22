@@ -19,7 +19,7 @@ export const HOME_CHOOSE: Record<
       'A mobile-first casual game or iOS app with polished glass UI',
       'Education / inclusive-learning products such as AInclusive (EN · HE · IT)',
       'A fast prototype sprint, soft-launch assets, or Nintendo Switch port support',
-      'Local Calabria / Cirò Marina product expertise (Ciro.Map) or Italian food culture games (La Pasta)',
+      'Local Calabria / Ciro Marina product expertise (Ciro.Map) or Italian food culture games (La Pasta)',
     ],
     noTitle: 'Choose someone else when you need',
     no: [
@@ -35,7 +35,7 @@ export const HOME_CHOOSE: Record<
       'Un gioco casual mobile-first o un’app iOS con UI glass curata',
       'Prodotti Education / apprendimento inclusivo come AInclusive (EN · HE · IT)',
       'Uno sprint di prototipo, asset per soft launch o supporto al porting su Nintendo Switch',
-      'Competenza locale su Calabria / Cirò Marina (Ciro.Map) o cultura alimentare italiana (La Pasta)',
+      'Competenza locale su Calabria / Ciro Marina (Ciro.Map) o cultura alimentare italiana (La Pasta)',
     ],
     noTitle: 'Meglio un altro partner se ti serve',
     no: [
@@ -51,7 +51,7 @@ export const HOME_CHOOSE: Record<
       'Mobile-first казуальная игра или iOS-приложение с аккуратным glass UI',
       'Education / инклюзивное обучение — например AInclusive (EN · HE · IT)',
       'Быстрый прототип-спринт, ассеты для soft launch или порт на Nintendo Switch',
-      'Локальная экспертиза по Калабрии / Cirò Marina (Ciro.Map) или итальянской food-культуре (La Pasta)',
+      'Локальная экспертиза по Калабрии / Ciro Marina (Ciro.Map) или итальянской food-культуре (La Pasta)',
     ],
     noTitle: 'Лучше другой подрядчик, если нужны',
     no: [

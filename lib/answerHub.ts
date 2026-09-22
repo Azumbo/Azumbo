@@ -48,7 +48,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-ciromap',
         question: 'What is Ciro.Map?',
         answer:
-          'Ciro.Map is a free iOS travel guide for Cirò Marina, Calabria: local map, categories, routes, sea temperature, emergency contacts, and a private loyalty-card wallet in IT/EN/RU/PL.',
+          'Ciro.Map is a free iOS digital platform for Ciro Marina, Calabria: local map, categories, routes, sea temperature, emergency contacts, and a private loyalty-card wallet in IT/EN/RU/PL.',
       },
       {
         id: 'prototype-sprint',
@@ -97,7 +97,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-ciromap',
         question: 'Cos’è Ciro.Map?',
         answer:
-          'Ciro.Map è una guida iOS gratuita per Cirò Marina: mappa locale, categorie, percorsi, temperatura del mare, emergenze e wallet tessere fedeltà in IT/EN/RU/PL.',
+          'Ciro.Map è una piattaforma digitale iOS gratuita per Ciro Marina: mappa locale, categorie, percorsi, temperatura del mare, emergenze e wallet tessere fedeltà in IT/EN/RU/PL.',
       },
       {
         id: 'prototype-sprint',
@@ -146,7 +146,7 @@ export const ANSWER_HUB: Record<Locale, AnswerHubCopy> = {
         id: 'what-is-ciromap',
         question: 'Что такое Ciro.Map?',
         answer:
-          'Ciro.Map — бесплатный iOS-гид по Cirò Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности на IT/EN/RU/PL.',
+          'Ciro.Map — бесплатная iOS цифровая платформа по Ciro Marina: локальная карта, категории, маршруты, температура моря, экстренные контакты и wallet карт лояльности на IT/EN/RU/PL.',
       },
       {
         id: 'prototype-sprint',

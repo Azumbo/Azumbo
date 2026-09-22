@@ -93,9 +93,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     azumboxStatus: 'Status: In development',
     azumboxCTA: 'Explore Azumbox',
     ciromapTitle: 'Ciro.Map',
-    ciromapSubtitle: 'Cirò Marina travel guide',
+    ciromapSubtitle: 'Digital platform for Ciro Marina',
     ciromapDescription:
-      'An iOS travel guide for Cirò Marina, Calabria: discover nearby places, routes, categories, and a private loyalty wallet.',
+      'An iOS digital platform for Ciro Marina, Calabria: discover nearby places, routes, categories, and a private loyalty wallet.',
     ciromapStatus: 'Status: Live on the App Store',
     ciromapCTA: 'Download on App Store',
   },
@@ -171,9 +171,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     azumboxStatus: 'Stato: In sviluppo',
     azumboxCTA: 'Scopri Azumbox',
     ciromapTitle: 'Ciro.Map',
-    ciromapSubtitle: 'Guida di viaggio a Cirò Marina',
+    ciromapSubtitle: 'Piattaforma digitale per Ciro Marina',
     ciromapDescription:
-      'Guida iOS per Cirò Marina, Calabria: scopri luoghi vicini, percorsi, categorie e un wallet fedeltà privato.',
+      'Piattaforma digitale iOS per Ciro Marina, Calabria: scopri luoghi vicini, percorsi, categorie e un wallet fedeltà privato.',
     ciromapStatus: 'Stato: Live su App Store',
     ciromapCTA: 'Scarica su App Store',
   },
@@ -249,9 +249,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     azumboxStatus: 'Статус: В разработке',
     azumboxCTA: 'Об Azumbox',
     ciromapTitle: 'Ciro.Map',
-    ciromapSubtitle: 'Путеводитель по Cirò Marina',
+    ciromapSubtitle: 'Цифровая платформа для Ciro Marina',
     ciromapDescription:
-      'iOS-гид по Cirò Marina, Калабрия: места рядом, маршруты, категории и приватный wallet для карт лояльности.',
+      'iOS цифровая платформа для Ciro Marina, Калабрия: места рядом, маршруты, категории и приватный wallet для карт лояльности.',
     ciromapStatus: 'Статус: В App Store',
     ciromapCTA: 'Скачать в App Store',
   }
