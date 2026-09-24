@@ -22,7 +22,9 @@
     { "source": "/press", "destination": "/press/index.html" },
     { "source": "/press/", "destination": "/press/index.html" },
     { "source": "/press/ciromap", "destination": "/press/ciromap/index.html" },
-    { "source": "/press/ciromap/", "destination": "/press/ciromap/index.html" }
+    { "source": "/press/ciromap/", "destination": "/press/ciromap/index.html" },
+    { "source": "/press/ainclusive", "destination": "/press/ainclusive/index.html" },
+    { "source": "/press/ainclusive/", "destination": "/press/ainclusive/index.html" }
   ],
   "functions": {
     "pages/api/register.ts": { "maxDuration": 10, "memory": 128 },
