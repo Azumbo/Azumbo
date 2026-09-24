@@ -12,6 +12,7 @@ import { SITE_URL, baseMetadata, buildHomeGraph, buildLanguageAlternates, isSupp
 
 const CIRO_MAP_APP_STORE_URL = getAppBySlug('ciromap')!.appStoreUrl;
 const AINCLUSIVE_APP_STORE_URL = getAppBySlug('ainclusive')!.appStoreUrl;
+const LAPASTA_APP_STORE_URL = getAppBySlug('lapasta')!.appStoreUrl;
 
 type Lang = 'en' | 'it' | 'ru';
 
@@ -85,7 +86,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     lapastaDescription:
       'A warm iOS quiz for iPhone and iPad: glass jars shuffle, you name the pasta family, and collect shapes in quick 60-second rounds.',
     lapastaStatus: 'Status: Live on the App Store',
-    lapastaCTA: 'View app',
+    lapastaCTA: 'Download on App Store',
     azumboxTitle: 'Azumbox',
     azumboxSubtitle: 'Curated spontaneity, pocket-sized',
     azumboxDescription:
@@ -163,7 +164,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     lapastaDescription:
       'Quiz iOS per iPhone e iPad: barattoli di vetro si mescolano, indovini la famiglia di pasta e collezioni forme in round da 60 secondi.',
     lapastaStatus: 'Stato: Live su App Store',
-    lapastaCTA: 'Vedi app',
+    lapastaCTA: 'Scarica su App Store',
     azumboxTitle: 'Azumbox',
     azumboxSubtitle: 'Spontaneità curata, tascabile',
     azumboxDescription:
@@ -241,7 +242,7 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     lapastaDescription:
       'iOS-викторина для iPhone и iPad: стеклянные банки перемешиваются, вы угадываете семейство пасты и собираете коллекцию за 60 секунд.',
     lapastaStatus: 'Статус: В App Store',
-    lapastaCTA: 'Смотреть приложение',
+    lapastaCTA: 'Скачать в App Store',
     azumboxTitle: 'Azumbox',
     azumboxSubtitle: 'Продуманная спонтанность в кармане',
     azumboxDescription:
@@ -363,35 +364,6 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
         <h3 className="type-display mb-8 mt-20 text-2xl sm:text-3xl">{t.projectsTitle}</h3>
         <div className="space-y-8">
           <ProjectSpotlight
-            title={t.birdTitle}
-            subtitle={t.birdSubtitle}
-            description={renderBirdDescription(t.birdDescription)}
-            status={t.birdStatus}
-            ctaLabel={t.videoLinkLabel}
-            ctaHref={birdLinesWatchPath(routeLang)}
-            visual={
-              <Link
-                href={birdLinesWatchPath(routeLang)}
-                className="group glass-panel gpu-layer relative mx-auto block h-64 w-full max-w-xs overflow-hidden sm:h-72"
-                aria-label={t.videoLinkLabel}
-              >
-                <Image
-                  src="/assets/logo/azumbo-logo.png"
-                  alt="Bird Lines trailer preview"
-                  width={320}
-                  height={288}
-                  className="h-full w-full object-contain p-10 opacity-90"
-                />
-                <span className="absolute inset-0 flex items-center justify-center bg-neutral-900/15 transition-all duration-500 ease-out group-hover:bg-neutral-900/25">
-                  <span className="glass-panel rounded-full px-5 py-2.5 text-sm font-light text-ink-primary shadow-none">
-                    ▶ {t.videoLinkLabel}
-                  </span>
-                </span>
-              </Link>
-            }
-          />
-
-          <ProjectSpotlight
             title={t.ainclusiveTitle}
             subtitle={t.ainclusiveSubtitle}
             description={t.ainclusiveDescription}
@@ -418,12 +390,40 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           />
 
           <ProjectSpotlight
+            title={t.ciromapTitle}
+            subtitle={t.ciromapSubtitle}
+            description={t.ciromapDescription}
+            status={t.ciromapStatus}
+            ctaLabel={t.ciromapCTA}
+            ctaHref={CIRO_MAP_APP_STORE_URL}
+            external
+            appStoreBadge
+            visual={
+              <Link
+                href="/ciromap"
+                className="glass-panel gpu-layer mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden p-8 sm:h-72"
+                aria-label={t.ciromapTitle}
+              >
+                <Image
+                  src="/ciromap/app-icon-192.png?v=3"
+                  alt="Ciro.Map app icon"
+                  width={160}
+                  height={160}
+                  className="rounded-[1.75rem] border border-neutral-200 shadow-lg shadow-neutral-200/60"
+                />
+              </Link>
+            }
+          />
+
+          <ProjectSpotlight
             title={t.lapastaTitle}
             subtitle={t.lapastaSubtitle}
             description={t.lapastaDescription}
             status={t.lapastaStatus}
             ctaLabel={t.lapastaCTA}
-            ctaHref="/lapasta"
+            ctaHref={LAPASTA_APP_STORE_URL}
+            external
+            appStoreBadge
             visual={
               <Link
                 href="/lapasta"
@@ -471,27 +471,30 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
           />
 
           <ProjectSpotlight
-            title={t.ciromapTitle}
-            subtitle={t.ciromapSubtitle}
-            description={t.ciromapDescription}
-            status={t.ciromapStatus}
-            ctaLabel={t.ciromapCTA}
-            ctaHref={CIRO_MAP_APP_STORE_URL}
-            external
-            appStoreBadge
+            title={t.birdTitle}
+            subtitle={t.birdSubtitle}
+            description={renderBirdDescription(t.birdDescription)}
+            status={t.birdStatus}
+            ctaLabel={t.videoLinkLabel}
+            ctaHref={birdLinesWatchPath(routeLang)}
             visual={
               <Link
-                href="/ciromap"
-                className="glass-panel gpu-layer mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden p-8 sm:h-72"
-                aria-label={t.ciromapTitle}
+                href={birdLinesWatchPath(routeLang)}
+                className="group glass-panel gpu-layer relative mx-auto block h-64 w-full max-w-xs overflow-hidden sm:h-72"
+                aria-label={t.videoLinkLabel}
               >
                 <Image
-                  src="/ciromap/app-icon-192.png?v=3"
-                  alt="Ciro.Map app icon"
-                  width={160}
-                  height={160}
-                  className="rounded-[1.75rem] border border-neutral-200 shadow-lg shadow-neutral-200/60"
+                  src="/assets/logo/azumbo-logo.png"
+                  alt="Bird Lines trailer preview"
+                  width={320}
+                  height={288}
+                  className="h-full w-full object-contain p-10 opacity-90"
                 />
+                <span className="absolute inset-0 flex items-center justify-center bg-neutral-900/15 transition-all duration-500 ease-out group-hover:bg-neutral-900/25">
+                  <span className="glass-panel rounded-full px-5 py-2.5 text-sm font-light text-ink-primary shadow-none">
+                    ▶ {t.videoLinkLabel}
+                  </span>
+                </span>
               </Link>
             }
           />
