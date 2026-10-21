@@ -5,13 +5,14 @@ import AInclusivePrivacyClient from '../PrivacyClient';
 export const metadata: Metadata = {
   title: 'AInclusive Privacy Policy',
   description:
-    'Privacy Policy for AInclusive by AZUMBO: lesson content, Firebase Analytics and Crashlytics, notifications, children’s privacy, GDPR rights, and contact details. English, Hebrew, Italian.',
+    'Privacy Policy for AInclusive (iOS App Store and Android Google Play) by AZUMBO: lesson content, OpenAI, Firebase, SendGrid, Google Cloud, permissions, children’s privacy, GDPR rights, and data deletion. English, Hebrew, Italian, Russian.',
   alternates: {
     canonical: `${SITE_URL}/ainclusive/privacy`,
   },
   openGraph: {
     title: 'AInclusive Privacy Policy',
-    description: 'Privacy Policy for AInclusive Education app by AZUMBO.',
+    description:
+      'Privacy Policy for AInclusive on iOS and Android — last updated 25 September 2026.',
     url: `${SITE_URL}/ainclusive/privacy`,
     siteName: 'AZUMBO',
     type: 'website',
