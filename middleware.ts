@@ -53,6 +53,7 @@ const KNOWN_APP_ROOTS = new Set([
   'petonauta',
   'cityintheplane',
   'press',
+  'zumi',
 ]);
 
 export function middleware(request: NextRequest) {

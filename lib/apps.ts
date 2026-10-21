@@ -58,6 +58,19 @@ export const apps: StudioApp[] = [
     privacyPath: '/ciromap/privacy',
     supportPath: '/ciromap',
   },
+  {
+    name: 'Zumi: Learn Italian Songs',
+    slug: 'zumi',
+    appStoreId: '',
+    appStoreUrl: 'https://azumbo.vercel.app/zumi',
+    bundleId: 'com.zumi.app',
+    description:
+      'Learn Italian through real music: synced karaoke, EN/RU translations, practice drills, and offline song packs. Free · iOS 14+ · Android 24+.',
+    icon: '🎵',
+    tagline: 'Learn Italian with real songs',
+    privacyPath: '/zumi/privacy',
+    supportPath: '/zumi/support',
+  },
 ];
 
 export function getAppBySlug(slug: string) {
