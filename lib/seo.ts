@@ -31,28 +31,42 @@ export const ORGANIZATION_SAME_AS = [
   'https://www.gofundme.com/u/azumbox',
 ] as const;
 
-/** Crawlers explicitly allowed for indexing and AI discovery (2026 baseline). */
-export const AI_AND_SEARCH_BOTS = [
+/**
+ * Citation & search bots — ALLOW public pages (Google, ChatGPT Search, Perplexity, Claude, Apple AI).
+ * Keep utility paths disallowed via NOINDEX_PATHS.
+ */
+export const CITATION_AND_SEARCH_BOTS = [
   '*',
   'Googlebot',
-  'Google-Extended',
   'Bingbot',
   'Yandex',
-  'CCBot',
-  'Bytespider',
   'OAI-SearchBot',
-  'GPTBot',
   'ChatGPT-User',
-  'anthropic-ai',
-  'ClaudeBot',
   'PerplexityBot',
-  'cohere-ai',
-  'Meta-ExternalAgent',
+  'ClaudeBot',
+  'anthropic-ai',
   'Applebot',
+  'Applebot-Extended',
+  'Meta-ExternalAgent',
   'Diffbot',
   'ImagesiftBot',
   'Omgili',
+  'cohere-ai',
 ] as const;
+
+/**
+ * Training & aggressive scrapers — DISALLOW site-wide (citation reserved for search/answer bots above).
+ */
+export const TRAINING_AND_SCRAPER_BOTS = [
+  'GPTBot',
+  'Google-Extended',
+  'CCBot',
+  'Bytespider',
+  'Amazonbot',
+] as const;
+
+/** @deprecated Use CITATION_AND_SEARCH_BOTS — kept as alias for older smoke/docs references. */
+export const AI_AND_SEARCH_BOTS = CITATION_AND_SEARCH_BOTS;
 
 export function isSupportedLocale(locale: string): locale is Locale {
   return SUPPORTED_LOCALES.includes(locale as Locale);
@@ -100,6 +114,13 @@ export const INDEXABLE_ROUTES = [
   '/support',
   '/cornettoclicker/privacy',
   '/petonauta/privacy',
+  '/press',
+  '/press/ciromap',
+  '/press/ainclusive',
+  '/legal/privacy',
+  '/legal/terms',
+  '/legal/cookies',
+  '/legal/gdpr-ccpa',
 ] as const;
 
 /** Session / demo utility paths — keep out of sitemap and mark noindex. */

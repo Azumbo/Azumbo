@@ -1,4 +1,5 @@
 import { JsonLd, SoftwareApplicationJsonLd } from '../../components/seo/JsonLd';
+import { getAppBySlug } from '../../lib/apps';
 import { LA_PASTA_FAQ } from '../../lib/lapastaFaq';
 import {
   SITE_URL,
@@ -8,6 +9,8 @@ import {
 } from '../../lib/seo';
 import LaPastaLandingClient from './LandingClient';
 import type { Metadata } from 'next';
+
+const LA_PASTA = getAppBySlug('lapasta')!;
 
 export const metadata: Metadata = buildPageMetadata({
   pathname: '/lapasta',
@@ -35,6 +38,7 @@ export default function LaPastaLandingPage() {
         applicationCategory="GameApplication"
         operatingSystem="iOS 18+"
         image={`${SITE_URL}/lapasta/gameplay-screenshot.jpg`}
+        downloadUrl={LA_PASTA.appStoreUrl}
         offers={{ price: '0', priceCurrency: 'EUR' }}
       />
       <LaPastaLandingClient />

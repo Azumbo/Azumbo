@@ -9,23 +9,6 @@ import {
   SUPPORTED_LOCALES,
 } from './lib/seo';
 
-function getPreferredLocale(request: NextRequest): string {
-  const cookieLocale = request.cookies.get('azumbo_locale')?.value;
-  if (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale as (typeof SUPPORTED_LOCALES)[number])) {
-    return cookieLocale;
-  }
-
-  const languageHeader = request.headers.get('accept-language')?.toLowerCase() || '';
-  const matched = SUPPORTED_LOCALES.find(
-    (locale) =>
-      languageHeader.startsWith(locale) ||
-      languageHeader.includes(`${locale};`) ||
-      languageHeader.includes(`${locale},`)
-  );
-
-  return matched || DEFAULT_LOCALE;
-}
-
 function isNoindexPath(pathname: string) {
   return (NOINDEX_PATHS as readonly string[]).some(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
@@ -78,10 +61,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`${pathname.toLowerCase()}${search}`, request.url), 308);
   }
 
-  // 4. Root -> preferred locale (no trailing slash)
+  // 4. Root -> /en permanently (aligns with x-default; no Accept-Language split)
   if (pathname === '/') {
-    const locale = getPreferredLocale(request);
-    return NextResponse.redirect(new URL(`/${locale}${search}`, request.url), 307);
+    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}${search}`, request.url), 308);
   }
 
   // 4.1 /en/ -> /en

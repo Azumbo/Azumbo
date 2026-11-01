@@ -155,9 +155,9 @@ export default function CornettoLanding() {
           }}
         />
         <nav className="pixel-nav">
-          <a href="#game" data-i18n="nav.game"></a>
-          <a href="#biz" data-i18n="nav.biz"></a>
-          <a href="#download" data-i18n="nav.download"></a>
+          <a href="#game" data-i18n="nav.game">GAME</a>
+          <a href="#biz" data-i18n="nav.biz">FOR BUSINESS</a>
+          <a href="#download" data-i18n="nav.download">DOWNLOAD</a>
           <div className="lang-switcher" aria-label="Switch language">
             <button data-lang="en" onClick={() => changeLang('en')}>🇬🇧</button>
             <button data-lang="ru" onClick={() => changeLang('ru')}>🇷🇺</button>
@@ -169,8 +169,8 @@ export default function CornettoLanding() {
       <section className="crt-effect pixel-hero" id="game">
         <div id="croissant-sprite" className="sprite-animation" />
         <h1>🥐 CORNETTO CLICKER</h1>
-        <h2 data-i18n="hero.subtitle"></h2>
-        <button className="pixel-btn play-btn" data-i18n="hero.play"></button>
+        <h2 data-i18n="hero.subtitle">LEGENDARY CLICKER IS BACK!</h2>
+        <button className="pixel-btn play-btn" data-i18n="hero.play">PLAY NOW</button>
         <div className="platform-badges">
           <span className="ios-badge">iOS</span>
           <span className="android-badge">ANDROID</span>
@@ -179,46 +179,46 @@ export default function CornettoLanding() {
       </section>
 
       <section className="pixel-section" id="features">
-        <h2 data-i18n="features.title"></h2>
+        <h2 data-i18n="features.title">GAME FEATURES</h2>
         <div className="pokedex-ui">
-          <div className="pixel-feature">❖ <span data-i18n="features.f1"></span></div>
-          <div className="pixel-feature">❖ <span data-i18n="features.f2"></span></div>
-          <div className="pixel-feature">❖ <span data-i18n="features.f3"></span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f1">50+ ice creams</span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f2">Retro achievements</span></div>
+          <div className="pixel-feature">❖ <span data-i18n="features.f3">Cross-platform</span></div>
         </div>
       </section>
 
       <section className="pixel-section biz-section" id="biz">
-        <h2 data-i18n="biz.title"></h2>
+        <h2 data-i18n="biz.title">WANT THIS GAME FOR YOUR BUSINESS?</h2>
         <div className="niche-grid">
           <div className="niche bakery" data-niche="bakery">
             <div className="pixel-icon">🍞</div>
-            <span data-i18n="biz.bakery"></span>
+            <span data-i18n="biz.bakery">BAKERY → CROISSANTS</span>
           </div>
           <div className="niche winery" data-niche="winery">
             <div className="pixel-icon">🍷</div>
-            <span data-i18n="biz.winery"></span>
+            <span data-i18n="biz.winery">WINERY → GRAPES</span>
           </div>
           <div className="niche brewery" data-niche="brewery">
             <div className="pixel-icon">🍺</div>
-            <span data-i18n="biz.brewery"></span>
+            <span data-i18n="biz.brewery">BREWERY → BOTTLES</span>
           </div>
           <div className="niche cafe" data-niche="cafe">
             <div className="pixel-icon">☕</div>
-            <span data-i18n="biz.cafe"></span>
+            <span data-i18n="biz.cafe">CAFE → COOKIES</span>
           </div>
         </div>
         <div className="offer-box">
-          <h3 data-i18n="biz.offer_title"></h3>
+          <h3 data-i18n="biz.offer_title">YOUR BRANDED GAME IN 7 DAYS:</h3>
           <ul className="pixel-list">
-            <li>✅ <span data-i18n="biz.offer1"></span></li>
-            <li>✅ <span data-i18n="biz.offer2"></span></li>
-            <li>✅ <span data-i18n="biz.offer3"></span></li>
-            <li>✅ <span data-i18n="biz.offer4"></span></li>
+            <li>✅ <span data-i18n="biz.offer1">Logo & brand colors</span></li>
+            <li>✅ <span data-i18n="biz.offer2">Custom collectibles</span></li>
+            <li>✅ <span data-i18n="biz.offer3">Web + iOS + Android</span></li>
+            <li>✅ <span data-i18n="biz.offer4">Retro sounds</span></li>
           </ul>
         </div>
         <div className="biz-cta">
-          <p data-i18n="biz.cta_text"></p>
-          <button className="pixel-btn biz-btn blink-me" data-i18n="biz.cta_btn"></button>
+          <p data-i18n="biz.cta_text">Want more loyal customers? Let them play!</p>
+          <button className="pixel-btn biz-btn blink-me" data-i18n="biz.cta_btn">ORDER NOW</button>
           <p className="pixel-email">📩 azumbogames@gmail.com</p>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 | Old URL | New URL | Status | Reason |
 |---|---|---|---|
-| `/` | `/{locale}` (`/en` default) | 307 | Locale entry without trailing slash |
+| `/` | `/en` | 308 | Permanent entry aligned with x-default (no Accept-Language split) |
 | `/{locale}/` | `/{locale}` | 308 | trailingSlash: false |
 | Mixed-case path | lowercase path | 308 | Canonical casing |
 | `/CiroMap`, `/CiroMap/:path*` | `/ciromap`, `/ciromap/:path*` | 301 | Renamed Jun 2026 (`c570786`); also in `next.config.js` |

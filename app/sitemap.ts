@@ -72,7 +72,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE_URL}${path}`,
     lastModified: LAST_MODIFIED,
     changeFrequency: 'weekly' as const,
-    priority: path.startsWith('/ainclusive') || path.startsWith('/lapasta') || path === '/ciromap' ? 0.9 : 0.7,
+    priority:
+      path.startsWith('/ainclusive') ||
+      path.startsWith('/lapasta') ||
+      path === '/ciromap' ||
+      path.startsWith('/press')
+        ? 0.9
+        : path.startsWith('/legal')
+          ? 0.5
+          : 0.7,
   }));
 
   return [

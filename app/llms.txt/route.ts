@@ -16,6 +16,12 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - ${SITE_URL}/it/answers
 - ${SITE_URL}/ru/answers
 
+## Press & E-E-A-T proof
+- Press kit hub: ${SITE_URL}/press
+- Ciro.Map press kit (L'Altravoce coverage, 30 July 2026): ${SITE_URL}/press/ciromap
+- AInclusive press kit (pilot / education proof): ${SITE_URL}/press/ainclusive
+- Ciro.Map newspaper PDF (L'Altravoce): ${SITE_URL}/press/laltravoce-30-07-2026.pdf
+
 ## Studio projects
 - Bird Lines (match-3, in development): ${SITE_URL}/en/videos/bird-lines
 - AInclusive (Education app, iOS/macOS): ${SITE_URL}/ainclusive
@@ -28,6 +34,10 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - Contact: azumbogames@gmail.com
 
 ## Legal and policies
+- Studio privacy: ${SITE_URL}/legal/privacy
+- Terms: ${SITE_URL}/legal/terms
+- Cookies: ${SITE_URL}/legal/cookies
+- GDPR/CCPA: ${SITE_URL}/legal/gdpr-ccpa
 - AInclusive privacy: ${SITE_URL}/ainclusive/privacy
 - AInclusive support: ${SITE_URL}/ainclusive/support
 - Ciro.Map privacy: ${SITE_URL}/ciromap/privacy
@@ -36,6 +46,7 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 ## Crawling
 - Sitemap: ${SITE_URL}/sitemap.xml
 - Robots: ${SITE_URL}/robots.txt
+- Citation bots allowed; training scrapers (GPTBot, Google-Extended, CCBot, Bytespider, Amazonbot) disallowed
 `;
 
 export function GET() {

@@ -86,6 +86,7 @@ export default function CiroMapLandingPage() {
         applicationCategory="TravelApplication"
         operatingSystem="iOS 17+"
         image={OG_IMAGE}
+        downloadUrl={CIRO_MAP.appStoreUrl}
         offers={{ price: '0', priceCurrency: 'USD' }}
         datePublished={PUBLISH_DATE}
         authors={[...AUTHORS]}
