@@ -77,12 +77,12 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
     {
       question: 'What projects does AZUMBO publish?',
       answer:
-        'Current studio projects include AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map, and Azumbox, plus classic web arcade demos such as Frogger, Pac-Man, and Space Invaders.',
+        'Current studio projects include AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map, Russian game: Ring Maze (Apple Watch), and Azumbox, plus classic web arcade demos such as Frogger, Pac-Man, and Space Invaders.',
     },
     {
       question: 'Where can I learn about AInclusive, La Pasta, and Ciro.Map?',
       answer:
-        'Use /ainclusive (product, privacy, support in English, Hebrew, and Italian), /lapasta, and /ciromap for product pages, privacy policies, and App Store links.',
+        'Use /ainclusive (product, privacy, support in English, Hebrew, and Italian), /lapasta, /ciromap, and /en/russiangame (also /it/russiangame, /ru/russiangame) for product pages, privacy policies, and store links.',
     },
     {
       question: 'How do I contact AZUMBO for publishing or a prototype quote?',
@@ -104,12 +104,12 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
     {
       question: 'Quali progetti pubblica AZUMBO?',
       answer:
-        'I progetti dello studio includono AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map e Azumbox, oltre a demo arcade web come Frogger, Pac-Man e Space Invaders.',
+        'I progetti dello studio includono AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map, Russian game: Ring Maze (Apple Watch) e Azumbox, oltre a demo arcade web come Frogger, Pac-Man e Space Invaders.',
     },
     {
       question: 'Dove trovo AInclusive, La Pasta e Ciro.Map?',
       answer:
-        'Usa /ainclusive (prodotto, privacy e supporto in inglese, ebraico e italiano), /lapasta e /ciromap per pagine prodotto, privacy e link allo Store.',
+        'Usa /ainclusive (prodotto, privacy e supporto in inglese, ebraico e italiano), /lapasta, /ciromap e /it/russiangame (anche /en e /ru) per pagine prodotto, privacy e link allo Store.',
     },
     {
       question: 'Come contatto AZUMBO per publishing o un preventivo di prototipo?',
@@ -131,12 +131,12 @@ export const HOME_FAQ: Record<Locale, HomeFaqItem[]> = {
     {
       question: 'Какие проекты есть у AZUMBO?',
       answer:
-        'Среди проектов студии — AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map и Azumbox, а также веб-аркады Frogger, Pac-Man и Space Invaders.',
+        'Среди проектов студии — AInclusive (Education), Bird Lines, La Pasta: 60s Challenge, Ciro.Map, Русская игра: Лабиринт (Apple Watch) и Azumbox, а также веб-аркады Frogger, Pac-Man и Space Invaders.',
     },
     {
       question: 'Где узнать об AInclusive, La Pasta и Ciro.Map?',
       answer:
-        'Смотрите /ainclusive (продукт, privacy и support на английском, иврите и итальянском), /lapasta и /ciromap — там описания, privacy и ссылки в Store или на бету.',
+        'Смотрите /ainclusive (продукт, privacy и support на английском, иврите и итальянском), /lapasta, /ciromap и /ru/russiangame (также /en и /it) — там описания, privacy и ссылки в Store или на бету.',
     },
     {
       question: 'Как связаться с AZUMBO по паблишингу или прототипу?',

@@ -27,6 +27,9 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - AInclusive (Education app, iOS/macOS): ${SITE_URL}/ainclusive
 - La Pasta: 60s Challenge (iOS, live): ${SITE_URL}/lapasta
 - Ciro.Map (iOS digital platform, live): ${SITE_URL}/ciromap
+- Russian game: Ring Maze (watchOS tilt maze, Coming soon): ${SITE_URL}/en/russiangame
+- Russian game (IT): ${SITE_URL}/it/russiangame
+- Russian game (RU): ${SITE_URL}/ru/russiangame
 - Azumbox (mobile game concept): ${SITE_URL}/azumbox
 
 ## Services
@@ -42,6 +45,8 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - AInclusive support: ${SITE_URL}/ainclusive/support
 - Ciro.Map privacy: ${SITE_URL}/ciromap/privacy
 - La Pasta privacy: ${SITE_URL}/lapasta/privacy
+- Russian game privacy: https://azumbo.github.io/russian-game-legal/privacy.html
+- Russian game support: https://azumbo.github.io/russian-game-legal/support.html
 
 ## Crawling
 - Sitemap: ${SITE_URL}/sitemap.xml

@@ -27,6 +27,7 @@ const KNOWN_APP_ROOTS = new Set([
   'lapasta',
   'ciromap',
   'azumbox',
+  'russiangame',
   'support',
   'register',
   'finish',

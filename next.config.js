@@ -16,6 +16,12 @@ const nextConfig = {
         permanent: true,
       },
       {
+        // Short product URL → EN canonical landing (IT/RU use /it|/ru/russiangame)
+        source: '/russiangame',
+        destination: '/en/russiangame',
+        permanent: false,
+      },
+      {
         source: '/italysunhomes/privacy',
         destination: '/italysunhomes/privacy.html',
         permanent: false,

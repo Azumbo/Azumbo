@@ -99,6 +99,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'An iOS digital platform for Ciro Marina, Calabria: discover nearby places, routes, categories, and a private loyalty wallet.',
     ciromapStatus: 'Status: Live on the App Store',
     ciromapCTA: 'Download on App Store',
+    russiangameTitle: 'Russian game: Ring Maze',
+    russiangameSubtitle: 'Apple Watch tilt labyrinth',
+    russiangameDescription:
+      'watchOS-only puzzle: tilt your wrist to roll a chrome ball through concentric metal rings into the center well. Levels 1–3 free.',
+    russiangameStatus: 'Status: Coming soon on the App Store',
+    russiangameCTA: 'View product page',
   },
   it: {
     title: 'AZUMBO — Studio Giochi Indie',
@@ -177,6 +183,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'Piattaforma digitale iOS per Ciro Marina, Calabria: scopri luoghi vicini, percorsi, categorie e un wallet fedeltà privato.',
     ciromapStatus: 'Stato: Live su App Store',
     ciromapCTA: 'Scarica su App Store',
+    russiangameTitle: 'Russian game: Ring Maze',
+    russiangameSubtitle: 'Labirinto tilt per Apple Watch',
+    russiangameDescription:
+      'Puzzle solo watchOS: inclina il polso e fai rotolare la biglia cromata attraverso gli anelli metallici fino al centro. Livelli 1–3 gratis.',
+    russiangameStatus: 'Stato: In arrivo sull’App Store',
+    russiangameCTA: 'Apri la pagina prodotto',
   },
   ru: {
     title: 'AZUMBO — инди-студия игр',
@@ -255,6 +267,12 @@ const STRINGS: Record<Lang, Record<string, string>> = {
       'iOS цифровая платформа для Ciro Marina, Калабрия: места рядом, маршруты, категории и приватный wallet для карт лояльности.',
     ciromapStatus: 'Статус: В App Store',
     ciromapCTA: 'Скачать в App Store',
+    russiangameTitle: 'Русская игра: Лабиринт',
+    russiangameSubtitle: 'Лабиринт с наклоном для Apple Watch',
+    russiangameDescription:
+      'Головоломка только для watchOS: наклоняй запястье и кати хромированный шар сквозь металлические кольца в центр. Уровни 1–3 бесплатно.',
+    russiangameStatus: 'Статус: Скоро в App Store',
+    russiangameCTA: 'Открыть страницу продукта',
   }
 };
 
@@ -436,6 +454,30 @@ export default async function AzumboLanding({ params }: { params: Promise<{ loca
                   width={390}
                   height={844}
                   className="h-full w-full object-cover object-[center_14%]"
+                />
+              </Link>
+            }
+          />
+
+          <ProjectSpotlight
+            title={t.russiangameTitle}
+            subtitle={t.russiangameSubtitle}
+            description={t.russiangameDescription}
+            status={t.russiangameStatus}
+            ctaLabel={t.russiangameCTA}
+            ctaHref={`/${routeLang}/russiangame`}
+            visual={
+              <Link
+                href={`/${routeLang}/russiangame`}
+                className="gpu-layer mx-auto flex h-64 w-full max-w-xs items-center justify-center overflow-hidden rounded-[1.25rem] border border-neutral-800 bg-[#050914] shadow-sm sm:h-72"
+                aria-label={t.russiangameTitle}
+              >
+                <Image
+                  src="/russiangame/hero-menu.png"
+                  alt={t.russiangameTitle}
+                  width={422}
+                  height={514}
+                  className="h-full w-full object-contain p-4"
                 />
               </Link>
             }

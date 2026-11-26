@@ -63,6 +63,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const russianGamePages = SUPPORTED_LOCALES.map((locale) => {
+    const path = `/${locale}/russiangame`;
+    return {
+      url: `${SITE_URL}${path}`,
+      lastModified: new Date('2026-11-26T00:00:00.000Z'),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: buildLanguageAlternates('/russiangame'),
+      },
+    };
+  });
+
   const mergedRoutes = [...INDEXABLE_ROUTES, ...getPublicAppRoutes()];
   const staticPaths = mergedRoutes.filter(
     (path, index) => mergedRoutes.indexOf(path) === index
@@ -88,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...birdLinesWatchPages,
     ...azumboxWatchPages,
     ...answerHubPages,
+    ...russianGamePages,
     ...staticRoutes,
   ];
 }

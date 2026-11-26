@@ -71,6 +71,20 @@ export const apps: StudioApp[] = [
     privacyPath: '/zumi/privacy',
     supportPath: '/zumi/support',
   },
+  {
+    name: 'Russian game: Ring Maze',
+    slug: 'russiangame',
+    appStoreId: '6835057638',
+    appStoreUrl: 'https://azumbo.vercel.app/en/russiangame',
+    bundleId: 'com.russiangame.watch',
+    description:
+      'watchOS-only tilt maze for Apple Watch: roll a chrome ball through concentric metal rings into the center well. Levels 1–3 free; one-time unlock for 4–10.',
+    icon: '/russiangame/hero-menu.png',
+    screenshot: '/russiangame/hero-menu.png',
+    tagline: 'Apple Watch ring maze',
+    privacyPath: 'https://azumbo.github.io/russian-game-legal/privacy.html',
+    supportPath: 'https://azumbo.github.io/russian-game-legal/support.html',
+  },
 ];
 
 export function getAppBySlug(slug: string) {
@@ -80,7 +94,11 @@ export function getAppBySlug(slug: string) {
 export function getPublicAppRoutes() {
   return apps.flatMap((app) =>
     [`/${app.slug}`, app.privacyPath, app.supportPath, app.accessibilityPath].filter(
-      (path): path is string => Boolean(path)
+      (path): path is string =>
+        typeof path === 'string' &&
+        path.length > 0 &&
+        !path.startsWith('http://') &&
+        !path.startsWith('https://')
     )
   );
 }
