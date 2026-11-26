@@ -78,12 +78,12 @@ export const apps: StudioApp[] = [
     appStoreUrl: 'https://azumbo.vercel.app/en/russiangame',
     bundleId: 'com.russiangame.watch',
     description:
-      'watchOS-only tilt maze for Apple Watch: roll a chrome ball through concentric metal rings into the center well. Levels 1–3 free; one-time unlock for 4–10.',
+      'Tilt your Apple Watch. Roll the chrome ball through concentric rings into the center well. Levels 1–3 free; one-time unlock for the full set.',
     icon: '/russiangame/hero-menu.png',
     screenshot: '/russiangame/hero-menu.png',
-    tagline: 'Apple Watch ring maze',
-    privacyPath: 'https://azumbo.github.io/russian-game-legal/privacy.html',
-    supportPath: 'https://azumbo.github.io/russian-game-legal/support.html',
+    tagline: 'Tilt Watch Labyrinth Puzzle',
+    privacyPath: 'https://gist.github.com/Azumbo/6847ec27112e03c2a21e40ae6ef63fc1',
+    supportPath: 'https://gist.github.com/Azumbo/ae899e089396d99de80cdea7e3d3039d',
   },
 ];
 

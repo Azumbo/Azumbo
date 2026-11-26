@@ -100,9 +100,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapStatus: 'Status: Live on the App Store',
     ciromapCTA: 'Download on App Store',
     russiangameTitle: 'Russian game: Ring Maze',
-    russiangameSubtitle: 'Apple Watch tilt labyrinth',
+    russiangameSubtitle: 'Tilt Watch Labyrinth Puzzle',
     russiangameDescription:
-      'watchOS-only puzzle: tilt your wrist to roll a chrome ball through concentric metal rings into the center well. Levels 1–3 free.',
+      'Tilt your Apple Watch. Roll the chrome ball through concentric rings into the center well. 3 free mazes — unlock the full set anytime.',
     russiangameStatus: 'Status: Coming soon on the App Store',
     russiangameCTA: 'View product page',
   },
@@ -184,9 +184,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapStatus: 'Stato: Live su App Store',
     ciromapCTA: 'Scarica su App Store',
     russiangameTitle: 'Russian game: Ring Maze',
-    russiangameSubtitle: 'Labirinto tilt per Apple Watch',
+    russiangameSubtitle: 'Inclina l’Watch — fai rotolare la biglia',
     russiangameDescription:
-      'Puzzle solo watchOS: inclina il polso e fai rotolare la biglia cromata attraverso gli anelli metallici fino al centro. Livelli 1–3 gratis.',
+      'Inclina l’Apple Watch. Fai rotolare la biglia cromata attraverso gli anelli concentrici fino al pozzo. 3 labirinti gratis — sblocca il set completo quando vuoi.',
     russiangameStatus: 'Stato: In arrivo sull’App Store',
     russiangameCTA: 'Apri la pagina prodotto',
   },
@@ -268,9 +268,9 @@ const STRINGS: Record<Lang, Record<string, string>> = {
     ciromapStatus: 'Статус: В App Store',
     ciromapCTA: 'Скачать в App Store',
     russiangameTitle: 'Русская игра: Лабиринт',
-    russiangameSubtitle: 'Лабиринт с наклоном для Apple Watch',
+    russiangameSubtitle: 'Наклоняй Watch — кати шар',
     russiangameDescription:
-      'Головоломка только для watchOS: наклоняй запястье и кати хромированный шар сквозь металлические кольца в центр. Уровни 1–3 бесплатно.',
+      'Наклоняй Apple Watch и кати хромированный шар сквозь кольца в центр. 3 бесплатных лабиринта — полный набор открывается разовой покупкой.',
     russiangameStatus: 'Статус: Скоро в App Store',
     russiangameCTA: 'Открыть страницу продукта',
   }

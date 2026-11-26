@@ -45,8 +45,8 @@ Languages: English (/en), Italian (/it), Russian (/ru)
 - AInclusive support: ${SITE_URL}/ainclusive/support
 - Ciro.Map privacy: ${SITE_URL}/ciromap/privacy
 - La Pasta privacy: ${SITE_URL}/lapasta/privacy
-- Russian game privacy: https://azumbo.github.io/russian-game-legal/privacy.html
-- Russian game support: https://azumbo.github.io/russian-game-legal/support.html
+- Russian game privacy: https://gist.github.com/Azumbo/6847ec27112e03c2a21e40ae6ef63fc1
+- Russian game support: https://gist.github.com/Azumbo/ae899e089396d99de80cdea7e3d3039d
 
 ## Crawling
 - Sitemap: ${SITE_URL}/sitemap.xml
